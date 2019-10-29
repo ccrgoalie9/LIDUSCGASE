@@ -5,7 +5,8 @@ using System.Text;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace InjestationClass {
+namespace KMLmaker {
+
     class Scraper {
         private string inFileName;
         private string outFileName;
