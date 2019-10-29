@@ -55,7 +55,7 @@ namespace KMLmaker
 
             LineStyle lineStyle = new LineStyle();
             lineStyle.Color = Color32.Parse("501400FA");
-            lineStyle.Width = 100;
+            lineStyle.Width = 10;
 
             PolygonStyle PolyStyle = new PolygonStyle();
             PolyStyle.Color = Color32.Parse("501400FA");
