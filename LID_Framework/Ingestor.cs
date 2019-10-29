@@ -5,10 +5,12 @@ using System.Text;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace KMLmaker
-{
-    class Ingestor
-    {
+namespace KMLmaker {
+    class Ingestor {
+        // Summary:
+        //     Takes the input of a string and converts the coordinates to decimal. 
+        //     It stores this information in an array for ease of access and use
+        //     for other parts of the program.
         private string inFileName;
         private string outFileName;
         private string ingested;

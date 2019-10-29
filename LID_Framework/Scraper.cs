@@ -6,14 +6,13 @@ using System.IO;
 using System.Threading.Tasks;
 
 namespace KMLmaker {
-
     class Scraper {
-        private string inFileName;
-        private string outFileName;
-        private string output;
-        private string ingested;
-        private string[] ingests;
-        private string[] coordsIngested;
+        // Summary:
+        //     Takes the input of a filename and parses for coordinates. 
+        //     It outputs this information in a textfile with the original
+        //     degree/decimal format, and in decimal format
+        private string inFileName, degOutFile, decOutFile, output, decOutput, ingested;
+        private string[] ingests, coordsIngested;
         private Ingestor[] coordinates;
 
         public Scraper(string inFile) {
@@ -21,8 +20,8 @@ namespace KMLmaker {
             CheckInput();
             ReadFile();
             ScrapeFile();
-            CreateOutput();
             ConvertIngestor();
+            CreateOutput();
             WriteFile();
         }
 
@@ -49,20 +48,28 @@ namespace KMLmaker {
             return coordSet;
         }
 
+        //Mainly for debugging
         public string GetIngested() {
             return ingested;
         }
 
+        //Return what is put into the text file
         public string GetOutput() {
             return output;
         }
 
+        //Returns the input filename, mostly for debugging
         public string GetInFileName() {
             return inFileName;
         }
 
-        public string GetOutFileName() {
-            return outFileName;
+        //Returns the output filenames (either Degree or Decimal)
+        public string GetDegOutFile() {
+            return degOutFile;
+        }
+
+        public string GetDecOutFile() {
+            return decOutFile;
         }
 
         //Constructor's Methods
@@ -71,7 +78,8 @@ namespace KMLmaker {
             if(!(inFileName.EndsWith(".txt"))) {
                 inFileName = inFileName + ".txt";
             }
-            outFileName = ("LatLong_" + System.DateTime.Now.ToString().Substring(0, 10).Replace("/", "-") + ".txt");
+            degOutFile = ("Files/LatLongs/" + System.DateTime.Now.ToString().Substring(0, 10).Replace("/", "-") + "_Degree"  + ".txt");
+            decOutFile = ("Files/LatLongs/" + System.DateTime.Now.ToString().Substring(0, 10).Replace("/", "-") + "_Decimal"  + ".txt");
         }
 
         //Read from the file
@@ -132,6 +140,7 @@ namespace KMLmaker {
         }
 
         private void CreateOutput() {
+            //Create Degree Output
             try {
                 output = "";
                 foreach(string x in coordsIngested) {
@@ -142,25 +151,48 @@ namespace KMLmaker {
                 output = e.Message;
                 Console.ReadKey(); //Error
             }
+
+            //Create Decimal Output
+            try {
+                decOutput = "";
+                foreach(Ingestor x in coordinates) {
+                    decOutput += x.GetOutput() + "\n";
+                }
+            } catch(Exception e) {
+                Console.WriteLine(e.Message);
+                decOutput = e.Message;
+                Console.ReadKey();
+            }
         }
 
         //Convert coordinates using the Ingestor class
         private void ConvertIngestor() {
             coordinates = new Ingestor[coordsIngested.Length];
             for(int i = 0; i < coordinates.Length; i++) {
-                coordinates[i] = new Ingestor(coordsIngested[i],i);
+                coordinates[i] = new Ingestor(coordsIngested[i], i+1);
             }
         }
 
         //Write the coordinate sets to a text file
         private void WriteFile() {
+            //Output to Degree File
             try {
-                using(StreamWriter decimalFile = new StreamWriter("Files/LatLongs/"+outFileName)) {
-                    decimalFile.Write(output); //Currently set for Test, CHANGE THIS
+                using(StreamWriter decimalFile = new StreamWriter(degOutFile)) {
+                    decimalFile.Write(output);
                 }
             } catch(Exception e) {
                 Console.WriteLine(e.Message);
-                Console.ReadKey();
+                Console.ReadKey(); //Error
+            }
+
+            //Output to Decimal File
+            try {
+                using(StreamWriter decimalFile = new StreamWriter(decOutFile)) {
+                    decimalFile.Write(decOutput);
+                }
+            } catch(Exception e) {
+                Console.WriteLine(e.Message);
+                Console.ReadKey(); //Error
             }
         }
 
