@@ -1,46 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Threading.Tasks;
 
-namespace InjestationClass {
-    class Injestor {
-        private string inFileName;
-        private string outFileName;
-        private string injested;
-        private string output;
-        private double[,] coords;
-
-        private int ID;
-
-        public Injestor() {
-
-        }
-
-        //For testing, to make sure that input of lat/longs can be processed (of format directly scraped from the bulletin
-        public Injestor(string inFile) {
-            inFileName = inFile;
-            CheckInput();
-            ReadFile();
-            ConvertInput();
-            CreateOutput();
-            WriteFile();
-        }
-        //For testing
-        
-        public Injestor(string ingested, int i) {
-            ID = i;
-            injested = ingested;
-            ConvertInput();
-            CreateOutput();
-        }
-
-        //Accessors
-        //Accessor to return the generated array
-        public double[,] GetCoordinates() {
-            return coords;
         }
 
         public string GetInjested() {
