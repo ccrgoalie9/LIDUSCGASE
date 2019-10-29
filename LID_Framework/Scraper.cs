@@ -22,12 +22,13 @@ namespace KMLmaker {
             ReadFile();
             ScrapeFile();
             CreateOutput();
+            ConvertIngestor();
             WriteFile();
         }
 
         //Accessors
         //Returns the array of all injestors created from the ingested file
-        public Ingestor[] GetCoordinatesInjestors() {
+        public Ingestor[] GetCoordinatesIngestors() {
             return coordinates;
         }
 
@@ -87,32 +88,32 @@ namespace KMLmaker {
             }
         }
 
+        //Create the coordinatesIngested array
         private void ScrapeFile() {
             ingests = ingested.Split(' ');
             int count = 0;
+            //Determine necessary length of array
             foreach(string x in ingests) {
                 try {
                     if(x.Length >= 6 && x.Length <= 8 && !x.Contains("Z")) {
                         if(x.EndsWith(".")) {
                             Convert.ToInt32(x.Substring(x.Length - 3, 1));
                             count++;
-                            //Console.WriteLine(count);
                         }
                     }
                 } catch(Exception) {
-                    //Console.WriteLine("Did not increment");
                 }
             }
             coordsIngested = new string[count];
             count = 0;
             string temp = "";
+            //Parse for usable information
             foreach(string x in ingests) {
                 try {
                     if(x.Length >= 6 && x.Length <= 8 && !x.Contains("Z")) {
                         if(x.EndsWith(".")) {
                             Convert.ToInt32(x.Substring(x.Length - 3, 1));
                             temp += x;
-                            //Console.WriteLine(temp);
                             coordsIngested[count] = temp;
                             count++;
                             temp = "";
@@ -125,7 +126,7 @@ namespace KMLmaker {
                         }
                     }
                 } catch(Exception) {
-                    //Console.WriteLine("Error was encountered");
+                    //Do nothing
                 }
             }
         }
@@ -143,6 +144,15 @@ namespace KMLmaker {
             }
         }
 
+        //Convert coordinates using the Ingestor class
+        private void ConvertIngestor() {
+            coordinates = new Ingestor[coordsIngested.Length];
+            for(int i = 0; i < coordinates.Length; i++) {
+                coordinates[i] = new Ingestor(coordsIngested[i],i);
+            }
+        }
+
+        //Write the coordinate sets to a text file
         private void WriteFile() {
             try {
                 using(StreamWriter decimalFile = new StreamWriter("Files/LatLongs/"+outFileName)) {

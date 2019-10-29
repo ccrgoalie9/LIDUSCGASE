@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document id="null">
+    <name>MyDoc</name>
+    <open>true</open>
+    <Style id="thisusedtobelongname">
+      <LineStyle>
+        <color>501400fa</color>
+        <width>100</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>501400fa</color>
+      </PolyStyle>
+    </Style>
+    <Placemark>
+      <name>hayden</name>
+      <visibility>false</visibility>
+      <styleUrl>#thisusedtobelongname</styleUrl>
+      <LineString>
+        <extrude>true</extrude>
+        <tessellate>true</tessellate>
+        <altitudeMode>clampToGround</altitudeMode>
+        <coordinates>-56,57
+-59,61
+-56,62
+-50,59
+-42,58
+-39,63
+-28,65</coordinates>
+      </LineString>
+    </Placemark>
+  </Document>
+</kml>

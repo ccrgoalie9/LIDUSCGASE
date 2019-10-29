@@ -13,16 +13,14 @@ namespace KMLmaker
 
         static void Main(string[] args)
         {
-            
             Download test1 = new Download();
             Scraper test2 = new Scraper(test1.GetOutFile());
-
-            /*
-            Ingestor test = new Ingestor("Coordinates2.txt");
-            double[,] ah = test.GetCoordinates();
-            Line oh = new Line(ah,"attempt4.kml");
-            */
+            Line[] testKML = new Line[test2.GetCoordinatesIngestors().Length];
+            int i = 0;
+            foreach(Ingestor x in test2.GetCoordinatesIngestors()) {
+                testKML[i] = new Line(x.GetCoordinates(), ("Files/KML/ICEBERGS"+ x.GetID().ToString() + System.DateTime.Now.ToString().Substring(0, 10).Replace("/", "-") + ".kml"));
+                i++;
+            }
         }
-
     }
 }

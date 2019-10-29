@@ -25,6 +25,7 @@ namespace KMLmaker {
             text = text.Replace("<p>", "");
             text = text.Replace("	","");
             text = text.Replace(".",". ");
+            text = text.Replace(",",", ");
             text = text.Substring(text.IndexOf("NORTH AMERICAN ICE SERVICE (NAIS)"), text.IndexOf("CANCEL THIS MSG") - text.IndexOf("NORTH AMERICAN ICE SERVICE (NAIS)") + 31);
             System.IO.File.WriteAllText("Files/Bulletins/" + outfile, text);
         }
