@@ -1,4 +1,12 @@
-class Download
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace LID_Framework
+{
+    class Download
     {
         public Download()
         {
@@ -27,3 +35,4 @@ class Download
         }
 
     }
+}
