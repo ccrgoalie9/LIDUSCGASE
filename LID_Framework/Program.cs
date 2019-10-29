@@ -1,15 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SharpKml.Base;
+using SharpKml.Dom;
+using SharpKml.Engine;
+using System;
+using System.Data;
+using System.IO;
 
-namespace LID_Framework
+namespace KMLmaker
 {
     class Program
     {
+
+
         static void Main(string[] args)
         {
+            Injestor test = new Injestor("Coordinates2.txt");
+            double[,] ah = test.GetCoordinates();
+            Line oh = new Line(ah,"attempt4.kml");
         }
+
     }
 }
