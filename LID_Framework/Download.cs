@@ -17,14 +17,16 @@ namespace KMLmaker {
         public void DownloadFromWeb() {
 
             infile = "Bulletin_Pull.txt";
-            outfile = infile.Replace(".txt", ("_" + System.DateTime.Now.ToString().Substring(0, 8).Replace("/", "_") + ".txt"));
-            DownloadFile("https://www.navcen.uscg.gov/?pageName=iipB12Out", "files/" + outfile);
+            outfile = infile.Replace(".txt", ("_" + System.DateTime.Now.ToString().Substring(0, 10).Replace("/", "_") + ".txt"));
+            DownloadFile("https://www.navcen.uscg.gov/?pageName=iipB12Out", "Files/Bulletins/" + outfile);
 
-            string text = System.IO.File.ReadAllText("files/" + outfile);
+            string text = System.IO.File.ReadAllText("Files/Bulletins/" + outfile);
             text = text.Replace("</p>", "");
             text = text.Replace("<p>", "");
-            text = text.Substring(text.IndexOf("1. NORTH AMERICAN ICE SERVICE (NAIS)"), text.IndexOf("CANCEL THIS MSG") - text.IndexOf("1. NORTH AMERICAN ICE SERVICE (NAIS)") + 31);
-            System.IO.File.WriteAllText("files/" + outfile, text);
+            text = text.Replace("	","");
+            text = text.Replace(".",". ");
+            text = text.Substring(text.IndexOf("NORTH AMERICAN ICE SERVICE (NAIS)"), text.IndexOf("CANCEL THIS MSG") - text.IndexOf("NORTH AMERICAN ICE SERVICE (NAIS)") + 31);
+            System.IO.File.WriteAllText("Files/Bulletins/" + outfile, text);
         }
 
         public static void DownloadFile(string Bulletin, string SavedBulletin) {
@@ -34,7 +36,7 @@ namespace KMLmaker {
 
         //Accessors
         public string GetOutFile() {
-            return ("files/" + outfile);
+            return ("Files/Bulletins/" + outfile);
         }
     }
 }

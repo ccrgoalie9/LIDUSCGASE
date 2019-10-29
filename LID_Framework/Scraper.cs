@@ -70,7 +70,7 @@ namespace KMLmaker {
             if(!(inFileName.EndsWith(".txt"))) {
                 inFileName = inFileName + ".txt";
             }
-            outFileName = inFileName.Replace(".txt", ("_" + System.DateTime.Now.ToString().Substring(0, 8).Replace("/", "-") + ".txt"));
+            outFileName = ("LatLong_" + System.DateTime.Now.ToString().Substring(0, 10).Replace("/", "-") + ".txt");
         }
 
         //Read from the file
@@ -91,10 +91,16 @@ namespace KMLmaker {
             ingests = ingested.Split(' ');
             int count = 0;
             foreach(string x in ingests) {
-                if(x.Length >= 6 && x.Length <= 8) {
-                    if(x.EndsWith(".")) {
-                        count++;
+                try {
+                    if(x.Length >= 6 && x.Length <= 8 && !x.Contains("Z")) {
+                        if(x.EndsWith(".")) {
+                            Convert.ToInt32(x.Substring(x.Length - 3, 1));
+                            count++;
+                            //Console.WriteLine(count);
+                        }
                     }
+                } catch(Exception) {
+                    //Console.WriteLine("Did not increment");
                 }
             }
             coordsIngested = new string[count];
@@ -102,21 +108,24 @@ namespace KMLmaker {
             string temp = "";
             foreach(string x in ingests) {
                 try {
-                    if(x.Length >= 6 && x.Length <= 8) {
-                        Convert.ToInt32(x.Substring(x.Length-3,1));
+                    if(x.Length >= 6 && x.Length <= 8 && !x.Contains("Z")) {
                         if(x.EndsWith(".")) {
+                            Convert.ToInt32(x.Substring(x.Length - 3, 1));
                             temp += x;
+                            //Console.WriteLine(temp);
                             coordsIngested[count] = temp;
                             count++;
                             temp = "";
                         } else if(x.EndsWith(",")) {
+                            Convert.ToInt32(x.Substring(x.Length - 3, 1));
                             temp += x;
                         } else {
+                            Convert.ToInt32(x.Substring(x.Length - 2, 1));
                             temp += x + " ";
                         }
                     }
                 } catch(Exception) {
-
+                    //Console.WriteLine("Error was encountered");
                 }
             }
         }
@@ -130,12 +139,13 @@ namespace KMLmaker {
             } catch(Exception e) {
                 Console.WriteLine(e.Message);
                 output = e.Message;
+                Console.ReadKey(); //Error
             }
         }
 
         private void WriteFile() {
             try {
-                using(StreamWriter decimalFile = new StreamWriter(outFileName)) {
+                using(StreamWriter decimalFile = new StreamWriter("Files/LatLongs/"+outFileName)) {
                     decimalFile.Write(output); //Currently set for Test, CHANGE THIS
                 }
             } catch(Exception e) {
