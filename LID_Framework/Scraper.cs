@@ -14,7 +14,7 @@ namespace KMLmaker {
         private string ingested;
         private string[] ingests;
         private string[] coordsIngested;
-        private Injestor[] coordinates;
+        private Ingestor[] coordinates;
 
         public Scraper(string inFile) {
             inFileName = inFile;
@@ -26,7 +26,7 @@ namespace KMLmaker {
 
         //Accessors
         //Returns the array of all injestors created from the ingested file
-        public Injestor[] GetCoordinatesInjestors() {
+        public Ingestor[] GetCoordinatesInjestors() {
             return coordinates;
         }
 
@@ -34,7 +34,7 @@ namespace KMLmaker {
         public double[][,] GetCoordinates() {
             double[][,] coords = new double[coordinates.Length][,];
             int i = 0;
-            foreach(Injestor set in coordinates) {
+            foreach(Ingestor set in coordinates) {
                 coords[i] = set.GetCoordinates();
                 i++;
             }
