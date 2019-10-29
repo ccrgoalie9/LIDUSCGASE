@@ -1,6 +1,5 @@
 # LIDUSCGASE
-<<<<<<< HEAD
-=======
+
 ## About
 This is the devlepment github for the progam L.I.D. or Line Iceberg Display. 
 
