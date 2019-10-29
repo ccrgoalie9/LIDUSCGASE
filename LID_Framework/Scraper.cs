@@ -22,6 +22,7 @@ namespace KMLmaker {
             ReadFile();
             ScrapeFile();
             CreateOutput();
+            WriteFile();
         }
 
         //Accessors
@@ -76,7 +77,7 @@ namespace KMLmaker {
         private void ReadFile() {
             try {
                 ingested = "";
-                using(StreamReader coordFile = new StreamReader("files/" + inFileName)) {
+                using(StreamReader coordFile = new StreamReader(inFileName)) {
                     ingested = coordFile.ReadToEnd();
                     //ingested = ingested.Replace(", ", ","); //Get rid of pesky spaces
                 }
@@ -102,6 +103,7 @@ namespace KMLmaker {
             foreach(string x in ingests) {
                 try {
                     if(x.Length >= 6 && x.Length <= 8) {
+                        Convert.ToInt32(x.Substring(x.Length-3,1));
                         if(x.EndsWith(".")) {
                             temp += x;
                             coordsIngested[count] = temp;
@@ -133,11 +135,12 @@ namespace KMLmaker {
 
         private void WriteFile() {
             try {
-                using(StreamWriter decimalFile = new StreamWriter("files/" + outFileName)) {
+                using(StreamWriter decimalFile = new StreamWriter(outFileName)) {
                     decimalFile.Write(output); //Currently set for Test, CHANGE THIS
                 }
             } catch(Exception e) {
                 Console.WriteLine(e.Message);
+                Console.ReadKey();
             }
         }
 

@@ -13,9 +13,15 @@ namespace KMLmaker
 
         static void Main(string[] args)
         {
-            Injestor test = new Injestor("Coordinates2.txt");
+            
+            Download test1 = new Download();
+            Scraper test2 = new Scraper(test1.GetOutFile());
+
+            
+            Ingestor test = new Ingestor("Coordinates2.txt");
             double[,] ah = test.GetCoordinates();
             Line oh = new Line(ah,"attempt4.kml");
+            
         }
 
     }
