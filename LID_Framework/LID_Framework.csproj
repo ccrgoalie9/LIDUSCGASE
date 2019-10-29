@@ -49,7 +49,6 @@
   <ItemGroup>
     <Compile Include="Download.cs" />
     <Compile Include="Ingestor.cs" />
-    <Compile Include="Injestor.cs" />
     <Compile Include="Line.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
