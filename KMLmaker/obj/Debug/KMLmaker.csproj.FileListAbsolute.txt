@@ -1,9 +1,0 @@
-C:\Users\Hayden Carter\OneDrive - Coast Guard Academy\2nd Class Year\Software Engineering\Project\github\LIDUSCGASE\KMLmaker\bin\Debug\KMLmaker.exe.config
-C:\Users\Hayden Carter\OneDrive - Coast Guard Academy\2nd Class Year\Software Engineering\Project\github\LIDUSCGASE\KMLmaker\bin\Debug\KMLmaker.exe
-C:\Users\Hayden Carter\OneDrive - Coast Guard Academy\2nd Class Year\Software Engineering\Project\github\LIDUSCGASE\KMLmaker\bin\Debug\KMLmaker.pdb
-C:\Users\Hayden Carter\OneDrive - Coast Guard Academy\2nd Class Year\Software Engineering\Project\github\LIDUSCGASE\KMLmaker\bin\Debug\SharpKml.Core.dll
-C:\Users\Hayden Carter\OneDrive - Coast Guard Academy\2nd Class Year\Software Engineering\Project\github\LIDUSCGASE\KMLmaker\bin\Debug\SharpKml.Core.xml
-C:\Users\Hayden Carter\OneDrive - Coast Guard Academy\2nd Class Year\Software Engineering\Project\github\LIDUSCGASE\KMLmaker\obj\Debug\KMLmaker.csprojAssemblyReference.cache
-C:\Users\Hayden Carter\OneDrive - Coast Guard Academy\2nd Class Year\Software Engineering\Project\github\LIDUSCGASE\KMLmaker\obj\Debug\KMLmaker.csproj.CopyComplete
-C:\Users\Hayden Carter\OneDrive - Coast Guard Academy\2nd Class Year\Software Engineering\Project\github\LIDUSCGASE\KMLmaker\obj\Debug\KMLmaker.exe
-C:\Users\Hayden Carter\OneDrive - Coast Guard Academy\2nd Class Year\Software Engineering\Project\github\LIDUSCGASE\KMLmaker\obj\Debug\KMLmaker.pdb
