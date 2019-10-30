@@ -6,7 +6,7 @@
     <Style id="thisusedtobelongname">
       <LineStyle>
         <color>501400fa</color>
-        <width>100</width>
+        <width>10</width>
       </LineStyle>
       <PolyStyle>
         <color>501400fa</color>
@@ -20,15 +20,12 @@
         <extrude>true</extrude>
         <tessellate>true</tessellate>
         <altitudeMode>clampToGround</altitudeMode>
-        <coordinates>-1,-1
--1,-1</coordinates>
-      </LineString>
-    </Placemark>
-  </Document>
-</kml>3,80.75
--61.899999999999999,-80.783332999999999
--61.916665999999999,80.816665999999998
--61.933332999999998,80.849999999999994</coordinates>
+        <coordinates>-55.5,50
+-54.5,49.666665999999999
+-53.5,50
+-52.5,54.5
+-53,56
+-56,57</coordinates>
       </LineString>
     </Placemark>
   </Document>
