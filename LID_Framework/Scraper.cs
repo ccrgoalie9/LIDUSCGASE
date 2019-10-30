@@ -12,7 +12,7 @@ namespace KMLmaker {
         //     It outputs this information in a textfile with the original
         //     degree/decimal format, and in decimal format
         private string inFileName, degOutFile, decOutFile, output, decOutput, ingested;
-        private string[] ingests, coordsIngested;
+        private string[] lineTypes, ingests, coordsIngested;
         private Ingestor[] coordinates;
 
         public Scraper(string inFile) {
@@ -110,12 +110,30 @@ namespace KMLmaker {
                         }
                     }
                 } catch(Exception) {
+                    //Do nothing
                 }
             }
+            //Set arrays of specific length
             coordsIngested = new string[count];
+            lineTypes = new string[count];
             count = 0;
             string temp = "";
-            //Parse for usable information
+            //Parse for the line types
+            for(int i = 0; i < ingests.Length; i++) {
+                if(ingests[i] == "LIMIT") {
+                    if(ingests[i - 1] == "ICEBERG" && (ingests[i - 2] == "ESTIMATED" || ingests[i - 2] == "WESTERN" || ingests[i - 2] == "EASTERN" || ingests[i - 2] == "NORTHERN" || ingests[i - 2] == "SOUTHERN" || ingests[i - 2] == "")) {
+                        lineTypes[count] = (ingests[i - 2] + " " + ingests[i - 1] + " " + ingests[i]);
+                        count++;
+                    } else if(ingests[i - 1] == "ICEBERG") {
+                        lineTypes[count] = (ingests[i - 1] + " " + ingests[i]);
+                        count++;
+                    } else {
+                        //Console.WriteLine(ingests[i] + " Check Bulletin, unexpected format");
+                    }
+                }
+            }
+            count = 0;
+            //Parse for coordinates
             foreach(string x in ingests) {
                 try {
                     if(x.Length >= 6 && x.Length <= 8 && !x.Contains("Z")) {
@@ -170,6 +188,7 @@ namespace KMLmaker {
             coordinates = new Ingestor[coordsIngested.Length];
             for(int i = 0; i < coordinates.Length; i++) {
                 coordinates[i] = new Ingestor(coordsIngested[i], i+1);
+                coordinates[i].SetLineType(lineTypes[i]);
             }
         }
 

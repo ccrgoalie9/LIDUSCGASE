@@ -14,8 +14,6 @@ namespace KMLmaker {
             //Get the current Bulletin
             Download test1 = new Download();
 
-            //Maylis Wuz Here
-
             //Get the necessary bits from the bulletin
             Scraper test2 = new Scraper(test1.GetOutFile());
 
@@ -30,8 +28,16 @@ namespace KMLmaker {
             foreach(Ingestor x in test2.GetCoordinatesIngestors()) {
                 kmls[i] = "Files/KML/" + System.DateTime.Now.ToString().Substring(0, 10).Replace("/", "-") + "_ICEBERGS_" + x.GetID().ToString() + ".kml";
                 testKML[i] = new Line(x.GetCoordinates(), (kmls[i]));
+
+                //Testing
+                Console.WriteLine("Line Type for ID_" + x.GetID() + ": " + x.GetLineType());
+                //Testing
+
                 i++;
             }
+            //Testing
+            Console.ReadKey();
+            //Testing
         }
     }
 }

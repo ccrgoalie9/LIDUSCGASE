@@ -15,6 +15,7 @@ namespace KMLmaker {
         private string outFileName;
         private string ingested;
         private string output;
+        private string lineType;
         private double[,] coords;
 
         private int ID;
@@ -59,11 +60,18 @@ namespace KMLmaker {
             return outFileName;
         }
 
+        public string GetLineType() {
+            return lineType;
+        }
+
         public int GetID() {
             return ID;
         }
 
-
+        //Modifier
+        public void SetLineType(string into) {
+            lineType = into;
+        }
 
         //Constructor's Methods
         //Make sure the input is machine readable

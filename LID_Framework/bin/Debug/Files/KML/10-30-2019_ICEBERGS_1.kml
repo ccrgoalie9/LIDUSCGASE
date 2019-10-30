@@ -20,13 +20,13 @@
         <extrude>true</extrude>
         <tessellate>true</tessellate>
         <altitudeMode>clampToGround</altitudeMode>
-        <coordinates>-55.5,50
--54.5,49.666665999999999
--53.5,50
--52.5,54.5
+        <coordinates>-53.75,49.333333000000003
+-53,50
+-52,54.75
 -53,56
 -56,57</coordinates>
       </LineString>
     </Placemark>
   </Document>
+</kml>ent>
 </kml>
