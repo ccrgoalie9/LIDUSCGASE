@@ -14,3 +14,6 @@ This is the devlepment github for the progam L.I.D. or Line Iceberg Display.
 Currently in development we have a very redimentrary program that can take live data and create the .kml files.
 ## Products
 .kml files are being produced as of 10/29/2019
+
+## Future
+The end goal of this project is to create an AIS message payload that can be used to send to ships at sea. 
