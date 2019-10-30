@@ -1,4 +1,5 @@
 # LIDUSCGASE
+![The Lid](https://i.ytimg.com/vi/79VTKqPmwW0/maxresdefault.jpg)
 
 ## About
 This is the devlepment github for the progam L.I.D. or Line Iceberg Display. 
