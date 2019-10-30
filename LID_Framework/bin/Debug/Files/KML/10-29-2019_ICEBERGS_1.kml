@@ -6,7 +6,7 @@
     <Style id="thisusedtobelongname">
       <LineStyle>
         <color>501400fa</color>
-        <width>100</width>
+        <width>10</width>
       </LineStyle>
       <PolyStyle>
         <color>501400fa</color>
