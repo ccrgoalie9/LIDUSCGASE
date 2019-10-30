@@ -20,3 +20,15 @@ D:\Github\LIDUSCGASE\LID_Framework\obj\Debug\LID_Framework.csproj.GenerateResour
 D:\Github\LIDUSCGASE\LID_Framework\obj\Debug\LID_Framework.csproj.CopyComplete
 D:\Github\LIDUSCGASE\LID_Framework\obj\Debug\LID_Framework.exe
 D:\Github\LIDUSCGASE\LID_Framework\obj\Debug\LID_Framework.pdb
+C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Projects\LIDUSCGASE\LID_Framework\bin\Debug\LID_Framework.exe.config
+C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Projects\LIDUSCGASE\LID_Framework\bin\Debug\LID_Framework.exe
+C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Projects\LIDUSCGASE\LID_Framework\bin\Debug\LID_Framework.pdb
+C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Projects\LIDUSCGASE\LID_Framework\bin\Debug\SharpKml.Core.dll
+C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Projects\LIDUSCGASE\LID_Framework\bin\Debug\SharpKml.Core.xml
+C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Projects\LIDUSCGASE\LID_Framework\obj\Debug\LID_Framework.csprojAssemblyReference.cache
+C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Projects\LIDUSCGASE\LID_Framework\obj\Debug\LID_Framework.Properties.Resources.resources
+C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Projects\LIDUSCGASE\LID_Framework\obj\Debug\LID_Framework.csproj.GenerateResource.cache
+C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Projects\LIDUSCGASE\LID_Framework\obj\Debug\LID_Framework.csproj.CoreCompileInputs.cache
+C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Projects\LIDUSCGASE\LID_Framework\obj\Debug\LID_Framework.csproj.CopyComplete
+C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Projects\LIDUSCGASE\LID_Framework\obj\Debug\LID_Framework.exe
+C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Projects\LIDUSCGASE\LID_Framework\obj\Debug\LID_Framework.pdb

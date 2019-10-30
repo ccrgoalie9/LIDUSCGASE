@@ -1,4 +1,5 @@
 # LIDUSCGASE
+![The Lid](https://i.pinimg.com/originals/fa/05/c5/fa05c5f91887d39f6d29be0a88cb379f.png)
 
 ## About
 This is the devlepment github for the progam L.I.D. or Line Iceberg Display. 
@@ -13,4 +14,6 @@ This is the devlepment github for the progam L.I.D. or Line Iceberg Display.
 Currently in development we have a very redimentrary program that can take live data and create the .kml files.
 ## Products
 .kml files are being produced as of 10/29/2019
->>>>>>> 845d0ac7b37e6c82ac3e47f21ee3761b95703011
+
+## Future
+The end goal of this project is to create an AIS message payload that can be used to send to ships at sea. 
