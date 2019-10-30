@@ -14,6 +14,8 @@ namespace KMLmaker {
             //Get the current Bulletin
             Download test1 = new Download();
 
+            //Maylis Wuz Here
+
             //Get the necessary bits from the bulletin
             Scraper test2 = new Scraper(test1.GetOutFile());
 
