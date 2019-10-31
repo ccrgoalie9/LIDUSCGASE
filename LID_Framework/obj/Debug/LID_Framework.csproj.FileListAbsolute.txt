@@ -43,3 +43,4 @@ C:\Users\Hayden Carter\OneDrive - Coast Guard Academy\2nd Class Year\Software En
 C:\Users\Hayden Carter\OneDrive - Coast Guard Academy\2nd Class Year\Software Engineering\Project\github\LIDUSCGASE\LID_Framework\obj\Debug\LID_Framework.csproj.CopyComplete
 C:\Users\Hayden Carter\OneDrive - Coast Guard Academy\2nd Class Year\Software Engineering\Project\github\LIDUSCGASE\LID_Framework\obj\Debug\LID_Framework.exe
 C:\Users\Hayden Carter\OneDrive - Coast Guard Academy\2nd Class Year\Software Engineering\Project\github\LIDUSCGASE\LID_Framework\obj\Debug\LID_Framework.pdb
+C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Projects\LID\LIDRepo\LIDUSCGASE\LID_Framework\obj\Debug\LID_Framework.LID_Form.resources
