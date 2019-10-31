@@ -79,7 +79,7 @@ namespace KMLmaker {
             if(!(inFileName.EndsWith(".txt"))) {
                 inFileName = inFileName + ".txt";
             }
-            outFileName = inFileName.Replace(".txt", ("_" + System.DateTime.Now.ToString().Substring(0, 8).Replace("/", "-") + ".txt"));
+            outFileName = inFileName.Replace(".txt", ("_" + System.DateTime.UtcNow.ToString().Substring(0, 8).Replace("/", "-") + ".txt"));
         }
 
         //Read from the file

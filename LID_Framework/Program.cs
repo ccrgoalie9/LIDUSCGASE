@@ -26,7 +26,7 @@ namespace KMLmaker {
             //Create the KML files in format: 'date'_ICEBERGS_'ID'.kml
             int i = 0;
             foreach(Ingestor x in test2.GetCoordinatesIngestors()) {
-                kmls[i] = "Files/KML/" + System.DateTime.Now.ToString().Substring(0, 10).Replace("/", "-") + "_ICEBERGS_" + x.GetID().ToString() + ".kml";
+                kmls[i] = "Files/KML/" + System.DateTime.UtcNow.ToString().Substring(0, 10).Replace("/", "-") + "_ICEBERGS_" + x.GetID().ToString() + ".kml";
                 testKML[i] = new Line(x.GetCoordinates(), (kmls[i]));
 
                 //Testing
