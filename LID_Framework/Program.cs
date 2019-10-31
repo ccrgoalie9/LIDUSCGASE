@@ -5,7 +5,7 @@ using System;
 using System.Data;
 using System.IO;
 
-namespace KMLmaker {
+namespace LID_Framework {
     class Program {
 
         static void Main(string[] args) {

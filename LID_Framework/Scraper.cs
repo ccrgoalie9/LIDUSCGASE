@@ -5,7 +5,7 @@ using System.Text;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace KMLmaker {
+namespace LID_Framework {
     class Scraper {
         // Summary:
         //     Takes the input of a filename and parses for coordinates. 
