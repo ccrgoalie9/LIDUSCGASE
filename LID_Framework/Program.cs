@@ -11,7 +11,7 @@ namespace LID_Framework {
 
         static void Main(string[] args) {
             Console.Title = "LID";
-
+            Console.SetWindowSize(25, 20);
             //LID GUI
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

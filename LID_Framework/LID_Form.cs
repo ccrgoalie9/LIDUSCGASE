@@ -5,6 +5,8 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.IO;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -34,8 +36,20 @@ namespace LID_Framework {
         }
 
         private void filesButton_Click(object sender, EventArgs e) {
-            string filePath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase) + @"\Files";
-            System.Diagnostics.Process.Start("explorer.exe", filePath);
+            string filePath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase) + @"\Files";
+            Process.Start("explorer.exe", filePath);
+        }
+
+        private void EarthButton_Click(object sender, EventArgs e) {
+            string filePath = @"C:\Program Files\Google\Google Earth Pro\client\googleearth.exe";
+            if(File.Exists(filePath)) {
+                Process.Start(filePath);
+            }
+            
+        }
+
+        private void ExitButton_Click(object sender, EventArgs e) {
+            this.Dispose();
         }
     }
 }
