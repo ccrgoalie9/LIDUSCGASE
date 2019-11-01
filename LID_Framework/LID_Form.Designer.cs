@@ -53,7 +53,7 @@
             // 
             // filesButton
             // 
-            this.filesButton.Location = new System.Drawing.Point(340, 199);
+            this.filesButton.Location = new System.Drawing.Point(344, 203);
             this.filesButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.filesButton.Name = "filesButton";
             this.filesButton.Size = new System.Drawing.Size(100, 41);
@@ -74,7 +74,7 @@
             // 
             // earthButton
             // 
-            this.earthButton.Location = new System.Drawing.Point(162, 199);
+            this.earthButton.Location = new System.Drawing.Point(172, 203);
             this.earthButton.Name = "earthButton";
             this.earthButton.Size = new System.Drawing.Size(100, 41);
             this.earthButton.TabIndex = 4;
