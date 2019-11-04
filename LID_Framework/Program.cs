@@ -4,13 +4,21 @@ using SharpKml.Engine;
 using System;
 using System.Data;
 using System.IO;
+using System.Windows.Forms;
 
-namespace KMLmaker {
+namespace LID_Framework {
     class Program {
 
         static void Main(string[] args) {
             Console.Title = "LID";
-            
+            Console.SetWindowSize(25, 20);
+            Console.WriteLine("");
+            //LID GUI
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new LID_Form());
+
+            /*
             //Get the current Bulletin
             Download test1 = new Download();
 
@@ -28,16 +36,9 @@ namespace KMLmaker {
             foreach(Ingestor x in test2.GetCoordinatesIngestors()) {
                 kmls[i] = "Files/KML/" + System.DateTime.UtcNow.ToString().Substring(0, 10).Replace("/", "-") + "_ICEBERGS_" + x.GetID().ToString() + ".kml";
                 testKML[i] = new Line(x.GetCoordinates(), (kmls[i]));
-
-                //Testing
-                Console.WriteLine("Line Type for ID_" + x.GetID() + ": " + x.GetLineType());
-                //Testing
-
                 i++;
             }
-            //Testing
-            Console.ReadKey();
-            //Testing
+            */
         }
     }
 }

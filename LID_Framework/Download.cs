@@ -5,7 +5,7 @@ using System.Text;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace KMLmaker {
+namespace LID_Framework {
     class Download {
         string infile;
         string outfile;

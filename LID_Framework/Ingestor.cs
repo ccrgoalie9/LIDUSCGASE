@@ -5,7 +5,7 @@ using System.Text;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace KMLmaker {
+namespace LID_Framework {
     class Ingestor {
         // Summary:
         //     Takes the input of a string and converts the coordinates to decimal. 
