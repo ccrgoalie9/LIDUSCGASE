@@ -14,7 +14,7 @@ namespace LID_Framework {
             Console.SetWindowSize(50, 20);
             Console.WriteLine("");
 
-            Console.WriteLine("Deploying Application...");
+            Console.WriteLine("Deploying Application...\t");
 
             //LID GUI
             Application.EnableVisualStyles();

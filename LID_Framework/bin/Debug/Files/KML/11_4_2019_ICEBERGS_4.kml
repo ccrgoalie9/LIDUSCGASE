@@ -20,10 +20,11 @@
         <extrude>true</extrude>
         <tessellate>true</tessellate>
         <altitudeMode>clampToGround</altitudeMode>
-        <coordinates>-53.5,49.25
--51.5,49.25
--51,54
--53,56</coordinates>
+        <coordinates>-77,63.666665999999999
+-74.416666000000006,63.916665999999999
+-70.583332999999996,62.416665999999999
+-64.5,61.166665999999999
+-64.333332999999996,62</coordinates>
       </LineString>
     </Placemark>
   </Document>

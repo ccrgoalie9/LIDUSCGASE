@@ -14,34 +14,38 @@ using System.Windows.Forms;
 namespace LID_Framework {
     public partial class LID_Form : Form {
 
+        string partialPath;
         string[] kmls;
+        Download todayDownload;
+        Scraper todayScraper;
+
 
         public LID_Form() {
             InitializeComponent();
-
+            partialPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase).Replace(@"file:\", "");
             //See if Directories exist yet
             //If not make them
             DirectoryCheck();
 
             //Get the current Bulletin
-            Console.Write("Fetching Current Bulletin...");
-            Download test1 = new Download();
+            Console.Write("Fetching Current Bulletin...\t");
+            todayDownload = new Download();
             Console.WriteLine(" Current Bulletin Fetched");
 
             //Get the necessary bits from the bulletin
-            Scraper test2 = new Scraper(test1.GetOutFile());
+            todayScraper = new Scraper(todayDownload.GetOutFile());
 
             //Set the length for the KML creator array
-            Line[] testKML = new Line[test2.GetCoordinatesIngestors().Length];
+            Line[] testKML = new Line[todayScraper.GetCoordinatesIngestors().Length];
 
             //String of names for the kml files to open automatically later maybe
-            kmls = new string[test2.GetCoordinatesIngestors().Length];
+            kmls = new string[todayScraper.GetCoordinatesIngestors().Length];
 
             //Create the KML files in format: 'date'_ICEBERGS_'ID'.kml
-            Console.Write("Creating KML Files...");
+            Console.Write("Creating KML Files...\t");
             int i = 0;
-            foreach(Ingestor x in test2.GetCoordinatesIngestors()) {
-                kmls[i] = (@"Files\KML\" + System.DateTime.UtcNow.ToString().Substring(0, 10).Replace("/", "_") + "_ICEBERGS_" + x.GetID().ToString() + ".kml").Replace(" ","");
+            foreach(Ingestor x in todayScraper.GetCoordinatesIngestors()) {
+                kmls[i] = (@"Files\KML\" + DateTime.UtcNow.ToString().Substring(0, 10).Replace("/", "_") + "_ICEBERGS_" + x.GetID().ToString() + ".kml").Replace(" ","");
                 testKML[i] = new Line(x.GetCoordinates(), (kmls[i]));
                 i++;
             }
@@ -51,22 +55,22 @@ namespace LID_Framework {
         }
 
         private void DirectoryCheck() {
-            Console.Write("Updating Directories...");
-            DirectoryInfo dir2 = Directory.CreateDirectory(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase).Replace(@"file:\", "") + @"\Files\Bulletins");
-            DirectoryInfo dir3 = Directory.CreateDirectory(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase).Replace(@"file:\", "") + @"\Files\KML");
-            DirectoryInfo dir4 = Directory.CreateDirectory(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase).Replace(@"file:\", "") + @"\Files\LatLongs");
-            DirectoryInfo dir5 = Directory.CreateDirectory(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase).Replace(@"file:\", "") + @"\Files\Radials");
+            Console.Write("Updating Directories...\t");
+            DirectoryInfo dir2 = Directory.CreateDirectory(partialPath + @"\Files\Bulletins");
+            DirectoryInfo dir3 = Directory.CreateDirectory(partialPath + @"\Files\KML");
+            DirectoryInfo dir4 = Directory.CreateDirectory(partialPath + @"\Files\LatLongs");
+            DirectoryInfo dir5 = Directory.CreateDirectory(partialPath + @"\Files\Radials");
             Console.WriteLine(" Directories Updated");
         }
 
         private void filesButton_Click(object sender, EventArgs e) {
-            string filePath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase) + @"\Files";
+            string filePath = partialPath + @"\Files";
             Process.Start("explorer.exe", filePath);
         }
 
         private void EarthButton_Click(object sender, EventArgs e) {
             string earthPath = @"C:\Program Files\Google\Google Earth Pro\client\googleearth.exe";
-            string kmlPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase) + @"\";
+            string kmlPath = partialPath + @"\";
             //Make sure the user has google earth installed so we don't cause any errors
             if(File.Exists(earthPath)) {
                 //Only until we consolidate the kmls to one file
@@ -81,6 +85,21 @@ namespace LID_Framework {
 
         private void ExitButton_Click(object sender, EventArgs e) {
             this.Dispose();
+        }
+
+        private void DegreeButton_Click(object sender, EventArgs e) {
+            string filePath = partialPath + @"\" + todayScraper.GetDegOutFile(); ;
+            Process.Start(filePath);
+        }
+
+        private void DecimalButton_Click(object sender, EventArgs e) {
+            string filePath = partialPath + @"\" + todayScraper.GetDecOutFile(); ;
+            Process.Start(filePath);
+        }
+
+        private void BulletinButton_Click(object sender, EventArgs e) {
+            string filePath = partialPath + @"\" + todayDownload.GetOutFile(); ;
+            Process.Start(filePath);
         }
     }
 }
