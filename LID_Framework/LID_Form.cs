@@ -19,8 +19,14 @@ namespace LID_Framework {
         public LID_Form() {
             InitializeComponent();
 
+            //See if Directories exist yet
+            //If not make them
+            DirectoryCheck();
+
             //Get the current Bulletin
+            Console.Write("Fetching Current Bulletin...");
             Download test1 = new Download();
+            Console.WriteLine(" Current Bulletin Fetched");
 
             //Get the necessary bits from the bulletin
             Scraper test2 = new Scraper(test1.GetOutFile());
@@ -32,13 +38,25 @@ namespace LID_Framework {
             kmls = new string[test2.GetCoordinatesIngestors().Length];
 
             //Create the KML files in format: 'date'_ICEBERGS_'ID'.kml
-
+            Console.Write("Creating KML Files...");
             int i = 0;
             foreach(Ingestor x in test2.GetCoordinatesIngestors()) {
                 kmls[i] = (@"Files\KML\" + System.DateTime.UtcNow.ToString().Substring(0, 10).Replace("/", "_") + "_ICEBERGS_" + x.GetID().ToString() + ".kml").Replace(" ","");
                 testKML[i] = new Line(x.GetCoordinates(), (kmls[i]));
                 i++;
             }
+            Console.WriteLine(" KML Files Created");
+            Console.WriteLine("Application Deployed Successfully");
+
+        }
+
+        private void DirectoryCheck() {
+            Console.Write("Updating Directories...");
+            DirectoryInfo dir2 = Directory.CreateDirectory(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase).Replace(@"file:\", "") + @"\Files\Bulletins");
+            DirectoryInfo dir3 = Directory.CreateDirectory(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase).Replace(@"file:\", "") + @"\Files\KML");
+            DirectoryInfo dir4 = Directory.CreateDirectory(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase).Replace(@"file:\", "") + @"\Files\LatLongs");
+            DirectoryInfo dir5 = Directory.CreateDirectory(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase).Replace(@"file:\", "") + @"\Files\Radials");
+            Console.WriteLine(" Directories Updated");
         }
 
         private void filesButton_Click(object sender, EventArgs e) {
