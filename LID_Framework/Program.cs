@@ -10,9 +10,9 @@ namespace LID_Framework {
     class Program {
 
         static void Main(string[] args) {
+            //Setup the window
             Console.Title = "LID";
-            Console.SetWindowSize(50, 20);
-            Console.WriteLine("");
+            Console.SetWindowSize(70, 10);
 
             Console.WriteLine("Deploying Application...\t");
 

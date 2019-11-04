@@ -42,7 +42,7 @@ namespace LID_Framework {
             kmls = new string[todayScraper.GetCoordinatesIngestors().Length];
 
             //Create the KML files in format: 'date'_ICEBERGS_'ID'.kml
-            Console.Write("Creating KML Files...\t");
+            Console.Write("Creating KML Files...\t\t");
             int i = 0;
             foreach(Ingestor x in todayScraper.GetCoordinatesIngestors()) {
                 kmls[i] = (@"Files\KML\" + DateTime.UtcNow.ToString().Substring(0, 10).Replace("/", "_") + "_ICEBERGS_" + x.GetID().ToString() + ".kml").Replace(" ","");
@@ -55,7 +55,7 @@ namespace LID_Framework {
         }
 
         private void DirectoryCheck() {
-            Console.Write("Updating Directories...\t");
+            Console.Write("Updating Directories...\t\t");
             DirectoryInfo dir2 = Directory.CreateDirectory(partialPath + @"\Files\Bulletins");
             DirectoryInfo dir3 = Directory.CreateDirectory(partialPath + @"\Files\KML");
             DirectoryInfo dir4 = Directory.CreateDirectory(partialPath + @"\Files\LatLongs");
@@ -105,6 +105,11 @@ namespace LID_Framework {
         private void ChartButton_Click(object sender, EventArgs e) {
             //Current chart released by the iip
             Process.Start("https://www.navcen.uscg.gov/?pageName=iipCharts&Current");
+        }
+
+        private void ResBulletinButton_Click(object sender, EventArgs e) {
+            //Current bulletin released by the iip
+            Process.Start("https://www.navcen.uscg.gov/?pageName=iipB12Out");
         }
     }
 }
