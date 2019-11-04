@@ -82,5 +82,10 @@ namespace LID_Framework {
         private void ExitButton_Click(object sender, EventArgs e) {
             this.Dispose();
         }
+
+        private void LID_Form_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
