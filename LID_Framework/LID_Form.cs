@@ -71,12 +71,12 @@ namespace LID_Framework {
         private void EarthButton_Click(object sender, EventArgs e) {
             string earthPath = @"C:\Program Files\Google\Google Earth Pro\client\googleearth.exe";
             string kmlPath = partialPath + @"\";
-            //Make sure the user has google earth installed so we don't cause any errors
+            //Has google earth?
             if(File.Exists(earthPath)) {
-                //Only until we consolidate the kmls to one file
+                //Until we consolidate the kmls
                 foreach(string x in kmls) {
                     Process.Start(kmlPath + x);
-                    //Trying to open a second one while the program is opening will cause on error, so wait
+                    //Wait to avoid error
                     Thread.Sleep(2500);
                 }
             }
@@ -100,6 +100,11 @@ namespace LID_Framework {
         private void BulletinButton_Click(object sender, EventArgs e) {
             string filePath = partialPath + @"\" + todayDownload.GetOutFile(); ;
             Process.Start(filePath);
+        }
+
+        private void ChartButton_Click(object sender, EventArgs e) {
+            //Current chart released by the iip
+            Process.Start("https://www.navcen.uscg.gov/?pageName=iipCharts&Current");
         }
     }
 }

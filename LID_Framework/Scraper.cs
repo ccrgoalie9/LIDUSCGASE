@@ -78,8 +78,8 @@ namespace LID_Framework {
             if(!(inFileName.EndsWith(".txt"))) {
                 inFileName = inFileName + ".txt";
             }
-            degOutFile = ("Files/LatLongs/" + System.DateTime.UtcNow.ToString().Substring(0, 10).Replace("/", "-") + "_Degree"  + ".txt");
-            decOutFile = ("Files/LatLongs/" + System.DateTime.UtcNow.ToString().Substring(0, 10).Replace("/", "-") + "_Decimal"  + ".txt");
+            degOutFile = ("Files/LatLongs/" + System.DateTime.UtcNow.ToString().Substring(0, 10).Replace("/", "-") + "_Degree" + ".txt");
+            decOutFile = ("Files/LatLongs/" + System.DateTime.UtcNow.ToString().Substring(0, 10).Replace("/", "-") + "_Decimal" + ".txt");
         }
 
         //Read from the file
@@ -116,30 +116,37 @@ namespace LID_Framework {
             //Set arrays of specific length
             coordsIngested = new string[count];
             lineTypes = new string[count];
-            count = 0;
             string temp = "";
-            //Parse for the line types
-            for(int i = 0; i < ingests.Length; i++) {
-                if(ingests[i] == "LIMIT") {
-                    if(ingests[i - 1] == "ICEBERG" && (ingests[i - 2] == "ESTIMATED" || ingests[i - 2] == "WESTERN" || ingests[i - 2] == "EASTERN" || ingests[i - 2] == "NORTHERN" || ingests[i - 2] == "SOUTHERN" || ingests[i - 2] == "")) {
-                        lineTypes[count] = (ingests[i - 2] + " " + ingests[i - 1] + " " + ingests[i]);
-                        count++;
-                    } else if(ingests[i - 1] == "ICEBERG") {
-                        lineTypes[count] = (ingests[i - 1] + " " + ingests[i]);
-                        count++;
-                    } else {
-                        //Console.WriteLine(ingests[i] + " Check Bulletin, unexpected format");
-                    }
-                }
-            }
             count = 0;
+            //Temporary Variables for the 
+            string temp1 = "";
+            string temp2 = "";
+            string tempHeader = "";
             //Parse for coordinates
             foreach(string x in ingests) {
+                //For Section Headers
+                if(x == "ESTIMATED" || x == "WESTERN" || x == "EASTERN" || x == "NORTHERN" || x == "SOUTHERN" || x == "SEA") {
+                    temp1 = x;
+                }
+                if(x == "ICEBERG" || x == "ICE") {
+                    temp2 = x;
+                }
+                if(x == "LIMIT") {
+                    if(temp1 != "") tempHeader = (temp1 + " " + temp2 + " " + x);
+                    else if(temp2 != "") tempHeader = (temp2 + " " + x);
+                    temp1 = "";
+                    temp2 = "";
+                }
+
+                //For Coordinates
                 try {
                     if(x.Length >= 6 && x.Length <= 8 && !x.Contains("Z")) {
                         if(x.EndsWith(".")) {
                             Convert.ToInt32(x.Substring(x.Length - 3, 1));
                             temp += x;
+                            if(tempHeader != "") lineTypes[count] = tempHeader;
+                            else lineTypes[count] = lineTypes[count - 1];
+                            tempHeader = "";
                             coordsIngested[count] = temp;
                             count++;
                             temp = "";
@@ -160,9 +167,12 @@ namespace LID_Framework {
         private void CreateOutput() {
             //Create Degree Output
             try {
+                int count = 0;
                 output = "";
                 foreach(string x in coordsIngested) {
+                    output += lineTypes[count] + "\n";
                     output += x + "\n";
+                    count++;
                 }
             } catch(Exception e) {
                 Console.WriteLine(e.Message);
@@ -172,9 +182,12 @@ namespace LID_Framework {
 
             //Create Decimal Output
             try {
+                int count = 0;
                 decOutput = "";
                 foreach(Ingestor x in coordinates) {
+                    decOutput += lineTypes[count] + "\n";
                     decOutput += x.GetOutput() + "\n";
+                    count++;
                 }
             } catch(Exception e) {
                 Console.WriteLine(e.Message);
@@ -187,7 +200,7 @@ namespace LID_Framework {
         private void ConvertIngestor() {
             coordinates = new Ingestor[coordsIngested.Length];
             for(int i = 0; i < coordinates.Length; i++) {
-                coordinates[i] = new Ingestor(coordsIngested[i], i+1);
+                coordinates[i] = new Ingestor(coordsIngested[i], i + 1);
                 coordinates[i].SetLineType(lineTypes[i]);
             }
         }
