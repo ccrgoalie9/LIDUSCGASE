@@ -45,7 +45,7 @@ namespace LID_Framework {
             Console.Write("Creating KML Files...\t\t");
             int i = 0;
             foreach(Ingestor x in todayScraper.GetCoordinatesIngestors()) {
-                kmls[i] = (@"Files\KML\" + DateTime.UtcNow.ToString().Substring(0, 10).Replace("/", "_") + "_ICEBERGS_" + x.GetID().ToString() + ".kml").Replace(" ","");
+                kmls[i] = (@"Files\KML\" + DateTime.UtcNow.ToString().Substring(0, 10).Replace("/", "_").Replace(" ", "") + "_ICEBERGS_" + x.GetID().ToString() + ".kml").Replace(" ","");
                 testKML[i] = new Line(x.GetCoordinates(), (kmls[i]));
                 i++;
             }

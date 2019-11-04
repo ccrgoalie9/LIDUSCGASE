@@ -78,8 +78,8 @@ namespace LID_Framework {
             if(!(inFileName.EndsWith(".txt"))) {
                 inFileName = inFileName + ".txt";
             }
-            degOutFile = ("Files/LatLongs/" + System.DateTime.UtcNow.ToString().Substring(0, 10).Replace("/", "-") + "_Degree" + ".txt");
-            decOutFile = ("Files/LatLongs/" + System.DateTime.UtcNow.ToString().Substring(0, 10).Replace("/", "-") + "_Decimal" + ".txt");
+            degOutFile = ("Files/LatLongs/" + System.DateTime.UtcNow.ToString().Substring(0, 10).Replace("/", "-").Replace(" ","") + "_Degree" + ".txt");
+            decOutFile = ("Files/LatLongs/" + System.DateTime.UtcNow.ToString().Substring(0, 10).Replace("/", "-").Replace(" ", "") + "_Decimal" + ".txt");
         }
 
         //Read from the file

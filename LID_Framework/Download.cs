@@ -17,7 +17,7 @@ namespace LID_Framework {
         public void DownloadFromWeb() {
 
             infile = "Bulletin_Pull.txt";
-            outfile = infile.Replace(".txt", ("_" + System.DateTime.UtcNow.ToString().Substring(0, 10).Replace("/", "-") + ".txt"));
+            outfile = infile.Replace(".txt", ("_" + System.DateTime.UtcNow.ToString().Substring(0, 10).Replace("/", "-").Replace(" ", "") + ".txt"));
             DownloadFile("https://www.navcen.uscg.gov/?pageName=iipB12Out", "Files/Bulletins/" + outfile);
 
             string text = System.IO.File.ReadAllText("Files/Bulletins/" + outfile);
