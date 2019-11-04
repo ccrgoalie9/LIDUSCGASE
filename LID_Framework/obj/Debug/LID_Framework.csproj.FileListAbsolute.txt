@@ -45,3 +45,15 @@ C:\Users\Hayden Carter\OneDrive - Coast Guard Academy\2nd Class Year\Software En
 C:\Users\Hayden Carter\OneDrive - Coast Guard Academy\2nd Class Year\Software Engineering\Project\github\LIDUSCGASE\LID_Framework\obj\Debug\LID_Framework.pdb
 C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Projects\LID\LIDRepo\LIDUSCGASE\LID_Framework\obj\Debug\LID_Framework.LID_Form.resources
 C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Projects\LIDUSCGASE\LID_Framework\obj\Debug\LID_Framework.LID_Form.resources
+C:\Github\LIDUSCGASE\LID_Framework\bin\Debug\LID_Framework.exe.config
+C:\Github\LIDUSCGASE\LID_Framework\bin\Debug\LID_Framework.exe
+C:\Github\LIDUSCGASE\LID_Framework\bin\Debug\LID_Framework.pdb
+C:\Github\LIDUSCGASE\LID_Framework\bin\Debug\SharpKml.Core.dll
+C:\Github\LIDUSCGASE\LID_Framework\bin\Debug\SharpKml.Core.xml
+C:\Github\LIDUSCGASE\LID_Framework\obj\Debug\LID_Framework.csprojAssemblyReference.cache
+C:\Github\LIDUSCGASE\LID_Framework\obj\Debug\LID_Framework.LID_Form.resources
+C:\Github\LIDUSCGASE\LID_Framework\obj\Debug\LID_Framework.Properties.Resources.resources
+C:\Github\LIDUSCGASE\LID_Framework\obj\Debug\LID_Framework.csproj.GenerateResource.cache
+C:\Github\LIDUSCGASE\LID_Framework\obj\Debug\LID_Framework.csproj.CopyComplete
+C:\Github\LIDUSCGASE\LID_Framework\obj\Debug\LID_Framework.exe
+C:\Github\LIDUSCGASE\LID_Framework\obj\Debug\LID_Framework.pdb
