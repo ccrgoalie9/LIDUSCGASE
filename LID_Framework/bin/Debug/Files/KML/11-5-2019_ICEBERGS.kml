@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2">
   <Document id="KML">
-    <name>ICEBERGS_11-5-2019</name>
+    <name>11-5-2019_ICEBERGS</name>
     <open>true</open>
     <Style id="lineStyle">
       <LineStyle>

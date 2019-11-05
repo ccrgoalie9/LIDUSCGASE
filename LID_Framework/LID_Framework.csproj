@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DoIt.cs" />
     <Compile Include="Download.cs" />
     <Compile Include="LID_Form.cs">
       <SubType>Form</SubType>

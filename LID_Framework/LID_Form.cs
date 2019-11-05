@@ -15,7 +15,7 @@ namespace LID_Framework {
     public partial class LID_Form : Form {
 
         string partialPath;
-        string[] kmls;
+        DoIt today;
         Download todayDownload;
         Scraper todayScraper;
         Line todayLine;
@@ -23,35 +23,14 @@ namespace LID_Framework {
         public LID_Form() {
             InitializeComponent();
             partialPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase).Replace(@"file:\", "");
-            //See if Directories exist yet
-            //If not make them
-            DirectoryCheck();
 
-            //Get the current Bulletin
-            Console.Write("Fetching Current Bulletin...\t");
-            todayDownload = new Download();
-            Console.WriteLine(" Current Bulletin Fetched");
-
-            //Get the necessary bits from the bulletin
-            todayScraper = new Scraper(todayDownload.GetOutFile());
-
-            //Create the KML file in format: ICEBERGS_'date'.kml
-            Console.Write("Creating KML File...\t\t");
-
-            todayLine = new Line(todayScraper.GetCoordinatesIngestors());
-
-            Console.WriteLine(" KML File Created");
+            //Class DoIt combines everything into one actionable class
+            today = new DoIt();
+            todayDownload = today.GetDownload();
+            todayScraper = today.GetScraper();
+            todayLine = today.GetLine();
             Console.WriteLine("Application Deployed Successfully");
 
-        }
-
-        private void DirectoryCheck() {
-            Console.Write("Updating Directories...\t\t");
-            DirectoryInfo dir2 = Directory.CreateDirectory(partialPath + @"\Files\Bulletins");
-            DirectoryInfo dir3 = Directory.CreateDirectory(partialPath + @"\Files\KML");
-            DirectoryInfo dir4 = Directory.CreateDirectory(partialPath + @"\Files\LatLongs");
-            DirectoryInfo dir5 = Directory.CreateDirectory(partialPath + @"\Files\Radials");
-            Console.WriteLine(" Directories Updated");
         }
 
         private void filesButton_Click(object sender, EventArgs e) {
@@ -95,6 +74,15 @@ namespace LID_Framework {
         private void ResBulletinButton_Click(object sender, EventArgs e) {
             //Current bulletin released by the iip
             Process.Start("https://www.navcen.uscg.gov/?pageName=iipB12Out");
+        }
+
+        private void DoItButton_Click(object sender, EventArgs e) {
+            Console.WriteLine("Process Started...");
+            today = new DoIt();
+            todayDownload = today.GetDownload();
+            todayScraper = today.GetScraper();
+            todayLine = today.GetLine();
+            Console.WriteLine("Process Finished");
         }
     }
 }

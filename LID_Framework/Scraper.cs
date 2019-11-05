@@ -78,8 +78,8 @@ namespace LID_Framework {
             if(!(inFileName.EndsWith(".txt"))) {
                 inFileName = inFileName + ".txt";
             }
-            degOutFile = ("Files/LatLongs/" + System.DateTime.UtcNow.ToString().Substring(0, 10).Replace("/", "-").Replace(" ","") + "_Degree" + ".txt");
-            decOutFile = ("Files/LatLongs/" + System.DateTime.UtcNow.ToString().Substring(0, 10).Replace("/", "-").Replace(" ", "") + "_Decimal" + ".txt");
+            degOutFile = (@"Files\LatLongs\" + DateTime.UtcNow.ToString().Replace(" ", "  ").Substring(0, 10).Replace("/", "-").Replace(" ", "") + "_Degree.txt").Replace(" ", "");
+            decOutFile = (@"Files\LatLongs\" + DateTime.UtcNow.ToString().Replace(" ", "  ").Substring(0, 10).Replace("/", "-").Replace(" ", "") + "_Decimal.txt").Replace(" ", "");
         }
 
         //Read from the file
@@ -88,7 +88,6 @@ namespace LID_Framework {
                 ingested = "";
                 using(StreamReader coordFile = new StreamReader(inFileName)) {
                     ingested = coordFile.ReadToEnd();
-                    //ingested = ingested.Replace(", ", ","); //Get rid of pesky spaces
                 }
             } catch(Exception e) {
                 Console.WriteLine(e.Message);

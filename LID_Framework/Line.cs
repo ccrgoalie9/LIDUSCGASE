@@ -88,8 +88,8 @@ namespace LID_Framework
 
         public Line(Ingestor[] input)
         {
-            filepath = (@"Files\KML\" + "ICEBERGS_" + DateTime.UtcNow.ToString().Replace(" ", "  ").Substring(0, 10).Replace("/", "-").Replace(" ", "") + ".kml").Replace(" ", "");
-            string filename = ("ICEBERGS_" + DateTime.UtcNow.ToString().Replace(" ", "  ").Substring(0, 10).Replace("/", "-").Replace(" ", "")).Replace(" ", "");
+            filepath = (@"Files\KML\" + DateTime.UtcNow.ToString().Replace(" ", "  ").Substring(0, 10).Replace("/", "-").Replace(" ", "") + "_ICEBERGS.kml").Replace(" ", "");
+            string filename = (DateTime.UtcNow.ToString().Replace(" ", "  ").Substring(0, 10).Replace("/", "-").Replace(" ", "") + "_ICEBERGS").Replace(" ", "");
 
             //Check if file already exists
             if(File.Exists(filepath)) {
