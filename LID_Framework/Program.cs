@@ -14,8 +14,9 @@ namespace LID_Framework {
             //LID GUI
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LID_Form());
-
+            LID_Form todayForm = new LID_Form();
+            Application.Run(todayForm);
+            todayForm.Dispose();
             /*
             //Get the current Bulletin
             Download test1 = new Download();

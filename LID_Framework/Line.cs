@@ -158,8 +158,6 @@ namespace LID_Framework {
         public string GetOutFile() {
             return filepath;
         }
-
-
     }
 }
 
