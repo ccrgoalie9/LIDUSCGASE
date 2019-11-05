@@ -69,3 +69,7 @@ C:\Users\Hayden Carter\Source\Repos\ccrgoalie9\LIDUSCGASE\LID_Framework\obj\Debu
 C:\Users\Hayden Carter\Source\Repos\ccrgoalie9\LIDUSCGASE\LID_Framework\obj\Debug\LID_Framework.csproj.CopyComplete
 C:\Users\Hayden Carter\Source\Repos\ccrgoalie9\LIDUSCGASE\LID_Framework\obj\Debug\LID_Framework.exe
 C:\Users\Hayden Carter\Source\Repos\ccrgoalie9\LIDUSCGASE\LID_Framework\obj\Debug\LID_Framework.pdb
+C:\Users\Hayden Carter\Source\Repos\ccrgoalie9\LIDUSCGASE\LID_Framework\bin\Debug\LID_Framework.exe.manifest
+C:\Users\Hayden Carter\Source\Repos\ccrgoalie9\LIDUSCGASE\LID_Framework\bin\Debug\LID_Framework.application
+C:\Users\Hayden Carter\Source\Repos\ccrgoalie9\LIDUSCGASE\LID_Framework\obj\Debug\LID_Framework.exe.manifest
+C:\Users\Hayden Carter\Source\Repos\ccrgoalie9\LIDUSCGASE\LID_Framework\obj\Debug\LID_Framework.application
