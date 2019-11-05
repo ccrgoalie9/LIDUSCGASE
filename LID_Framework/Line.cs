@@ -2,21 +2,13 @@
 using SharpKml.Dom;
 using SharpKml.Engine;
 using System;
-using System.Collections.Generic;
-using System.Data;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace LID_Framework
-{
-    class Line
-    {
+namespace LID_Framework {
+    class Line {
         string filepath;
 
-        public Line(double[,] input, string filename)
-        {
+        public Line(double[,] input, string filename) {
             double[] lat = new double[(input.Length / 2)];
             double[] lon = new double[(input.Length / 2)];
 
@@ -33,17 +25,14 @@ namespace LID_Framework
             linestring.Tessellate = true;
 
             //THIS PART NEED TO FIGURE OUT
-            for (int i = 0; i < (input.Length / 2); i++)
-            {
+            for (int i = 0; i < (input.Length / 2); i++) {
                 lon[i] = input[i, 1];
             }
-            for (int i = 0; i < (input.Length / 2); i++)
-            {
+            for (int i = 0; i < (input.Length / 2); i++) {
                 lat[i] = input[i, 0];
             }
 
-            for (int i = 0; i < lon.Length; i++)
-            {
+            for (int i = 0; i < lon.Length; i++) {
                 coordinates.Add(new Vector(lat[i], lon[i]));
             }
 
@@ -78,21 +67,19 @@ namespace LID_Framework
             KmlFile kmlFile = KmlFile.Create(kml, true);
             {
 
-                using (FileStream stream = File.OpenWrite(filename))
-                {
+                using (FileStream stream = File.OpenWrite(filename)) {
                     kmlFile.Save(stream);
 
                 }
             }
         }
 
-        public Line(Ingestor[] input)
-        {
+        public Line(Ingestor[] input) {
             filepath = (@"Files\KML\" + DateTime.UtcNow.ToString().Replace(" ", "  ").Substring(0, 10).Replace("/", "-").Replace(" ", "") + "_ICEBERGS.kml").Replace(" ", "");
             string filename = (DateTime.UtcNow.ToString().Replace(" ", "  ").Substring(0, 10).Replace("/", "-").Replace(" ", "") + "_ICEBERGS").Replace(" ", "");
 
             //Check if file already exists
-            if(File.Exists(filepath)) {
+            if (File.Exists(filepath)) {
                 File.Delete(filepath);
             }
 
@@ -119,8 +106,7 @@ namespace LID_Framework
             document.AddStyle(SimpleStyle);
 
             //LINE STRING & PLACEMARK CONSTRUCTION ZONE
-            foreach (Ingestor ingest in input)
-            {
+            foreach (Ingestor ingest in input) {
                 //One per segment
                 LineString linestring = new LineString();
                 CoordinateCollection coordinates = new CoordinateCollection();
@@ -133,17 +119,14 @@ namespace LID_Framework
                 double[] lat = new double[(coordArray.Length / 2)];
                 double[] lon = new double[(coordArray.Length / 2)];
 
-                for (int i = 0; i < (coordArray.Length / 2); i++)
-                {
+                for (int i = 0; i < (coordArray.Length / 2); i++) {
                     lon[i] = coordArray[i, 1];
                 }
-                for (int i = 0; i < (coordArray.Length / 2); i++)
-                {
+                for (int i = 0; i < (coordArray.Length / 2); i++) {
                     lat[i] = coordArray[i, 0];
                 }
 
-                for (int i = 0; i < lon.Length; i++)
-                {
+                for (int i = 0; i < lon.Length; i++) {
                     coordinates.Add(new Vector(lat[i], lon[i]));
                 }
 
@@ -152,7 +135,7 @@ namespace LID_Framework
                 placemark.Name = ingest.GetLineType();
                 placemark.Visibility = true;
                 placemark.Geometry = linestring;
-                placemark.StyleUrl = new Uri(("#"+styleID), UriKind.Relative); //Uri makes url refrence to indocument style rather than cloud sourced
+                placemark.StyleUrl = new Uri(("#" + styleID), UriKind.Relative); //Uri makes url refrence to indocument style rather than cloud sourced
 
                 document.AddFeature(placemark);
 
@@ -166,8 +149,7 @@ namespace LID_Framework
 
             //Outputs KML File
             KmlFile kmlFile = KmlFile.Create(kml, true);
-            using (FileStream stream = File.OpenWrite(filepath))
-            {
+            using (FileStream stream = File.OpenWrite(filepath)) {
                 kmlFile.Save(stream);
             }
         }

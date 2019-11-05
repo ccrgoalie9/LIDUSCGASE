@@ -1,9 +1,4 @@
-﻿using SharpKml.Base;
-using SharpKml.Dom;
-using SharpKml.Engine;
-using System;
-using System.Data;
-using System.IO;
+﻿using System;
 using System.Windows.Forms;
 
 namespace LID_Framework {

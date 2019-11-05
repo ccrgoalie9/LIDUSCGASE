@@ -57,3 +57,17 @@ C:\Github\LIDUSCGASE\LID_Framework\obj\Debug\LID_Framework.csproj.GenerateResour
 C:\Github\LIDUSCGASE\LID_Framework\obj\Debug\LID_Framework.csproj.CopyComplete
 C:\Github\LIDUSCGASE\LID_Framework\obj\Debug\LID_Framework.exe
 C:\Github\LIDUSCGASE\LID_Framework\obj\Debug\LID_Framework.pdb
+C:\Users\Hayden Carter\Source\Repos\ccrgoalie9\LIDUSCGASE\LID_Framework\bin\Debug\LID_Framework.exe.config
+C:\Users\Hayden Carter\Source\Repos\ccrgoalie9\LIDUSCGASE\LID_Framework\bin\Debug\LID_Framework.exe
+C:\Users\Hayden Carter\Source\Repos\ccrgoalie9\LIDUSCGASE\LID_Framework\bin\Debug\LID_Framework.pdb
+C:\Users\Hayden Carter\Source\Repos\ccrgoalie9\LIDUSCGASE\LID_Framework\bin\Debug\SharpKml.Core.dll
+C:\Users\Hayden Carter\Source\Repos\ccrgoalie9\LIDUSCGASE\LID_Framework\bin\Debug\SharpKml.Core.xml
+C:\Users\Hayden Carter\Source\Repos\ccrgoalie9\LIDUSCGASE\LID_Framework\obj\Debug\LID_Framework.csprojAssemblyReference.cache
+C:\Users\Hayden Carter\Source\Repos\ccrgoalie9\LIDUSCGASE\LID_Framework\obj\Debug\LID_Framework.LID_Form.resources
+C:\Users\Hayden Carter\Source\Repos\ccrgoalie9\LIDUSCGASE\LID_Framework\obj\Debug\LID_Framework.Properties.Resources.resources
+C:\Users\Hayden Carter\Source\Repos\ccrgoalie9\LIDUSCGASE\LID_Framework\obj\Debug\LID_Framework.csproj.GenerateResource.cache
+C:\Users\Hayden Carter\Source\Repos\ccrgoalie9\LIDUSCGASE\LID_Framework\obj\Debug\LID_Framework.csproj.CopyComplete
+C:\Users\Hayden Carter\Source\Repos\ccrgoalie9\LIDUSCGASE\LID_Framework\obj\Debug\LID_Framework.exe
+C:\Users\Hayden Carter\Source\Repos\ccrgoalie9\LIDUSCGASE\LID_Framework\obj\Debug\LID_Framework.pdb
+C:\Users\Hayden Carter\Source\Repos\ccrgoalie9\LIDUSCGASE\LID_Framework\bin\Debug\LID_Framework.exe.CodeAnalysisLog.xml
+C:\Users\Hayden Carter\Source\Repos\ccrgoalie9\LIDUSCGASE\LID_Framework\bin\Debug\LID_Framework.exe.lastcodeanalysissucceeded

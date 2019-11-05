@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.IO;
-using System.Threading.Tasks;
 
 namespace LID_Framework {
     class Ingestor {
@@ -76,7 +72,7 @@ namespace LID_Framework {
         //Constructor's Methods
         //Make sure the input is machine readable
         private void CheckInput() {
-            if(!(inFileName.EndsWith(".txt"))) {
+            if (!(inFileName.EndsWith(".txt"))) {
                 inFileName = inFileName + ".txt";
             }
             outFileName = inFileName.Replace(".txt", ("_" + System.DateTime.UtcNow.ToString().Substring(0, 8).Replace("/", "-") + ".txt"));
@@ -86,11 +82,12 @@ namespace LID_Framework {
         private void ReadFile() {
             try {
                 ingested = "";
-                using(StreamReader coordFile = new StreamReader("files/" + inFileName)) {
+                using (StreamReader coordFile = new StreamReader("files/" + inFileName)) {
                     ingested = coordFile.ReadToEnd();
                     //ingested = ingested.Replace(", ", ","); //Get rid of pesky spaces
                 }
-            } catch(Exception e) {
+            }
+            catch (Exception e) {
                 Console.WriteLine(e.Message);
                 ingested = "Read Failed";
             }
@@ -106,7 +103,7 @@ namespace LID_Framework {
                 //Convert from lat/long to degrees
                 //North is Positive, East is Positive
                 int left = 0;
-                foreach(string line in tempByComma) {
+                foreach (string line in tempByComma) {
                     string[] tempBySpace = line.Split(' ');
                     string temp1;
                     string temp2;
@@ -118,9 +115,10 @@ namespace LID_Framework {
                     temp2 = tempBySpace[0].Substring(3, 2);
                     direction = tempBySpace[0].Substring(5, 1);
                     //Determine sign based on direction
-                    if(direction == "S") {
+                    if (direction == "S") {
                         sign = -1;
-                    } else {
+                    }
+                    else {
                         sign = 1;
                     }
                     coords[left, 0] = (Math.Truncate((Convert.ToDouble(temp1) + Convert.ToDouble(temp2) / 60) * sign * 1000000)) / 1000000;
@@ -130,9 +128,10 @@ namespace LID_Framework {
                     temp2 = tempBySpace[1].Substring(4, 2);
                     direction = tempBySpace[1].Substring(6, 1);
                     //Determine the sign based on direction
-                    if(direction == "W") {
+                    if (direction == "W") {
                         sign = -1;
-                    } else {
+                    }
+                    else {
                         sign = 1;
                     }
                     coords[left, 1] = (Math.Truncate((Convert.ToDouble(temp1) + Convert.ToDouble(temp2) / 60) * sign * 1000000)) / 1000000;
@@ -140,7 +139,8 @@ namespace LID_Framework {
                     //Increment the array
                     left++;
                 }
-            } catch(Exception e) {
+            }
+            catch (Exception e) {
                 Console.WriteLine(e.Message);
                 //To easily determine if something went wrong
                 coords = new double[,] { { -1, -1 }, { -1, -1 } };
@@ -151,14 +151,15 @@ namespace LID_Framework {
         private void CreateOutput() {
             try {
                 output = "";
-                for(int i = 0; i < (coords.Length / 2); i++) {
-                    for(int j = 0; j <= 1; j++) {
+                for (int i = 0; i < (coords.Length / 2); i++) {
+                    for (int j = 0; j <= 1; j++) {
                         output += coords[i, j].ToString();
-                        if(j == 0) output += ",";
+                        if (j == 0) output += ",";
                     }
                     output += " ";
                 }
-            } catch(Exception e) {
+            }
+            catch (Exception e) {
                 Console.WriteLine(e.Message);
                 output = e.Message;
             }
@@ -167,10 +168,11 @@ namespace LID_Framework {
         //Write to new file
         private void WriteFile() {
             try {
-                using(StreamWriter decimalFile = new StreamWriter("files/" + outFileName)) {
+                using (StreamWriter decimalFile = new StreamWriter("files/" + outFileName)) {
                     decimalFile.Write(output);
                 }
-            } catch(Exception e) {
+            }
+            catch (Exception e) {
                 Console.WriteLine(e.Message);
             }
         }
