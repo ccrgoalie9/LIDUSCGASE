@@ -3,7 +3,6 @@ using System.Net;
 
 namespace LID_Framework {
     class Download {
-        string infile;
         string outfile;
 
         public Download() {
@@ -11,9 +10,7 @@ namespace LID_Framework {
         }
 
         public void DownloadFromWeb() {
-
-            infile = "Bulletin_Pull.txt";
-            outfile = (@"Files\Bulletins\" + DateTime.UtcNow.ToString().Replace(" ", "  ").Substring(0, 10).Replace("/", "-").Replace(" ", "") + "Bulletin_Pull.txt").Replace(" ", "");
+            outfile = (@"Files\Bulletins\" + DateTime.UtcNow.ToString("MM-dd-yyyy") + "_Bulletin_Pull.txt").Replace(" ", "");
             DownloadFile("https://www.navcen.uscg.gov/?pageName=iipB12Out", outfile);
 
             string text = System.IO.File.ReadAllText(outfile);
@@ -29,6 +26,7 @@ namespace LID_Framework {
         public static void DownloadFile(string Bulletin, string SavedBulletin) {
             WebClient client = new WebClient();
             client.DownloadFile(Bulletin, SavedBulletin);
+            client.Dispose();
         }
 
         //Accessors

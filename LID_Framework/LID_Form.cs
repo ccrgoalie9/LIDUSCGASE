@@ -25,7 +25,7 @@ namespace LID_Framework {
 
         }
 
-        private void filesButton_Click(object sender, EventArgs e) {
+        private void FilesButton_Click(object sender, EventArgs e) {
             string filePath = partialPath + @"\Files";
             Process.Start("explorer.exe", filePath);
         }

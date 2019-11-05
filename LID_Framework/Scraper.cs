@@ -74,8 +74,8 @@ namespace LID_Framework {
             if (!(inFileName.EndsWith(".txt"))) {
                 inFileName = inFileName + ".txt";
             }
-            degOutFile = (@"Files\LatLongs\" + DateTime.UtcNow.ToString().Replace(" ", "  ").Substring(0, 10).Replace("/", "-").Replace(" ", "") + "_Degree.txt").Replace(" ", "");
-            decOutFile = (@"Files\LatLongs\" + DateTime.UtcNow.ToString().Replace(" ", "  ").Substring(0, 10).Replace("/", "-").Replace(" ", "") + "_Decimal.txt").Replace(" ", "");
+            degOutFile = (@"Files\LatLongs\" + DateTime.UtcNow.ToString("MM-dd-yyyy") + "_Degree.txt").Replace(" ", "");
+            decOutFile = (@"Files\LatLongs\" + DateTime.UtcNow.ToString("MM-dd-yyyy") + "_Decimal.txt").Replace(" ", "");
         }
 
         //Read from the file
