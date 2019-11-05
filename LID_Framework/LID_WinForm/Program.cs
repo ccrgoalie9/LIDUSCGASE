@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace LID_WinForm {
     class Program {
-        static void Main(string[] args) {
+        static void Main() {
             //Setup the window
             Console.Title = "LID";
             Console.SetWindowSize(70, 10);

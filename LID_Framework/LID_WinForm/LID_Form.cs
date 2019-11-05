@@ -7,7 +7,7 @@ using LID_Framework;
 namespace LID_WinForm {
     public partial class LID_Form : Form {
 
-        string partialPath;
+        readonly string partialPath;
         DoIt today;
         Download todayDownload;
         Scraper todayScraper;

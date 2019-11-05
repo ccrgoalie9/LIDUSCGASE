@@ -71,7 +71,7 @@
             // exitButton
             // 
             this.exitButton.Location = new System.Drawing.Point(360, 383);
-            this.exitButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.exitButton.Margin = new System.Windows.Forms.Padding(4);
             this.exitButton.Name = "exitButton";
             this.exitButton.Size = new System.Drawing.Size(100, 28);
             this.exitButton.TabIndex = 9;
@@ -82,7 +82,7 @@
             // earthButton
             // 
             this.earthButton.Location = new System.Drawing.Point(229, 172);
-            this.earthButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.earthButton.Margin = new System.Windows.Forms.Padding(4);
             this.earthButton.Name = "earthButton";
             this.earthButton.Size = new System.Drawing.Size(133, 50);
             this.earthButton.TabIndex = 2;
@@ -166,7 +166,7 @@
             // DoItButton
             // 
             this.DoItButton.Location = new System.Drawing.Point(371, 172);
-            this.DoItButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DoItButton.Margin = new System.Windows.Forms.Padding(4);
             this.DoItButton.Name = "DoItButton";
             this.DoItButton.Size = new System.Drawing.Size(81, 50);
             this.DoItButton.TabIndex = 11;
@@ -178,6 +178,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(800, 450);
@@ -194,7 +195,7 @@
             this.Controls.Add(this.FilesButton);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "LID_Form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
