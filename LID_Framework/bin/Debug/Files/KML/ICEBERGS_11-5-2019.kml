@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2">
-  <Document id="KML_File">
+  <Document id="KML">
     <name>ICEBERGS_11-5-2019</name>
     <open>true</open>
     <Style id="lineStyle">
       <LineStyle>
-        <color>501400fa</color>
-        <width>10</width>
+        <color>ffffe481</color>
+        <width>5</width>
       </LineStyle>
       <PolyStyle>
-        <color>501400fa</color>
+        <color>ffffe481</color>
       </PolyStyle>
     </Style>
     <Placemark>

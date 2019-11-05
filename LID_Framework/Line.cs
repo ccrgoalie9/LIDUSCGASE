@@ -91,17 +91,22 @@ namespace LID_Framework
             filepath = (@"Files\KML\" + "ICEBERGS_" + DateTime.UtcNow.ToString().Replace(" ", "  ").Substring(0, 10).Replace("/", "-").Replace(" ", "") + ".kml").Replace(" ", "");
             string filename = ("ICEBERGS_" + DateTime.UtcNow.ToString().Replace(" ", "  ").Substring(0, 10).Replace("/", "-").Replace(" ", "")).Replace(" ", "");
 
+            //Check if file already exists
+            if(File.Exists(filepath)) {
+                File.Delete(filepath);
+            }
+
             //Document Creation
             var document = new Document();
-            document.Id = "KML_File";
+            document.Id = "KML";
             document.Open = true;
             document.Name = filename;
 
             //Styling
             LineStyle lineStyle = new LineStyle();
-            string colorCode = "501400FA";
+            string colorCode = "ffffe481";
             lineStyle.Color = Color32.Parse(colorCode);
-            lineStyle.Width = 10;
+            lineStyle.Width = 5;
             PolygonStyle PolyStyle = new PolygonStyle();
             PolyStyle.Color = Color32.Parse(colorCode);
 
