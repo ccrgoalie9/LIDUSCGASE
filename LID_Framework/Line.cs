@@ -75,8 +75,8 @@ namespace LID_Framework {
         }
 
         public Line(Ingestor[] input) {
-            filepath = (@"Files\KML\" + DateTime.UtcNow.ToString("MM-dd-yyyy") + "_ICEBERGS.kml").Replace(" ", "");
-            string filename = (DateTime.UtcNow.ToString("MM-dd-yyyy") + "_ICEBERGS").Replace(" ", "");
+            filepath = (@"Files\KML\" + DateTime.UtcNow.ToString("yyyy-MM-dd") + "_ICEBERGS.kml").Replace(" ", "");
+            string filename = (DateTime.UtcNow.ToString("yyyy-MM-dd") + "_ICEBERGS").Replace(" ", "");
 
             //Check if file already exists
             if (File.Exists(filepath)) {

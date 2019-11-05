@@ -10,7 +10,7 @@ namespace LID_Framework {
         }
 
         public void DownloadFromWeb() {
-            outfile = (@"Files\Bulletins\" + DateTime.UtcNow.ToString("MM-dd-yyyy") + "_Bulletin_Pull.txt").Replace(" ", "");
+            outfile = (@"Files\Bulletins\" + DateTime.UtcNow.ToString("yyyy-MM-dd") + "_Bulletin_Pull.txt").Replace(" ", "");
             DownloadFile("https://www.navcen.uscg.gov/?pageName=iipB12Out", outfile);
 
             string text = System.IO.File.ReadAllText(outfile);
