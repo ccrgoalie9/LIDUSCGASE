@@ -18,7 +18,7 @@ namespace LID_Framework {
         string[] kmls;
         Download todayDownload;
         Scraper todayScraper;
-
+        Line todayLine;
 
         public LID_Form() {
             InitializeComponent();
@@ -35,21 +35,12 @@ namespace LID_Framework {
             //Get the necessary bits from the bulletin
             todayScraper = new Scraper(todayDownload.GetOutFile());
 
-            //Set the length for the KML creator array
-            Line[] testKML = new Line[todayScraper.GetCoordinatesIngestors().Length];
+            //Create the KML file in format: ICEBERGS_'date'.kml
+            Console.Write("Creating KML File...\t\t");
 
-            //String of names for the kml files to open automatically later maybe
-            kmls = new string[todayScraper.GetCoordinatesIngestors().Length];
+            todayLine = new Line(todayScraper.GetCoordinatesIngestors());
 
-            //Create the KML files in format: 'date'_ICEBERGS_'ID'.kml
-            Console.Write("Creating KML Files...\t\t");
-            int i = 0;
-            foreach(Ingestor x in todayScraper.GetCoordinatesIngestors()) {
-                kmls[i] = (@"Files\KML\" + DateTime.UtcNow.ToString().Substring(0, 10).Replace("/", "_").Replace(" ", "") + "_ICEBERGS_" + x.GetID().ToString() + ".kml").Replace(" ","");
-                testKML[i] = new Line(x.GetCoordinates(), (kmls[i]));
-                i++;
-            }
-            Console.WriteLine(" KML Files Created");
+            Console.WriteLine(" KML File Created");
             Console.WriteLine("Application Deployed Successfully");
 
         }
@@ -73,14 +64,8 @@ namespace LID_Framework {
             string kmlPath = partialPath + @"\";
             //Has google earth?
             if(File.Exists(earthPath)) {
-                //Until we consolidate the kmls
-                foreach(string x in kmls) {
-                    Process.Start(kmlPath + x);
-                    //Wait to avoid error
-                    Thread.Sleep(2500);
-                }
+                Process.Start(kmlPath + todayLine.GetOutFile());
             }
-
         }
 
         private void ExitButton_Click(object sender, EventArgs e) {
