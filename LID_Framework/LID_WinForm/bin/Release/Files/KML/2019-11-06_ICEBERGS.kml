@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document id="KML">
+    <name>2019-11-06_ICEBERGS</name>
+    <open>true</open>
+    <Style id="lineStyle">
+      <LineStyle>
+        <color>ffffe481</color>
+        <width>5</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>ffffe481</color>
+      </PolyStyle>
+    </Style>
+    <Placemark>
+      <name>ICEBERG LIMIT</name>
+      <visibility>true</visibility>
+      <styleUrl>#lineStyle</styleUrl>
+      <LineString>
+        <extrude>true</extrude>
+        <tessellate>true</tessellate>
+        <altitudeMode>clampToGround</altitudeMode>
+        <coordinates>-53.799999999999997,49
+-51.5,49
+-51,54
+-53,56</coordinates>
+      </LineString>
+    </Placemark>
+    <Placemark>
+      <name>ESTIMATED ICEBERG LIMIT</name>
+      <visibility>true</visibility>
+      <styleUrl>#lineStyle</styleUrl>
+      <LineString>
+        <extrude>true</extrude>
+        <tessellate>true</tessellate>
+        <altitudeMode>clampToGround</altitudeMode>
+        <coordinates>-53,56
+-59,61
+-54,62
+-48,58
+-40,58
+-37,64
+-28,66</coordinates>
+      </LineString>
+    </Placemark>
+    <Placemark>
+      <name>WESTERN ICEBERG LIMIT</name>
+      <visibility>true</visibility>
+      <styleUrl>#lineStyle</styleUrl>
+      <LineString>
+        <extrude>true</extrude>
+        <tessellate>true</tessellate>
+        <altitudeMode>clampToGround</altitudeMode>
+        <coordinates>-56.083333000000003,51.866666000000002
+-55.916665999999999,51.566665999999998</coordinates>
+      </LineString>
+    </Placemark>
+    <Placemark>
+      <name>SEA ICE LIMIT</name>
+      <visibility>true</visibility>
+      <styleUrl>#lineStyle</styleUrl>
+      <LineString>
+        <extrude>true</extrude>
+        <tessellate>true</tessellate>
+        <altitudeMode>clampToGround</altitudeMode>
+        <coordinates>-77,63.666665999999999
+-74.416666000000006,63.916665999999999
+-70.583332999999996,62.416665999999999
+-64.5,61.166665999999999
+-64.333332999999996,62</coordinates>
+      </LineString>
+    </Placemark>
+    <Placemark>
+      <name>SEA ICE LIMIT</name>
+      <visibility>true</visibility>
+      <styleUrl>#lineStyle</styleUrl>
+      <LineString>
+        <extrude>true</extrude>
+        <tessellate>true</tessellate>
+        <altitudeMode>clampToGround</altitudeMode>
+        <coordinates>-64.75,60.416665999999999
+-67.583332999999996,58.916665999999999
+-69.25,61.333333000000003
+-74.25,62.833333000000003
+-80.583332999999996,62.416665999999999
+-79.75,58.5
+-78.166666000000006,55.583333000000003
+-80.25,54.833333000000003
+-79.333332999999996,52.166665999999999
+-80.5,51.5</coordinates>
+      </LineString>
+    </Placemark>
+    <Placemark>
+      <name>SEA ICE LIMIT</name>
+      <visibility>true</visibility>
+      <styleUrl>#lineStyle</styleUrl>
+      <LineString>
+        <extrude>true</extrude>
+        <tessellate>true</tessellate>
+        <altitudeMode>clampToGround</altitudeMode>
+        <coordinates>-64.333332999999996,62
+-60.666665999999999,66.916666000000006
+-66.083332999999996,68.5
+-67.25,70.416666000000006
+-69.416666000000006,71
+-67.583332999999996,71.5
+-69.916666000000006,72.083332999999996
+-66.416666000000006,73.416666000000006</coordinates>
+      </LineString>
+    </Placemark>
+  </Document>
+</kml>

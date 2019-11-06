@@ -170,7 +170,7 @@
             this.DoItButton.Name = "DoItButton";
             this.DoItButton.Size = new System.Drawing.Size(81, 50);
             this.DoItButton.TabIndex = 11;
-            this.DoItButton.Text = "DO IT";
+            this.DoItButton.Text = "Fetch Data";
             this.DoItButton.UseVisualStyleBackColor = true;
             this.DoItButton.Click += new System.EventHandler(this.DoItButton_Click);
             // 
