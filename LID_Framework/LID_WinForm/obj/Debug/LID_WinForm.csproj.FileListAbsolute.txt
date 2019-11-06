@@ -18,3 +18,4 @@ C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Proj
 C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Projects\LID\LIDRepo\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.application
 C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Projects\LID\LIDRepo\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.g.resources
 C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Projects\LID\LIDRepo\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.Properties.Resources.resources
+C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Projects\LID\LIDRepo\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.TrustInfo.xml
