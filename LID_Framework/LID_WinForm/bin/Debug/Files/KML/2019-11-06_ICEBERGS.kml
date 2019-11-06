@@ -15,6 +15,9 @@
     <Placemark>
       <name>ICEBERG LIMIT</name>
       <visibility>true</visibility>
+      <TimeStamp>
+        <when>2019-11-06T15:21:01Z</when>
+      </TimeStamp>
       <styleUrl>#lineStyle</styleUrl>
       <LineString>
         <extrude>true</extrude>
@@ -29,6 +32,9 @@
     <Placemark>
       <name>ESTIMATED ICEBERG LIMIT</name>
       <visibility>true</visibility>
+      <TimeStamp>
+        <when>2019-11-06T15:21:01Z</when>
+      </TimeStamp>
       <styleUrl>#lineStyle</styleUrl>
       <LineString>
         <extrude>true</extrude>
@@ -46,6 +52,9 @@
     <Placemark>
       <name>WESTERN ICEBERG LIMIT</name>
       <visibility>true</visibility>
+      <TimeStamp>
+        <when>2019-11-06T15:21:01Z</when>
+      </TimeStamp>
       <styleUrl>#lineStyle</styleUrl>
       <LineString>
         <extrude>true</extrude>
@@ -58,6 +67,9 @@
     <Placemark>
       <name>SEA ICE LIMIT</name>
       <visibility>true</visibility>
+      <TimeStamp>
+        <when>2019-11-06T15:21:01Z</when>
+      </TimeStamp>
       <styleUrl>#lineStyle</styleUrl>
       <LineString>
         <extrude>true</extrude>
@@ -73,6 +85,9 @@
     <Placemark>
       <name>SEA ICE LIMIT</name>
       <visibility>true</visibility>
+      <TimeStamp>
+        <when>2019-11-06T15:21:01Z</when>
+      </TimeStamp>
       <styleUrl>#lineStyle</styleUrl>
       <LineString>
         <extrude>true</extrude>
@@ -93,6 +108,9 @@
     <Placemark>
       <name>SEA ICE LIMIT</name>
       <visibility>true</visibility>
+      <TimeStamp>
+        <when>2019-11-06T15:21:01Z</when>
+      </TimeStamp>
       <styleUrl>#lineStyle</styleUrl>
       <LineString>
         <extrude>true</extrude>

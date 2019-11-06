@@ -97,6 +97,10 @@ namespace LID_Framework {
             PolygonStyle PolyStyle = new PolygonStyle();
             PolyStyle.Color = Color32.Parse(colorCode);
 
+            //Timestamp
+            Timestamp lineTimestamp = new Timestamp();
+            lineTimestamp.When = DateTime.UtcNow;
+
             //Actual reads style and adds poly and line together
             Style SimpleStyle = new Style();
             string styleID = "lineStyle";
@@ -136,6 +140,8 @@ namespace LID_Framework {
                 placemark.Visibility = true;
                 placemark.Geometry = linestring;
                 placemark.StyleUrl = new Uri(("#" + styleID), UriKind.Relative); //Uri makes url refrence to indocument style rather than cloud sourced
+                //Timestamp
+                placemark.Time = lineTimestamp;
 
                 document.AddFeature(placemark);
 
