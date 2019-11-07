@@ -7,7 +7,7 @@
     <framework targetVersion="4.7.2" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="Application Files\LID_WinForm_1_0_0_9\LID_WinForm.exe.manifest" size="6830">
+    <dependentAssembly dependencyType="install" codebase="LID_WinForm.exe.manifest" size="6830">
       <assemblyIdentity name="LID_WinForm.exe" version="1.0.0.9" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>

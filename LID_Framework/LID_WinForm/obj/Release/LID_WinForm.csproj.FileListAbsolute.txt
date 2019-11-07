@@ -30,3 +30,8 @@ C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Gith
 C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Release\LID_WinForm.pdb
 C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Projects\LID\LIDRepo\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Release\LID_ClassLibrary.dll
 C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Projects\LID\LIDRepo\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Release\LID_ClassLibrary.pdb
+C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Projects\LID\LIDRepo\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Release\LID_WinForm.exe.manifest
+C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Projects\LID\LIDRepo\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Release\LID_WinForm.application
+C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Projects\LID\LIDRepo\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Release\LID_WinForm.TrustInfo.xml
+C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Projects\LID\LIDRepo\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Release\LID_WinForm.exe.manifest
+C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Projects\LID\LIDRepo\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Release\LID_WinForm.application
