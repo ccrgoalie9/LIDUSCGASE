@@ -14,34 +14,40 @@ namespace LID_Framework {
 
         public DoIt() {
             partialPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase).Replace(@"file:\", "");
+        }
+
+        //Do Stuff
+        public int FullProcess() {
             //See if Directories exist yet
             //If not make them
             DirectoryCheck();
 
             //Get the current Bulletin
             Console.Write("Fetching Current Bulletin...\t");
-            todayDownload = new Download();
-            Console.WriteLine("Current Bulletin Fetched");
-
-            //Get the necessary bits from the bulletin
-            todayScraper = new Scraper(todayDownload.GetOutFile());
-
-            //Create the KML file in format: ICEBERGS_'date'.kml
-            Console.Write("Creating KML File...\t\t");
-
-            todayLine = new Line(todayScraper.GetCoordinatesIngestors());
-
-            Console.WriteLine("KML File Created");
+            try {
+                todayDownload = new Download();
+                Console.WriteLine("Current Bulletin Fetched");
+                //Get the necessary bits from the bulletin
+                todayScraper = new Scraper(todayDownload.GetOutFile());
+                //Create the KML file in format: ICEBERGS_'date'.kml
+                Console.Write("Creating KML File...\t\t");
+                todayLine = new Line(todayScraper.GetCoordinatesIngestors());
+                Console.WriteLine("KML File Created");
+                return 1;
+            } catch(Exception x) {
+                Console.WriteLine("Error: Failed To Fetch The Bulletin\n" + x.Message);
+                return -1;
+            }
         }
 
-        public DoIt(string filePath, int indicator) {
+        public int PartialFromCoordinateFile(string filePath, int indicator) {
             DateTime into;
             try {
                 into = Convert.ToDateTime(filePath.Substring(filePath.LastIndexOf(@"\") + 1, 10));
-                Console.WriteLine("Date: " + into);
             } catch(Exception x) {
                 Console.WriteLine(x.Message);
-                into = Convert.ToDateTime("2019-01-01");
+                //Default Date To express error
+                into = Convert.ToDateTime("2010-01-01");
             }
             //1 is bulletin
             if(indicator == 1) {
@@ -56,6 +62,7 @@ namespace LID_Framework {
             if(indicator == 2 || indicator == 3) {
 
             }
+            return 1;
         }
 
         //Accessor Methods
@@ -78,7 +85,7 @@ namespace LID_Framework {
             DirectoryInfo dir3 = Directory.CreateDirectory(partialPath + @"\Files\KML");
             DirectoryInfo dir4 = Directory.CreateDirectory(partialPath + @"\Files\LatLongs");
             DirectoryInfo dir5 = Directory.CreateDirectory(partialPath + @"\Files\Radials");
-            Console.WriteLine(" Directories Updated");
+            Console.WriteLine("Directories Updated");
         }
 
     }

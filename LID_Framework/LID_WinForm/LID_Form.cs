@@ -29,8 +29,20 @@ namespace LID_WinForm {
             DegreeHistButton.Enabled = false;
             DecimalHistButton.Enabled = false;
 
+            EarthButton.Enabled = false;
+
+            BulletinButton.Enabled = false;
+            DegreeButton.Enabled = false;
+            DecimalButton.Enabled = false;
+
             //Class DoIt combines everything into one actionable class
             today = new DoIt();
+            if(today.FullProcess() == 1) {
+                EarthButton.Enabled = true;
+                BulletinButton.Enabled = true;
+                DegreeButton.Enabled = true;
+                DecimalButton.Enabled = true;
+            }
             todayDownload = today.GetDownload();
             todayScraper = today.GetScraper();
             todayLine = today.GetLine();
@@ -72,7 +84,8 @@ namespace LID_WinForm {
         }
 
         private void BulletinButton_Click(object sender, EventArgs e) {
-            Process.Start(bulletinPath);
+            string filePath = partialPath + @"\" + todayDownload.GetOutFile();
+            Process.Start(filePath);
         }
 
 
@@ -91,8 +104,7 @@ namespace LID_WinForm {
         }
 
         private void BulletinHistButton_Click(object sender, EventArgs e) {
-            string filePath = partialPath + @"\" + todayDownload.GetOutFile();
-            Process.Start(filePath);
+            Process.Start(bulletinPath);
         }
 
 
@@ -114,6 +126,12 @@ namespace LID_WinForm {
         private void DoItButton_Click(object sender, EventArgs e) {
             Console.WriteLine("Process Started...");
             today = new DoIt();
+            if(today.FullProcess() == 1) {
+                EarthButton.Enabled = true;
+                BulletinButton.Enabled = true;
+                DegreeButton.Enabled = true;
+                DecimalButton.Enabled = true;
+            }
             todayDownload = today.GetDownload();
             todayScraper = today.GetScraper();
             todayLine = today.GetLine();
@@ -125,25 +143,36 @@ namespace LID_WinForm {
             if(BulletinChooser.ShowDialog() == DialogResult.OK) {
                 string file = BulletinChooser.FileName;
                 bulletinPath = file;
-                current = new DoIt(file,1);
-                currentScraper = current.GetScraper();
-                todayLine = current.GetLine();
-                Console.WriteLine("Process Finished");
+                current = new DoIt();
+                if(current.PartialFromCoordinateFile(file, 1) == 1) {
+                    currentScraper = current.GetScraper();
+                    todayLine = current.GetLine();
+                    Console.WriteLine("Process Finished");
 
-                //Enable Buttons as Possible
-                BulletinHistButton.Enabled = true;
-                DegreeHistButton.Enabled = true;
-                DecimalHistButton.Enabled = true;
+                    //Enable Buttons as Possible
+                    EarthButton.Enabled = true;
+                    BulletinHistButton.Enabled = true;
+                    DegreeHistButton.Enabled = true;
+                    DecimalHistButton.Enabled = true;
+                } else {
+                    //If you return -1, doesn't currently happen
+                }
+
             } else {
                 Console.WriteLine("Process Canceled by User");
             }
         }
 
         private void CoordHistoryButton_Click(object sender, EventArgs e) {
-            Console.WriteLine("Process. Started...");
-            if(BulletinChooser.ShowDialog() == DialogResult.OK) {
-                string file = BulletinChooser.FileName;
-                current = new DoIt(file,2);
+            Console.WriteLine("Process Started...");
+            if(CoordChooser.ShowDialog() == DialogResult.OK) {
+                string file = CoordChooser.FileName;
+                current = new DoIt();
+                if(file.Contains("_Degree")) {
+                    current.PartialFromCoordinateFile(file, 2);
+                } else if(file.Contains("_Decimal")) {
+                    current.PartialFromCoordinateFile(file, 3);
+                }
                 currentScraper = current.GetScraper();
                 todayLine = current.GetLine();
                 Console.WriteLine("Process Finished");

@@ -273,7 +273,6 @@ namespace LID_Framework {
             for(int i = 0; i < lineTypes.Length - 1; i++) {
                 temp = "";
                 if(lineTypes[i] == lineTypes[i+1]) {
-                    Console.WriteLine(lineTypes[i] + " " + i);
                     temp = (i + 1).ToString();
                     indexes += i.ToString() + " ";
                 }
