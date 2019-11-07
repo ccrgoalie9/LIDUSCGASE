@@ -14,7 +14,7 @@ namespace LID_Framework {
         private string lineType;
         private double[,] coords;
 
-        private int ID;
+        readonly private int ID;
 
         //For testing, to make sure that input of lat/longs can be processed (of format directly scraped from the bulletin
         public Ingestor(string inFile) {
@@ -79,7 +79,7 @@ namespace LID_Framework {
         //Make sure the input is machine readable
         private void CheckInput() {
             if (!(inFileName.EndsWith(".txt"))) {
-                inFileName = inFileName + ".txt";
+                inFileName += ".txt";
             }
             outFileName = inFileName.Replace(".txt", ("_" + System.DateTime.UtcNow.ToString().Substring(0, 8).Replace("/", "-") + ".txt"));
         }
@@ -155,7 +155,7 @@ namespace LID_Framework {
 
         //If reading from a decimal file the coordinates are already converted
         private void ConvertInput(int i) {
-            if (ingested.EndsWith(" ")) ingested = ingested.Remove(ingested.LastIndexOf(" "),1);
+            if(ingested.EndsWith(" ")) { ingested = ingested.Remove(ingested.LastIndexOf(" "), 1); }
             string[] tempByComma = ingested.Split(' ');
             coords = new double[tempByComma.Length, 2];
             int left = 0;

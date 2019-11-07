@@ -8,7 +8,8 @@ namespace LID_Framework {
         //     It outputs this information in a textfile with the original
         //     degree/decimal format, and in decimal format
         private string inFileName, degOutFile, decOutFile, output, decOutput, ingested;
-        private string[] lineTypes, ingests, coordsIngested, append = { "A", "B", "C", "D", "E", "F", "G" };
+        private string[] lineTypes, ingests, coordsIngested;
+        readonly private string[] append = { "A", "B", "C", "D", "E", "F", "G" };
         private Ingestor[] coordinates;
 
         public Scraper(string inFile) {
@@ -81,7 +82,7 @@ namespace LID_Framework {
         //Make sure the input is machine readable
         private void CheckInput() {
             if(!(inFileName.EndsWith(".txt"))) {
-                inFileName = inFileName + ".txt";
+                inFileName += ".txt";
             }
             if(inFileName.Substring(inFileName.LastIndexOf(@"\") + 1, 10) == DateTime.UtcNow.ToString("yyyy-MM-dd")) {
                 degOutFile = (@"Files\LatLongs\" + DateTime.UtcNow.ToString("yyyy-MM-dd") + "_Degree.txt").Replace(" ", "");

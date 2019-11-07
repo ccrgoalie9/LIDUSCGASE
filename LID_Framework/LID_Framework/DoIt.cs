@@ -7,7 +7,7 @@ namespace LID_Framework {
         //     Enables the aggregation of all classes for the program. 
         //     You can access the produced objects using the accessor
         //     methods.
-        string partialPath;
+        readonly string partialPath;
         Download todayDownload;
         Scraper todayScraper;
         Line todayLine;
@@ -86,10 +86,10 @@ namespace LID_Framework {
         //Static Methods
         private void DirectoryCheck() {
             Console.Write("Updating Directories...\t\t");
-            DirectoryInfo dir2 = Directory.CreateDirectory(partialPath + @"\Files\Bulletins");
-            DirectoryInfo dir3 = Directory.CreateDirectory(partialPath + @"\Files\KML");
-            DirectoryInfo dir4 = Directory.CreateDirectory(partialPath + @"\Files\LatLongs");
-            DirectoryInfo dir5 = Directory.CreateDirectory(partialPath + @"\Files\Radials");
+            Directory.CreateDirectory(partialPath + @"\Files\Bulletins");
+            Directory.CreateDirectory(partialPath + @"\Files\KML");
+            Directory.CreateDirectory(partialPath + @"\Files\LatLongs");
+            Directory.CreateDirectory(partialPath + @"\Files\Radials");
             Console.WriteLine("Directories Updated");
         }
 
