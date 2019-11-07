@@ -1,10 +1,7 @@
 C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Projects\LID\LIDRepo\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Release\LID_WinForm.exe.config
 C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Projects\LID\LIDRepo\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Release\LID_WinForm.exe
 C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Projects\LID\LIDRepo\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Release\LID_WinForm.pdb
-C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Projects\LID\LIDRepo\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Release\LID_Framework.exe
 C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Projects\LID\LIDRepo\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Release\SharpKml.Core.dll
-C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Projects\LID\LIDRepo\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Release\LID_Framework.pdb
-C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Projects\LID\LIDRepo\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Release\LID_Framework.exe.config
 C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Projects\LID\LIDRepo\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Release\SharpKml.Core.xml
 C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Projects\LID\LIDRepo\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Release\LID_WinForm.csprojAssemblyReference.cache
 C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Projects\LID\LIDRepo\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Release\LID_WinForm.LID_Form.resources
@@ -14,11 +11,6 @@ C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Proj
 C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Projects\LID\LIDRepo\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Release\LID_WinForm.pdb
 C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Projects\LID\LIDRepo\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Release\LID_WinForm.g.resources
 C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Projects\LID\LIDRepo\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Release\LID_WinForm.Properties.Resources.resources
-C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Projects\LID\LIDRepo\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Release\LID_WinForm.exe.manifest
-C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Projects\LID\LIDRepo\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Release\LID_WinForm.application
-C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Projects\LID\LIDRepo\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Release\LID_WinForm.TrustInfo.xml
-C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Projects\LID\LIDRepo\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Release\LID_WinForm.exe.manifest
-C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Projects\LID\LIDRepo\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Release\LID_WinForm.application
 C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Release\LID_WinForm.exe.config
 C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Release\LID_WinForm.exe
 C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Release\LID_WinForm.pdb
@@ -36,3 +28,5 @@ C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Gith
 C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Release\LID_WinForm.csproj.CopyComplete
 C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Release\LID_WinForm.exe
 C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Release\LID_WinForm.pdb
+C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Projects\LID\LIDRepo\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Release\LID_ClassLibrary.dll
+C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Projects\LID\LIDRepo\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Release\LID_ClassLibrary.pdb
