@@ -74,6 +74,7 @@ namespace LID_Framework {
             }
         }
 
+        //Normal Implementation
         public Line(Ingestor[] input) {
             filepath = (@"Files\KML\" + DateTime.UtcNow.ToString("yyyy-MM-dd") + "_ICEBERGS.kml").Replace(" ", "");
             string filename = (DateTime.UtcNow.ToString("yyyy-MM-dd") + "_ICEBERGS").Replace(" ", "");
@@ -100,6 +101,11 @@ namespace LID_Framework {
             //Timestamp
             Timestamp lineTimestamp = new Timestamp();
             lineTimestamp.When = DateTime.UtcNow;
+
+            //Timespan
+            SharpKml.Dom.TimeSpan lineTimespan = new SharpKml.Dom.TimeSpan();
+            lineTimespan.Begin = Convert.ToDateTime(DateTime.UtcNow.ToString("yyyy-MM-dd") + " 00:00:01");
+            lineTimespan.End = Convert.ToDateTime(DateTime.UtcNow.ToString("yyyy-MM-dd") + " 23:59:59");
 
             //Actual reads style and adds poly and line together
             Style SimpleStyle = new Style();
@@ -141,7 +147,7 @@ namespace LID_Framework {
                 placemark.Geometry = linestring;
                 placemark.StyleUrl = new Uri(("#" + styleID), UriKind.Relative); //Uri makes url refrence to indocument style rather than cloud sourced
                 //Timestamp
-                placemark.Time = lineTimestamp;
+                placemark.Time = lineTimespan;
 
                 document.AddFeature(placemark);
 
@@ -156,6 +162,98 @@ namespace LID_Framework {
             //Outputs KML File
             KmlFile kmlFile = KmlFile.Create(kml, true);
             using (FileStream stream = File.OpenWrite(filepath)) {
+                kmlFile.Save(stream);
+            }
+        }
+
+        //For Historic KML Creation
+        public Line(Ingestor[] input, DateTime historic) {
+            filepath = (@"Files\KML\" + historic.ToString("yyyy-MM-dd") + "_ICEBERGS.kml").Replace(" ", "");
+            string filename = (historic.ToString("yyyy-MM-dd") + "_ICEBERGS").Replace(" ", "");
+
+            //Check if file already exists
+            if(File.Exists(filepath)) {
+                File.Delete(filepath);
+            }
+
+            //Document Creation
+            var document = new Document();
+            document.Id = "KML";
+            document.Open = true;
+            document.Name = filename;
+
+            //Styling
+            LineStyle lineStyle = new LineStyle();
+            string colorCode = "ffffe481";
+            lineStyle.Color = Color32.Parse(colorCode);
+            lineStyle.Width = 5;
+            PolygonStyle PolyStyle = new PolygonStyle();
+            PolyStyle.Color = Color32.Parse(colorCode);
+
+            //Timestamp
+            Timestamp lineTimestamp = new Timestamp();
+            lineTimestamp.When = historic;
+
+            //Timespan
+            SharpKml.Dom.TimeSpan lineTimespan = new SharpKml.Dom.TimeSpan();
+            lineTimespan.Begin = Convert.ToDateTime(historic.ToString("yyyy-MM-dd")+" 00:00:01");
+            lineTimespan.End = Convert.ToDateTime(historic.ToString("yyyy-MM-dd") + " 23:59:59");
+
+            //Actual reads style and adds poly and line together
+            Style SimpleStyle = new Style();
+            string styleID = "lineStyle";
+            SimpleStyle.Id = styleID;
+            SimpleStyle.Line = lineStyle;
+            SimpleStyle.Polygon = PolyStyle;
+            document.AddStyle(SimpleStyle);
+
+            //LINE STRING & PLACEMARK CONSTRUCTION ZONE
+            foreach(Ingestor ingest in input) {
+                //One per segment
+                LineString linestring = new LineString();
+                CoordinateCollection coordinates = new CoordinateCollection();
+                linestring.AltitudeMode = AltitudeMode.ClampToGround;
+                linestring.Extrude = true;
+                linestring.Tessellate = true;
+
+                double[,] coordArray = ingest.GetCoordinates();
+
+                double[] lat = new double[(coordArray.Length / 2)];
+                double[] lon = new double[(coordArray.Length / 2)];
+
+                for(int i = 0; i < (coordArray.Length / 2); i++) {
+                    lon[i] = coordArray[i, 1];
+                }
+                for(int i = 0; i < (coordArray.Length / 2); i++) {
+                    lat[i] = coordArray[i, 0];
+                }
+
+                for(int i = 0; i < lon.Length; i++) {
+                    coordinates.Add(new Vector(lat[i], lon[i]));
+                }
+
+                linestring.Coordinates = coordinates;
+                Placemark placemark = new Placemark();
+                placemark.Name = ingest.GetLineType();
+                placemark.Visibility = true;
+                placemark.Geometry = linestring;
+                placemark.StyleUrl = new Uri(("#" + styleID), UriKind.Relative); //Uri makes url refrence to indocument style rather than cloud sourced
+                //Timestamp
+                placemark.Time = lineTimestamp;
+
+                document.AddFeature(placemark);
+
+            }
+            //END LINE STRING CONSTRUCTION ZONE
+
+
+            //Creates KML assignes it from document
+            var kml = new Kml();
+            kml.Feature = document;
+
+            //Outputs KML File
+            KmlFile kmlFile = KmlFile.Create(kml, true);
+            using(FileStream stream = File.OpenWrite(filepath)) {
                 kmlFile.Save(stream);
             }
         }

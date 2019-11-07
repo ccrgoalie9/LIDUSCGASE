@@ -3,6 +3,8 @@ using System.Windows.Forms;
 
 namespace LID_WinForm {
     class Program {
+
+        [STAThread]
         static void Main() {
             //Setup the window
             Console.Title = "LID";

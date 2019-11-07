@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2">
   <Document id="KML">
-    <name>2019-11-06_ICEBERGS</name>
+    <name>2019-11-07_ICEBERGS</name>
     <open>true</open>
     <Style id="lineStyle">
       <LineStyle>
@@ -15,9 +15,10 @@
     <Placemark>
       <name>ICEBERG LIMIT</name>
       <visibility>true</visibility>
-      <TimeStamp>
-        <when>2019-11-06T20:27:48Z</when>
-      </TimeStamp>
+      <TimeSpan>
+        <begin>2019-11-07T00:00:01-05:00</begin>
+        <end>2019-11-07T23:59:59-05:00</end>
+      </TimeSpan>
       <styleUrl>#lineStyle</styleUrl>
       <LineString>
         <extrude>true</extrude>
@@ -32,9 +33,10 @@
     <Placemark>
       <name>ESTIMATED ICEBERG LIMIT</name>
       <visibility>true</visibility>
-      <TimeStamp>
-        <when>2019-11-06T20:27:48Z</when>
-      </TimeStamp>
+      <TimeSpan>
+        <begin>2019-11-07T00:00:01-05:00</begin>
+        <end>2019-11-07T23:59:59-05:00</end>
+      </TimeSpan>
       <styleUrl>#lineStyle</styleUrl>
       <LineString>
         <extrude>true</extrude>
@@ -52,9 +54,10 @@
     <Placemark>
       <name>WESTERN ICEBERG LIMIT</name>
       <visibility>true</visibility>
-      <TimeStamp>
-        <when>2019-11-06T20:27:48Z</when>
-      </TimeStamp>
+      <TimeSpan>
+        <begin>2019-11-07T00:00:01-05:00</begin>
+        <end>2019-11-07T23:59:59-05:00</end>
+      </TimeSpan>
       <styleUrl>#lineStyle</styleUrl>
       <LineString>
         <extrude>true</extrude>
@@ -67,63 +70,70 @@
     <Placemark>
       <name>SEA ICE LIMIT</name>
       <visibility>true</visibility>
-      <TimeStamp>
-        <when>2019-11-06T20:27:48Z</when>
-      </TimeStamp>
+      <TimeSpan>
+        <begin>2019-11-07T00:00:01-05:00</begin>
+        <end>2019-11-07T23:59:59-05:00</end>
+      </TimeSpan>
       <styleUrl>#lineStyle</styleUrl>
       <LineString>
         <extrude>true</extrude>
         <tessellate>true</tessellate>
         <altitudeMode>clampToGround</altitudeMode>
-        <coordinates>-77,63.666665999999999
--74.416666000000006,63.916665999999999
--70.583332999999996,62.416665999999999
--64.5,61.166665999999999
--64.333332999999996,62</coordinates>
+        <coordinates>-63.166665999999999,59.083333000000003
+-63.166665999999999,59.416665999999999
+-63.916665999999999,59.75</coordinates>
       </LineString>
     </Placemark>
     <Placemark>
       <name>SEA ICE LIMIT</name>
       <visibility>true</visibility>
-      <TimeStamp>
-        <when>2019-11-06T20:27:48Z</when>
-      </TimeStamp>
+      <TimeSpan>
+        <begin>2019-11-07T00:00:01-05:00</begin>
+        <end>2019-11-07T23:59:59-05:00</end>
+      </TimeSpan>
       <styleUrl>#lineStyle</styleUrl>
       <LineString>
         <extrude>true</extrude>
         <tessellate>true</tessellate>
         <altitudeMode>clampToGround</altitudeMode>
         <coordinates>-64.75,60.416665999999999
--67.583332999999996,58.916665999999999
--69.25,61.333333000000003
--74.25,62.833333000000003
--80.583332999999996,62.416665999999999
--79.75,58.5
--78.166666000000006,55.583333000000003
--80.25,54.833333000000003
--79.333332999999996,52.166665999999999
--80.5,51.5</coordinates>
+-67.583332999999996,59
+-69.25,61.25
+-74.333332999999996,62.916665999999999
+-80.583332999999996,62.5
+-80.416666000000006,55.333333000000003
+-93,59
+-88.583332999999996,62.75
+-84.75,62.666665999999999
+-81.25,63.583333000000003</coordinates>
       </LineString>
     </Placemark>
     <Placemark>
       <name>SEA ICE LIMIT</name>
       <visibility>true</visibility>
-      <TimeStamp>
-        <when>2019-11-06T20:27:48Z</when>
-      </TimeStamp>
+      <TimeSpan>
+        <begin>2019-11-07T00:00:01-05:00</begin>
+        <end>2019-11-07T23:59:59-05:00</end>
+      </TimeSpan>
       <styleUrl>#lineStyle</styleUrl>
       <LineString>
         <extrude>true</extrude>
         <tessellate>true</tessellate>
         <altitudeMode>clampToGround</altitudeMode>
-        <coordinates>-64.333332999999996,62
+        <coordinates>-80.166666000000006,63.75
+-82.166666000000006,66
+-79.5,67.583332999999996
+-78.25,63.916665999999999
+-70.583332999999996,62.416665999999999
+-64.5,61.166665999999999
+-64.333332999999996,62
 -60.666665999999999,66.916666000000006
 -66.083332999999996,68.5
--67.25,70.416666000000006
--69.416666000000006,71
--67.583332999999996,71.5
--69.916666000000006,72.083332999999996
--66.416666000000006,73.416666000000006</coordinates>
+-66.333332999999996,70.416666000000006
+-68.166666000000006,70.833332999999996
+-66.833332999999996,71.416666000000006
+-69.666666000000006,72.166666000000006
+-65.75,73.166666000000006</coordinates>
       </LineString>
     </Placemark>
   </Document>

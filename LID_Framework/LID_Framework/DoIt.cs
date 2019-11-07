@@ -21,7 +21,7 @@ namespace LID_Framework {
             //Get the current Bulletin
             Console.Write("Fetching Current Bulletin...\t");
             todayDownload = new Download();
-            Console.WriteLine(" Current Bulletin Fetched");
+            Console.WriteLine("Current Bulletin Fetched");
 
             //Get the necessary bits from the bulletin
             todayScraper = new Scraper(todayDownload.GetOutFile());
@@ -31,7 +31,30 @@ namespace LID_Framework {
 
             todayLine = new Line(todayScraper.GetCoordinatesIngestors());
 
-            Console.WriteLine(" KML File Created");
+            Console.WriteLine("KML File Created");
+        }
+
+        public DoIt(string filePath, int indicator) {
+            DateTime into;
+            try {
+                into = Convert.ToDateTime(filePath.Substring(filePath.LastIndexOf(@"\") + 1, 10));
+            } catch(Exception x) {
+                Console.WriteLine(x.Message);
+                into = Convert.ToDateTime("2019-01-01");
+            }
+            //1 is bulletin
+            if(indicator == 1) {
+                Console.Write("Fetching Historic Bulletin...\t");
+                todayScraper = new Scraper(filePath);
+                Console.WriteLine("Historic Bulletin Fetched");
+                Console.Write("Creating KML File...\t\t");
+                todayLine = new Line(todayScraper.GetCoordinatesIngestors(), into);
+                Console.WriteLine("KML File Created");
+            }
+            //2 is Degree File, 3 is Decimal File
+            if(indicator == 2 || indicator == 3) {
+
+            }
         }
 
         //Accessor Methods

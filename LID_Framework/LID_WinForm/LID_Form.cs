@@ -8,14 +8,19 @@ namespace LID_WinForm {
     public partial class LID_Form : Form {
 
         readonly string partialPath;
-        DoIt today;
+        string bulletinPath;
+        DoIt today, current;
         Download todayDownload;
-        Scraper todayScraper;
-        Line todayLine;
+        Scraper todayScraper, currentScraper;
+        Line todayLine, currentLine;
 
         public LID_Form() {
             InitializeComponent();
             partialPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase).Replace(@"file:\", "");
+
+            //Initialize the openFile dialogs
+            BulletinChooser.InitialDirectory = partialPath + @"\Files\Bulletin";
+            CoordChooser.InitialDirectory = partialPath + @"\Files\LatLongs";
 
             //Class DoIt combines everything into one actionable class
             today = new DoIt();
@@ -26,6 +31,8 @@ namespace LID_WinForm {
 
         }
 
+
+        //Main standard buttons
         private void FilesButton_Click(object sender, EventArgs e) {
             string filePath = partialPath + @"\Files";
             Process.Start("explorer.exe", filePath);
@@ -35,7 +42,7 @@ namespace LID_WinForm {
             string earthPath = @"C:\Program Files\Google\Google Earth Pro\client\googleearth.exe";
             string kmlPath = partialPath + @"\";
             //Has google earth?
-            if (File.Exists(earthPath)) {
+            if(File.Exists(earthPath)) {
                 Process.Start(kmlPath + todayLine.GetOutFile());
             }
         }
@@ -44,6 +51,9 @@ namespace LID_WinForm {
             this.Dispose();
         }
 
+
+
+        //Current Day's Files
         private void DegreeButton_Click(object sender, EventArgs e) {
             string filePath = partialPath + @"\" + todayScraper.GetDegOutFile(); ;
             Process.Start(filePath);
@@ -59,6 +69,27 @@ namespace LID_WinForm {
             Process.Start(filePath);
         }
 
+
+
+        //Most Recent Files
+        private void DegreeHistButton_Click(object sender, EventArgs e) {
+            string filePath = partialPath + @"\" + currentScraper.GetDegOutFile(); ;
+            Process.Start(filePath);
+        }
+
+        private void DecimalHistButton_Click(object sender, EventArgs e) {
+            string filePath = partialPath + @"\" + currentScraper.GetDecOutFile(); ;
+            Process.Start(filePath);
+        }
+
+        private void BulletinHistButton_Click(object sender, EventArgs e) {
+            string filePath = partialPath + @"\" + todayDownload.GetOutFile(); ;
+            Process.Start(filePath);
+        }
+
+
+
+        //Online resources
         private void ChartButton_Click(object sender, EventArgs e) {
             //Current chart released by the iip
             Process.Start("https://www.navcen.uscg.gov/?pageName=iipCharts&Current");
@@ -69,6 +100,9 @@ namespace LID_WinForm {
             Process.Start("https://www.navcen.uscg.gov/?pageName=iipB12Out");
         }
 
+
+
+        //Actionable Buttons
         private void DoItButton_Click(object sender, EventArgs e) {
             Console.WriteLine("Process Started...");
             today = new DoIt();
@@ -76,6 +110,33 @@ namespace LID_WinForm {
             todayScraper = today.GetScraper();
             todayLine = today.GetLine();
             Console.WriteLine("Process Finished");
+        }
+
+        private void BulletinHistoryButton_Click(object sender, EventArgs e) {
+            Console.WriteLine("Process. Started...");
+            if(BulletinChooser.ShowDialog() == DialogResult.OK) {
+                string file = BulletinChooser.FileName;
+                
+                current = new DoIt(file,1);
+                currentScraper = current.GetScraper();
+                currentLine = current.GetLine();
+                Console.WriteLine("Process Finished");
+            } else {
+                Console.WriteLine("Process Canceled by User");
+            }
+        }
+
+        private void CoordHistoryButton_Click(object sender, EventArgs e) {
+            Console.WriteLine("Process. Started...");
+            if(BulletinChooser.ShowDialog() == DialogResult.OK) {
+                string file = BulletinChooser.FileName;
+                current = new DoIt(file,2);
+                currentScraper = current.GetScraper();
+                currentLine = current.GetLine();
+                Console.WriteLine("Process Finished");
+            } else {
+                Console.WriteLine("Process Canceled by User");
+            }
         }
     }
 }
