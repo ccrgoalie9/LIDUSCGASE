@@ -15,9 +15,10 @@
     <Placemark>
       <name>ICEBERG LIMIT</name>
       <visibility>true</visibility>
-      <TimeStamp>
-        <when>2019-11-05T00:00:00-05:00</when>
-      </TimeStamp>
+      <TimeSpan>
+        <begin>2019-11-05T00:00:01-05:00</begin>
+        <end>2019-11-05T23:59:59-05:00</end>
+      </TimeSpan>
       <styleUrl>#lineStyle</styleUrl>
       <LineString>
         <extrude>true</extrude>
@@ -32,9 +33,10 @@
     <Placemark>
       <name>ESTIMATED ICEBERG LIMIT</name>
       <visibility>true</visibility>
-      <TimeStamp>
-        <when>2019-11-05T00:00:00-05:00</when>
-      </TimeStamp>
+      <TimeSpan>
+        <begin>2019-11-05T00:00:01-05:00</begin>
+        <end>2019-11-05T23:59:59-05:00</end>
+      </TimeSpan>
       <styleUrl>#lineStyle</styleUrl>
       <LineString>
         <extrude>true</extrude>
@@ -52,9 +54,10 @@
     <Placemark>
       <name>WESTERN ICEBERG LIMIT</name>
       <visibility>true</visibility>
-      <TimeStamp>
-        <when>2019-11-05T00:00:00-05:00</when>
-      </TimeStamp>
+      <TimeSpan>
+        <begin>2019-11-05T00:00:01-05:00</begin>
+        <end>2019-11-05T23:59:59-05:00</end>
+      </TimeSpan>
       <styleUrl>#lineStyle</styleUrl>
       <LineString>
         <extrude>true</extrude>
@@ -67,9 +70,10 @@
     <Placemark>
       <name>SEA ICE LIMIT</name>
       <visibility>true</visibility>
-      <TimeStamp>
-        <when>2019-11-05T00:00:00-05:00</when>
-      </TimeStamp>
+      <TimeSpan>
+        <begin>2019-11-05T00:00:01-05:00</begin>
+        <end>2019-11-05T23:59:59-05:00</end>
+      </TimeSpan>
       <styleUrl>#lineStyle</styleUrl>
       <LineString>
         <extrude>true</extrude>
@@ -85,9 +89,10 @@
     <Placemark>
       <name>SEA ICE LIMIT</name>
       <visibility>true</visibility>
-      <TimeStamp>
-        <when>2019-11-05T00:00:00-05:00</when>
-      </TimeStamp>
+      <TimeSpan>
+        <begin>2019-11-05T00:00:01-05:00</begin>
+        <end>2019-11-05T23:59:59-05:00</end>
+      </TimeSpan>
       <styleUrl>#lineStyle</styleUrl>
       <LineString>
         <extrude>true</extrude>
@@ -108,9 +113,10 @@
     <Placemark>
       <name>SEA ICE LIMIT</name>
       <visibility>true</visibility>
-      <TimeStamp>
-        <when>2019-11-05T00:00:00-05:00</when>
-      </TimeStamp>
+      <TimeSpan>
+        <begin>2019-11-05T00:00:01-05:00</begin>
+        <end>2019-11-05T23:59:59-05:00</end>
+      </TimeSpan>
       <styleUrl>#lineStyle</styleUrl>
       <LineString>
         <extrude>true</extrude>

@@ -38,6 +38,7 @@ namespace LID_Framework {
             DateTime into;
             try {
                 into = Convert.ToDateTime(filePath.Substring(filePath.LastIndexOf(@"\") + 1, 10));
+                Console.WriteLine("Date: " + into);
             } catch(Exception x) {
                 Console.WriteLine(x.Message);
                 into = Convert.ToDateTime("2019-01-01");

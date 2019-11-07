@@ -239,7 +239,7 @@ namespace LID_Framework {
                 placemark.Geometry = linestring;
                 placemark.StyleUrl = new Uri(("#" + styleID), UriKind.Relative); //Uri makes url refrence to indocument style rather than cloud sourced
                 //Timestamp
-                placemark.Time = lineTimestamp;
+                placemark.Time = lineTimespan;
 
                 document.AddFeature(placemark);
 
