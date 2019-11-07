@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
-using LID_Framework;
+using LID_ClassLibrary;
 
 namespace LID_WinForm {
     public partial class LID_Form : Form {
@@ -20,7 +20,7 @@ namespace LID_WinForm {
             partialPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase).Replace(@"file:\", "");
 
             //Initialize the openFile dialogs
-            BulletinChooser.InitialDirectory = partialPath + @"\Files\Bulletin";
+            BulletinChooser.InitialDirectory = partialPath + @"\Files\Bulletins";
             BulletinChooser.FileName = "bulletin.txt";
             CoordChooser.InitialDirectory = partialPath + @"\Files\LatLongs";
             CoordChooser.FileName = "deg or dec.txt";
@@ -43,6 +43,9 @@ namespace LID_WinForm {
                 BulletinButton.Enabled = true;
                 DegreeButton.Enabled = true;
                 DecimalButton.Enabled = true;
+            } else {
+                Console.WriteLine("Trying again in 10 minutes");
+                ErrorTimer.Enabled = true;
             }
             todayDownload = today.GetDownload();
             todayScraper = today.GetScraper();
@@ -69,6 +72,19 @@ namespace LID_WinForm {
 
         private void ExitButton_Click(object sender, EventArgs e) {
             this.Dispose();
+        }
+
+        private void ErrorTimer_Tick(object sender, EventArgs e) {
+            ErrorTimer.Enabled = false;
+            if(today.FullProcess() == 1) {
+                EarthButton.Enabled = true;
+                BulletinButton.Enabled = true;
+                DegreeButton.Enabled = true;
+                DecimalButton.Enabled = true;
+            } else {
+                Console.WriteLine("Trying again in 10 minutes");
+                ErrorTimer.Enabled = true;
+            }
         }
 
 
@@ -150,6 +166,8 @@ namespace LID_WinForm {
         }
 
         private void BulletinHistoryButton_Click(object sender, EventArgs e) {
+            BulletinChooser.InitialDirectory = partialPath + @"\Files\Bulletins";
+            BulletinChooser.FileName = "bulletin.txt";
             Console.WriteLine("Process Started...");
             if(BulletinChooser.ShowDialog() == DialogResult.OK) {
                 string file = BulletinChooser.FileName;
@@ -176,6 +194,8 @@ namespace LID_WinForm {
         }
 
         private void CoordHistoryButton_Click(object sender, EventArgs e) {
+            CoordChooser.InitialDirectory = partialPath + @"\Files\LatLongs";
+            CoordChooser.FileName = "deg or dec.txt";
             Console.WriteLine("Process Started...");
             if(CoordChooser.ShowDialog() == DialogResult.OK) {
                 string file = CoordChooser.FileName;

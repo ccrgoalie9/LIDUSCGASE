@@ -46,8 +46,8 @@ namespace LID_Framework {
                 into = Convert.ToDateTime(filePath.Substring(filePath.LastIndexOf(@"\") + 1, 10));
             } catch(Exception x) {
                 Console.WriteLine(x.Message);
-                //Default Date To express error
-                into = Convert.ToDateTime("2010-01-01");
+                //Default Date Is Today in Case of error
+                into = DateTime.UtcNow;
             }
             //1 is bulletin
             if(indicator == 1) {

@@ -106,12 +106,6 @@
     <None Include="Properties\app.manifest" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LID_Framework\LID_Framework.csproj">
-      <Project>{7826c705-d5f3-4462-ba3f-2c94d9fd3070}</Project>
-      <Name>LID_Framework</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="LID_Form.resx">
       <DependentUpon>LID_Form.cs</DependentUpon>
     </EmbeddedResource>
@@ -139,6 +133,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="iceberg_ofC_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LID_ClassLibrary\LID_ClassLibrary.csproj">
+      <Project>{20a0f705-96d6-47e0-818b-a6b5bdbd6860}</Project>
+      <Name>LID_ClassLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

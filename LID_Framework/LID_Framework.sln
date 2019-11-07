@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LID_WinForm", "LID_WinForm\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LID_WebApp", "LID_WebApp\LID_WebApp.csproj", "{A419212C-6CD6-417C-A5B0-1FEF0FA38DDE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LID_ClassLibrary", "LID_ClassLibrary\LID_ClassLibrary.csproj", "{20A0F705-96D6-47E0-818B-A6B5BDBD6860}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{A419212C-6CD6-417C-A5B0-1FEF0FA38DDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A419212C-6CD6-417C-A5B0-1FEF0FA38DDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A419212C-6CD6-417C-A5B0-1FEF0FA38DDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20A0F705-96D6-47E0-818B-A6B5BDBD6860}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20A0F705-96D6-47E0-818B-A6B5BDBD6860}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20A0F705-96D6-47E0-818B-A6B5BDBD6860}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20A0F705-96D6-47E0-818B-A6B5BDBD6860}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
