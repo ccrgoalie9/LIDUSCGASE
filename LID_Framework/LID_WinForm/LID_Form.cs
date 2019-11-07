@@ -12,7 +12,7 @@ namespace LID_WinForm {
         DoIt today, current;
         Download todayDownload;
         Scraper todayScraper, currentScraper;
-        Line todayLine, currentLine;
+        Line todayLine;
 
         public LID_Form() {
             InitializeComponent();
@@ -20,7 +20,14 @@ namespace LID_WinForm {
 
             //Initialize the openFile dialogs
             BulletinChooser.InitialDirectory = partialPath + @"\Files\Bulletin";
+            BulletinChooser.FileName = "bulletin.txt";
             CoordChooser.InitialDirectory = partialPath + @"\Files\LatLongs";
+            CoordChooser.FileName = "degree or decimal.txt";
+
+            //Disable current buttons until they have references
+            BulletinHistButton.Enabled = false;
+            DegreeHistButton.Enabled = false;
+            DecimalHistButton.Enabled = false;
 
             //Class DoIt combines everything into one actionable class
             today = new DoIt();
@@ -55,35 +62,36 @@ namespace LID_WinForm {
 
         //Current Day's Files
         private void DegreeButton_Click(object sender, EventArgs e) {
-            string filePath = partialPath + @"\" + todayScraper.GetDegOutFile(); ;
+            string filePath = partialPath + @"\" + todayScraper.GetDegOutFile();
             Process.Start(filePath);
         }
 
         private void DecimalButton_Click(object sender, EventArgs e) {
-            string filePath = partialPath + @"\" + todayScraper.GetDecOutFile(); ;
+            string filePath = partialPath + @"\" + todayScraper.GetDecOutFile();
             Process.Start(filePath);
         }
 
         private void BulletinButton_Click(object sender, EventArgs e) {
-            string filePath = partialPath + @"\" + todayDownload.GetOutFile(); ;
-            Process.Start(filePath);
+            Process.Start(bulletinPath);
         }
 
 
 
         //Most Recent Files
         private void DegreeHistButton_Click(object sender, EventArgs e) {
-            string filePath = partialPath + @"\" + currentScraper.GetDegOutFile(); ;
-            Process.Start(filePath);
+            string filePath = partialPath + @"\" + currentScraper.GetDegOutFile();
+            if(currentScraper != null) {
+                Process.Start(filePath);
+            }
         }
 
         private void DecimalHistButton_Click(object sender, EventArgs e) {
-            string filePath = partialPath + @"\" + currentScraper.GetDecOutFile(); ;
+            string filePath = partialPath + @"\" + currentScraper.GetDecOutFile();
             Process.Start(filePath);
         }
 
         private void BulletinHistButton_Click(object sender, EventArgs e) {
-            string filePath = partialPath + @"\" + todayDownload.GetOutFile(); ;
+            string filePath = partialPath + @"\" + todayDownload.GetOutFile();
             Process.Start(filePath);
         }
 
@@ -116,11 +124,16 @@ namespace LID_WinForm {
             Console.WriteLine("Process. Started...");
             if(BulletinChooser.ShowDialog() == DialogResult.OK) {
                 string file = BulletinChooser.FileName;
-                
+                bulletinPath = file;
                 current = new DoIt(file,1);
                 currentScraper = current.GetScraper();
-                currentLine = current.GetLine();
+                todayLine = current.GetLine();
                 Console.WriteLine("Process Finished");
+
+                //Enable Buttons as Possible
+                BulletinHistButton.Enabled = true;
+                DegreeHistButton.Enabled = true;
+                DecimalHistButton.Enabled = true;
             } else {
                 Console.WriteLine("Process Canceled by User");
             }
@@ -132,8 +145,13 @@ namespace LID_WinForm {
                 string file = BulletinChooser.FileName;
                 current = new DoIt(file,2);
                 currentScraper = current.GetScraper();
-                currentLine = current.GetLine();
+                todayLine = current.GetLine();
                 Console.WriteLine("Process Finished");
+
+                //Enable Buttons as Possible
+                BulletinHistButton.Enabled = false;
+                DegreeHistButton.Enabled = true;
+                DecimalHistButton.Enabled = true;
             } else {
                 Console.WriteLine("Process Canceled by User");
             }

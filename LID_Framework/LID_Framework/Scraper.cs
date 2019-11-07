@@ -8,7 +8,7 @@ namespace LID_Framework {
         //     It outputs this information in a textfile with the original
         //     degree/decimal format, and in decimal format
         private string inFileName, degOutFile, decOutFile, output, decOutput, ingested;
-        private string[] lineTypes, ingests, coordsIngested;
+        private string[] lineTypes, ingests, coordsIngested, append = {"A","B","C","D","E","F","G"};
         private Ingestor[] coordinates;
 
         public Scraper(string inFile) {
@@ -25,6 +25,9 @@ namespace LID_Framework {
             inFileName = inFile;
             CheckInput(inFile);
             ReadFile(func);
+            ConvertIngestor();
+            CreateOutput();
+            WriteFile();
         }
 
         //Accessors
@@ -80,14 +83,21 @@ namespace LID_Framework {
             if(!(inFileName.EndsWith(".txt"))) {
                 inFileName = inFileName + ".txt";
             }
-            degOutFile = (@"Files\LatLongs\" + DateTime.UtcNow.ToString("yyyy-MM-dd") + "_Degree.txt").Replace(" ", "");
-            decOutFile = (@"Files\LatLongs\" + DateTime.UtcNow.ToString("yyyy-MM-dd") + "_Decimal.txt").Replace(" ", "");
+            if(inFileName.Substring(inFileName.LastIndexOf(@"\") + 1, 10) == DateTime.UtcNow.ToString("yyyy-MM-dd")) {
+                degOutFile = (@"Files\LatLongs\" + DateTime.UtcNow.ToString("yyyy-MM-dd") + "_Degree.txt").Replace(" ", "");
+                decOutFile = (@"Files\LatLongs\" + DateTime.UtcNow.ToString("yyyy-MM-dd") + "_Decimal.txt").Replace(" ", "");
+            } else {
+                degOutFile = inFileName.Replace("_Bulletin_Pull", "_Degree").Replace("Bulletins", "LatLongs");
+                decOutFile = inFileName.Replace("_Bulletin_Pull", "_Decimal").Replace("Bulletins", "LatLongs");
+            }
         }
 
         private void CheckInput(string func) {
             if(func.Contains("_Decimal")) {
                 degOutFile = func.Replace("_Decimal.txt", "_Degree.txt");
+                decOutFile = func;
             } else if(func.Contains("_Degree")) {
+                degOutFile = func;
                 decOutFile = func.Replace("_Degree.txt", "_Decimal.txt");
             } else {
 
@@ -126,20 +136,31 @@ namespace LID_Framework {
                 if(flag) {
                     coordsIngested = new string[count];
                     lineTypes = new string[count];
-
+                    count = 0;
+                    using(StreamReader coordFile = new StreamReader(inFileName)) {
+                        while((temp = coordFile.ReadLine()) != null) {
+                            coordsIngested[count] = temp;
+                            lineTypes[count] = "";
+                            count++;
+                        }
+                    }
                 } else {
                     coordsIngested = new string[count / 2];
                     lineTypes = new string[count / 2];
-                }
-                count = 0;
-                using(StreamReader coordFile = new StreamReader(inFileName)) {
-                    while((temp = coordFile.ReadLine()) != null) {
-                        coordsIngested[count] = temp;
-                        lineTypes[count] = "";
-                        count++;
+                    count = 0;
+                    using(StreamReader coordFile = new StreamReader(inFileName)) {
+                        while((temp = coordFile.ReadLine()) != null) {
+                            lineTypes[count] = temp;
+                            count++;
+                            coordsIngested[count] = temp;
+                            count++;
+                        }
                     }
                 }
+            } else if(func == 2) {
+
             }
+
         }
 
         //Create the coordinatesIngested array
@@ -245,6 +266,32 @@ namespace LID_Framework {
         //Convert coordinates using the Ingestor class
         private void ConvertIngestor() {
             coordinates = new Ingestor[coordsIngested.Length];
+
+            //Add Letters To Reflect Subsections of the same Set
+            string indexes = "";
+            string temp = "";
+            for(int i = 0; i < lineTypes.Length - 1; i++) {
+                temp = "";
+                if(lineTypes[i] == lineTypes[i+1]) {
+                    Console.WriteLine(lineTypes[i] + " " + i);
+                    temp = (i + 1).ToString();
+                    indexes += i.ToString() + " ";
+                }
+            }
+            if(temp != "") {
+                indexes += temp;
+            }
+            int[] indexer = new int[indexes.Split().Length];
+            int count = 0;
+            foreach(string x in indexes.Split()) {
+                indexer[count] = Convert.ToInt32(x);
+                count++;
+            }
+            for(int i = 0; i < indexer.Length; i++) {
+                lineTypes[indexer[i]] += " " + append[i];
+            }
+            //End Adding Letters
+
             for(int i = 0; i < coordinates.Length; i++) {
                 coordinates[i] = new Ingestor(coordsIngested[i], i + 1);
                 coordinates[i].SetLineType(lineTypes[i]);
