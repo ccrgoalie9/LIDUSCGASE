@@ -13,6 +13,7 @@ namespace LID_WinForm {
         Download todayDownload;
         Scraper todayScraper, currentScraper;
         Line todayLine;
+        bool flag;
 
         public LID_Form() {
             InitializeComponent();
@@ -22,7 +23,7 @@ namespace LID_WinForm {
             BulletinChooser.InitialDirectory = partialPath + @"\Files\Bulletin";
             BulletinChooser.FileName = "bulletin.txt";
             CoordChooser.InitialDirectory = partialPath + @"\Files\LatLongs";
-            CoordChooser.FileName = "degree or decimal.txt";
+            CoordChooser.FileName = "deg or dec.txt";
 
             //Disable current buttons until they have references
             BulletinHistButton.Enabled = false;
@@ -92,14 +93,24 @@ namespace LID_WinForm {
 
         //Most Recent Files
         private void DegreeHistButton_Click(object sender, EventArgs e) {
-            string filePath = partialPath + @"\" + currentScraper.GetDegOutFile();
-            if(currentScraper != null) {
-                Process.Start(filePath);
+            string filePath;
+            if(flag) {
+                filePath = currentScraper.GetDegOutFile();
+            } else {
+                filePath = currentScraper.GetDegOutFile();
             }
+            Console.WriteLine(filePath);
+            Process.Start(filePath);
         }
 
         private void DecimalHistButton_Click(object sender, EventArgs e) {
-            string filePath = partialPath + @"\" + currentScraper.GetDecOutFile();
+            string filePath;
+            if(flag) {
+                filePath = currentScraper.GetDecOutFile();
+            } else {
+                filePath = currentScraper.GetDecOutFile();
+            }
+            Console.WriteLine(filePath);
             Process.Start(filePath);
         }
 
@@ -139,7 +150,7 @@ namespace LID_WinForm {
         }
 
         private void BulletinHistoryButton_Click(object sender, EventArgs e) {
-            Console.WriteLine("Process. Started...");
+            Console.WriteLine("Process Started...");
             if(BulletinChooser.ShowDialog() == DialogResult.OK) {
                 string file = BulletinChooser.FileName;
                 bulletinPath = file;
@@ -154,6 +165,7 @@ namespace LID_WinForm {
                     BulletinHistButton.Enabled = true;
                     DegreeHistButton.Enabled = true;
                     DecimalHistButton.Enabled = true;
+                    flag = true;
                 } else {
                     //If you return -1, doesn't currently happen
                 }
@@ -170,17 +182,25 @@ namespace LID_WinForm {
                 current = new DoIt();
                 if(file.Contains("_Degree")) {
                     current.PartialFromCoordinateFile(file, 2);
+
+                    //Enable Buttons as Possible
+                    EarthButton.Enabled = true;
+                    DegreeHistButton.Enabled = true;
+                    BulletinHistButton.Enabled = false;
+                    DecimalHistButton.Enabled = true;
                 } else if(file.Contains("_Decimal")) {
                     current.PartialFromCoordinateFile(file, 3);
+
+                    //Enable Buttons as Possible
+                    EarthButton.Enabled = true;
+                    DegreeHistButton.Enabled = false;
+                    BulletinHistButton.Enabled = false;
+                    DecimalHistButton.Enabled = true;
                 }
                 currentScraper = current.GetScraper();
                 todayLine = current.GetLine();
                 Console.WriteLine("Process Finished");
-
-                //Enable Buttons as Possible
-                BulletinHistButton.Enabled = false;
-                DegreeHistButton.Enabled = true;
-                DecimalHistButton.Enabled = true;
+                flag = false;
             } else {
                 Console.WriteLine("Process Canceled by User");
             }

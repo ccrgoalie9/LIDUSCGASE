@@ -34,6 +34,12 @@ namespace LID_Framework {
             CreateOutput();
         }
 
+        public Ingestor(string ingested, int i, int j) {
+            ID = i;
+            this.ingested = ingested;
+            ConvertInput(j);
+            CreateOutput();
+        }
         //Accessors
         //Accessor to return the generated array
         public double[,] GetCoordinates() {
@@ -144,6 +150,20 @@ namespace LID_Framework {
                 Console.WriteLine(e.Message);
                 //To easily determine if something went wrong
                 coords = new double[,] { { -1, -1 }, { -1, -1 } };
+            }
+        }
+
+        //If reading from a decimal file the coordinates are already converted
+        private void ConvertInput(int i) {
+            if (ingested.EndsWith(" ")) ingested = ingested.Remove(ingested.LastIndexOf(" "),1);
+            string[] tempByComma = ingested.Split(' ');
+            coords = new double[tempByComma.Length, 2];
+            int left = 0;
+            foreach(string line in tempByComma) {
+                string[] tempBySpace = line.Split(',');
+                coords[left, 0] = Convert.ToDouble(tempBySpace[0]);
+                coords[left, 1] = Convert.ToDouble(tempBySpace[1]);
+                left++;
             }
         }
 

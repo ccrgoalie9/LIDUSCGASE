@@ -8,7 +8,7 @@ namespace LID_Framework {
         //     It outputs this information in a textfile with the original
         //     degree/decimal format, and in decimal format
         private string inFileName, degOutFile, decOutFile, output, decOutput, ingested;
-        private string[] lineTypes, ingests, coordsIngested, append = {"A","B","C","D","E","F","G"};
+        private string[] lineTypes, ingests, coordsIngested, append = { "A", "B", "C", "D", "E", "F", "G" };
         private Ingestor[] coordinates;
 
         public Scraper(string inFile) {
@@ -16,7 +16,7 @@ namespace LID_Framework {
             CheckInput();
             ReadFile();
             ScrapeFile();
-            ConvertIngestor();
+            ConvertIngestor(1);
             CreateOutput();
             WriteFile();
         }
@@ -25,7 +25,7 @@ namespace LID_Framework {
             inFileName = inFile;
             CheckInput(inFile);
             ReadFile(func);
-            ConvertIngestor();
+            ConvertIngestor(func);
             CreateOutput();
             WriteFile();
         }
@@ -122,7 +122,7 @@ namespace LID_Framework {
             string temp;
             int count = 0;
             bool flag = true;
-            if(func == 1) {
+            if(func == 2 || func == 3) {
                 using(StreamReader coordFile = new StreamReader(inFileName)) {
                     while((temp = coordFile.ReadLine()) != null) {
                         count++;
@@ -151,7 +151,7 @@ namespace LID_Framework {
                     using(StreamReader coordFile = new StreamReader(inFileName)) {
                         while((temp = coordFile.ReadLine()) != null) {
                             lineTypes[count] = temp;
-                            count++;
+                            temp = coordFile.ReadLine();
                             coordsIngested[count] = temp;
                             count++;
                         }
@@ -264,7 +264,7 @@ namespace LID_Framework {
         }
 
         //Convert coordinates using the Ingestor class
-        private void ConvertIngestor() {
+        private void ConvertIngestor(int check) {
             coordinates = new Ingestor[coordsIngested.Length];
 
             //Add Letters To Reflect Subsections of the same Set
@@ -272,7 +272,7 @@ namespace LID_Framework {
             string temp = "";
             for(int i = 0; i < lineTypes.Length - 1; i++) {
                 temp = "";
-                if(lineTypes[i] == lineTypes[i+1]) {
+                if(lineTypes[i] == lineTypes[i + 1]) {
                     temp = (i + 1).ToString();
                     indexes += i.ToString() + " ";
                 }
@@ -280,20 +280,29 @@ namespace LID_Framework {
             if(temp != "") {
                 indexes += temp;
             }
-            int[] indexer = new int[indexes.Split().Length];
-            int count = 0;
-            foreach(string x in indexes.Split()) {
-                indexer[count] = Convert.ToInt32(x);
-                count++;
-            }
-            for(int i = 0; i < indexer.Length; i++) {
-                lineTypes[indexer[i]] += " " + append[i];
+            if(indexes.Split().Length > 1) {
+                int[] indexer = new int[indexes.Split().Length];
+                int count = 0;
+                foreach(string x in indexes.Split()) {
+                    indexer[count] = Convert.ToInt32(x);
+                    count++;
+                }
+                for(int i = 0; i < indexer.Length; i++) {
+                    lineTypes[indexer[i]] += " " + append[i];
+                }
             }
             //End Adding Letters
 
-            for(int i = 0; i < coordinates.Length; i++) {
-                coordinates[i] = new Ingestor(coordsIngested[i], i + 1);
-                coordinates[i].SetLineType(lineTypes[i]);
+            if(check != 3) {
+                for(int i = 0; i < coordinates.Length; i++) {
+                    coordinates[i] = new Ingestor(coordsIngested[i], i + 1);
+                    coordinates[i].SetLineType(lineTypes[i]);
+                }
+            } else {
+                for(int i = 0; i < coordinates.Length; i++) {
+                    coordinates[i] = new Ingestor(coordsIngested[i], i + i, check);
+                    coordinates[i].SetLineType(lineTypes[i]);
+                }
             }
         }
 

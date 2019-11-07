@@ -60,7 +60,12 @@ namespace LID_Framework {
             }
             //2 is Degree File, 3 is Decimal File
             if(indicator == 2 || indicator == 3) {
-
+                Console.Write("Fetching Historic Coordinates...\t");
+                todayScraper = new Scraper(filePath, indicator);
+                Console.WriteLine("Historic Coordinates Fetched");
+                Console.Write("Creating KML File...\t\t");
+                todayLine = new Line(todayScraper.GetCoordinatesIngestors(), into);
+                Console.WriteLine("KML File Created");
             }
             return 1;
         }
