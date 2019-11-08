@@ -43,14 +43,19 @@ namespace LID_WinForm {
                 BulletinButton.Enabled = true;
                 DegreeButton.Enabled = true;
                 DecimalButton.Enabled = true;
+                todayDownload = today.GetDownload();
+                todayScraper = today.GetScraper();
+                todayLine = today.GetLine();
             } else {
                 Console.WriteLine("Trying again in 10 minutes");
+                EarthButton.Enabled = false;
+                BulletinButton.Enabled = false;
+                DegreeButton.Enabled = false;
+                DecimalButton.Enabled = false;
                 ErrorTimer.Enabled = true;
             }
-            todayDownload = today.GetDownload();
-            todayScraper = today.GetScraper();
-            todayLine = today.GetLine();
-            Console.WriteLine("Application Deployed Successfully");
+            
+            Console.WriteLine("Application Deployed");
 
         }
 
@@ -76,13 +81,21 @@ namespace LID_WinForm {
 
         private void ErrorTimer_Tick(object sender, EventArgs e) {
             ErrorTimer.Enabled = false;
+            today = new DoIt();
             if(today.FullProcess() == 1) {
                 EarthButton.Enabled = true;
                 BulletinButton.Enabled = true;
                 DegreeButton.Enabled = true;
                 DecimalButton.Enabled = true;
+                todayDownload = today.GetDownload();
+                todayScraper = today.GetScraper();
+                todayLine = today.GetLine();
             } else {
                 Console.WriteLine("Trying again in 10 minutes");
+                EarthButton.Enabled = false;
+                BulletinButton.Enabled = false;
+                DegreeButton.Enabled = false;
+                DecimalButton.Enabled = false;
                 ErrorTimer.Enabled = true;
             }
         }
@@ -115,7 +128,6 @@ namespace LID_WinForm {
             } else {
                 filePath = currentScraper.GetDegOutFile();
             }
-            Console.WriteLine(filePath);
             Process.Start(filePath);
         }
 
@@ -126,7 +138,6 @@ namespace LID_WinForm {
             } else {
                 filePath = currentScraper.GetDecOutFile();
             }
-            Console.WriteLine(filePath);
             Process.Start(filePath);
         }
 
@@ -138,12 +149,12 @@ namespace LID_WinForm {
 
         //Online resources
         private void ChartButton_Click(object sender, EventArgs e) {
-            //Current chart released by the iip
+            //Current chart released by the IIP
             Process.Start("https://www.navcen.uscg.gov/?pageName=iipCharts&Current");
         }
 
         private void ResBulletinButton_Click(object sender, EventArgs e) {
-            //Current bulletin released by the iip
+            //Current bulletin released by the IIP
             Process.Start("https://www.navcen.uscg.gov/?pageName=iipB12Out");
         }
 
@@ -152,17 +163,24 @@ namespace LID_WinForm {
         //Actionable Buttons
         private void DoItButton_Click(object sender, EventArgs e) {
             Console.WriteLine("Process Started...");
+            ErrorTimer.Enabled = false;
             today = new DoIt();
             if(today.FullProcess() == 1) {
                 EarthButton.Enabled = true;
                 BulletinButton.Enabled = true;
                 DegreeButton.Enabled = true;
                 DecimalButton.Enabled = true;
+                todayDownload = today.GetDownload();
+                todayScraper = today.GetScraper();
+                todayLine = today.GetLine();
+            } else {
+                Console.WriteLine("Trying again in 10 minutes");
+                EarthButton.Enabled = false;
+                BulletinButton.Enabled = false;
+                DegreeButton.Enabled = false;
+                DecimalButton.Enabled = false;
+                ErrorTimer.Enabled = true;
             }
-            todayDownload = today.GetDownload();
-            todayScraper = today.GetScraper();
-            todayLine = today.GetLine();
-            Console.WriteLine("Process Finished");
         }
 
         private void BulletinHistoryButton_Click(object sender, EventArgs e) {
