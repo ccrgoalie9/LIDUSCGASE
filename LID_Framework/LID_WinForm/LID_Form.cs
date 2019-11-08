@@ -79,6 +79,7 @@ namespace LID_WinForm {
             this.Dispose();
         }
 
+        //10 minute delay between attempting to carry out the full process if there is an error
         private void ErrorTimer_Tick(object sender, EventArgs e) {
             ErrorTimer.Enabled = false;
             today = new DoIt();
