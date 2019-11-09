@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Thomas Hardy\\Desktop\\USCGA\\Academia\\2019 Fall\\Software Engineering\\Github\\Projects\\LIDRepo\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\LID_WebApp.csproj",
+      "projectUniqueName": "C:\\Users\\Thomas Hardy\\Desktop\\USCGA\\Academia\\2019 Fall\\Software Engineering\\Github\\Projects\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\LID_WebApp.csproj",
       "projectName": "LID_WebApp",
-      "projectPath": "C:\\Users\\Thomas Hardy\\Desktop\\USCGA\\Academia\\2019 Fall\\Software Engineering\\Github\\Projects\\LIDRepo\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\LID_WebApp.csproj",
+      "projectPath": "C:\\Users\\Thomas Hardy\\Desktop\\USCGA\\Academia\\2019 Fall\\Software Engineering\\Github\\Projects\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\LID_WebApp.csproj",
       "packagesPath": "C:\\Users\\Thomas Hardy\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Thomas Hardy\\Desktop\\USCGA\\Academia\\2019 Fall\\Software Engineering\\Github\\Projects\\LIDRepo\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\obj\\",
+      "outputPath": "C:\\Users\\Thomas Hardy\\Desktop\\USCGA\\Academia\\2019 Fall\\Software Engineering\\Github\\Projects\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

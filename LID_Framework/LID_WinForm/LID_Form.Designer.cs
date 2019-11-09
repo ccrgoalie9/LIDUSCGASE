@@ -47,13 +47,15 @@
             this.CoordHistoryButton = new System.Windows.Forms.Button();
             this.CoordChooser = new System.Windows.Forms.OpenFileDialog();
             this.ErrorTimer = new System.Windows.Forms.Timer(this.components);
+            this.label6 = new System.Windows.Forms.Label();
+            this.ConfigButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(335, 53);
+            this.label1.Location = new System.Drawing.Point(335, 35);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(123, 69);
             this.label1.TabIndex = 0;
@@ -62,7 +64,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(332, 127);
+            this.label2.Location = new System.Drawing.Point(332, 109);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(136, 17);
             this.label2.TabIndex = 1;
@@ -70,19 +72,19 @@
             // 
             // FilesButton
             // 
-            this.FilesButton.Location = new System.Drawing.Point(404, 206);
+            this.FilesButton.Location = new System.Drawing.Point(404, 188);
             this.FilesButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.FilesButton.Name = "FilesButton";
             this.FilesButton.Size = new System.Drawing.Size(133, 50);
             this.FilesButton.TabIndex = 3;
-            this.FilesButton.Text = "Show All Files";
+            this.FilesButton.Text = "All Files";
             this.FilesButton.UseVisualStyleBackColor = true;
             this.FilesButton.Click += new System.EventHandler(this.FilesButton_Click);
             // 
             // exitButton
             // 
-            this.exitButton.Location = new System.Drawing.Point(351, 373);
-            this.exitButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.exitButton.Location = new System.Drawing.Point(351, 355);
+            this.exitButton.Margin = new System.Windows.Forms.Padding(4);
             this.exitButton.Name = "exitButton";
             this.exitButton.Size = new System.Drawing.Size(100, 28);
             this.exitButton.TabIndex = 9;
@@ -92,8 +94,8 @@
             // 
             // EarthButton
             // 
-            this.EarthButton.Location = new System.Drawing.Point(264, 206);
-            this.EarthButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EarthButton.Location = new System.Drawing.Point(264, 188);
+            this.EarthButton.Margin = new System.Windows.Forms.Padding(4);
             this.EarthButton.Name = "EarthButton";
             this.EarthButton.Size = new System.Drawing.Size(133, 50);
             this.EarthButton.TabIndex = 2;
@@ -104,7 +106,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(355, 262);
+            this.label3.Location = new System.Drawing.Point(355, 244);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(91, 17);
             this.label3.TabIndex = 5;
@@ -112,7 +114,7 @@
             // 
             // DecimalButton
             // 
-            this.DecimalButton.Location = new System.Drawing.Point(404, 284);
+            this.DecimalButton.Location = new System.Drawing.Point(404, 266);
             this.DecimalButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DecimalButton.Name = "DecimalButton";
             this.DecimalButton.Size = new System.Drawing.Size(75, 30);
@@ -123,7 +125,7 @@
             // 
             // DegreeButton
             // 
-            this.DegreeButton.Location = new System.Drawing.Point(323, 284);
+            this.DegreeButton.Location = new System.Drawing.Point(323, 266);
             this.DegreeButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DegreeButton.Name = "DegreeButton";
             this.DegreeButton.Size = new System.Drawing.Size(75, 30);
@@ -134,7 +136,7 @@
             // 
             // BulletinButton
             // 
-            this.BulletinButton.Location = new System.Drawing.Point(323, 319);
+            this.BulletinButton.Location = new System.Drawing.Point(323, 301);
             this.BulletinButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BulletinButton.Name = "BulletinButton";
             this.BulletinButton.Size = new System.Drawing.Size(75, 30);
@@ -145,7 +147,7 @@
             // 
             // ChartButton
             // 
-            this.ChartButton.Location = new System.Drawing.Point(92, 284);
+            this.ChartButton.Location = new System.Drawing.Point(92, 266);
             this.ChartButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ChartButton.Name = "ChartButton";
             this.ChartButton.Size = new System.Drawing.Size(75, 30);
@@ -157,7 +159,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(104, 265);
+            this.label4.Location = new System.Drawing.Point(104, 247);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(130, 17);
             this.label4.TabIndex = 10;
@@ -165,7 +167,7 @@
             // 
             // ResBulletinButton
             // 
-            this.ResBulletinButton.Location = new System.Drawing.Point(173, 284);
+            this.ResBulletinButton.Location = new System.Drawing.Point(173, 266);
             this.ResBulletinButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ResBulletinButton.Name = "ResBulletinButton";
             this.ResBulletinButton.Size = new System.Drawing.Size(75, 30);
@@ -176,8 +178,8 @@
             // 
             // DoItButton
             // 
-            this.DoItButton.Location = new System.Drawing.Point(360, 149);
-            this.DoItButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DoItButton.Location = new System.Drawing.Point(360, 131);
+            this.DoItButton.Margin = new System.Windows.Forms.Padding(4);
             this.DoItButton.Name = "DoItButton";
             this.DoItButton.Size = new System.Drawing.Size(81, 50);
             this.DoItButton.TabIndex = 11;
@@ -187,12 +189,12 @@
             // 
             // BulletinHistoryButton
             // 
-            this.BulletinHistoryButton.Location = new System.Drawing.Point(264, 149);
-            this.BulletinHistoryButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BulletinHistoryButton.Location = new System.Drawing.Point(264, 131);
+            this.BulletinHistoryButton.Margin = new System.Windows.Forms.Padding(4);
             this.BulletinHistoryButton.Name = "BulletinHistoryButton";
             this.BulletinHistoryButton.Size = new System.Drawing.Size(81, 50);
             this.BulletinHistoryButton.TabIndex = 12;
-            this.BulletinHistoryButton.Text = "Bulletin Fetch";
+            this.BulletinHistoryButton.Text = "Fetch Bulletin";
             this.BulletinHistoryButton.UseVisualStyleBackColor = true;
             this.BulletinHistoryButton.Click += new System.EventHandler(this.BulletinHistoryButton_Click);
             // 
@@ -203,7 +205,7 @@
             // 
             // BulletinHistButton
             // 
-            this.BulletinHistButton.Location = new System.Drawing.Point(553, 319);
+            this.BulletinHistButton.Location = new System.Drawing.Point(553, 301);
             this.BulletinHistButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BulletinHistButton.Name = "BulletinHistButton";
             this.BulletinHistButton.Size = new System.Drawing.Size(75, 30);
@@ -214,7 +216,7 @@
             // 
             // DegreeHistButton
             // 
-            this.DegreeHistButton.Location = new System.Drawing.Point(553, 284);
+            this.DegreeHistButton.Location = new System.Drawing.Point(553, 266);
             this.DegreeHistButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DegreeHistButton.Name = "DegreeHistButton";
             this.DegreeHistButton.Size = new System.Drawing.Size(75, 30);
@@ -225,7 +227,7 @@
             // 
             // DecimalHistButton
             // 
-            this.DecimalHistButton.Location = new System.Drawing.Point(633, 284);
+            this.DecimalHistButton.Location = new System.Drawing.Point(633, 266);
             this.DecimalHistButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DecimalHistButton.Name = "DecimalHistButton";
             this.DecimalHistButton.Size = new System.Drawing.Size(75, 30);
@@ -237,7 +239,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(568, 265);
+            this.label5.Location = new System.Drawing.Point(568, 247);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(120, 17);
             this.label5.TabIndex = 13;
@@ -245,12 +247,12 @@
             // 
             // CoordHistoryButton
             // 
-            this.CoordHistoryButton.Location = new System.Drawing.Point(456, 149);
-            this.CoordHistoryButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CoordHistoryButton.Location = new System.Drawing.Point(456, 131);
+            this.CoordHistoryButton.Margin = new System.Windows.Forms.Padding(4);
             this.CoordHistoryButton.Name = "CoordHistoryButton";
             this.CoordHistoryButton.Size = new System.Drawing.Size(81, 50);
             this.CoordHistoryButton.TabIndex = 17;
-            this.CoordHistoryButton.Text = "Coord Fetch";
+            this.CoordHistoryButton.Text = "Fetch Coord";
             this.CoordHistoryButton.UseVisualStyleBackColor = true;
             this.CoordHistoryButton.Click += new System.EventHandler(this.CoordHistoryButton_Click);
             // 
@@ -264,6 +266,25 @@
             this.ErrorTimer.Interval = 600000;
             this.ErrorTimer.Tick += new System.EventHandler(this.ErrorTimer_Tick);
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(186, 387);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(429, 17);
+            this.label6.TabIndex = 18;
+            this.label6.Text = "Copyright 2019 \'USCGA Software Engineering\' All Rights Reserved";
+            // 
+            // ConfigButton
+            // 
+            this.ConfigButton.Location = new System.Drawing.Point(458, 356);
+            this.ConfigButton.Name = "ConfigButton";
+            this.ConfigButton.Size = new System.Drawing.Size(56, 28);
+            this.ConfigButton.TabIndex = 19;
+            this.ConfigButton.Text = "Config";
+            this.ConfigButton.UseVisualStyleBackColor = true;
+            this.ConfigButton.Click += new System.EventHandler(this.ConfigButton_Click);
+            // 
             // LID_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -272,6 +293,8 @@
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(800, 416);
+            this.Controls.Add(this.ConfigButton);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.CoordHistoryButton);
             this.Controls.Add(this.BulletinHistButton);
             this.Controls.Add(this.DegreeHistButton);
@@ -326,5 +349,7 @@
         private System.Windows.Forms.Button CoordHistoryButton;
         private System.Windows.Forms.OpenFileDialog CoordChooser;
         private System.Windows.Forms.Timer ErrorTimer;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button ConfigButton;
     }
 }

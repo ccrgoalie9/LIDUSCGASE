@@ -5,13 +5,13 @@ namespace LID_ClassLibrary {
     public class Download {
         string outfile;
 
-        public Download() {
-            DownloadFromWeb();
+        public Download(Config config) {
+            DownloadFromWeb(config);
         }
 
-        public void DownloadFromWeb() {
-            outfile = (@"Files\Bulletins\" + DateTime.UtcNow.ToString("yyyy-MM-dd") + "_Bulletin_Pull.txt").Replace(" ", "");
-            DownloadFile("https://www.navcen.uscg.gov/?pageName=iipB12Out", outfile);
+        public void DownloadFromWeb(Config config) {
+            outfile = (config.DirPath + @"\Bulletins\" + DateTime.UtcNow.ToString("yyyy-MM-dd") + "_Bulletin_Pull.txt");
+            DownloadFile(config.BulletinUrl, outfile);
 
             string text = System.IO.File.ReadAllText(outfile);
             text = text.Replace("</p>", "");

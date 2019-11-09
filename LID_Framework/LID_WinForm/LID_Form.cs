@@ -9,6 +9,7 @@ namespace LID_WinForm {
 
         readonly string partialPath;
         string bulletinPath;
+        readonly Config config;
         DoIt today, current;
         Download todayDownload;
         Scraper todayScraper, currentScraper;
@@ -17,12 +18,14 @@ namespace LID_WinForm {
 
         public LID_Form() {
             InitializeComponent();
-            partialPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase).Replace(@"file:\", "");
+            //Read the config file
+            config = new Config();
+            partialPath = config.DirPath;
 
             //Initialize the openFile dialogs
-            BulletinChooser.InitialDirectory = partialPath + @"\Files\Bulletins";
+            BulletinChooser.InitialDirectory = partialPath + @"\Bulletins";
             BulletinChooser.FileName = "bulletin.txt";
-            CoordChooser.InitialDirectory = partialPath + @"\Files\LatLongs";
+            CoordChooser.InitialDirectory = partialPath + @"\LatLongs";
             CoordChooser.FileName = "deg or dec.txt";
 
             //Disable current buttons until they have references
@@ -37,7 +40,7 @@ namespace LID_WinForm {
             DecimalButton.Enabled = false;
 
             //Class DoIt combines everything into one actionable class
-            today = new DoIt();
+            today = new DoIt(config);
             if(today.FullProcess() == 1) {
                 EarthButton.Enabled = true;
                 BulletinButton.Enabled = true;
@@ -54,7 +57,6 @@ namespace LID_WinForm {
                 DecimalButton.Enabled = false;
                 ErrorTimer.Enabled = true;
             }
-            
             Console.WriteLine("Application Deployed");
 
         }
@@ -62,16 +64,17 @@ namespace LID_WinForm {
 
         //Main standard buttons
         private void FilesButton_Click(object sender, EventArgs e) {
-            string filePath = partialPath + @"\Files";
-            Process.Start("explorer.exe", filePath);
+            Process.Start("explorer.exe", config.DirPath);
+        }
+        private void ConfigButton_Click(object sender, EventArgs e) {
+            Process.Start("explorer.exe", config.ConfigPath);
         }
 
         private void EarthButton_Click(object sender, EventArgs e) {
             string earthPath = @"C:\Program Files\Google\Google Earth Pro\client\googleearth.exe";
-            string kmlPath = partialPath + @"\";
             //Has google earth?
             if(File.Exists(earthPath)) {
-                Process.Start(kmlPath + todayLine.GetOutFile());
+                Process.Start(todayLine.GetOutFile());
             }
         }
 
@@ -79,10 +82,12 @@ namespace LID_WinForm {
             this.Dispose();
         }
 
+
+
         //10 minute delay between attempting to carry out the full process if there is an error
         private void ErrorTimer_Tick(object sender, EventArgs e) {
             ErrorTimer.Enabled = false;
-            today = new DoIt();
+            today = new DoIt(config);
             if(today.FullProcess() == 1) {
                 EarthButton.Enabled = true;
                 BulletinButton.Enabled = true;
@@ -105,18 +110,15 @@ namespace LID_WinForm {
 
         //Current Day's Files
         private void DegreeButton_Click(object sender, EventArgs e) {
-            string filePath = partialPath + @"\" + todayScraper.GetDegOutFile();
-            Process.Start(filePath);
+            Process.Start(todayScraper.GetDegOutFile());
         }
 
         private void DecimalButton_Click(object sender, EventArgs e) {
-            string filePath = partialPath + @"\" + todayScraper.GetDecOutFile();
-            Process.Start(filePath);
+            Process.Start(todayScraper.GetDecOutFile());
         }
 
         private void BulletinButton_Click(object sender, EventArgs e) {
-            string filePath = partialPath + @"\" + todayDownload.GetOutFile();
-            Process.Start(filePath);
+            Process.Start(todayDownload.GetOutFile());
         }
 
 
@@ -151,12 +153,12 @@ namespace LID_WinForm {
         //Online resources
         private void ChartButton_Click(object sender, EventArgs e) {
             //Current chart released by the IIP
-            Process.Start("https://www.navcen.uscg.gov/?pageName=iipCharts&Current");
+            Process.Start(config.ChartUrl);
         }
 
         private void ResBulletinButton_Click(object sender, EventArgs e) {
             //Current bulletin released by the IIP
-            Process.Start("https://www.navcen.uscg.gov/?pageName=iipB12Out");
+            Process.Start(config.BulletinUrl);
         }
 
 
@@ -165,7 +167,7 @@ namespace LID_WinForm {
         private void DoItButton_Click(object sender, EventArgs e) {
             Console.WriteLine("Process Started...");
             ErrorTimer.Enabled = false;
-            today = new DoIt();
+            today = new DoIt(config);
             if(today.FullProcess() == 1) {
                 EarthButton.Enabled = true;
                 BulletinButton.Enabled = true;
@@ -185,13 +187,13 @@ namespace LID_WinForm {
         }
 
         private void BulletinHistoryButton_Click(object sender, EventArgs e) {
-            BulletinChooser.InitialDirectory = partialPath + @"\Files\Bulletins";
+            BulletinChooser.InitialDirectory = partialPath + @"\Bulletins";
             BulletinChooser.FileName = "bulletin.txt";
             Console.WriteLine("Process Started...");
             if(BulletinChooser.ShowDialog() == DialogResult.OK) {
                 string file = BulletinChooser.FileName;
                 bulletinPath = file;
-                current = new DoIt();
+                current = new DoIt(config);
                 if(current.PartialFromCoordinateFile(file, 1) == 1) {
                     currentScraper = current.GetScraper();
                     todayLine = current.GetLine();
@@ -213,12 +215,12 @@ namespace LID_WinForm {
         }
 
         private void CoordHistoryButton_Click(object sender, EventArgs e) {
-            CoordChooser.InitialDirectory = partialPath + @"\Files\LatLongs";
+            CoordChooser.InitialDirectory = partialPath + @"\LatLongs";
             CoordChooser.FileName = "deg or dec.txt";
             Console.WriteLine("Process Started...");
             if(CoordChooser.ShowDialog() == DialogResult.OK) {
                 string file = CoordChooser.FileName;
-                current = new DoIt();
+                current = new DoIt(config);
                 if(file.Contains("_Degree")) {
                     current.PartialFromCoordinateFile(file, 2);
 

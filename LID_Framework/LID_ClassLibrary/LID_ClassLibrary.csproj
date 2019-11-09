@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config.cs" />
     <Compile Include="DoIt.cs" />
     <Compile Include="Download.cs" />
     <Compile Include="Ingestor.cs" />

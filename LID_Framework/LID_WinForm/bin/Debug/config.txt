@@ -1,0 +1,12 @@
+Configuration file for the LID program, please only edit between the single quotes
+The program must be reloaded for changes to take effect
+
+Files Directory Location: 'C:\Users\Thomas Hardy\Documents\LID Files'
+
+Update links only if they have changed
+Bulletin URL: 'https://www.navcen.uscg.gov/?pageName=iipB12Out'
+Chart URL: 'https://www.navcen.uscg.gov/?pageName=iipCharts&Current'
+
+KML file parameters
+KML Color Code: 'ffffe481'
+KML Line Width: '5'

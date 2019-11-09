@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29418.71
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LID_Framework", "LID_Framework\LID_Framework.csproj", "{7826C705-D5F3-4462-BA3F-2C94D9FD3070}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LID_WinForm", "LID_WinForm\LID_WinForm.csproj", "{EAD17BF0-4599-4295-9801-D4F6C542F978}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LID_WebApp", "LID_WebApp\LID_WebApp.csproj", "{A419212C-6CD6-417C-A5B0-1FEF0FA38DDE}"
@@ -17,10 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7826C705-D5F3-4462-BA3F-2C94D9FD3070}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7826C705-D5F3-4462-BA3F-2C94D9FD3070}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7826C705-D5F3-4462-BA3F-2C94D9FD3070}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7826C705-D5F3-4462-BA3F-2C94D9FD3070}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EAD17BF0-4599-4295-9801-D4F6C542F978}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EAD17BF0-4599-4295-9801-D4F6C542F978}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EAD17BF0-4599-4295-9801-D4F6C542F978}.Release|Any CPU.ActiveCfg = Release|Any CPU

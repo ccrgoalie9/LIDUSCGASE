@@ -7,13 +7,14 @@ namespace LID_ClassLibrary {
         //     Enables the aggregation of all classes for the program. 
         //     You can access the produced objects using the accessor
         //     methods.
-        readonly string partialPath;
         Download todayDownload;
         Scraper todayScraper;
         Line todayLine;
 
-        public DoIt() {
-            partialPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase).Replace(@"file:\", "");
+        Config config;
+
+        public DoIt(Config config) {
+            this.config = config;
         }
 
         //Do Stuff
@@ -22,22 +23,32 @@ namespace LID_ClassLibrary {
             //If not make them
             DirectoryCheck();
 
-            //Get the current Bulletin
-            Console.Write("Fetching Current Bulletin...\t");
-            try {
-                todayDownload = new Download();
+            try {//Get the current Bulletin
+                Console.Write("Fetching Current Bulletin...\t");
+                todayDownload = new Download(config);
                 Console.WriteLine("Current Bulletin Fetched");
-                //Get the necessary bits from the bulletin
-                todayScraper = new Scraper(todayDownload.GetOutFile());
-                //Create the KML file in format: ICEBERGS_'date'.kml
-                Console.Write("Creating KML File...\t\t");
-                todayLine = new Line(todayScraper.GetCoordinatesIngestors());
-                Console.WriteLine("KML File Created");
-                return 1;
             } catch(Exception x) {
                 Console.WriteLine("Error: Failed To Fetch The Bulletin\n" + x.Message);
-                return -1;
+                return -1; //Error
             }
+
+            try {//Get the necessary bits from the bulletin
+                todayScraper = new Scraper(todayDownload.GetOutFile(), config);
+            } catch(Exception x) {
+                Console.WriteLine("Error: Failed To Scrape The Bulletin\n" + x.Message);
+                return -1; //Error
+            }
+
+            try {//Create the KML file in format: ICEBERGS_'date'.kml
+                Console.Write("Creating KML File...\t\t");
+                todayLine = new Line(todayScraper.GetCoordinatesIngestors(), config);
+                Console.WriteLine("KML File Created");
+            } catch(Exception x) {
+                Console.WriteLine("Error: Failed To Create The KML File\n" + x.Message);
+                return -1; //Error
+            }
+
+            return 1; //Success
         }
 
         public int PartialFromCoordinateFile(string filePath, int indicator) {
@@ -52,19 +63,19 @@ namespace LID_ClassLibrary {
             //1 is bulletin
             if(indicator == 1) {
                 Console.Write("Fetching Historic Bulletin...\t");
-                todayScraper = new Scraper(filePath);
+                todayScraper = new Scraper(filePath, config);
                 Console.WriteLine("Historic Bulletin Fetched");
                 Console.Write("Creating KML File...\t\t");
-                todayLine = new Line(todayScraper.GetCoordinatesIngestors(), into);
+                todayLine = new Line(todayScraper.GetCoordinatesIngestors(), into, config);
                 Console.WriteLine("KML File Created");
             }
             //2 is Degree File, 3 is Decimal File
             if(indicator == 2 || indicator == 3) {
                 Console.Write("Fetching Historic Coordinates...\t");
-                todayScraper = new Scraper(filePath, indicator);
+                todayScraper = new Scraper(filePath, indicator, config);
                 Console.WriteLine("Historic Coordinates Fetched");
                 Console.Write("Creating KML File...\t\t");
-                todayLine = new Line(todayScraper.GetCoordinatesIngestors(), into);
+                todayLine = new Line(todayScraper.GetCoordinatesIngestors(), into, config);
                 Console.WriteLine("KML File Created");
             }
             return 1;
@@ -86,10 +97,10 @@ namespace LID_ClassLibrary {
         //Static Methods
         private void DirectoryCheck() {
             Console.Write("Updating Directories...\t\t");
-            Directory.CreateDirectory(partialPath + @"\Files\Bulletins");
-            Directory.CreateDirectory(partialPath + @"\Files\KML");
-            Directory.CreateDirectory(partialPath + @"\Files\LatLongs");
-            Directory.CreateDirectory(partialPath + @"\Files\Radials");
+            Directory.CreateDirectory(config.DirPath + @"\Bulletins");
+            Directory.CreateDirectory(config.DirPath + @"\KML");
+            Directory.CreateDirectory(config.DirPath + @"\LatLongs");
+            Directory.CreateDirectory(config.DirPath + @"\Radials");
             Console.WriteLine("Directories Updated");
         }
 

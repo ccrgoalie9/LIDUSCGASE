@@ -9,10 +9,12 @@ namespace LID_ClassLibrary {
         //     degree/decimal format, and in decimal format
         private string inFileName, degOutFile, decOutFile, output, decOutput, ingested;
         private string[] lineTypes, ingests, coordsIngested;
+        readonly private string partialPath;
         readonly private string[] append = { "A", "B", "C", "D", "E", "F", "G" };
         private Ingestor[] coordinates;
 
-        public Scraper(string inFile) {
+        public Scraper(string inFile, Config config) {
+            partialPath = config.DirPath;
             inFileName = inFile;
             CheckInput();
             ReadFile();
@@ -22,7 +24,8 @@ namespace LID_ClassLibrary {
             WriteFile();
         }
 
-        public Scraper(string inFile, int func) {
+        public Scraper(string inFile, int func, Config config) {
+            partialPath = config.DirPath;
             inFileName = inFile;
             CheckInput(inFile);
             ReadFile(func);
@@ -85,8 +88,8 @@ namespace LID_ClassLibrary {
                 inFileName += ".txt";
             }
             if(inFileName.Substring(inFileName.LastIndexOf(@"\") + 1, 10) == DateTime.UtcNow.ToString("yyyy-MM-dd")) {
-                degOutFile = (@"Files\LatLongs\" + DateTime.UtcNow.ToString("yyyy-MM-dd") + "_Degree.txt").Replace(" ", "");
-                decOutFile = (@"Files\LatLongs\" + DateTime.UtcNow.ToString("yyyy-MM-dd") + "_Decimal.txt").Replace(" ", "");
+                degOutFile = (partialPath + @"\LatLongs\" + DateTime.UtcNow.ToString("yyyy-MM-dd") + "_Degree.txt");
+                decOutFile = (partialPath + @"\LatLongs\" + DateTime.UtcNow.ToString("yyyy-MM-dd") + "_Decimal.txt");
             } else {
                 degOutFile = inFileName.Replace("_Bulletin_Pull", "_Degree").Replace("Bulletins", "LatLongs");
                 decOutFile = inFileName.Replace("_Bulletin_Pull", "_Decimal").Replace("Bulletins", "LatLongs");
