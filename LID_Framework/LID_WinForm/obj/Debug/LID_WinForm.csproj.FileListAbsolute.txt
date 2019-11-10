@@ -14,10 +14,7 @@ C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Proj
 C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Debug\LID_WinForm.exe.config
 C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Debug\LID_WinForm.exe
 C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Debug\LID_WinForm.pdb
-C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Debug\LID_Framework.exe
 C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Debug\SharpKml.Core.dll
-C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Debug\LID_Framework.pdb
-C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Debug\LID_Framework.exe.config
 C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Debug\SharpKml.Core.xml
 C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.csprojAssemblyReference.cache
 C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.g.resources
@@ -50,3 +47,10 @@ C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Gith
 C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.csproj.CopyComplete
 C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.exe
 C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.pdb
+C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Debug\LID_WinForm.exe.manifest
+C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Debug\LID_WinForm.application
+C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Debug\LID_ClassLibrary.dll
+C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Debug\LID_ClassLibrary.pdb
+C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.TrustInfo.xml
+C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.exe.manifest
+C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.application
