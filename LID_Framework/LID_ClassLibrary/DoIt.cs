@@ -34,15 +34,15 @@ namespace LID_ClassLibrary {
                 File.AppendAllText(config.ErrorFile, "Error Checking Starting: " + DateTime.UtcNow.ToString("yyyy-MM-dd") + "\n");
 
             }
-           
+
 
             try {//Get the current Bulletin
                 Console.Write("Fetching Current Bulletin...\t");
                 todayDownload = new Download(config);
                 Console.WriteLine("Current Bulletin Fetched");
-            } catch(Exception x) {
+            } catch (Exception x) {
                 Console.WriteLine("Error: Failed To Fetch The Bulletin\n" + x.Message);
-                File.AppendAllText(config.ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message);
+                File.AppendAllText(config.ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
                 return -1; //Error
             }
 
@@ -50,7 +50,7 @@ namespace LID_ClassLibrary {
                 todayScraper = new Scraper(todayDownload.GetOutFile(), config);
             } catch(Exception x) {
                 Console.WriteLine("Error: Failed To Scrape The Bulletin\n" + x.Message);
-                File.AppendAllText(config.ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message);
+                File.AppendAllText(config.ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
                 return -1; //Error
             }
 
@@ -60,7 +60,7 @@ namespace LID_ClassLibrary {
                 Console.WriteLine("KML File Created");
             } catch(Exception x) {
                 Console.WriteLine("Error: Failed To Create The KML File\n" + x.Message);
-                File.AppendAllText(config.ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message);
+                File.AppendAllText(config.ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
                 return -1; //Error
             }
 
@@ -73,7 +73,7 @@ namespace LID_ClassLibrary {
                 into = Convert.ToDateTime(filePath.Substring(filePath.LastIndexOf(@"\") + 1, 10));
             } catch(Exception x) {
                 Console.WriteLine(x.Message);
-                File.AppendAllText(config.ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message);
+                File.AppendAllText(config.ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
                 //Default Date Is Today in Case of error
                 into = DateTime.UtcNow;
             }
