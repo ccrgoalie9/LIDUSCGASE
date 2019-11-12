@@ -9,6 +9,7 @@ namespace LID_ClassLibrary {
         //     methods.
         Download todayDownload;
         Scraper todayScraper;
+        BearingRange todayBR;
         Line todayLine;
 
         Config config;
@@ -52,6 +53,16 @@ namespace LID_ClassLibrary {
                 Console.WriteLine("Error: Failed To Create The KML File\n" + x.Message);
                 File.AppendAllText(config.ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message);
                 return -1; //Error
+            }
+
+            try {//Math for the 
+                Console.WriteLine("Creating The Bearing And Ranges...");
+                todayBR = new BearingRange(todayScraper.GetCoordinatesIngestors(), config);
+                Console.WriteLine("Bearing And Ranges Created");
+            } catch(Exception x) {
+                Console.WriteLine("Error: Failed To Create The File");
+                File.AppendAllText(config.ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message);
+                return -1;
             }
 
             return 1; //Success
@@ -107,7 +118,7 @@ namespace LID_ClassLibrary {
             Directory.CreateDirectory(config.DirPath + @"\Bulletins");
             Directory.CreateDirectory(config.DirPath + @"\KML");
             Directory.CreateDirectory(config.DirPath + @"\LatLongs");
-            Directory.CreateDirectory(config.DirPath + @"\Radials");
+            Directory.CreateDirectory(config.DirPath + @"\BearingRange");
             Directory.CreateDirectory(config.DirPath + @"\ErrorLogs");
             Console.WriteLine("Directories Updated");
         }
