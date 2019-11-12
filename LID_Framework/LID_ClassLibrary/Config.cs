@@ -17,10 +17,7 @@ namespace LID_ClassLibrary {
 
         public Config() {
             ConfigPath = @"config.txt";
-            if(File.Exists(ConfigPath)) {
-                ReadConfig();
-            }
-            if(!File.Exists(ConfigPath) || !DirPath.Contains(Environment.UserName)) {
+            if(!File.Exists(ConfigPath)) {
                 //Create file from defaults
                 CreateConfig();
             }
@@ -30,31 +27,36 @@ namespace LID_ClassLibrary {
         }
 
         //Modifiers
-        private void ReadConfig() {
-            using(StreamReader configReader = new StreamReader(ConfigPath)) {
-                string temp;
-                while((temp = configReader.ReadLine()) != null) {
-                    if(temp.Contains("Files Directory Location:")) { DirPath = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); }
-                    if(temp.Contains("Bulletin URL:")) { BulletinUrl = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); }
-                    if(temp.Contains("Chart URL:")) { ChartUrl = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); }
-                    if(temp.Contains("KML Color Code:")) { KmlColor = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); }
-                    if(temp.Contains("Error File Location:")) { ErrorFile = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); }
-                    try {
-                        if(temp.Contains("KML Line Width:")) { KmlWidth = Convert.ToInt32(temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1)); }
-                    } catch(Exception e) {
-                        Console.WriteLine("Invalid Value for 'KML Line Width'\n" + e.Message);
-                        File.AppendAllText(ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + e.Message);
-                        //If error, default is 5
-                        KmlWidth = 5;
+        public void ReadConfig() {
+            try {
+                using(StreamReader configReader = new StreamReader(ConfigPath)) {
+                    string temp;
+                    while((temp = configReader.ReadLine()) != null) {
+                        if(temp.Contains("Files Directory Location:")) { DirPath = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); }
+                        if(temp.Contains("Bulletin URL:")) { BulletinUrl = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); }
+                        if(temp.Contains("Chart URL:")) { ChartUrl = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); }
+                        if(temp.Contains("KML Color Code:")) { KmlColor = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); }
+                        if(temp.Contains("Error File Location:")) { ErrorFile = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); }
+                        try {
+                            if(temp.Contains("KML Line Width:")) { KmlWidth = Convert.ToInt32(temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1)); }
+                        } catch(Exception e) {
+                            Console.WriteLine("Invalid Value for 'KML Line Width'\n" + e.Message);
+                            File.AppendAllText(ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + e.Message);
+                            //If error, default is 5
+                            KmlWidth = 5;
+                        }
                     }
                 }
+            } catch(Exception x) {
+                Console.WriteLine("Error in reading configuration file, re-writing");
+                Console.WriteLine(x.Message);
             }
         }
 
         //Create the configuration file for first time or for new users
         private void CreateConfig() {
             using(StreamWriter configWriter = new StreamWriter(ConfigPath, false)) {
-                configWriter.WriteLine("Configuration file for the LID program, please only edit between the single quotes\nThe program must be reloaded for changes to take effect\n");
+                configWriter.WriteLine("Configuration file for the LID program, please only edit between the single quotes\n");
                 configWriter.WriteLine(@"Files Directory Location: 'C:\Users\" + Environment.UserName + @"\Documents\LID Files'");
                 configWriter.WriteLine(@"Error File Location: 'C:\Users\" + Environment.UserName + @"\Documents\LID Files\ErrorLogs\Error.txt'");
                 configWriter.WriteLine("\nUpdate links only if they have changed");

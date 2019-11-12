@@ -165,6 +165,7 @@ namespace LID_WinForm {
 
         //Actionable Buttons
         private void DoItButton_Click(object sender, EventArgs e) {
+            config.ReadConfig();
             Console.WriteLine("Process Started...");
             ErrorTimer.Enabled = false;
             today = new DoIt(config);
@@ -187,6 +188,7 @@ namespace LID_WinForm {
         }
 
         private void BulletinHistoryButton_Click(object sender, EventArgs e) {
+            config.ReadConfig();
             BulletinChooser.InitialDirectory = partialPath + @"\Bulletins";
             BulletinChooser.FileName = "bulletin.txt";
             Console.WriteLine("Process Started...");
@@ -214,7 +216,9 @@ namespace LID_WinForm {
             }
         }
 
+        //Choose either a degree or decimal file
         private void CoordHistoryButton_Click(object sender, EventArgs e) {
+            config.ReadConfig();
             CoordChooser.InitialDirectory = partialPath + @"\LatLongs";
             CoordChooser.FileName = "deg or dec.txt";
             Console.WriteLine("Process Started...");

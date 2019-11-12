@@ -7,25 +7,12 @@ namespace LID_ClassLibrary {
         //     Takes the input of a string and converts the coordinates to decimal. 
         //     It stores this information in an array for ease of access and use
         //     for other parts of the program.
-        private string inFileName;
-        private string outFileName;
         private string ingested;
         private string output;
         private string lineType;
         private double[,] coords;
 
         readonly private int ID;
-
-        //For testing, to make sure that input of lat/longs can be processed (of format directly scraped from the bulletin
-        public Ingestor(string inFile) {
-            inFileName = inFile;
-            CheckInput();
-            ReadFile();
-            ConvertInput();
-            CreateOutput();
-            WriteFile();
-        }
-        //For testing
 
         public Ingestor(string ingested, int i) {
             ID = i;
@@ -54,14 +41,6 @@ namespace LID_ClassLibrary {
             return output;
         }
 
-        public string GetInFileName() {
-            return inFileName;
-        }
-
-        public string GetOutFileName() {
-            return outFileName;
-        }
-
         public string GetLineType() {
             return lineType;
         }
@@ -76,29 +55,6 @@ namespace LID_ClassLibrary {
         }
 
         //Constructor's Methods
-        //Make sure the input is machine readable
-        private void CheckInput() {
-            if (!(inFileName.EndsWith(".txt"))) {
-                inFileName += ".txt";
-            }
-            outFileName = inFileName.Replace(".txt", ("_" + System.DateTime.UtcNow.ToString().Substring(0, 8).Replace("/", "-") + ".txt"));
-        }
-
-        //Read from the file
-        private void ReadFile() {
-            try {
-                ingested = "";
-                using (StreamReader coordFile = new StreamReader("files/" + inFileName)) {
-                    ingested = coordFile.ReadToEnd();
-                    //ingested = ingested.Replace(", ", ","); //Get rid of pesky spaces
-                }
-            }
-            catch (Exception e) {
-                Console.WriteLine(e.Message);
-                ingested = "Read Failed";
-            }
-        }
-
         //Convert ingest to array
         private void ConvertInput() {
             try {
@@ -182,18 +138,6 @@ namespace LID_ClassLibrary {
             catch (Exception e) {
                 Console.WriteLine(e.Message);
                 output = e.Message;
-            }
-        }
-
-        //Write to new file
-        private void WriteFile() {
-            try {
-                using (StreamWriter decimalFile = new StreamWriter("files/" + outFileName)) {
-                    decimalFile.Write(output);
-                }
-            }
-            catch (Exception e) {
-                Console.WriteLine(e.Message);
             }
         }
     }

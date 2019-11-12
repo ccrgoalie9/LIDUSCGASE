@@ -7,12 +7,11 @@ namespace LID_ClassLibrary {
         //     Enables the aggregation of all classes for the program. 
         //     You can access the produced objects using the accessor
         //     methods.
+        BearingRange todayBR;
         Download todayDownload;
         Scraper todayScraper;
-        BearingRange todayBR;
+        readonly Config config;
         Line todayLine;
-
-        Config config;
 
         public DoIt(Config config) {
             this.config = config;
@@ -25,13 +24,11 @@ namespace LID_ClassLibrary {
             DirectoryCheck();
 
             //Starts Error Checking file
-            if (!File.Exists(config.ErrorFile))
-            {
-                File.Create(config.ErrorFile);
+            if(!File.Exists(config.ErrorFile)) {
+                File.Create(config.ErrorFile).Dispose();
             }
             string text = System.IO.File.ReadAllText(config.ErrorFile);
-            if (!text.Contains(DateTime.UtcNow.ToString("yyyy-MM-dd")))
-            {
+            if(!text.Contains(DateTime.UtcNow.ToString("yyyy-MM-dd"))) {
                 File.AppendAllText(config.ErrorFile, "Error Checking Starting: " + DateTime.UtcNow.ToString("yyyy-MM-dd") + "\n");
 
             }
@@ -41,7 +38,7 @@ namespace LID_ClassLibrary {
                 Console.Write("Fetching Current Bulletin...\t");
                 todayDownload = new Download(config);
                 Console.WriteLine("Current Bulletin Fetched");
-            } catch (Exception x) {
+            } catch(Exception x) {
                 Console.WriteLine("Error: Failed To Fetch The Bulletin\n" + x.Message);
                 File.AppendAllText(config.ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
                 return -1; //Error
@@ -66,7 +63,7 @@ namespace LID_ClassLibrary {
             }
 
             try {//Math for the 
-                Console.WriteLine("Creating The Bearing And Ranges...");
+                Console.Write("Creating Bearings And Ranges...\t");
                 todayBR = new BearingRange(todayScraper.GetCoordinatesIngestors(), config);
                 Console.WriteLine("Bearing And Ranges Created");
             } catch(Exception x) {
@@ -120,6 +117,10 @@ namespace LID_ClassLibrary {
 
         public Line GetLine() {
             return todayLine;
+        }
+
+        public BearingRange GetBR() {
+            return todayBR;
         }
 
         //Static Methods

@@ -2,28 +2,31 @@
 using System.IO;
 
 namespace LID_ClassLibrary {
-    class BearingRange {
-        double a, c, d, R, phi1, phi2, deltaphi, deltalambda, theta1, theta;
+    public class BearingRange {
+        double a, c, d, R, phi1, phi2, deltaphi, deltalambda, theta1, theta, theta2;
         double[][,] RBSets;
         string output;
-        string outFile;
+        readonly string outFile;
 
         public BearingRange(Ingestor[] input, Config config) {
             outFile = (config.DirPath + @"\BearingRange\" + DateTime.UtcNow.ToString("yyyy-MM-dd") + "_BRSets.txt");
 
-            R = 6371000; //RADIUS OF EARTH IN METERS
-
             //WILL DEFINE LAT/LON BY READING FROM TOMS INPUT (COORDINATES IN DEGREE DECIMAL FORMAT)
-            double[][,] RBSets = new double[input.Length][,];
+            RBSets = new double[input.Length][,];
+            ConvertCoordinates(input);
+            WriteFile();
+        }
 
+        //Main Method
+        private void ConvertCoordinates(Ingestor[] input) {
             foreach(Ingestor ingest in input) {
                 double[,] coords = ingest.GetCoordinates();
                 double[,] temp = new double[ingest.GetCoordinates().Length + 1, 2];
                 //Set the first and last set
                 temp[0, 0] = coords[0, 0];
                 temp[0, 1] = coords[0, 1];
-                temp[temp.Length / 2 - 1, 0] = coords[coords.Length / 2 - 1, 0];
-                temp[temp.Length / 2 - 1, 1] = coords[coords.Length / 2 - 1, 1];
+                temp[(temp.Length / 2) - 1, 0] = coords[(coords.Length / 2) - 1, 0];
+                temp[(temp.Length / 2) - 1, 1] = coords[(coords.Length / 2) - 1, 1];
                 output += ingest.GetLineType() + "\n";
                 output += temp[0, 0] + " " + temp[0, 1] + "\n";
 
@@ -36,10 +39,10 @@ namespace LID_ClassLibrary {
                         }
                     }
                     for(int i = 0; i < (coords.Length / 2 - 1); i++) {
-                        phi1 = coords[0, i];
-                        phi2 = coords[0, i + 1];
+                        phi1 = coords[i, 0];
+                        phi2 = coords[i + 1, 0];
                         deltaphi = phi2 - phi1;
-                        deltalambda = (coords[1, i] - coords[1, i + 1]);
+                        deltalambda = (coords[i, 1] - coords[i + 1, 1]);
 
                         //DISTANCE
                         R = 6371000; //RADIUS OF EARTH IN METERS
@@ -48,21 +51,21 @@ namespace LID_ClassLibrary {
                         d = R * c; //DISTANCE IN METERS
 
                         //BEARING
-                        theta1 = Math.Atan2(Math.Sin(deltalambda) * Math.Cos(phi2), Math.Cos(phi1) * Math.Sin(phi2) - Math.Sin(phi1) * Math.Cos(phi2) * Math.Cos(deltalambda));
-                        theta = theta1 * (180 / Math.PI); //NEGATIVES INDICATE BEARING ON RHS OF PLANE
-
+                        theta1 = ((Math.Atan2(Math.Sin(deltalambda) * Math.Cos(phi2), Math.Cos(phi1) * Math.Sin(phi2) - Math.Sin(phi1) * Math.Cos(phi2) * Math.Cos(deltalambda)) * (180 / Math.PI)) + 360) % 360;
+                        theta2 = ((Math.Atan2(Math.Sin(-deltalambda) * Math.Cos(phi1), Math.Cos(phi2) * Math.Sin(phi1) - Math.Sin(phi2) * Math.Cos(phi1) * Math.Cos(-deltalambda)) * (180 / Math.PI)) + 180) % 360;
+                        theta = (theta1 + theta2) / 2;
                         temp[i + 1, 0] = theta;
                         temp[i + 1, 1] = d;
                         output += theta + " " + d + "\n";
                     }
+                    output += temp[(temp.Length / 2) - 1, 0] + " " + temp[(temp.Length / 2) - 1, 1] + "\n";
                     RBSets[count] = temp;
                     count++;
-                } catch(Exception e) {
-                    Console.WriteLine(e.Message);
+                } catch(Exception x) {
+                    Console.WriteLine(x.Message);
 
                 }
             }
-            WriteFile();
         }
 
         //Accessors
@@ -81,11 +84,10 @@ namespace LID_ClassLibrary {
             //Output to File
             try {
                 using(StreamWriter decimalFile = new StreamWriter(outFile)) {
-                    Console.WriteLine(output);
                     decimalFile.Write(output);
                 }
-            } catch(Exception e) {
-                Console.WriteLine(e.Message);
+            } catch(Exception x) {
+                Console.WriteLine(x.Message);
                 Console.ReadKey(); //Error
             }
         }
