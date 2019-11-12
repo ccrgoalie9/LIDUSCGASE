@@ -21,3 +21,11 @@ C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Gith
 C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_ClassLibrary\obj\Debug\LID_ClassLibrary.csproj.CopyComplete
 C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_ClassLibrary\obj\Debug\LID_ClassLibrary.dll
 C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_ClassLibrary\obj\Debug\LID_ClassLibrary.pdb
+C:\Users\C.Rosselot\Documents\GitHub\LIDUSCGASE\LID_Framework\LID_ClassLibrary\bin\Debug\LID_ClassLibrary.dll
+C:\Users\C.Rosselot\Documents\GitHub\LIDUSCGASE\LID_Framework\LID_ClassLibrary\bin\Debug\LID_ClassLibrary.pdb
+C:\Users\C.Rosselot\Documents\GitHub\LIDUSCGASE\LID_Framework\LID_ClassLibrary\bin\Debug\SharpKml.Core.xml
+C:\Users\C.Rosselot\Documents\GitHub\LIDUSCGASE\LID_Framework\LID_ClassLibrary\obj\Debug\LID_ClassLibrary.csprojAssemblyReference.cache
+C:\Users\C.Rosselot\Documents\GitHub\LIDUSCGASE\LID_Framework\LID_ClassLibrary\obj\Debug\LID_ClassLibrary.csproj.CoreCompileInputs.cache
+C:\Users\C.Rosselot\Documents\GitHub\LIDUSCGASE\LID_Framework\LID_ClassLibrary\obj\Debug\LID_ClassLibrary.csproj.CopyComplete
+C:\Users\C.Rosselot\Documents\GitHub\LIDUSCGASE\LID_Framework\LID_ClassLibrary\obj\Debug\LID_ClassLibrary.dll
+C:\Users\C.Rosselot\Documents\GitHub\LIDUSCGASE\LID_Framework\LID_ClassLibrary\obj\Debug\LID_ClassLibrary.pdb
