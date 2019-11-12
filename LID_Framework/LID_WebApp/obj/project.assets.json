@@ -8,30 +8,28 @@
     ".NETCoreApp,Version=v3.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Thomas Hardy\\.nuget\\packages\\": {},
+    "C:\\Users\\C.Rosselot\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Thomas Hardy\\Desktop\\USCGA\\Academia\\2019 Fall\\Software Engineering\\Github\\Projects\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\LID_WebApp.csproj",
+      "projectUniqueName": "C:\\Users\\C.Rosselot\\Documents\\GitHub\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\LID_WebApp.csproj",
       "projectName": "LID_WebApp",
-      "projectPath": "C:\\Users\\Thomas Hardy\\Desktop\\USCGA\\Academia\\2019 Fall\\Software Engineering\\Github\\Projects\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\LID_WebApp.csproj",
-      "packagesPath": "C:\\Users\\Thomas Hardy\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Thomas Hardy\\Desktop\\USCGA\\Academia\\2019 Fall\\Software Engineering\\Github\\Projects\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\obj\\",
+      "projectPath": "C:\\Users\\C.Rosselot\\Documents\\GitHub\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\LID_WebApp.csproj",
+      "packagesPath": "C:\\Users\\C.Rosselot\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\C.Rosselot\\Documents\\GitHub\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Thomas Hardy\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\C.Rosselot\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -48,24 +46,10 @@
     "frameworks": {
       "netcoreapp3.0": {
         "imports": [
-          "net461",
-          "net462",
-          "net47",
-          "net471",
-          "net472",
-          "net48"
+          "net461"
         ],
         "assetTargetFallback": true,
-        "warn": true,
-        "frameworkReferences": {
-          "Microsoft.AspNetCore.App": {
-            "privateAssets": "none"
-          },
-          "Microsoft.NETCore.App": {
-            "privateAssets": "all"
-          }
-        },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        "warn": true
       }
     }
   }

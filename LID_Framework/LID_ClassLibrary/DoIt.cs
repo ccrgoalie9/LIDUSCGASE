@@ -23,8 +23,18 @@ namespace LID_ClassLibrary {
             //If not make them
             DirectoryCheck();
 
-           //Starts Error Checking file
-            File.AppendAllText(config.ErrorFile, "Error Checking Starting: " + DateTime.UtcNow.ToString("yyyy-MM-dd"));
+            //Starts Error Checking file
+            if (!File.Exists(config.ErrorFile))
+            {
+                File.Create(config.ErrorFile);
+            }
+            string text = System.IO.File.ReadAllText(config.ErrorFile);
+            if (!text.Contains(DateTime.UtcNow.ToString("yyyy-MM-dd")))
+            {
+                File.AppendAllText(config.ErrorFile, "Error Checking Starting: " + DateTime.UtcNow.ToString("yyyy-MM-dd") + "\n");
+
+            }
+           
 
             try {//Get the current Bulletin
                 Console.Write("Fetching Current Bulletin...\t");
