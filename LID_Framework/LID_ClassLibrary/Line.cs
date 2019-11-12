@@ -8,6 +8,7 @@ namespace LID_ClassLibrary {
     public class Line {
         readonly string filepath;
 
+        //Test
         public Line(double[,] input, string filename) {
             double[] lat = new double[(input.Length / 2)];
             double[] lon = new double[(input.Length / 2)];
@@ -98,7 +99,7 @@ namespace LID_ClassLibrary {
             };
 
             //Styling
-            string colorCode = config.DirPath;
+            string colorCode = config.KmlColor;
             LineStyle lineStyle = new LineStyle {
                 Color = Color32.Parse(colorCode),
                 Width = config.KmlWidth

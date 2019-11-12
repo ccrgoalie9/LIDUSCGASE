@@ -11,9 +11,10 @@ namespace LID_ClassLibrary {
             //    0-5       6   Message Type
             //    6-7       2   Repeat Indicator
             //    8-37     30   MMSI
+            /*
+            payload = sprintf("%06b", int type). "00".sprintf("%030b", int($mmsi))
 
-            //payload = sprintf("%06b", int type). "00".sprintf("%030b", int($mmsi))
-    
+
 
 
         try {
@@ -48,7 +49,7 @@ namespace LID_ClassLibrary {
             } catch(IOException ioexp) {
                 Console.WriteLine("Error: {0}", ioexp.Message);
             }
-
+            */
         }
     }
 }
