@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LID_ClassLibrary.dll" size="23040">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LID_ClassLibrary.dll" size="24064">
       <assemblyIdentity name="LID_ClassLibrary" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Qs1bJI5ZFqsu9h2leMP1ksYNt5L3IHbmw6/eHNI2ehI=</dsig:DigestValue>
+        <dsig:DigestValue>EQyPSGQmcv/Zhft+2zbIdOLGruOL5/VjJmsdDo/va+E=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

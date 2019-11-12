@@ -17,9 +17,29 @@ namespace LID_ClassLibrary {
 
         public Config() {
             ConfigPath = @"config.txt";
-            if (!File.Exists(ConfigPath)) {
+            if(File.Exists(ConfigPath)) {
+                using(StreamReader configReader = new StreamReader(ConfigPath)) {
+                    string temp;
+                    while((temp = configReader.ReadLine()) != null) {
+                        if(temp.Contains("Files Directory Location:")) { DirPath = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); }
+                        if(temp.Contains("Bulletin URL:")) { BulletinUrl = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); }
+                        if(temp.Contains("Chart URL:")) { ChartUrl = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); }
+                        if(temp.Contains("KML Color Code:")) { KmlColor = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); }
+                        if(temp.Contains("Error File Location:")) { ErrorFile = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); }
+                        try {
+                            if(temp.Contains("KML Line Width:")) { KmlWidth = Convert.ToInt32(temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1)); }
+                        } catch(Exception e) {
+                            Console.WriteLine("Invalid Value for 'KML Line Width'\n" + e.Message);
+                            File.AppendAllText(ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + e.Message);
+                            //If error, default is 5
+                            KmlWidth = 5;
+                        }
+                    }
+                }
+            }
+            if(!File.Exists(ConfigPath) || !DirPath.Contains(Environment.UserName)) {
                 //Create file from defaults
-                using(StreamWriter configWriter = new StreamWriter(ConfigPath, true)) {
+                using(StreamWriter configWriter = new StreamWriter(ConfigPath, false)) {
                     configWriter.WriteLine("Configuration file for the LID program, please only edit between the single quotes\nThe program must be reloaded for changes to take effect\n");
                     configWriter.WriteLine(@"Files Directory Location: 'C:\Users\" + Environment.UserName + @"\Documents\LID Files'");
                     configWriter.WriteLine(@"Error File Location: 'C:\Users\" + Environment.UserName + @"\Documents\LID Files\ErrorLogs\Error.txt'");
@@ -30,23 +50,24 @@ namespace LID_ClassLibrary {
                     configWriter.WriteLine(@"KML Color Code: 'ffffe481'");
                     configWriter.WriteLine(@"KML Line Width: '5'");
                 }
-
             }
-            using(StreamReader configReader = new StreamReader(ConfigPath)) {
-                string temp;
-                while((temp = configReader.ReadLine()) != null){
-                    if(temp.Contains("Files Directory Location:")) { DirPath = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); }
-                    if(temp.Contains("Bulletin URL:")) { BulletinUrl = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); }
-                    if(temp.Contains("Chart URL:")) { ChartUrl = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); }
-                    if(temp.Contains("KML Color Code:")) { KmlColor = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); }
-                    if(temp.Contains("Error File Location:")) { ErrorFile = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); }
-                    try {
-                        if(temp.Contains("KML Line Width:")) { KmlWidth = Convert.ToInt32(temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1)); }
-                    }catch(Exception e) {
-                        Console.WriteLine("Invalid Value for 'KML Line Width'\n" + e.Message);
-                        File.AppendAllText(ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + e.Message);
-                        //If error, default is 5
-                        KmlWidth = 5;
+            if(File.Exists(ConfigPath)) {
+                using(StreamReader configReader = new StreamReader(ConfigPath)) {
+                    string temp;
+                    while((temp = configReader.ReadLine()) != null) {
+                        if(temp.Contains("Files Directory Location:")) { DirPath = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); }
+                        if(temp.Contains("Bulletin URL:")) { BulletinUrl = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); }
+                        if(temp.Contains("Chart URL:")) { ChartUrl = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); }
+                        if(temp.Contains("KML Color Code:")) { KmlColor = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); }
+                        if(temp.Contains("Error File Location:")) { ErrorFile = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); }
+                        try {
+                            if(temp.Contains("KML Line Width:")) { KmlWidth = Convert.ToInt32(temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1)); }
+                        } catch(Exception e) {
+                            Console.WriteLine("Invalid Value for 'KML Line Width'\n" + e.Message);
+                            File.AppendAllText(ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + e.Message);
+                            //If error, default is 5
+                            KmlWidth = 5;
+                        }
                     }
                 }
             }
