@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Text;
 
 namespace LID_ClassLibrary {
     public class perl2Csharp {
@@ -11,45 +13,33 @@ namespace LID_ClassLibrary {
             //    0-5       6   Message Type
             //    6-7       2   Repeat Indicator
             //    8-37     30   MMSI
-            /*
-            payload = sprintf("%06b", int type). "00".sprintf("%030b", int($mmsi))
+            string type = "000000"; //6bits
+            string placeHolder = "00"; //2bits
+            string mmsi = "000000000000000000000000000000"; //30bits
+            string payload;
 
 
 
 
         try {
                 Console.WriteLine("binary message test");
-                string authorName = "";
-                int type = 8;
-                string bookTitle = "ADO.NET Programming using C#";
-                bool mvp = true;
-                double price = 54.99;
 
-                string fileName = @"C:\temp\MC.bin";
-                BinaryWriter bwStream = new BinaryWriter(new FileStream(fileName, FileMode.Create));
+                int typeNum = 5;
+                string temp = Convert.ToString(typeNum, 2);
 
-                Encoding ascii = Encoding.ASCII;
-                BinaryWriter bwEncoder = new BinaryWriter(new FileStream(fileName, FileMode.Create), ascii);
+                Console.WriteLine(temp);
+                type = type.Remove(0, temp.Length);
+                type = type + temp;
 
-                using(BinaryWriter binWriter =
-                    new BinaryWriter(File.Open(fileName, FileMode.Create))) {
-                    // Write string   
-                    binWriter.Write(authorName);
-                    // Write string   
-                    // Write integer  
-                    binWriter.Write(age);
-                    binWriter.Write(bookTitle);
-                    // Write boolean  
-                    binWriter.Write(mvp);
-                    // Write double   
-                    binWriter.Write(price);
-                }
-                Console.WriteLine("Data Written!");
-                Console.WriteLine();
-            } catch(IOException ioexp) {
-                Console.WriteLine("Error: {0}", ioexp.Message);
+                payload = type + placeHolder + mmsi;
+
+                Console.WriteLine(payload);
+                Console.WriteLine(payload.Length);
+                Console.ReadKey();
+            } catch(Exception e) {
+                Console.WriteLine("Error: {0}", e.Message);
             }
-            */
+            
         }
     }
 }
