@@ -61,12 +61,32 @@ namespace LID_WinForm.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Iceberg {
+            get {
+                object obj = ResourceManager.GetObject("Iceberg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon iceberg_ofC_icon {
             get {
                 object obj = ResourceManager.GetObject("iceberg_ofC_icon", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap USCG {
+            get {
+                object obj = ResourceManager.GetObject("USCG", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }

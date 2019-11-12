@@ -50,19 +50,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>JSMtNfHzejiwQASfoOba/eFtOLVbDTYFGiTFSvxmZOc=</dsig:DigestValue>
+        <dsig:DigestValue>cOS6FBNRepABPm03Ub1pD6mKIMx0yBpFwwTkvpHCOFU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LID_WinForm.exe" size="327680">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LID_WinForm.exe" size="2461696">
       <assemblyIdentity name="LID_WinForm" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>IgnkXT6BD1QTX3yyWOB/aWoqbr+YS6xgu9wXLhTmkqQ=</dsig:DigestValue>
+        <dsig:DigestValue>wCgYN195PNm0tsK/YZklU6d14UWJfo+Lnj6n6mdldi0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

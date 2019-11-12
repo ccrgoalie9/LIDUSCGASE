@@ -16,20 +16,19 @@ namespace LID_ClassLibrary {
         public string ErrorFile { get; }
 
         public Config() {
-            ConfigPath = @"C:\Users\" + Environment.UserName + @"\Documents\LID Files" + @"\config.txt";
-            Directory.CreateDirectory(ConfigPath);
-            if (!File.Exists(ConfigPath.Replace(@"\config.txt", ""))) {
+            ConfigPath = @"config.txt";
+            if (!File.Exists(ConfigPath)) {
                 //Create file from defaults
                 using(StreamWriter configWriter = new StreamWriter(ConfigPath, true)) {
                     configWriter.WriteLine("Configuration file for the LID program, please only edit between the single quotes\nThe program must be reloaded for changes to take effect\n");
                     configWriter.WriteLine(@"Files Directory Location: 'C:\Users\" + Environment.UserName + @"\Documents\LID Files'");
+                    configWriter.WriteLine(@"Error File Location: 'C:\Users\" + Environment.UserName + @"\Documents\LID Files\ErrorLogs\Error.txt'");
                     configWriter.WriteLine("\nUpdate links only if they have changed");
                     configWriter.WriteLine(@"Bulletin URL: 'https://www.navcen.uscg.gov/?pageName=iipB12Out'");
                     configWriter.WriteLine(@"Chart URL: 'https://www.navcen.uscg.gov/?pageName=iipCharts&Current'");
                     configWriter.WriteLine("\nKML file parameters");
                     configWriter.WriteLine(@"KML Color Code: 'ffffe481'");
                     configWriter.WriteLine(@"KML Line Width: '5'");
-                    configWriter.WriteLine(@"Error File Location: 'C:\Users\" + Environment.UserName + @"\Documents\LID Files\ErrorLogs\Error.txt'");
                 }
 
             }

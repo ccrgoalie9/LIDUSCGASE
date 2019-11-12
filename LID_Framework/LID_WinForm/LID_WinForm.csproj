@@ -133,6 +133,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="iceberg_ofC_icon.ico" />
+    <Resource Include="Resources\Iceberg.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\USCGedited.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LID_ClassLibrary\LID_ClassLibrary.csproj">
