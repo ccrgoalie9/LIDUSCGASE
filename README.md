@@ -1,4 +1,4 @@
-# LIDUSCGASE
+# Line Iceberg Display
 Iceberg Information Dissemination for Public Maritime Use - Line Iceberg Display (LID)
 ## About
 This is the devlepment github for the progam L.I.D. or Line Iceberg Display. 
