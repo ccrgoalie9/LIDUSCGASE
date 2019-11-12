@@ -1,5 +1,4 @@
 Configuration file for the LID program, please only edit between the single quotes
-The program must be reloaded for changes to take effect
 
 Files Directory Location: 'C:\Users\Thomas Hardy\Documents\LID Files'
 Error File Location: 'C:\Users\Thomas Hardy\Documents\LID Files\ErrorLogs\Error.txt'
