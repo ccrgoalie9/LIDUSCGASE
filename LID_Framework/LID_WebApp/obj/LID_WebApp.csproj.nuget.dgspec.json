@@ -1,28 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\C.Rosselot\\Documents\\GitHub\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\LID_WebApp.csproj": {}
+    "C:\\Users\\Carbon-Tower\\Desktop\\USCGA\\Academia\\2019 Fall\\Software Engineering\\Github\\Projects\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\LID_WebApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\C.Rosselot\\Documents\\GitHub\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\LID_WebApp.csproj": {
+    "C:\\Users\\Carbon-Tower\\Desktop\\USCGA\\Academia\\2019 Fall\\Software Engineering\\Github\\Projects\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\LID_WebApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\C.Rosselot\\Documents\\GitHub\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\LID_WebApp.csproj",
+        "projectUniqueName": "C:\\Users\\Carbon-Tower\\Desktop\\USCGA\\Academia\\2019 Fall\\Software Engineering\\Github\\Projects\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\LID_WebApp.csproj",
         "projectName": "LID_WebApp",
-        "projectPath": "C:\\Users\\C.Rosselot\\Documents\\GitHub\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\LID_WebApp.csproj",
-        "packagesPath": "C:\\Users\\C.Rosselot\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\C.Rosselot\\Documents\\GitHub\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\obj\\",
+        "projectPath": "C:\\Users\\Carbon-Tower\\Desktop\\USCGA\\Academia\\2019 Fall\\Software Engineering\\Github\\Projects\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\LID_WebApp.csproj",
+        "packagesPath": "C:\\Users\\Carbon-Tower\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Carbon-Tower\\Desktop\\USCGA\\Academia\\2019 Fall\\Software Engineering\\Github\\Projects\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\C.Rosselot\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Carbon-Tower\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -39,10 +41,24 @@
       "frameworks": {
         "netcoreapp3.0": {
           "imports": [
-            "net461"
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
           ],
           "assetTargetFallback": true,
-          "warn": true
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
