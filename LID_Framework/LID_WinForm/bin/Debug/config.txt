@@ -8,5 +8,5 @@ Bulletin URL: 'https://www.navcen.uscg.gov/?pageName=iipB12Out'
 Chart URL: 'https://www.navcen.uscg.gov/?pageName=iipCharts&Current'
 
 KML file parameters
-KML Color Code: 'ffffe481'
+KML Color Code: 'ff0000ff'
 KML Line Width: '5'

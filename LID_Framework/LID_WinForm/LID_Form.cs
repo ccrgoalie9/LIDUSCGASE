@@ -12,6 +12,7 @@ namespace LID_WinForm {
         readonly Config config;
         DoIt today, current;
         Download todayDownload;
+        BearingRange todayBR, currentBR;
         Scraper todayScraper, currentScraper;
         Line todayLine;
         bool flag;
@@ -32,12 +33,14 @@ namespace LID_WinForm {
             BulletinHistButton.Enabled = false;
             DegreeHistButton.Enabled = false;
             DecimalHistButton.Enabled = false;
+            PolarHistButton.Enabled = false;
 
             EarthButton.Enabled = false;
 
             BulletinButton.Enabled = false;
             DegreeButton.Enabled = false;
             DecimalButton.Enabled = false;
+            PolarButton.Enabled = false;
 
             //Class DoIt combines everything into one actionable class
             today = new DoIt(config);
@@ -46,9 +49,11 @@ namespace LID_WinForm {
                 BulletinButton.Enabled = true;
                 DegreeButton.Enabled = true;
                 DecimalButton.Enabled = true;
+                PolarButton.Enabled = true;
                 todayDownload = today.GetDownload();
                 todayScraper = today.GetScraper();
                 todayLine = today.GetLine();
+                todayBR = today.GetBR();
             } else {
                 Console.WriteLine("Trying again in 10 minutes");
                 EarthButton.Enabled = false;
@@ -96,6 +101,7 @@ namespace LID_WinForm {
                 todayDownload = today.GetDownload();
                 todayScraper = today.GetScraper();
                 todayLine = today.GetLine();
+                todayBR = today.GetBR();
             } else {
                 Console.WriteLine("Trying again in 10 minutes");
                 EarthButton.Enabled = false;
@@ -119,6 +125,10 @@ namespace LID_WinForm {
 
         private void BulletinButton_Click(object sender, EventArgs e) {
             Process.Start(todayDownload.GetOutFile());
+        }
+
+        private void PolarButton_Click(object sender, EventArgs e) {
+            Process.Start(todayBR.GetOutFile());
         }
 
 
@@ -146,6 +156,10 @@ namespace LID_WinForm {
 
         private void BulletinHistButton_Click(object sender, EventArgs e) {
             Process.Start(bulletinPath);
+        }
+
+        private void PolarHistButton_Click(object sender, EventArgs e) {
+            Process.Start(currentBR.GetOutFile());
         }
 
 
@@ -177,6 +191,7 @@ namespace LID_WinForm {
                 todayDownload = today.GetDownload();
                 todayScraper = today.GetScraper();
                 todayLine = today.GetLine();
+                todayBR = today.GetBR();
             } else {
                 Console.WriteLine("Trying again in 10 minutes");
                 EarthButton.Enabled = false;
@@ -199,6 +214,7 @@ namespace LID_WinForm {
                 if(current.PartialFromCoordinateFile(file, 1) == 1) {
                     currentScraper = current.GetScraper();
                     todayLine = current.GetLine();
+                    currentBR = current.GetBR();
                     Console.WriteLine("Process Finished");
 
                     //Enable Buttons as Possible
@@ -244,6 +260,7 @@ namespace LID_WinForm {
                 }
                 currentScraper = current.GetScraper();
                 todayLine = current.GetLine();
+                currentBR = current.GetBR();
                 Console.WriteLine("Process Finished");
                 flag = false;
             } else {

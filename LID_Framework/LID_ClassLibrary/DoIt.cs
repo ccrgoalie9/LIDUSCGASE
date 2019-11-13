@@ -129,7 +129,7 @@ namespace LID_ClassLibrary {
             Directory.CreateDirectory(config.DirPath + @"\Bulletins");
             Directory.CreateDirectory(config.DirPath + @"\KML");
             Directory.CreateDirectory(config.DirPath + @"\LatLongs");
-            Directory.CreateDirectory(config.DirPath + @"\BearingRange");
+            Directory.CreateDirectory(config.DirPath + @"\Polar");
             Directory.CreateDirectory(config.DirPath + @"\ErrorLogs");
             Console.WriteLine("Directories Updated");
         }

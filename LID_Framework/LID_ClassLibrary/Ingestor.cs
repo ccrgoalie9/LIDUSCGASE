@@ -12,7 +12,7 @@ namespace LID_ClassLibrary {
         private string lineType;
         private double[,] coords;
 
-        readonly private int ID;
+        private int ID;
 
         public Ingestor(string ingested, int i) {
             ID = i;
@@ -111,6 +111,7 @@ namespace LID_ClassLibrary {
 
         //If reading from a decimal file the coordinates are already converted
         private void ConvertInput(int i) {
+            ID = i;
             if(ingested.EndsWith(" ")) { ingested = ingested.Remove(ingested.LastIndexOf(" "), 1); }
             string[] tempByComma = ingested.Split(' ');
             coords = new double[tempByComma.Length, 2];

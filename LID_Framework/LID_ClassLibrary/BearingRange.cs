@@ -4,12 +4,12 @@ using System.IO;
 namespace LID_ClassLibrary {
     public class BearingRange {
         double a, c, d, R, phi1, phi2, deltaphi, deltalambda, theta1, theta, theta2;
-        double[][,] RBSets;
+        readonly double[][,] RBSets;
         string output;
         readonly string outFile;
 
         public BearingRange(Ingestor[] input, Config config) {
-            outFile = (config.DirPath + @"\BearingRange\" + DateTime.UtcNow.ToString("yyyy-MM-dd") + "_BRSets.txt");
+            outFile = (config.DirPath + @"\Polar\" + DateTime.UtcNow.ToString("yyyy-MM-dd") + "_Polar.txt");
 
             //WILL DEFINE LAT/LON BY READING FROM TOMS INPUT (COORDINATES IN DEGREE DECIMAL FORMAT)
             RBSets = new double[input.Length][,];
