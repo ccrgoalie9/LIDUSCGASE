@@ -1,0 +1,5 @@
+Error Checking Starting: 2019-11-12
+22:55:06 : Not all expected values were present.
+23:04:19 : Not all expected values were present.
+Error Checking Starting: 2019-11-13
+04:03:37 : The remote name could not be resolved: 'www.navcen.uscg.gov'
