@@ -27,7 +27,7 @@ namespace LID_ClassLibrary {
             if(!File.Exists(config.ErrorFile)) {
                 File.Create(config.ErrorFile).Dispose();
             }
-            string text = System.IO.File.ReadAllText(config.ErrorFile);
+            string text = File.ReadAllText(config.ErrorFile);
             if(!text.Contains(DateTime.UtcNow.ToString("yyyy-MM-dd"))) {
                 File.AppendAllText(config.ErrorFile, "Error Checking Starting: " + DateTime.UtcNow.ToString("yyyy-MM-dd") + "\n");
 
@@ -68,7 +68,7 @@ namespace LID_ClassLibrary {
                 Console.WriteLine("Bearing And Ranges Created");
             } catch(Exception x) {
                 Console.WriteLine("Error: Failed To Create The File");
-                File.AppendAllText(config.ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message);
+                File.AppendAllText(config.ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
                 return -1;
             }
 
@@ -126,7 +126,13 @@ namespace LID_ClassLibrary {
         //Static Methods
         private void DirectoryCheck() {
             Console.Write("Updating Directories...\t\t");
-            Directory.CreateDirectory(config.DirPath + @"\Bulletins");
+            try { Directory.CreateDirectory(config.DirPath + @"\Bulletins"); }
+            catch(Exception x) {
+                config.CreateConfig();
+                config.ReadConfig();
+                Console.WriteLine("Error Creating Directories, Attempting To Fix By Re-Writing Configuration File");
+                File.AppendAllText(config.ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
+            }
             Directory.CreateDirectory(config.DirPath + @"\KML");
             Directory.CreateDirectory(config.DirPath + @"\LatLongs");
             Directory.CreateDirectory(config.DirPath + @"\Polar");

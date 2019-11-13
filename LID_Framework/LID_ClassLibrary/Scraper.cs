@@ -12,8 +12,10 @@ namespace LID_ClassLibrary {
         readonly private string partialPath;
         readonly private string[] append = { "A", "B", "C", "D", "E", "F", "G" };
         private Ingestor[] coordinates;
+        Config config;
 
         public Scraper(string inFile, Config config) {
+            this.config = config;
             partialPath = config.DirPath;
             inFileName = inFile;
             CheckInput();
@@ -116,8 +118,9 @@ namespace LID_ClassLibrary {
                 using(StreamReader coordFile = new StreamReader(inFileName)) {
                     ingested = coordFile.ReadToEnd();
                 }
-            } catch(Exception e) {
-                Console.WriteLine(e.Message);
+            } catch(Exception x) {
+                Console.WriteLine(x.Message);
+                File.AppendAllText(config.ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
                 ingested = "Read Failed";
             }
         }

@@ -60,7 +60,7 @@ namespace LID_ClassLibrary {
         }
 
         //Create the configuration file for first time or for new users
-        private void CreateConfig() {
+        public void CreateConfig() {
             using(StreamWriter configWriter = new StreamWriter(ConfigPath, false)) {
                 configWriter.WriteLine("Configuration file for the LID program, please only edit between the single quotes\n");
                 configWriter.WriteLine(@"Files Directory Location: 'C:\Users\" + Environment.UserName + @"\Documents\LID Files'");
@@ -69,6 +69,9 @@ namespace LID_ClassLibrary {
                 configWriter.WriteLine(@"Bulletin URL: 'https://www.navcen.uscg.gov/?pageName=iipB12Out'");
                 configWriter.WriteLine(@"Chart URL: 'https://www.navcen.uscg.gov/?pageName=iipCharts&Current'");
                 configWriter.WriteLine("\nKML file parameters");
+                configWriter.WriteLine(@"Color is set by TTBBGGRR");
+                configWriter.WriteLine(@"TT is the transparency from 00 being clear to FF being opaque.");
+                configWriter.WriteLine(@"BB, GG, and RR are the level of blue, green, and red respectively");
                 configWriter.WriteLine(@"KML Color Code: 'ffffe481'");
                 configWriter.WriteLine(@"KML Line Width: '5'");
             }

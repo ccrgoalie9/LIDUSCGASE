@@ -1,12 +1,15 @@
 Configuration file for the LID program, please only edit between the single quotes
 
-Files Directory Location: 'C:\Users\Carbon-Tower\Documents\LID Files'
-Error File Location: 'C:\Users\Carbon-Tower\Documents\LID Files\ErrorLogs\Error.txt'
+Files Directory Location: 'C:\Users\Thomas Hardy\Documents\LID Files'
+Error File Location: 'C:\Users\Thomas Hardy\Documents\LID Files\ErrorLogs\Error.txt'
 
 Update links only if they have changed
 Bulletin URL: 'https://www.navcen.uscg.gov/?pageName=iipB12Out'
 Chart URL: 'https://www.navcen.uscg.gov/?pageName=iipCharts&Current'
 
 KML file parameters
-KML Color Code: 'ff0000ff'
-KML Line Width: '5'
+Color is set by TTBBGGRR
+TT is the transparency from 00 being clear to FF being opaque.
+BB, GG, and RR are the level of blue, green, and red respectively
+KML Color Code: 'ffffe481'
+KML Line Width: '2'
