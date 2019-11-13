@@ -53,7 +53,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.PolarButton = new System.Windows.Forms.Button();
             this.PolarHistButton = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.AboutButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -337,15 +337,15 @@
             this.PolarHistButton.UseVisualStyleBackColor = true;
             this.PolarHistButton.Click += new System.EventHandler(this.PolarHistButton_Click);
             // 
-            // button1
+            // AboutButton
             // 
-            this.button1.Location = new System.Drawing.Point(281, 354);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(63, 28);
-            this.button1.TabIndex = 24;
-            this.button1.Text = "Config";
-            this.button1.UseVisualStyleBackColor = true;
+            this.AboutButton.Location = new System.Drawing.Point(281, 354);
+            this.AboutButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.AboutButton.Name = "AboutButton";
+            this.AboutButton.Size = new System.Drawing.Size(63, 28);
+            this.AboutButton.TabIndex = 24;
+            this.AboutButton.Text = "About";
+            this.AboutButton.UseVisualStyleBackColor = true;
             // 
             // LID_Form
             // 
@@ -355,7 +355,7 @@
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(800, 416);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.AboutButton);
             this.Controls.Add(this.PolarHistButton);
             this.Controls.Add(this.PolarButton);
             this.Controls.Add(this.pictureBox2);
@@ -424,6 +424,6 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button PolarButton;
         private System.Windows.Forms.Button PolarHistButton;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button AboutButton;
     }
 }
