@@ -1,24 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Thomas Hardy\\Desktop\\USCGA\\Academia\\2019 Fall\\Software Engineering\\Github\\Projects\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\LID_WebApp.csproj": {}
+    "D:\\GIthub\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\LID_WebApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Thomas Hardy\\Desktop\\USCGA\\Academia\\2019 Fall\\Software Engineering\\Github\\Projects\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\LID_WebApp.csproj": {
+    "D:\\GIthub\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\LID_WebApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Thomas Hardy\\Desktop\\USCGA\\Academia\\2019 Fall\\Software Engineering\\Github\\Projects\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\LID_WebApp.csproj",
+        "projectUniqueName": "D:\\GIthub\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\LID_WebApp.csproj",
         "projectName": "LID_WebApp",
-        "projectPath": "C:\\Users\\Thomas Hardy\\Desktop\\USCGA\\Academia\\2019 Fall\\Software Engineering\\Github\\Projects\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\LID_WebApp.csproj",
-        "packagesPath": "C:\\Users\\Thomas Hardy\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Thomas Hardy\\Desktop\\USCGA\\Academia\\2019 Fall\\Software Engineering\\Github\\Projects\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\obj\\",
+        "projectPath": "D:\\GIthub\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\LID_WebApp.csproj",
+        "packagesPath": "C:\\Users\\MSI_Carter\\.nuget\\packages\\",
+        "outputPath": "D:\\GIthub\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Thomas Hardy\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\MSI_Carter\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.0"
