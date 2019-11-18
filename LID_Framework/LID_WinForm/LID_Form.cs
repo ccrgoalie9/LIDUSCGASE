@@ -185,19 +185,6 @@ namespace LID_WinForm {
             //Made it create window and keep old
             About_Form about = new About_Form();
             about.Show();
-            if(config.FuNtImE) {
-                int count = 0;
-                while(true) {
-                    Random winPos = new Random();
-                    (new About_Form()).Show();
-                    this.Refresh();
-                    Thread.Sleep(100);
-                    count++;
-                    if(count >= 50) {
-                        //break; YeS FORK BOMB
-                    }
-                }
-            }
         }
 
 
