@@ -55,6 +55,7 @@
             this.UpButton.Name = "UpButton";
             this.UpButton.Size = new System.Drawing.Size(50, 50);
             this.UpButton.TabIndex = 1;
+            this.UpButton.TabStop = false;
             this.UpButton.Text = "UP";
             this.UpButton.UseVisualStyleBackColor = false;
             this.UpButton.Click += new System.EventHandler(this.UpButton_Click);
@@ -68,6 +69,7 @@
             this.DownButton.Name = "DownButton";
             this.DownButton.Size = new System.Drawing.Size(50, 50);
             this.DownButton.TabIndex = 2;
+            this.DownButton.TabStop = false;
             this.DownButton.Text = "DN";
             this.DownButton.UseVisualStyleBackColor = false;
             this.DownButton.Click += new System.EventHandler(this.DownButton_Click);
@@ -81,6 +83,7 @@
             this.LeftButton.Name = "LeftButton";
             this.LeftButton.Size = new System.Drawing.Size(50, 50);
             this.LeftButton.TabIndex = 3;
+            this.LeftButton.TabStop = false;
             this.LeftButton.Text = "LT";
             this.LeftButton.UseVisualStyleBackColor = false;
             this.LeftButton.Click += new System.EventHandler(this.LeftButton_Click);
@@ -94,6 +97,7 @@
             this.RightButton.Name = "RightButton";
             this.RightButton.Size = new System.Drawing.Size(50, 50);
             this.RightButton.TabIndex = 4;
+            this.RightButton.TabStop = false;
             this.RightButton.Text = "RT";
             this.RightButton.UseVisualStyleBackColor = false;
             this.RightButton.Click += new System.EventHandler(this.RightButton_Click);
@@ -156,6 +160,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Egg";
             this.Text = "Egg";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Egg_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

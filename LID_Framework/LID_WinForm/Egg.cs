@@ -31,6 +31,34 @@ namespace LID_WinForm {
             count = 0;
         }
 
+        private void Egg_KeyDown(object sender, KeyEventArgs e) {
+            Console.WriteLine(e.KeyCode);
+            if(e.KeyCode == Keys.W) {
+                if(locY > 0) {
+                    locY--;
+                }
+                drawMap();
+            }
+            if(e.KeyCode == Keys.S) {
+                if(locY < 9) {
+                    locY++;
+                }
+                drawMap();
+            }
+            if(e.KeyCode == Keys.A) {
+                if(locX > 0) {
+                    locX--;
+                }
+                drawMap();
+            }
+            if(e.KeyCode == Keys.D) {
+                if(locX < 9) {
+                    locX++;
+                }
+                drawMap();
+            }
+        }
+
         private void UpButton_Click(object sender, EventArgs e) {
             if (locY > 0) {
                 locY--;
@@ -75,13 +103,14 @@ namespace LID_WinForm {
                 }
             }
 
-            //Draw Treasure location
-            tempMap[tresY, tresX] = 'T';
-
+            //Award score if you land on the treasure
             if(tresX == locX && tresY == locY) {
                 score++;
                 setTreasure();
             }
+
+            //Draw Treasure location
+            tempMap[tresY, tresX] = 'T';
 
             //Set Character Location
             tempMap[locY, locX] = 'C';
