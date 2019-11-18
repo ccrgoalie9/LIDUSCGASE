@@ -12,4 +12,6 @@ Color is set by TTBBGGRR
 TT is the transparency from 00 being clear to FF being opaque.
 BB, GG, and RR are the level of blue, green, and red respectively
 KML Color Code: 'ffffe481'
-KML Line Width: '2'
+KML Line Width: '5'
+
+Ignore: 'true'

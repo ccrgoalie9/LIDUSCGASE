@@ -25,6 +25,7 @@ namespace LID_ClassLibrary {
 
             //Starts Error Checking file
             if(!File.Exists(config.ErrorFile)) {
+                config.ErrorFile = @"C:\Users\" + Environment.UserName + @"\Documents\LID Files\ErrorLogs\Error.txt";
                 File.Create(config.ErrorFile).Dispose();
             }
             string text = File.ReadAllText(config.ErrorFile);

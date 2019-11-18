@@ -91,7 +91,7 @@
             // exitButton
             // 
             this.exitButton.Location = new System.Drawing.Point(351, 354);
-            this.exitButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.exitButton.Margin = new System.Windows.Forms.Padding(4);
             this.exitButton.Name = "exitButton";
             this.exitButton.Size = new System.Drawing.Size(100, 28);
             this.exitButton.TabIndex = 9;
@@ -102,7 +102,7 @@
             // EarthButton
             // 
             this.EarthButton.Location = new System.Drawing.Point(264, 188);
-            this.EarthButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EarthButton.Margin = new System.Windows.Forms.Padding(4);
             this.EarthButton.Name = "EarthButton";
             this.EarthButton.Size = new System.Drawing.Size(133, 50);
             this.EarthButton.TabIndex = 2;
@@ -186,7 +186,7 @@
             // DoItButton
             // 
             this.DoItButton.Location = new System.Drawing.Point(360, 130);
-            this.DoItButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DoItButton.Margin = new System.Windows.Forms.Padding(4);
             this.DoItButton.Name = "DoItButton";
             this.DoItButton.Size = new System.Drawing.Size(81, 50);
             this.DoItButton.TabIndex = 11;
@@ -197,7 +197,7 @@
             // BulletinHistoryButton
             // 
             this.BulletinHistoryButton.Location = new System.Drawing.Point(264, 130);
-            this.BulletinHistoryButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BulletinHistoryButton.Margin = new System.Windows.Forms.Padding(4);
             this.BulletinHistoryButton.Name = "BulletinHistoryButton";
             this.BulletinHistoryButton.Size = new System.Drawing.Size(81, 50);
             this.BulletinHistoryButton.TabIndex = 12;
@@ -255,7 +255,7 @@
             // CoordHistoryButton
             // 
             this.CoordHistoryButton.Location = new System.Drawing.Point(456, 130);
-            this.CoordHistoryButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CoordHistoryButton.Margin = new System.Windows.Forms.Padding(4);
             this.CoordHistoryButton.Name = "CoordHistoryButton";
             this.CoordHistoryButton.Size = new System.Drawing.Size(81, 50);
             this.CoordHistoryButton.TabIndex = 17;
@@ -297,7 +297,7 @@
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(53, 34);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(195, 204);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -308,7 +308,7 @@
             // 
             this.pictureBox2.Image = global::LID_WinForm.Properties.Resources.Iceberg;
             this.pictureBox2.Location = new System.Drawing.Point(553, 34);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(195, 204);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -346,6 +346,7 @@
             this.AboutButton.TabIndex = 24;
             this.AboutButton.Text = "About";
             this.AboutButton.UseVisualStyleBackColor = true;
+            this.AboutButton.Click += new System.EventHandler(this.AboutButton_Click);
             // 
             // LID_Form
             // 
