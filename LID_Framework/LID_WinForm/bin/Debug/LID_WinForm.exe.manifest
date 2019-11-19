@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LID_ClassLibrary.dll" size="27136">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LID_ClassLibrary.dll" size="30720">
       <assemblyIdentity name="LID_ClassLibrary" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>MTn+6kYePm315d/BETINA1SuT2pmFuLSnVeFCgd04ZI=</dsig:DigestValue>
+        <dsig:DigestValue>WhJz+ZEjgfffuav8yHdls18dM1/bwVEPwg2twZ02hzY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -62,7 +62,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>O4IF3cVwZ8/tJdH2qGcAl8qjLjFxUfcyBuvoDbsbOGw=</dsig:DigestValue>
+        <dsig:DigestValue>urXiY23DJzNcmxE+PnymNJhuJBfG67Zp4/9Fvr/xhsU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

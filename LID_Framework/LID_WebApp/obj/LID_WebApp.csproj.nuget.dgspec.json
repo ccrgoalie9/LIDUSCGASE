@@ -4,6 +4,17 @@
     "C:\\Users\\Carbon-Tower\\Desktop\\USCGA\\Academia\\2019 Fall\\Software Engineering\\Github\\Projects\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\LID_WebApp.csproj": {}
   },
   "projects": {
+    "C:\\Users\\Carbon-Tower\\Desktop\\USCGA\\Academia\\2019 Fall\\Software Engineering\\Github\\Projects\\LIDUSCGASE\\LID_Framework\\LID_ClassLibrary\\LID_ClassLibrary.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Carbon-Tower\\Desktop\\USCGA\\Academia\\2019 Fall\\Software Engineering\\Github\\Projects\\LIDUSCGASE\\LID_Framework\\LID_ClassLibrary\\LID_ClassLibrary.csproj",
+        "projectName": "LID_ClassLibrary",
+        "projectPath": "C:\\Users\\Carbon-Tower\\Desktop\\USCGA\\Academia\\2019 Fall\\Software Engineering\\Github\\Projects\\LIDUSCGASE\\LID_Framework\\LID_ClassLibrary\\LID_ClassLibrary.csproj"
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
     "C:\\Users\\Carbon-Tower\\Desktop\\USCGA\\Academia\\2019 Fall\\Software Engineering\\Github\\Projects\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\LID_WebApp.csproj": {
       "version": "1.0.0",
       "restore": {

@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Collections.Generic;
 namespace LID_ClassLibrary {
     class Perl2Sharp {
         public int X { get; set; }
@@ -20,11 +20,12 @@ namespace LID_ClassLibrary {
         public string Day { get; set; }
         public string Hour { get; set; }
         public string Minute { get; set; }
+        public List<string> LineMessages { get; set; }
         public string AreaShape { get; set; }
         public string ScaleFactor { get; set; }
         public string Longitude { get; set; }
 
-        public Perl2Sharp() { //will take input at some point
+        public Perl2Sharp(double[][,] PolarCoords) { //Will take input at some point
 
 
             // Try Catch statement -- encode message based upon type
@@ -74,17 +75,38 @@ namespace LID_ClassLibrary {
                 S = Convert.ToInt16(Console.ReadLine());
                 ScaleFactor = Convert.ToString(S, 2).PadLeft(2, '0');
 
-                //need to figure out how to scale this by 600000???
-                Console.WriteLine("What is the Latitude?: ");
-                Long = Convert.ToInt16(Console.ReadLine());
-                Longitude = Convert.ToString(Long, 2).PadLeft(28, '0');
-
-
                 Payload = Type + PlaceHolder + Mmsi;
 
                 //Creation of AreaShape Will Go HERE
-                //
-                //
+
+                //EACH AIS message can have 8 subareas
+                //EACH subarea can have 4 points
+
+                //Make a line for each coordinate set
+                foreach(double[,] area in PolarCoords) {
+                    //Sub-Area 0
+                    string temp = /*Area Shape x3bits*/"000" + /*Scale Factor x2bits*/"00";
+                    int lat = ((int)(area[0,0]*600000) & (2^28-1));
+                    temp += /*Longitude x28bits*/ Convert.ToString(lat, 2).PadLeft(28, '0');
+                    int lon = ((int)(area[0,1]*600000) & (2^27-1));
+                    temp += /*Latitude x27bits*/ Convert.ToString(lon, 2).PadLeft(27, '0');
+                    temp += /*Precision x3bits*/ "100";
+                    temp += /*Radius x12bits*/ "0".PadLeft(12, '0');
+                    temp += /*Spare x21bits*/ "0".PadLeft(21, '0');
+
+                    //Polyline of shape = 3
+                    //Sub-Areas 1-8
+                    for(int i = 1; i < area.Length/2 - 2; i++) {
+                        //Each i is a point
+                        if ((i-1) % 4 == 0) {
+                            temp +=/*Area Shape x3bits*/"011" + /*Scale Factor x2bits*/"00";
+                        }
+                        int theta = (int)(area[i,0]*10);
+                    }
+
+                    LineMessages.Add(temp);
+                }
+
                 //End Creation of Area Shape
 
                 Encode = Payload + DAC + FID + Month + Day + Hour + Minute + AreaShape + ScaleFactor;
@@ -107,4 +129,28 @@ namespace LID_ClassLibrary {
             return Encode;
         }
     }
+
+    //area shape is subarea
+    //sub area 0...
+    //for point set scale factor to 0 at 2 bits
+    //set precision to default value of 4 at 3 bits
+    //radius take 0 and encode it to 12 bits
+    //21 spare bits which are 0
+    //sub area 3...
+    //set scale factor (must be consistent for all 4 points in area shape) to 3(1000) for 2 bits if they are giving meters
+    //angle is true bearing in half degree steps (243.4 -> 243.5 *2 = 487 encoded into 10 bits
+    //take the distance we get and divide by 1000...
+    //dist_km = int((dist_m/1000)+.5)). kilometers is in 11 bits
+    //
+    //formulate data by every 32 points give me a lat long
+    //formulate data by every 32 points give me a lat long
+    //TOTAL BITS IS NO MORE THAN 984
+    //if run out of points set missing angle to 720 and missing to 0
+    //at the end of polyline there are 7 spare bits set to 0
+    //maybe msglink and notice? have the msglink 10 bits be the julian date (time function) month *31 plus day
+    // notice is 24 in 7  bits... ask mr.cline
+    //maybe duration 18 bits? 24hrs -> 3600*24 min
+    //Action = 0 1 bit
+    //string spare2 = "00";
+
 }
