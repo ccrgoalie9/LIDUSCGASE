@@ -1,0 +1,6 @@
+Version 0.0.0.1
+Changelog
++ About Window
++ If Google Earth Pro
+is not installed, open
+Google Earth online

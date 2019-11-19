@@ -82,6 +82,8 @@ namespace LID_WinForm {
                 //Has google earth?
                 if(File.Exists(earthPath)) {
                     Process.Start(todayLine.GetOutFile());
+                } else {
+                    Process.Start("https://earth.google.com/web/@50.80502111,-50.61404472,-1018.20938838a,4437054.18717742d,35y,0h,0t,0r",todayLine.GetOutFile());
                 }
             } else {
                 Egg egg = new Egg();
@@ -91,6 +93,7 @@ namespace LID_WinForm {
 
         private void ExitButton_Click(object sender, EventArgs e) {
             this.Dispose();
+
         }
 
 
@@ -185,6 +188,10 @@ namespace LID_WinForm {
             //Made it create window and keep old
             About_Form about = new About_Form();
             about.Show();
+        }
+
+        private void LID_Form_FormClosing(object sender, FormClosingEventArgs e) {
+            
         }
 
 

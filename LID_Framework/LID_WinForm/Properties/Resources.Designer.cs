@@ -61,6 +61,20 @@ namespace LID_WinForm.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Version 0.0.0.1
+        ///Changelog
+        ///+ About Window
+        ///+ If Google Earth Pro
+        ///is not installed, open
+        ///Google Earth online.
+        /// </summary>
+        internal static string about {
+            get {
+                return ResourceManager.GetString("about", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Iceberg {

@@ -54,6 +54,8 @@
             this.PolarButton = new System.Windows.Forms.Button();
             this.PolarHistButton = new System.Windows.Forms.Button();
             this.AboutButton = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -62,27 +64,29 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(335, 34);
+            this.label1.Location = new System.Drawing.Point(251, 28);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(123, 69);
+            this.label1.Size = new System.Drawing.Size(99, 55);
             this.label1.TabIndex = 0;
             this.label1.Text = "LID";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(332, 110);
+            this.label2.Location = new System.Drawing.Point(249, 89);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(136, 17);
+            this.label2.Size = new System.Drawing.Size(103, 13);
             this.label2.TabIndex = 1;
             this.label2.Text = "Line Iceberg Display";
             // 
             // FilesButton
             // 
-            this.FilesButton.Location = new System.Drawing.Point(404, 188);
-            this.FilesButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.FilesButton.Location = new System.Drawing.Point(303, 153);
+            this.FilesButton.Margin = new System.Windows.Forms.Padding(2);
             this.FilesButton.Name = "FilesButton";
-            this.FilesButton.Size = new System.Drawing.Size(133, 50);
+            this.FilesButton.Size = new System.Drawing.Size(100, 41);
             this.FilesButton.TabIndex = 3;
             this.FilesButton.Text = "All Files";
             this.FilesButton.UseVisualStyleBackColor = true;
@@ -90,10 +94,9 @@
             // 
             // exitButton
             // 
-            this.exitButton.Location = new System.Drawing.Point(351, 354);
-            this.exitButton.Margin = new System.Windows.Forms.Padding(4);
+            this.exitButton.Location = new System.Drawing.Point(263, 288);
             this.exitButton.Name = "exitButton";
-            this.exitButton.Size = new System.Drawing.Size(100, 28);
+            this.exitButton.Size = new System.Drawing.Size(75, 23);
             this.exitButton.TabIndex = 9;
             this.exitButton.Text = "Exit";
             this.exitButton.UseVisualStyleBackColor = true;
@@ -101,10 +104,9 @@
             // 
             // EarthButton
             // 
-            this.EarthButton.Location = new System.Drawing.Point(264, 188);
-            this.EarthButton.Margin = new System.Windows.Forms.Padding(4);
+            this.EarthButton.Location = new System.Drawing.Point(198, 153);
             this.EarthButton.Name = "EarthButton";
-            this.EarthButton.Size = new System.Drawing.Size(133, 50);
+            this.EarthButton.Size = new System.Drawing.Size(100, 41);
             this.EarthButton.TabIndex = 2;
             this.EarthButton.Text = "Open Google Earth";
             this.EarthButton.UseVisualStyleBackColor = true;
@@ -113,18 +115,19 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(355, 247);
+            this.label3.Location = new System.Drawing.Point(266, 201);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(91, 17);
+            this.label3.Size = new System.Drawing.Size(68, 13);
             this.label3.TabIndex = 5;
             this.label3.Text = "Today\'s Files";
             // 
             // DecimalButton
             // 
-            this.DecimalButton.Location = new System.Drawing.Point(404, 266);
-            this.DecimalButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.DecimalButton.Location = new System.Drawing.Point(303, 216);
+            this.DecimalButton.Margin = new System.Windows.Forms.Padding(2);
             this.DecimalButton.Name = "DecimalButton";
-            this.DecimalButton.Size = new System.Drawing.Size(75, 30);
+            this.DecimalButton.Size = new System.Drawing.Size(56, 24);
             this.DecimalButton.TabIndex = 7;
             this.DecimalButton.Text = "Decimal";
             this.DecimalButton.UseVisualStyleBackColor = true;
@@ -132,10 +135,10 @@
             // 
             // DegreeButton
             // 
-            this.DegreeButton.Location = new System.Drawing.Point(323, 266);
-            this.DegreeButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.DegreeButton.Location = new System.Drawing.Point(242, 216);
+            this.DegreeButton.Margin = new System.Windows.Forms.Padding(2);
             this.DegreeButton.Name = "DegreeButton";
-            this.DegreeButton.Size = new System.Drawing.Size(75, 30);
+            this.DegreeButton.Size = new System.Drawing.Size(56, 24);
             this.DegreeButton.TabIndex = 6;
             this.DegreeButton.Text = "Degree";
             this.DegreeButton.UseVisualStyleBackColor = true;
@@ -143,10 +146,10 @@
             // 
             // BulletinButton
             // 
-            this.BulletinButton.Location = new System.Drawing.Point(323, 302);
-            this.BulletinButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.BulletinButton.Location = new System.Drawing.Point(242, 245);
+            this.BulletinButton.Margin = new System.Windows.Forms.Padding(2);
             this.BulletinButton.Name = "BulletinButton";
-            this.BulletinButton.Size = new System.Drawing.Size(75, 30);
+            this.BulletinButton.Size = new System.Drawing.Size(56, 24);
             this.BulletinButton.TabIndex = 8;
             this.BulletinButton.Text = "Bulletin";
             this.BulletinButton.UseVisualStyleBackColor = true;
@@ -154,10 +157,10 @@
             // 
             // ChartButton
             // 
-            this.ChartButton.Location = new System.Drawing.Point(92, 266);
-            this.ChartButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ChartButton.Location = new System.Drawing.Point(69, 216);
+            this.ChartButton.Margin = new System.Windows.Forms.Padding(2);
             this.ChartButton.Name = "ChartButton";
-            this.ChartButton.Size = new System.Drawing.Size(75, 30);
+            this.ChartButton.Size = new System.Drawing.Size(56, 24);
             this.ChartButton.TabIndex = 4;
             this.ChartButton.Text = "Chart";
             this.ChartButton.UseVisualStyleBackColor = true;
@@ -166,18 +169,19 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(104, 247);
+            this.label4.Location = new System.Drawing.Point(78, 201);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(130, 17);
+            this.label4.Size = new System.Drawing.Size(98, 13);
             this.label4.TabIndex = 10;
             this.label4.Text = "Today\'s Resources";
             // 
             // ResBulletinButton
             // 
-            this.ResBulletinButton.Location = new System.Drawing.Point(173, 266);
-            this.ResBulletinButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ResBulletinButton.Location = new System.Drawing.Point(130, 216);
+            this.ResBulletinButton.Margin = new System.Windows.Forms.Padding(2);
             this.ResBulletinButton.Name = "ResBulletinButton";
-            this.ResBulletinButton.Size = new System.Drawing.Size(75, 30);
+            this.ResBulletinButton.Size = new System.Drawing.Size(56, 24);
             this.ResBulletinButton.TabIndex = 5;
             this.ResBulletinButton.Text = "Bulletin";
             this.ResBulletinButton.UseVisualStyleBackColor = true;
@@ -185,10 +189,9 @@
             // 
             // DoItButton
             // 
-            this.DoItButton.Location = new System.Drawing.Point(360, 130);
-            this.DoItButton.Margin = new System.Windows.Forms.Padding(4);
+            this.DoItButton.Location = new System.Drawing.Point(270, 106);
             this.DoItButton.Name = "DoItButton";
-            this.DoItButton.Size = new System.Drawing.Size(81, 50);
+            this.DoItButton.Size = new System.Drawing.Size(61, 41);
             this.DoItButton.TabIndex = 11;
             this.DoItButton.Text = "Fetch Data";
             this.DoItButton.UseVisualStyleBackColor = true;
@@ -196,10 +199,9 @@
             // 
             // BulletinHistoryButton
             // 
-            this.BulletinHistoryButton.Location = new System.Drawing.Point(264, 130);
-            this.BulletinHistoryButton.Margin = new System.Windows.Forms.Padding(4);
+            this.BulletinHistoryButton.Location = new System.Drawing.Point(198, 106);
             this.BulletinHistoryButton.Name = "BulletinHistoryButton";
-            this.BulletinHistoryButton.Size = new System.Drawing.Size(81, 50);
+            this.BulletinHistoryButton.Size = new System.Drawing.Size(61, 41);
             this.BulletinHistoryButton.TabIndex = 12;
             this.BulletinHistoryButton.Text = "Fetch Bulletin";
             this.BulletinHistoryButton.UseVisualStyleBackColor = true;
@@ -212,10 +214,10 @@
             // 
             // BulletinHistButton
             // 
-            this.BulletinHistButton.Location = new System.Drawing.Point(553, 302);
-            this.BulletinHistButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.BulletinHistButton.Location = new System.Drawing.Point(415, 245);
+            this.BulletinHistButton.Margin = new System.Windows.Forms.Padding(2);
             this.BulletinHistButton.Name = "BulletinHistButton";
-            this.BulletinHistButton.Size = new System.Drawing.Size(75, 30);
+            this.BulletinHistButton.Size = new System.Drawing.Size(56, 24);
             this.BulletinHistButton.TabIndex = 16;
             this.BulletinHistButton.Text = "Bulletin";
             this.BulletinHistButton.UseVisualStyleBackColor = true;
@@ -223,10 +225,10 @@
             // 
             // DegreeHistButton
             // 
-            this.DegreeHistButton.Location = new System.Drawing.Point(553, 266);
-            this.DegreeHistButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.DegreeHistButton.Location = new System.Drawing.Point(415, 216);
+            this.DegreeHistButton.Margin = new System.Windows.Forms.Padding(2);
             this.DegreeHistButton.Name = "DegreeHistButton";
-            this.DegreeHistButton.Size = new System.Drawing.Size(75, 30);
+            this.DegreeHistButton.Size = new System.Drawing.Size(56, 24);
             this.DegreeHistButton.TabIndex = 14;
             this.DegreeHistButton.Text = "Degree";
             this.DegreeHistButton.UseVisualStyleBackColor = true;
@@ -234,10 +236,10 @@
             // 
             // DecimalHistButton
             // 
-            this.DecimalHistButton.Location = new System.Drawing.Point(633, 266);
-            this.DecimalHistButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.DecimalHistButton.Location = new System.Drawing.Point(475, 216);
+            this.DecimalHistButton.Margin = new System.Windows.Forms.Padding(2);
             this.DecimalHistButton.Name = "DecimalHistButton";
-            this.DecimalHistButton.Size = new System.Drawing.Size(75, 30);
+            this.DecimalHistButton.Size = new System.Drawing.Size(56, 24);
             this.DecimalHistButton.TabIndex = 15;
             this.DecimalHistButton.Text = "Decimal";
             this.DecimalHistButton.UseVisualStyleBackColor = true;
@@ -246,18 +248,18 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(568, 247);
+            this.label5.Location = new System.Drawing.Point(426, 201);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(124, 17);
+            this.label5.Size = new System.Drawing.Size(89, 13);
             this.label5.TabIndex = 13;
-            this.label5.Text = "Latest Historic File";
+            this.label5.Text = "Last Historic Files";
             // 
             // CoordHistoryButton
             // 
-            this.CoordHistoryButton.Location = new System.Drawing.Point(456, 130);
-            this.CoordHistoryButton.Margin = new System.Windows.Forms.Padding(4);
+            this.CoordHistoryButton.Location = new System.Drawing.Point(342, 106);
             this.CoordHistoryButton.Name = "CoordHistoryButton";
-            this.CoordHistoryButton.Size = new System.Drawing.Size(81, 50);
+            this.CoordHistoryButton.Size = new System.Drawing.Size(61, 41);
             this.CoordHistoryButton.TabIndex = 17;
             this.CoordHistoryButton.Text = "Fetch Coord";
             this.CoordHistoryButton.UseVisualStyleBackColor = true;
@@ -276,18 +278,19 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(235, 386);
+            this.label6.Location = new System.Drawing.Point(176, 314);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(330, 17);
+            this.label6.Size = new System.Drawing.Size(258, 13);
             this.label6.TabIndex = 18;
             this.label6.Text = "FOR RESEARCH AND EDUCATIONAL PURPOSES";
             // 
             // ConfigButton
             // 
-            this.ConfigButton.Location = new System.Drawing.Point(458, 354);
-            this.ConfigButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ConfigButton.Location = new System.Drawing.Point(344, 288);
+            this.ConfigButton.Margin = new System.Windows.Forms.Padding(2);
             this.ConfigButton.Name = "ConfigButton";
-            this.ConfigButton.Size = new System.Drawing.Size(63, 28);
+            this.ConfigButton.Size = new System.Drawing.Size(47, 23);
             this.ConfigButton.TabIndex = 19;
             this.ConfigButton.Text = "Config";
             this.ConfigButton.UseVisualStyleBackColor = true;
@@ -296,10 +299,9 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(53, 34);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox1.Location = new System.Drawing.Point(40, 28);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(195, 204);
+            this.pictureBox1.Size = new System.Drawing.Size(146, 166);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 20;
             this.pictureBox1.TabStop = false;
@@ -307,20 +309,19 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = global::LID_WinForm.Properties.Resources.Iceberg;
-            this.pictureBox2.Location = new System.Drawing.Point(553, 34);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox2.Location = new System.Drawing.Point(415, 28);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(195, 204);
+            this.pictureBox2.Size = new System.Drawing.Size(146, 166);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 21;
             this.pictureBox2.TabStop = false;
             // 
             // PolarButton
             // 
-            this.PolarButton.Location = new System.Drawing.Point(404, 302);
-            this.PolarButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PolarButton.Location = new System.Drawing.Point(303, 245);
+            this.PolarButton.Margin = new System.Windows.Forms.Padding(2);
             this.PolarButton.Name = "PolarButton";
-            this.PolarButton.Size = new System.Drawing.Size(75, 30);
+            this.PolarButton.Size = new System.Drawing.Size(56, 24);
             this.PolarButton.TabIndex = 22;
             this.PolarButton.Text = "Polar";
             this.PolarButton.UseVisualStyleBackColor = true;
@@ -328,10 +329,10 @@
             // 
             // PolarHistButton
             // 
-            this.PolarHistButton.Location = new System.Drawing.Point(633, 302);
-            this.PolarHistButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PolarHistButton.Location = new System.Drawing.Point(475, 245);
+            this.PolarHistButton.Margin = new System.Windows.Forms.Padding(2);
             this.PolarHistButton.Name = "PolarHistButton";
-            this.PolarHistButton.Size = new System.Drawing.Size(75, 30);
+            this.PolarHistButton.Size = new System.Drawing.Size(56, 24);
             this.PolarHistButton.TabIndex = 23;
             this.PolarHistButton.Text = "Polar";
             this.PolarHistButton.UseVisualStyleBackColor = true;
@@ -339,23 +340,45 @@
             // 
             // AboutButton
             // 
-            this.AboutButton.Location = new System.Drawing.Point(281, 354);
-            this.AboutButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.AboutButton.Location = new System.Drawing.Point(211, 288);
+            this.AboutButton.Margin = new System.Windows.Forms.Padding(2);
             this.AboutButton.Name = "AboutButton";
-            this.AboutButton.Size = new System.Drawing.Size(63, 28);
+            this.AboutButton.Size = new System.Drawing.Size(47, 23);
             this.AboutButton.TabIndex = 24;
             this.AboutButton.Text = "About";
             this.AboutButton.UseVisualStyleBackColor = true;
             this.AboutButton.Click += new System.EventHandler(this.AboutButton_Click);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.label7.Location = new System.Drawing.Point(265, 106);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(13, 13);
+            this.label7.TabIndex = 25;
+            this.label7.Text = "1";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.label8.Location = new System.Drawing.Point(192, 153);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(13, 13);
+            this.label8.TabIndex = 26;
+            this.label8.Text = "2";
+            // 
             // LID_Form
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(800, 416);
+            this.ClientSize = new System.Drawing.Size(600, 338);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.AboutButton);
             this.Controls.Add(this.PolarHistButton);
             this.Controls.Add(this.PolarButton);
@@ -384,10 +407,11 @@
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "LID_Form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LID";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LID_Form_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
@@ -426,5 +450,7 @@
         private System.Windows.Forms.Button PolarButton;
         private System.Windows.Forms.Button PolarHistButton;
         private System.Windows.Forms.Button AboutButton;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
     }
 }

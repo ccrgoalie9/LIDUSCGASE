@@ -117,4 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Instructions:
+Press 'Fetch Data' {1}
+Press 'Open Google Earth' {2}
+
+If using Google Earth online:
+Select 'My Places' Menu
+Enable importing KML in settings
+Select 'IMPORT KML FILE'
+Find the file where it is saved
+'Documents/LID Files/KML'</value>
+  </data>
 </root>

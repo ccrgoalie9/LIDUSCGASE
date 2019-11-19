@@ -24,7 +24,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>12</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <ApplicationVersion>0.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -150,6 +150,9 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\about.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Content Include="iceberg_ofC_icon.ico" />
     <Resource Include="Resources\Iceberg.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -163,6 +166,9 @@
       <Project>{20a0f705-96d6-47e0-818b-a6b5bdbd6860}</Project>
       <Name>LID_ClassLibrary</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Debug\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
