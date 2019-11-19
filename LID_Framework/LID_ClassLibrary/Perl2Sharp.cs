@@ -101,7 +101,10 @@ namespace LID_ClassLibrary {
                         if ((i-1) % 4 == 0) {
                             temp +=/*Area Shape x3bits*/"011" + /*Scale Factor x2bits*/"00";
                         }
-                        int theta = (int)(area[i,0]*10);
+                        int theta = (int)(area[i,0]*100);
+                        if(theta % 10 > 5) {
+
+                        }
                     }
 
                     LineMessages.Add(temp);
