@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Threading;
 using System.Windows.Forms;
 using LID_ClassLibrary;
 
@@ -76,10 +77,15 @@ namespace LID_WinForm {
         }
 
         private void EarthButton_Click(object sender, EventArgs e) {
-            string earthPath = @"C:\Program Files\Google\Google Earth Pro\client\googleearth.exe";
-            //Has google earth?
-            if(File.Exists(earthPath)) {
-                Process.Start(todayLine.GetOutFile());
+            if(!config.FuNtImE) {
+                string earthPath = @"C:\Program Files\Google\Google Earth Pro\client\googleearth.exe";
+                //Has google earth?
+                if(File.Exists(earthPath)) {
+                    Process.Start(todayLine.GetOutFile());
+                }
+            } else {
+                Egg egg = new Egg();
+                egg.Show();
             }
         }
 
@@ -173,6 +179,12 @@ namespace LID_WinForm {
         private void ResBulletinButton_Click(object sender, EventArgs e) {
             //Current bulletin released by the IIP
             Process.Start(config.BulletinUrl);
+        }
+
+        private void AboutButton_Click(object sender, EventArgs e) {
+            //Made it create window and keep old
+            About_Form about = new About_Form();
+            about.Show();
         }
 
 

@@ -74,3 +74,7 @@ C:\Users\C.Rosselot\Documents\GitHub\LIDUSCGASE\LID_Framework\LID_WinForm\obj\De
 C:\Users\C.Rosselot\Documents\GitHub\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.csproj.CopyComplete
 C:\Users\C.Rosselot\Documents\GitHub\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.exe
 C:\Users\C.Rosselot\Documents\GitHub\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.pdb
+C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.About_Form.resources
+C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.Egg.resources
+C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.About_Form.resources
+C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.Egg.resources

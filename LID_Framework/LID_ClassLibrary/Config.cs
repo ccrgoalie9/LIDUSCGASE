@@ -15,8 +15,12 @@ namespace LID_ClassLibrary {
         public int KmlWidth { get; set; }
         public string ErrorFile { get; set; }
 
+        //Ignore this one
+        public bool FuNtImE { get; set; }
+
         public Config() {
             ConfigPath = @"config.txt";
+            FuNtImE = false;
             if(!File.Exists(ConfigPath)) {
                 //Create file from defaults
                 CreateConfig();
@@ -29,6 +33,7 @@ namespace LID_ClassLibrary {
         //Modifiers
         public void ReadConfig() {
             int flag = 0;
+            int flagCount = 6;
             try {
                 using(StreamReader configReader = new StreamReader(ConfigPath)) {
                     string temp;
@@ -46,13 +51,15 @@ namespace LID_ClassLibrary {
                             //If error, default is 5
                             KmlWidth = 5;
                         }
+                        if(temp.Contains("Ignore:")) { FuNtImE = Convert.ToBoolean(temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1)); flag++; }
                     }
-                    if(flag < 6) {
+                    if(flag < flagCount) {
                         throw new Exception("Not All Expected Values Were Present");
                     }
                 }
             } catch(Exception x) {
                 Console.WriteLine("Error in reading configuration file, re-writing");
+                ErrorFile = @"C:\Users\" + Environment.UserName + @"\Documents\LID Files\ErrorLogs\Error.txt";
                 CreateConfig();
                 ReadConfig();
                 File.AppendAllText(ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");

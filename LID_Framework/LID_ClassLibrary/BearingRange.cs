@@ -4,7 +4,7 @@ using System.IO;
 namespace LID_ClassLibrary {
     public class BearingRange {
         double a, c, d, R, phi1, phi2, deltaphi, deltalambda, theta1, theta, theta2;
-        readonly double[][,] RBSets;
+        readonly double[][,] PolarSets, KMPolarSets;
         string output;
         readonly string outFile;
 
@@ -12,7 +12,8 @@ namespace LID_ClassLibrary {
             outFile = (config.DirPath + @"\Polar\" + DateTime.UtcNow.ToString("yyyy-MM-dd") + "_Polar.txt");
 
             //WILL DEFINE LAT/LON BY READING FROM TOMS INPUT (COORDINATES IN DEGREE DECIMAL FORMAT)
-            RBSets = new double[input.Length][,];
+            PolarSets = new double[input.Length][,];
+            KMPolarSets = new double[input.Length][,];
             ConvertCoordinates(input);
             WriteFile();
         }
@@ -54,12 +55,13 @@ namespace LID_ClassLibrary {
                         theta1 = ((Math.Atan2(Math.Sin(deltalambda) * Math.Cos(phi2), Math.Cos(phi1) * Math.Sin(phi2) - Math.Sin(phi1) * Math.Cos(phi2) * Math.Cos(deltalambda)) * (180 / Math.PI)) + 360) % 360;
                         theta2 = ((Math.Atan2(Math.Sin(-deltalambda) * Math.Cos(phi1), Math.Cos(phi2) * Math.Sin(phi1) - Math.Sin(phi2) * Math.Cos(phi1) * Math.Cos(-deltalambda)) * (180 / Math.PI)) + 180) % 360;
                         theta = (theta1 + theta2) / 2;
-                        temp[i + 1, 0] = theta;
+                        temp[i + 1, 0] = theta - 90;
                         temp[i + 1, 1] = d;
                         output += theta + " " + d + "\n";
                     }
                     output += temp[(temp.Length / 2) - 1, 0] + " " + temp[(temp.Length / 2) - 1, 1] + "\n";
-                    RBSets[count] = temp;
+                    PolarSets[count] = temp;
+                    KMPolarSets[count] = temp;
                     count++;
                 } catch(Exception x) {
                     Console.WriteLine(x.Message);
@@ -71,7 +73,7 @@ namespace LID_ClassLibrary {
         //Accessors
         //Return coordinate sets
         public double[][,] GetCoordinates() {
-            return RBSets;
+            return PolarSets;
         }
 
         //Return outfile location
