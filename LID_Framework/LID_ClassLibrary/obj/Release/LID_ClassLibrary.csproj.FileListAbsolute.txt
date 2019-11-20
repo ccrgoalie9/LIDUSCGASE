@@ -13,3 +13,10 @@ C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Gith
 C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_ClassLibrary\obj\Release\LID_ClassLibrary.csproj.CopyComplete
 C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_ClassLibrary\obj\Release\LID_ClassLibrary.dll
 C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_ClassLibrary\obj\Release\LID_ClassLibrary.pdb
+C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_ClassLibrary\bin\Release\LID_ClassLibrary.dll
+C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_ClassLibrary\bin\Release\LID_ClassLibrary.pdb
+C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_ClassLibrary\bin\Release\SharpKml.Core.xml
+C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_ClassLibrary\obj\Release\LID_ClassLibrary.csprojAssemblyReference.cache
+C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_ClassLibrary\obj\Release\LID_ClassLibrary.csproj.CopyComplete
+C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_ClassLibrary\obj\Release\LID_ClassLibrary.dll
+C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_ClassLibrary\obj\Release\LID_ClassLibrary.pdb

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document id="KML">
+    <name>2019-11-13_ICEBERGS</name>
+    <open>true</open>
+    <Style id="lineStyle">
+      <LineStyle>
+        <color>ff0000ff</color>
+        <width>5</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>ff0000ff</color>
+      </PolyStyle>
+    </Style>
+    <Placemark>
+      <name>ICEBERG LIMIT</name>
+      <visibility>true</visibility>
+      <TimeSpan>
+        <begin>2019-11-13T00:00:01-05:00</begin>
+        <end>2019-11-13T23:59:59-05:00</end>
+      </TimeSpan>
+      <styleUrl>#lineStyle</styleUrl>
+      <LineString>
+        <extrude>true</extrude>
+        <tessellate>true</tessellate>
+        <altitudeMode>clampToGround</altitudeMode>
+        <coordinates>-55.75,52.166665999999999
+-52,51
+-48.5,50.75
+-47.25,51.75
+-54,55.5</coordinates>
+      </LineString>
+    </Placemark>
+    <Placemark>
+      <name>ESTIMATED ICEBERG LIMIT</name>
+      <visibility>true</visibility>
+      <TimeSpan>
+        <begin>2019-11-13T00:00:01-05:00</begin>
+        <end>2019-11-13T23:59:59-05:00</end>
+      </TimeSpan>
+      <styleUrl>#lineStyle</styleUrl>
+      <LineString>
+        <extrude>true</extrude>
+        <tessellate>true</tessellate>
+        <altitudeMode>clampToGround</altitudeMode>
+        <coordinates>-54,55.5
+-59,61
+-54,62
+-48,58
+-40,58
+-37,64
+-28,66</coordinates>
+      </LineString>
+    </Placemark>
+    <Placemark>
+      <name>SEA ICE LIMIT A</name>
+      <visibility>true</visibility>
+      <TimeSpan>
+        <begin>2019-11-13T00:00:01-05:00</begin>
+        <end>2019-11-13T23:59:59-05:00</end>
+      </TimeSpan>
+      <styleUrl>#lineStyle</styleUrl>
+      <LineString>
+        <extrude>true</extrude>
+        <tessellate>true</tessellate>
+        <altitudeMode>clampToGround</altitudeMode>
+        <coordinates>-64.5,48
+-61.416665999999999,49.083333000000003
+-60.166665999999999,50.166665999999999</coordinates>
+      </LineString>
+    </Placemark>
+    <Placemark>
+      <name>SEA ICE LIMIT B</name>
+      <visibility>true</visibility>
+      <TimeSpan>
+        <begin>2019-11-13T00:00:01-05:00</begin>
+        <end>2019-11-13T23:59:59-05:00</end>
+      </TimeSpan>
+      <styleUrl>#lineStyle</styleUrl>
+      <LineString>
+        <extrude>true</extrude>
+        <tessellate>true</tessellate>
+        <altitudeMode>clampToGround</altitudeMode>
+        <coordinates>-59.833333000000003,53.5
+-60.083333000000003,53.583333000000003</coordinates>
+      </LineString>
+    </Placemark>
+    <Placemark>
+      <name>SEA ICE LIMIT C</name>
+      <visibility>true</visibility>
+      <TimeSpan>
+        <begin>2019-11-13T00:00:01-05:00</begin>
+        <end>2019-11-13T23:59:59-05:00</end>
+      </TimeSpan>
+      <styleUrl>#lineStyle</styleUrl>
+      <LineString>
+        <extrude>true</extrude>
+        <tessellate>true</tessellate>
+        <altitudeMode>clampToGround</altitudeMode>
+        <coordinates>-61.333333000000003,56.25
+-60.75,56.666665999999999
+-61.333333000000003,57</coordinates>
+      </LineString>
+    </Placemark>
+    <Placemark>
+      <name>SEA ICE LIMIT D</name>
+      <visibility>true</visibility>
+      <TimeSpan>
+        <begin>2019-11-13T00:00:01-05:00</begin>
+        <end>2019-11-13T23:59:59-05:00</end>
+      </TimeSpan>
+      <styleUrl>#lineStyle</styleUrl>
+      <LineString>
+        <extrude>true</extrude>
+        <tessellate>true</tessellate>
+        <altitudeMode>clampToGround</altitudeMode>
+        <coordinates>-63.416665999999999,59.25
+-64.25,60.333333000000003
+-64.416666000000006,60.416665999999999</coordinates>
+      </LineString>
+    </Placemark>
+    <Placemark>
+      <name>SEA ICE LIMIT E</name>
+      <visibility>true</visibility>
+      <TimeSpan>
+        <begin>2019-11-13T00:00:01-05:00</begin>
+        <end>2019-11-13T23:59:59-05:00</end>
+      </TimeSpan>
+      <styleUrl>#lineStyle</styleUrl>
+      <LineString>
+        <extrude>true</extrude>
+        <tessellate>true</tessellate>
+        <altitudeMode>clampToGround</altitudeMode>
+        <coordinates>-64.833332999999996,60.5
+-67.166666000000006,58.666665999999999
+-68.75,59.25
+-69,61.083333000000003
+-70.416666000000006,61.333333000000003
+-73.833332999999996,62.75
+-77.333332999999996,62.833333000000003
+-73.833332999999996,64
+-70.5,62.333333000000003
+-64.583332999999996,61.166665999999999
+-64.166666000000006,62
+-60.083333000000003,66.833332999999996
+-65.416666000000006,68.5
+-66.166666000000006,70.083332999999996
+-65.25,71.416666000000006
+-67.25,72
+-64.333332999999996,72.5</coordinates>
+      </LineString>
+    </Placemark>
+  </Document>
+</kml>
