@@ -55,9 +55,9 @@ namespace LID_ClassLibrary {
                         theta1 = ((Math.Atan2(Math.Sin(deltalambda) * Math.Cos(phi2), Math.Cos(phi1) * Math.Sin(phi2) - Math.Sin(phi1) * Math.Cos(phi2) * Math.Cos(deltalambda)) * (180 / Math.PI)) + 360) % 360;
                         theta2 = ((Math.Atan2(Math.Sin(-deltalambda) * Math.Cos(phi1), Math.Cos(phi2) * Math.Sin(phi1) - Math.Sin(phi2) * Math.Cos(phi1) * Math.Cos(-deltalambda)) * (180 / Math.PI)) + 180) % 360;
                         theta = (theta1 + theta2) / 2;
-                        temp[i + 1, 0] = theta - 90;
+                        temp[i + 1, 0] = 360 - theta;
                         temp[i + 1, 1] = d;
-                        output += theta + " " + d + "\n";
+                        output += (360 - theta) + " " + d + "\n";
                     }
                     output += temp[(temp.Length / 2) - 1, 0] + " " + temp[(temp.Length / 2) - 1, 1] + "\n";
                     PolarSets[count] = temp;
