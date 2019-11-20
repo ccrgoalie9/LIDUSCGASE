@@ -28,7 +28,9 @@ namespace LID_ClassLibrary {
         public string Notice { get; set; }
         public string Spare { get; set; }
         public string MessageVersion { get; set; }
- 
+        public string Duration { get; set; }
+
+
 
         public Perl2Sharp(double[][,] PolarCoords) { //Will take input at some point
 
@@ -78,14 +80,16 @@ namespace LID_ClassLibrary {
 
 
                 //maybe duration?
+                Duration = Convert.ToString(86400, 2).PadLeft(18, '0');
 
                 AreaShape = Convert.ToString(0, 2).PadLeft(3, '0');
 
+                //DO WE NEEED THIS IF WE ARE ALREADY IN KM??
                 Console.WriteLine("What is your scale factor (1, 10, 100, 1000)?: ");
                 S = Convert.ToInt16(Console.ReadLine());
                 ScaleFactor = Convert.ToString(S, 2).PadLeft(2, '0');
 
-                Payload = Type + RepeatIndicator + Mmsi;
+                Payload = Type + RepeatIndicator + Mmsi + Spare;
 
                 //Creation of AreaShape Will Go HERE
 
