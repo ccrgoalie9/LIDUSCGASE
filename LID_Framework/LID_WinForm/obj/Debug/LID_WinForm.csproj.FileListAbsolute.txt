@@ -79,26 +79,4 @@ C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Gith
 C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.About_Form.resources
 C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.Egg.resources
 C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Debug\Resources\about.txt
-C:\Users\Luke Arsenault\source\repos\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Debug\Resources\about.txt
-C:\Users\Luke Arsenault\source\repos\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Debug\LID_WinForm.exe.config
-C:\Users\Luke Arsenault\source\repos\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Debug\LID_WinForm.exe.manifest
-C:\Users\Luke Arsenault\source\repos\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Debug\LID_WinForm.application
-C:\Users\Luke Arsenault\source\repos\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Debug\LID_WinForm.exe
-C:\Users\Luke Arsenault\source\repos\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Debug\LID_WinForm.pdb
-C:\Users\Luke Arsenault\source\repos\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Debug\LID_ClassLibrary.dll
-C:\Users\Luke Arsenault\source\repos\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Debug\SharpKml.Core.dll
-C:\Users\Luke Arsenault\source\repos\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Debug\LID_ClassLibrary.pdb
-C:\Users\Luke Arsenault\source\repos\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Debug\SharpKml.Core.xml
-C:\Users\Luke Arsenault\source\repos\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.csprojAssemblyReference.cache
-C:\Users\Luke Arsenault\source\repos\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.g.resources
-C:\Users\Luke Arsenault\source\repos\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.About_Form.resources
-C:\Users\Luke Arsenault\source\repos\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.Egg.resources
-C:\Users\Luke Arsenault\source\repos\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.LID_Form.resources
-C:\Users\Luke Arsenault\source\repos\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.Properties.Resources.resources
-C:\Users\Luke Arsenault\source\repos\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.csproj.GenerateResource.cache
-C:\Users\Luke Arsenault\source\repos\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.TrustInfo.xml
-C:\Users\Luke Arsenault\source\repos\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.exe.manifest
-C:\Users\Luke Arsenault\source\repos\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.application
-C:\Users\Luke Arsenault\source\repos\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.csproj.CopyComplete
-C:\Users\Luke Arsenault\source\repos\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.exe
-C:\Users\Luke Arsenault\source\repos\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.pdb
+C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Debug\Resources\about.txt
