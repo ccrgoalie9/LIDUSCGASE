@@ -28,3 +28,10 @@ C:\Users\C.Rosselot\Documents\GitHub\LIDUSCGASE\LID_Framework\LID_ClassLibrary\o
 C:\Users\C.Rosselot\Documents\GitHub\LIDUSCGASE\LID_Framework\LID_ClassLibrary\obj\Debug\LID_ClassLibrary.csproj.CopyComplete
 C:\Users\C.Rosselot\Documents\GitHub\LIDUSCGASE\LID_Framework\LID_ClassLibrary\obj\Debug\LID_ClassLibrary.dll
 C:\Users\C.Rosselot\Documents\GitHub\LIDUSCGASE\LID_Framework\LID_ClassLibrary\obj\Debug\LID_ClassLibrary.pdb
+C:\Users\Luke Arsenault\source\repos\LIDUSCGASE\LID_Framework\LID_ClassLibrary\bin\Debug\LID_ClassLibrary.dll
+C:\Users\Luke Arsenault\source\repos\LIDUSCGASE\LID_Framework\LID_ClassLibrary\bin\Debug\LID_ClassLibrary.pdb
+C:\Users\Luke Arsenault\source\repos\LIDUSCGASE\LID_Framework\LID_ClassLibrary\bin\Debug\SharpKml.Core.xml
+C:\Users\Luke Arsenault\source\repos\LIDUSCGASE\LID_Framework\LID_ClassLibrary\obj\Debug\LID_ClassLibrary.csprojAssemblyReference.cache
+C:\Users\Luke Arsenault\source\repos\LIDUSCGASE\LID_Framework\LID_ClassLibrary\obj\Debug\LID_ClassLibrary.csproj.CopyComplete
+C:\Users\Luke Arsenault\source\repos\LIDUSCGASE\LID_Framework\LID_ClassLibrary\obj\Debug\LID_ClassLibrary.dll
+C:\Users\Luke Arsenault\source\repos\LIDUSCGASE\LID_Framework\LID_ClassLibrary\obj\Debug\LID_ClassLibrary.pdb

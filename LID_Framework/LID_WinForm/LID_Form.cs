@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
+using System.Media;
 using LID_ClassLibrary;
 
 namespace LID_WinForm {
@@ -76,6 +77,7 @@ namespace LID_WinForm {
             Process.Start("explorer.exe", config.ConfigPath);
         }
 
+        //About Google Earth
         private void EarthButton_Click(object sender, EventArgs e) {
             if(!config.FuNtImE) {
                 string earthPath = @"C:\Program Files\Google\Google Earth Pro\client\googleearth.exe";
@@ -91,9 +93,16 @@ namespace LID_WinForm {
             }
         }
 
+        //About the About screen
+        private void AboutButton_Click(object sender, EventArgs e) {
+            //Made it create window and keep old
+            SystemSounds.Asterisk.Play();
+            About_Form about = new About_Form();
+            about.Show();
+        }
+
         private void ExitButton_Click(object sender, EventArgs e) {
             this.Dispose();
-
         }
 
 
@@ -184,11 +193,7 @@ namespace LID_WinForm {
             Process.Start(config.BulletinUrl);
         }
 
-        private void AboutButton_Click(object sender, EventArgs e) {
-            //Made it create window and keep old
-            About_Form about = new About_Form();
-            about.Show();
-        }
+        
 
         private void LID_Form_FormClosing(object sender, FormClosingEventArgs e) {
             

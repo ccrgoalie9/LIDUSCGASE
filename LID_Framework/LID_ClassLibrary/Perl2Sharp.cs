@@ -9,14 +9,14 @@ namespace LID_ClassLibrary {
         public int S { get; set; }
         public int Long { get; set; }
         public string Type { get; set; }
-        public string PlaceHolder { get; set; }
+        public string RepeatIndicator { get; set; }
         public string Mmsi { get; set; }
         public string Payload { get; set; }
         public string Encode { get; set; }
         public string DAC { get; set; }
         public string FID { get; set; }
         public string Month { get; set; }
-        public string Year { get; set; }
+        //public string Year { get; set; }
         public string Day { get; set; }
         public string Hour { get; set; }
         public string Minute { get; set; }
@@ -24,6 +24,13 @@ namespace LID_ClassLibrary {
         public string AreaShape { get; set; }
         public string ScaleFactor { get; set; }
         public string Longitude { get; set; }
+        public string MsgLink { get; set; }
+        public string Notice { get; set; }
+        public string Spare { get; set; }
+        public string MessageVersion { get; set; }
+        public string Duration { get; set; }
+
+
 
         public Perl2Sharp(double[][,] PolarCoords) { //Will take input at some point
 
@@ -41,15 +48,15 @@ namespace LID_ClassLibrary {
                 Console.WriteLine("binary message test");
 
                 Type = Convert.ToString(8, 2).PadLeft(6, '0'); //6bits
-                PlaceHolder = "00"; //2bits
-                Mmsi = Convert.ToString(123456789, 2).PadLeft(30, '0'); //30bits
+                RepeatIndicator = Convert.ToString(0, 2).PadLeft(2, '0'); //2bits
+                Mmsi = Convert.ToString(003679999, 2).PadLeft(30, '0'); //30bits
+                Spare = Convert.ToString(0, 2).PadLeft(2, '0'); //2bits
 
+                MessageVersion = Convert.ToString(2, 2).PadLeft(6, '0');
 
                 DAC = Convert.ToString(367, 2).PadLeft(10, '0');
 
                 FID = Convert.ToString(22, 2).PadLeft(6, '0');
-
-                //maybe msglink and notice?
 
                 Console.WriteLine("Month (UTC, ##): ");
                 X = Convert.ToInt16(Console.ReadLine());
@@ -67,15 +74,22 @@ namespace LID_ClassLibrary {
                 W = Convert.ToInt16(Console.ReadLine());
                 Minute = Convert.ToString(W, 2).PadLeft(6, '0');
 
+                //maybe msglink and notice
+                MsgLink = Convert.ToString(((X * 31) + Y), 2).PadLeft(10, '0');
+                Notice = Convert.ToString(24, 2).PadLeft(7, '0');
+
+
                 //maybe duration?
+                Duration = Convert.ToString(86400, 2).PadLeft(18, '0');
 
                 AreaShape = Convert.ToString(0, 2).PadLeft(3, '0');
 
+                //DO WE NEEED THIS IF WE ARE ALREADY IN KM??
                 Console.WriteLine("What is your scale factor (1, 10, 100, 1000)?: ");
                 S = Convert.ToInt16(Console.ReadLine());
                 ScaleFactor = Convert.ToString(S, 2).PadLeft(2, '0');
 
-                Payload = Type + PlaceHolder + Mmsi;
+                Payload = Type + RepeatIndicator + Mmsi + Spare;
 
                 //Creation of AreaShape Will Go HERE
 
