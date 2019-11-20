@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 namespace LID_ClassLibrary {
-    class Perl2Sharp {
+    class BinaryCreator {
         public int X { get; set; }
         public int Y { get; set; }
         public int Z { get; set; }
@@ -32,7 +32,7 @@ namespace LID_ClassLibrary {
 
 
 
-        public Perl2Sharp(double[][,] PolarCoords) { //Will take input at some point
+        public BinaryCreator(double[][,] PolarCoords) { //Will take input at some point
 
 
             // Try Catch statement -- encode message based upon type
