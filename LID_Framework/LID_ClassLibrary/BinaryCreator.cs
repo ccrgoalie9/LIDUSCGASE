@@ -58,20 +58,21 @@ namespace LID_ClassLibrary {
 
                 FID = Convert.ToString(22, 2).PadLeft(6, '0');
 
+                //Set the time
                 Console.WriteLine("Month (UTC, ##): ");
-                X = Convert.ToInt16(Console.ReadLine());
+                X = Convert.ToInt16(DateTime.UtcNow.ToString("MM"));
                 Month = Convert.ToString(X, 2).PadLeft(4, '0');
 
                 Console.WriteLine("Day (UTC, ##): ");
-                Y = Convert.ToInt16(Console.ReadLine());
+                Y = Convert.ToInt16(DateTime.UtcNow.ToString("dd"));
                 Day = Convert.ToString(Y, 2).PadLeft(5, '0');
 
                 Console.WriteLine("Hour (UTC, ##): ");
-                Z = Convert.ToInt16(Console.ReadLine());
+                Z = Convert.ToInt16(DateTime.UtcNow.ToString("HH"));
                 Hour = Convert.ToString(Z, 2).PadLeft(5, '0');
 
                 Console.WriteLine("Minute (UTC, ##): ");
-                W = Convert.ToInt16(Console.ReadLine());
+                W = Convert.ToInt16(DateTime.UtcNow.ToString("mm"));
                 Minute = Convert.ToString(W, 2).PadLeft(6, '0');
 
                 //maybe msglink and notice
