@@ -100,21 +100,21 @@ namespace LID_ClassLibrary {
                 //Make a line for each coordinate set
                 foreach(double[,] area in PolarCoords) {
                     //Sub-Area 0
-                    string temp = /*Area Shape x3bits*/"000" + /*Scale Factor x2bits*/"00";
-                    int lat = ((int)(area[0,0]*600000) & (2^28-1));
-                    temp += /*Longitude x28bits*/ Convert.ToString(lat, 2).PadLeft(28, '0');
-                    int lon = ((int)(area[0,1]*600000) & (2^27-1));
-                    temp += /*Latitude x27bits*/ Convert.ToString(lon, 2).PadLeft(27, '0');
+                    string temp = /*Area Shape x3bits*/"000" + /*Scale Factor x2bits*/"01";
+                    int lon = ((int)(area[0, 1] * 600000) & (2^28-1));
+                    temp += /*Latitude x27bits*/ Convert.ToString(lon, 2).PadLeft(28, '0');
+                    int lat = ((int)(area[0,0]*600000) & (2^27-1));
+                    temp += /*Longitude x28bits*/ Convert.ToString(lat, 2).PadLeft(27, '0');
                     temp += /*Precision x3bits*/ "100";
                     temp += /*Radius x12bits*/ "0".PadLeft(12, '0');
                     temp += /*Spare x21bits*/ "0".PadLeft(21, '0');
 
                     //Polyline of shape = 3
                     //Sub-Areas 1-8
-                    for(int i = 1; i < area.Length/2 - 2; i++) {
+                    for(int i = 1; i <= 4; i++) {
                         //Each i is a point
                         if ((i-1) % 4 == 0) {
-                            temp +=/*Area Shape x3bits*/"011" + /*Scale Factor x2bits*/"00";
+                            temp +=/*Area Shape x3bits*/"011" + /*Scale Factor x2bits*/"01";
                         }
                         int theta = (int)(area[i,0]*100);
                         if(theta % 10 > 5) {
