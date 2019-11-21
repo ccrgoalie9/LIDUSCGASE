@@ -7,6 +7,7 @@ namespace LID_ClassLibrary {
         //     Enables the aggregation of all classes for the program. 
         //     You can access the produced objects using the accessor
         //     methods.
+        BinaryCreator todayBin;
         BearingRange todayBR;
         Download todayDownload;
         Scraper todayScraper;
@@ -63,12 +64,21 @@ namespace LID_ClassLibrary {
                 return -1; //Error
             }
 
-            try {//Math for the 
+            try {//Math for the Bearings and Ranges
                 Console.Write("Creating Bearings And Ranges...\t");
                 todayBR = new BearingRange(todayScraper.GetCoordinatesIngestors(), config);
                 Console.WriteLine("Bearing And Ranges Created");
             } catch(Exception x) {
                 Console.WriteLine("Error: Failed To Create The File");
+                File.AppendAllText(config.ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
+                return -1;
+            }
+
+            try {
+                Console.Write("Creating Binary...\t\t");
+                todayBin = new BinaryCreator(todayBR.GetCoordinates());
+            } catch(Exception x) {
+                Console.WriteLine("Error: Failed To Create The Binary");
                 File.AppendAllText(config.ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
                 return -1;
             }
