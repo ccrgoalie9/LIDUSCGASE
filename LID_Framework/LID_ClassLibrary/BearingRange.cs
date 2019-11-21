@@ -23,7 +23,7 @@ namespace LID_ClassLibrary {
             int count = 0;
             foreach(Ingestor ingest in input) {
                 double[,] coords = ingest.GetCoordinates();
-                double[,] temp = new double[ingest.GetCoordinates().Length, 2];
+                double[,] temp = new double[ingest.GetCoordinates().Length/2, 2];
                 //Set the first and last set
                 temp[0, 0] = Math.Round(coords[0, 0],2);
                 temp[0, 1] = Math.Round(coords[0, 1],2);
@@ -80,13 +80,15 @@ namespace LID_ClassLibrary {
         }
 
         private void Debug() {
-            bool flag = false;
+            bool flag = true;
+            Console.WriteLine("\nBearing Range Debug");
             foreach(double[,] x in PolarSets) {
                 foreach(double y in x) {
-                    Console.Write(y);
+                    Console.Write(y + " ");
                     flag = !flag;
                     if(flag) { Console.WriteLine(""); };
                 }
+                Console.WriteLine("");
             }
         }
 

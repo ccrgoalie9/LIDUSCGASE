@@ -107,13 +107,13 @@ namespace LID_ClassLibrary {
 
                     //Polyline of shape = 3
                     //Sub-Areas 1-8
-                    int numOfSubAreas = ((int)((area.Length / 2) - 2 / 4)*4);
+                    int numOfSubAreas = ((int)((area.Length / 2) - 1 / 4)*4);
                     Console.WriteLine(area.Length);
                     Console.WriteLine(area.Length/2);
-                    Console.WriteLine(area.Length/2 - 2);
-                    Console.WriteLine((area.Length/2 - 2)/4);
-                    Console.WriteLine((int)((area.Length/2 - 2) / 4));
-                    Console.WriteLine((int)((area.Length / 2 - 2) / 4) * 4);
+                    Console.WriteLine(area.Length/2 - 1);
+                    Console.WriteLine((area.Length/2 - 1)/4);
+                    Console.WriteLine((int)((area.Length/2 - 1) / 4));
+                    Console.WriteLine((int)((area.Length / 2 - 1) / 4) * 4);
                     Console.WriteLine(numOfSubAreas);
                     for(int i = 1; i <= numOfSubAreas; i++) {
                         //Each i is a point
@@ -147,7 +147,6 @@ namespace LID_ClassLibrary {
                     Console.WriteLine(x);
                     Console.WriteLine(x.Length);
                 }
-                Console.ReadKey();
 
             }
             catch (Exception e) {
