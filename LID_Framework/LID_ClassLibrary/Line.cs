@@ -99,15 +99,21 @@ namespace LID_ClassLibrary {
             };
 
             //Styling
-            string colorCode = config.KmlColor;
+            string colorCode1 = config.KmlColor1;
+            string colorCode2 = config.KmlColor2;
+            string colorCode3 = config.KmlColor3;
+            /*
             LineStyle lineStyle = new LineStyle {
                 Color = Color32.Parse(colorCode),
                 Width = config.KmlWidth
             };
+            */
 
+            /*
             PolygonStyle PolyStyle = new PolygonStyle {
                 Color = Color32.Parse(colorCode)
             };
+            */
 
             //Timespan
             SharpKml.Dom.TimeSpan lineTimespan = new SharpKml.Dom.TimeSpan {
@@ -115,13 +121,46 @@ namespace LID_ClassLibrary {
                 End = Convert.ToDateTime(DateTime.UtcNow.ToString("yyyy-MM-dd") + " 23:59:59")
             };
 
+
             //Actual reads style and adds poly and line together
-            Style SimpleStyle = new Style();
-            string styleID = "lineStyle";
-            SimpleStyle.Id = styleID;
-            SimpleStyle.Line = lineStyle;
-            SimpleStyle.Polygon = PolyStyle;
-            document.AddStyle(SimpleStyle);
+            string styleIL = "lineIcebergLimit";
+            string styleEIL = "lineEstimatedIcebergLimit";
+            string styleSIL = "lineSeaIceLimit";
+            {
+                //Style for Iceberg Limit
+                Style SimpleStyle = new Style();
+                SimpleStyle.Id = styleIL;
+                SimpleStyle.Line = new LineStyle {
+                    Color = Color32.Parse(colorCode1),
+                    Width = config.KmlWidth
+                };
+                SimpleStyle.Polygon = new PolygonStyle {
+                    Color = Color32.Parse(colorCode1)
+                };
+                document.AddStyle(SimpleStyle);
+                //Style for Estimated Iceberg Limit
+                SimpleStyle = new Style();
+                SimpleStyle.Id = styleEIL;
+                SimpleStyle.Line = new LineStyle {
+                    Color = Color32.Parse(colorCode2),
+                    Width = config.KmlWidth
+                };
+                SimpleStyle.Polygon = new PolygonStyle {
+                    Color = Color32.Parse(colorCode2)
+                };
+                document.AddStyle(SimpleStyle);
+                //Style for Sea Ice Limit
+                SimpleStyle = new Style();
+                SimpleStyle.Id = styleSIL;
+                SimpleStyle.Line = new LineStyle {
+                    Color = Color32.Parse(colorCode3),
+                    Width = config.KmlWidth
+                };
+                SimpleStyle.Polygon = new PolygonStyle {
+                    Color = Color32.Parse(colorCode3)
+                };
+                document.AddStyle(SimpleStyle);
+            }
 
             //LINE STRING & PLACEMARK CONSTRUCTION ZONE
             foreach(Ingestor ingest in input) {
@@ -153,10 +192,23 @@ namespace LID_ClassLibrary {
                     Name = ingest.GetLineType(),
                     Visibility = true,
                     Geometry = linestring,
-                    StyleUrl = new Uri(("#" + styleID), UriKind.Relative), //Uri makes url refrence to indocument style rather than cloud sourced
-                                                                           //Timestamp
-                    Time = lineTimespan
+                    //Moved StyleUrl out in order to be able to set it conditionally
+                    //Moved Description out as well
+                    Time = lineTimespan                                    //Timespan
                 };
+                if(ingest.GetLineType().Contains("ESTIMATED ICEBERG LIMIT")) {
+                    placemark.StyleUrl = new Uri(("#" + styleEIL), UriKind.Relative); //Uri makes url refrence to indocument style rather than cloud sourced
+                    placemark.Description = new Description() { Text = "Based off of data from Greenland" };
+                } else if(ingest.GetLineType().Contains("ICEBERG LIMIT")) {
+                    placemark.StyleUrl = new Uri(("#" + styleIL), UriKind.Relative);
+                    placemark.Description = new Description() { Text = "Based off of data from the IIP and Canadian Ice Patrol" };
+                } else if(ingest.GetLineType().Contains("SEA ICE LIMIT")) {
+                    placemark.StyleUrl = new Uri(("#" + styleSIL), UriKind.Relative);
+                    placemark.Description = new Description() { Text = "Sea ice within limit displayed" };
+                } else {
+                    placemark.StyleUrl = new Uri(("#" + styleIL), UriKind.Relative);
+                    placemark.Description = new Description() { Text = "Based off of data from the IIP and Canadian Ice Patrol" };
+                }
 
                 document.AddFeature(placemark);
 
@@ -194,15 +246,9 @@ namespace LID_ClassLibrary {
             };
 
             //Styling
-            string colorCode = config.KmlColor;
-            LineStyle lineStyle = new LineStyle {
-                Color = Color32.Parse(colorCode),
-                Width = config.KmlWidth
-            };
-
-            PolygonStyle PolyStyle = new PolygonStyle {
-                Color = Color32.Parse(colorCode)
-            };
+            string colorCode1 = config.KmlColor1;
+            string colorCode2 = config.KmlColor2;
+            string colorCode3 = config.KmlColor3;
 
             //Timespan
             SharpKml.Dom.TimeSpan lineTimespan = new SharpKml.Dom.TimeSpan {
@@ -211,13 +257,44 @@ namespace LID_ClassLibrary {
             };
 
             //Actual reads style and adds poly and line together
-            string styleID = "lineStyle";
-            Style SimpleStyle = new Style {
-                Id = styleID,
-                Line = lineStyle,
-                Polygon = PolyStyle
-            };
-            document.AddStyle(SimpleStyle);
+            string styleIL = "lineIcebergLimit";
+            string styleEIL = "lineEstimatedIcebergLimit";
+            string styleSIL = "lineSeaIceLimit";
+            {
+                //Style for Iceberg Limit
+                Style SimpleStyle = new Style();
+                SimpleStyle.Id = styleIL;
+                SimpleStyle.Line = new LineStyle {
+                    Color = Color32.Parse(colorCode1),
+                    Width = config.KmlWidth
+                };
+                SimpleStyle.Polygon = new PolygonStyle {
+                    Color = Color32.Parse(colorCode1)
+                };
+                document.AddStyle(SimpleStyle);
+                //Style for Estimated Iceberg Limit
+                SimpleStyle = new Style();
+                SimpleStyle.Id = styleEIL;
+                SimpleStyle.Line = new LineStyle {
+                    Color = Color32.Parse(colorCode2),
+                    Width = config.KmlWidth
+                };
+                SimpleStyle.Polygon = new PolygonStyle {
+                    Color = Color32.Parse(colorCode2)
+                };
+                document.AddStyle(SimpleStyle);
+                //Style for Sea Ice Limit
+                SimpleStyle = new Style();
+                SimpleStyle.Id = styleSIL;
+                SimpleStyle.Line = new LineStyle {
+                    Color = Color32.Parse(colorCode3),
+                    Width = config.KmlWidth
+                };
+                SimpleStyle.Polygon = new PolygonStyle {
+                    Color = Color32.Parse(colorCode3)
+                };
+                document.AddStyle(SimpleStyle);
+            }
 
             //LINE STRING & PLACEMARK CONSTRUCTION ZONE
             foreach(Ingestor ingest in input) {
@@ -249,9 +326,22 @@ namespace LID_ClassLibrary {
                     Name = ingest.GetLineType(),
                     Visibility = true,
                     Geometry = linestring,
-                    StyleUrl = new Uri(("#" + styleID), UriKind.Relative), //Uri makes url refrence to indocument style rather than cloud sourced
                     Time = lineTimespan
                 };
+                //Variably set Style and Description
+                if(ingest.GetLineType().Contains("ESTIMATED ICEBERG LIMIT")) {
+                    placemark.StyleUrl = new Uri(("#" + styleEIL), UriKind.Relative); //Uri makes url refrence to indocument style rather than cloud sourced
+                    placemark.Description = new Description() { Text = "Based off of data from Greenland" };
+                } else if(ingest.GetLineType().Contains("ICEBERG LIMIT")) {
+                    placemark.StyleUrl = new Uri(("#" + styleIL), UriKind.Relative);
+                    placemark.Description = new Description() { Text = "Based off of data from the IIP and Canadian Ice Patrol" };
+                } else if(ingest.GetLineType().Contains("SEA ICE LIMIT")) {
+                    placemark.StyleUrl = new Uri(("#" + styleSIL), UriKind.Relative);
+                    placemark.Description = new Description() { Text = "Sea ice within limit displayed" };
+                } else {
+                    placemark.StyleUrl = new Uri(("#" + styleIL), UriKind.Relative);
+                    placemark.Description = new Description() { Text = "Based off of data from the IIP and Canadian Ice Patrol" };
+                }
 
                 document.AddFeature(placemark);
 

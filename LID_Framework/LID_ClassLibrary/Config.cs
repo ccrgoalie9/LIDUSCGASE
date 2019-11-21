@@ -11,7 +11,9 @@ namespace LID_ClassLibrary {
         public string DirPath { get; set; }
         public string BulletinUrl { get; set; }
         public string ChartUrl { get; set; }
-        public string KmlColor { get; set; }
+        public string KmlColor1 { get; set; }
+        public string KmlColor2 { get; set; }
+        public string KmlColor3 { get; set; }
         public int KmlWidth { get; set; }
         public string ErrorFile { get; set; }
 
@@ -41,7 +43,9 @@ namespace LID_ClassLibrary {
                         if(temp.Contains("Files Directory Location:")) { DirPath = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); flag++; }
                         if(temp.Contains("Bulletin URL:")) { BulletinUrl = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); flag++; }
                         if(temp.Contains("Chart URL:")) { ChartUrl = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); flag++; }
-                        if(temp.Contains("KML Color Code:")) { KmlColor = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); flag++; }
+                        if(temp.Contains("KML Color Berg Limit    :")) { KmlColor1 = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); flag++; }
+                        if(temp.Contains("KML Color Est Berg Limit:")) { KmlColor2 = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); flag++; }
+                        if(temp.Contains("KML Color Sea Ice Limit :")) { KmlColor3 = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); flag++; }
                         if(temp.Contains("Error File Location:")) { ErrorFile = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); flag++; }
                         try {
                             if(temp.Contains("KML Line Width:")) { KmlWidth = Convert.ToInt32(temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1)); flag++; }
@@ -79,7 +83,9 @@ namespace LID_ClassLibrary {
                 configWriter.WriteLine(@"Color is set by TTBBGGRR");
                 configWriter.WriteLine(@"TT is the transparency from 00 being clear to FF being opaque.");
                 configWriter.WriteLine(@"BB, GG, and RR are the level of blue, green, and red respectively");
-                configWriter.WriteLine(@"KML Color Code: 'ffffe481'");
+                configWriter.WriteLine(@"KML Color Berg Limit    : 'ffffe481'");
+                configWriter.WriteLine(@"KML Color Est Berg Limit: 'ff00ffff'");
+                configWriter.WriteLine(@"KML Color Sea Ice Limit : 'ff0000ff'");
                 configWriter.WriteLine(@"KML Line Width: '5'");
             }
         }
