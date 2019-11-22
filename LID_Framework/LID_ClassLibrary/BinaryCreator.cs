@@ -98,23 +98,17 @@ namespace LID_ClassLibrary {
                 foreach(double[,] area in PolarCoords) {
                     //Sub-Area 0
                     temp = /*Area Shape x3bits*/Convert.ToString(0, 2).PadLeft(3, '0') + /*Scale Factor x2bits*/Convert.ToString(1, 2).PadLeft(2, '0');
-                    int lon = ((int)(area[0, 1] * 600000) & ((2^28)-1));
-                    temp += /*Latitude x27bits*/ Convert.ToString(Convert.ToInt32(area[0,1]), 2).PadLeft(28, '0');
-                    int lat = ((int)(area[0,0]*600000) & ((2^27)-1));
-                    temp += /*Longitude x28bits*/ Convert.ToString(Convert.ToInt32(area[0, 0]), 2).PadLeft(27, '0');
+                    int lon = (int)((area[0, 1]*600000)) & (int)(Math.Pow(2,28)-1);
+                    temp += /*Longitude x28bits*/ Convert.ToString(lon, 2).PadLeft(28, '0');
+                    int lat = (int)((area[0,0]*600000)) & (int)(Math.Pow(2,27)-1);
+                    temp += /*Latitude x27bits*/ Convert.ToString(lat, 2).PadLeft(27, '0');
                     temp += /*Precision x3bits*/ "100";
                     temp += /*Radius x12bits*/ "0".PadLeft(12, '0');
                     temp += /*Spare x21bits*/ "0".PadLeft(21, '0');
 
                     //Polyline of shape = 3
                     //Sub-Areas 1-8
-                    int numOfSubAreas = ((int)((area.Length / 2) - 1 / 4)*4);
-                    Console.WriteLine(area.Length);
-                    Console.WriteLine(area.Length/2);
-                    Console.WriteLine(area.Length/2 - 1);
-                    Console.WriteLine((area.Length/2 - 1)/4);
-                    Console.WriteLine((int)((area.Length/2 - 1) / 4));
-                    Console.WriteLine((int)((area.Length / 2 - 1) / 4) * 4);
+                    int numOfSubAreas = ((int)(Math.Ceiling((double)(area.Length / 2) - 1 / 4)));
                     Console.WriteLine(numOfSubAreas);
                     for(int i = 1; i <= numOfSubAreas; i++) {
                         //Each i is a point
@@ -122,7 +116,7 @@ namespace LID_ClassLibrary {
                             temp +=/*Area Shape x3bits*/Convert.ToString(3, 2).PadLeft(3, '0') + /*Scale Factor x2bits*/Convert.ToString(1, 2).PadLeft(2, '0');
                         }
                         if(i < (area.Length / 2 - 1)) {
-                            temp += Convert.ToString(Convert.ToInt32(area[i, 0]), 2).PadLeft(10, '0'); //Bearing
+                            temp += Convert.ToString(Convert.ToInt32(area[i, 0]*2), 2).PadLeft(10, '0'); //Bearing
                             temp += Convert.ToString(Convert.ToInt32(area[i, 1]), 2).PadLeft(11, '0'); //Range
                         } else {
                             temp += Convert.ToString(720, 2).PadLeft(10, '0'); //Default Bearing
