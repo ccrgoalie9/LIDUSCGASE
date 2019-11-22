@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
   <parameter name="IIS Web Application Name" description="" value="LIDTesting" tags="IisApp">
-    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\Carbon-Tower\\Desktop\\USCGA\\Academia\\2019\ Fall\\Software\ Engineering\\Github\\Projects\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\obj\\Release\\netcoreapp3\.0\\PubTmp\\Out\\$" />
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\Thomas\ Hardy\\Desktop\\USCGA\\Academia\\2019\ Fall\\Software\ Engineering\\Github\\Projects\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\obj\\Release\\netcoreapp3\.0\\PubTmp\\Out\\$" />
   </parameter>
 </parameters>

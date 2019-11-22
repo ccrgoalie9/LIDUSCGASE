@@ -15,8 +15,9 @@ namespace LID_ClassLibrary {
         public string Encode { get; set; }
         public string DAC { get; set; }
         public string FID { get; set; }
-        public string Month { get; set; }
         //public string Year { get; set; }
+        public string Month { get; set; }
+        
         public string Day { get; set; }
         public string Hour { get; set; }
         public string Minute { get; set; }
