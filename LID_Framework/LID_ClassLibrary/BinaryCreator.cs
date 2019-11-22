@@ -111,15 +111,31 @@ namespace LID_ClassLibrary {
 
                     //Polyline of shape = 3
                     //Sub-Areas 1-8
-                    for(int i = 1; i <= 4; i++) {
+                    for(int i = 1; i <= 32; i++) {
                         //Each i is a point
-                        if ((i-1) % 4 == 0) {
+                        if ((i-1) % 4 == 0) 
+                        {
                             temp +=/*Area Shape x3bits*/"011" + /*Scale Factor x2bits*/"01";
                         }
+                        if (i < (area.Length / 2 - 1))
+                        {
+                            temp += Convert.ToString(Convert.ToInt32(area[i, 0]), 2).PadLeft(10, '0'); //bearing
+                            temp += Convert.ToString(Convert.ToInt32(area[i, 1]), 2).PadLeft(11, '0'); //range
+                        }
+                        else
+                        {
+                            temp += Convert.ToString(720, 2).PadLeft(10, '0'); //default bearing
+                            temp += Convert.ToString(0, 2).PadLeft(11, '0'); //default range
+                        }
+                        if (((i) / 4) >= 1 && ((i - 1) % 4) == 3)
+                        {
+                            temp += "0".PadLeft(7, '0'); //spare 7 bits
+                        }
+                        /*
                         int theta = (int)(area[i,0]*100);
                         if(theta % 10 > 5) {
 
-                        }
+                        }*/
                     }
 
                     LineMessages.Add(temp);
