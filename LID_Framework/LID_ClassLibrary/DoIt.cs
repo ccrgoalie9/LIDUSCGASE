@@ -77,6 +77,8 @@ namespace LID_ClassLibrary {
             try {
                 Console.Write("Creating Binary...\t\t");
                 todayBin = new BinaryCreator(todayBR.GetCoordinates());
+                Console.WriteLine("Binaries Created");
+                todayBin.Debug();
             } catch(Exception x) {
                 Console.WriteLine("Error: Failed To Create The Binary");
                 File.AppendAllText(config.ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");

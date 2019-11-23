@@ -14,7 +14,7 @@ namespace LID_ClassLibrary {
             //WILL DEFINE LAT/LON BY READING FROM TOMS INPUT (COORDINATES IN DEGREE DECIMAL FORMAT)
             PolarSets = new double[input.Length][,];
             ConvertCoordinates(input);
-            Debug();
+            //Debug();
             WriteFile();
         }
 
@@ -79,7 +79,7 @@ namespace LID_ClassLibrary {
             return outFile;
         }
 
-        private void Debug() {
+        public void Debug() {
             bool flag = true;
             Console.WriteLine("\nBearing Range Debug");
             foreach(double[,] x in PolarSets) {
