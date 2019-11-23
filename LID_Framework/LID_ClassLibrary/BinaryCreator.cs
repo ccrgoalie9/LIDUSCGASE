@@ -109,7 +109,7 @@ namespace LID_ClassLibrary {
                         if((i - 1) % 4 == 0) {
                             temp +=/*Area Shape x3bits*/Convert.ToString(3, 2).PadLeft(3, '0') + /*Scale Factor x2bits*/Convert.ToString(1, 2).PadLeft(2, '0');
                         }
-                        if(i < (area.Length / 2 - 1)) {
+                        if(i < (area.Length / 2))/*Add bearing and range if it is within the index*/ {
                             temp += Convert.ToString(Convert.ToInt32(area[i, 0] * 2), 2).PadLeft(10, '0'); //Bearing
                             temp += Convert.ToString(Convert.ToInt32(area[i, 1]), 2).PadLeft(11, '0'); //Range
                         } else {
