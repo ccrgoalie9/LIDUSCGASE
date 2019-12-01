@@ -4,7 +4,7 @@ using System.IO;
 namespace LID_ClassLibrary {
     public class BearingRange {
         double a, c, d, R, phi1, phi2, deltaphi, deltalambda, theta1, theta, theta2;
-        readonly double[][,] PolarSets, KMPolarSets;
+        readonly double[][,] PolarSets;
         string output;
         readonly string outFile;
 
@@ -13,26 +13,25 @@ namespace LID_ClassLibrary {
 
             //WILL DEFINE LAT/LON BY READING FROM TOMS INPUT (COORDINATES IN DEGREE DECIMAL FORMAT)
             PolarSets = new double[input.Length][,];
-            KMPolarSets = new double[input.Length][,];
             ConvertCoordinates(input);
+            Debug();
             WriteFile();
         }
 
         //Main Method
         private void ConvertCoordinates(Ingestor[] input) {
+            int count = 0;
             foreach(Ingestor ingest in input) {
                 double[,] coords = ingest.GetCoordinates();
-                double[,] temp = new double[ingest.GetCoordinates().Length + 1, 2];
+                double[,] temp = new double[ingest.GetCoordinates().Length/2, 2];
                 //Set the first and last set
-                temp[0, 0] = coords[0, 0];
-                temp[0, 1] = coords[0, 1];
-                temp[(temp.Length / 2) - 1, 0] = coords[(coords.Length / 2) - 1, 0];
-                temp[(temp.Length / 2) - 1, 1] = coords[(coords.Length / 2) - 1, 1];
+                temp[0, 0] = Math.Round(coords[0, 0],2);
+                temp[0, 1] = Math.Round(coords[0, 1],2);
                 output += ingest.GetLineType() + "\n";
                 output += temp[0, 0] + " " + temp[0, 1] + "\n";
 
                 //Do the math
-                int count = 0;
+                
                 try {
                     for(int i = 0; i < (coords.Length / 2); i++) {
                         for(int j = 0; j <= 1; j++) {
@@ -55,13 +54,12 @@ namespace LID_ClassLibrary {
                         theta1 = ((Math.Atan2(Math.Sin(deltalambda) * Math.Cos(phi2), Math.Cos(phi1) * Math.Sin(phi2) - Math.Sin(phi1) * Math.Cos(phi2) * Math.Cos(deltalambda)) * (180 / Math.PI)) + 360) % 360;
                         theta2 = ((Math.Atan2(Math.Sin(-deltalambda) * Math.Cos(phi1), Math.Cos(phi2) * Math.Sin(phi1) - Math.Sin(phi2) * Math.Cos(phi1) * Math.Cos(-deltalambda)) * (180 / Math.PI)) + 180) % 360;
                         theta = (theta1 + theta2) / 2;
-                        temp[i + 1, 0] = 360 - theta;
-                        temp[i + 1, 1] = d;
-                        output += (360 - theta) + " " + d + "\n";
+                        temp[i + 1, 0] = Math.Round((360 - theta),2);
+                        temp[i + 1, 1] = Math.Round((d / 1000),2); //Distance in Kilometers
+                        output += Math.Round((360 - theta),2) + " " + Math.Round((d/1000),2) + "\n";
                     }
                     output += temp[(temp.Length / 2) - 1, 0] + " " + temp[(temp.Length / 2) - 1, 1] + "\n";
                     PolarSets[count] = temp;
-                    KMPolarSets[count] = temp;
                     count++;
                 } catch(Exception x) {
                     Console.WriteLine(x.Message);
@@ -79,6 +77,19 @@ namespace LID_ClassLibrary {
         //Return outfile location
         public string GetOutFile() {
             return outFile;
+        }
+
+        private void Debug() {
+            bool flag = true;
+            Console.WriteLine("\nBearing Range Debug");
+            foreach(double[,] x in PolarSets) {
+                foreach(double y in x) {
+                    Console.Write(y + " ");
+                    flag = !flag;
+                    if(flag) { Console.WriteLine(""); };
+                }
+                Console.WriteLine("");
+            }
         }
 
         //Output

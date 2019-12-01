@@ -29,6 +29,7 @@ namespace LID_ClassLibrary {
         public string Spare { get; set; }
         public string MessageVersion { get; set; }
         public string Duration { get; set; }
+        public string Action { get; set; }
 
 
 
@@ -45,8 +46,6 @@ namespace LID_ClassLibrary {
             //    8-37     30   MMSI
 
             try {
-                Console.WriteLine("binary message test");
-
                 Type = Convert.ToString(8, 2).PadLeft(6, '0'); //6bits
                 RepeatIndicator = Convert.ToString(0, 2).PadLeft(2, '0'); //2bits
                 Mmsi = Convert.ToString(003679999, 2).PadLeft(30, '0'); //30bits
@@ -59,19 +58,15 @@ namespace LID_ClassLibrary {
                 FID = Convert.ToString(22, 2).PadLeft(6, '0');
 
                 //Set the time
-                Console.WriteLine("Month (UTC, ##): ");
                 X = Convert.ToInt16(DateTime.UtcNow.ToString("MM"));
                 Month = Convert.ToString(X, 2).PadLeft(4, '0');
 
-                Console.WriteLine("Day (UTC, ##): ");
                 Y = Convert.ToInt16(DateTime.UtcNow.ToString("dd"));
                 Day = Convert.ToString(Y, 2).PadLeft(5, '0');
 
-                Console.WriteLine("Hour (UTC, ##): ");
                 Z = Convert.ToInt16(DateTime.UtcNow.ToString("HH"));
                 Hour = Convert.ToString(Z, 2).PadLeft(5, '0');
 
-                Console.WriteLine("Minute (UTC, ##): ");
                 W = Convert.ToInt16(DateTime.UtcNow.ToString("mm"));
                 Minute = Convert.ToString(W, 2).PadLeft(6, '0');
 
@@ -81,14 +76,11 @@ namespace LID_ClassLibrary {
 
 
                 //maybe duration?
-                Duration = Convert.ToString(86400, 2).PadLeft(18, '0');
+                Duration = Convert.ToString(1440, 2).PadLeft(18, '0');
+
+                Action = Convert.ToString(0, 2).PadLeft(1, '0');
 
                 AreaShape = Convert.ToString(0, 2).PadLeft(3, '0');
-
-                //DO WE NEEED THIS IF WE ARE ALREADY IN KM??
-                Console.WriteLine("What is your scale factor (1, 10, 100, 1000)?: ");
-                S = Convert.ToInt16(Console.ReadLine());
-                ScaleFactor = Convert.ToString(S, 2).PadLeft(2, '0');
 
                 Payload = Type + RepeatIndicator + Mmsi + Spare;
 
@@ -96,21 +88,26 @@ namespace LID_ClassLibrary {
 
                 //EACH AIS message can have 8 subareas
                 //EACH subarea can have 4 points
+                Encode = Payload + DAC + FID + MessageVersion + MsgLink + Notice + Month + Day + Hour + Minute + Duration + Action + Spare;
+                LineMessages = new List<string>();
+                string temp;
 
+                Console.WriteLine(PolarCoords.Length);
                 //Make a line for each coordinate set
                 foreach(double[,] area in PolarCoords) {
                     //Sub-Area 0
-                    string temp = /*Area Shape x3bits*/"000" + /*Scale Factor x2bits*/"01";
-                    int lon = ((int)(area[0, 1] * 600000) & (2^28-1));
-                    temp += /*Latitude x27bits*/ Convert.ToString(lon, 2).PadLeft(28, '0');
-                    int lat = ((int)(area[0,0]*600000) & (2^27-1));
-                    temp += /*Longitude x28bits*/ Convert.ToString(lat, 2).PadLeft(27, '0');
+                    temp = /*Area Shape x3bits*/Convert.ToString(0, 2).PadLeft(3, '0') + /*Scale Factor x2bits*/Convert.ToString(1, 2).PadLeft(2, '0');
+                    int lon = ((int)(area[0, 1] * 600000) & ((2^28)-1));
+                    temp += /*Latitude x27bits*/ Convert.ToString(Convert.ToInt32(area[0,1]), 2).PadLeft(28, '0');
+                    int lat = ((int)(area[0,0]*600000) & ((2^27)-1));
+                    temp += /*Longitude x28bits*/ Convert.ToString(Convert.ToInt32(area[0, 0]), 2).PadLeft(27, '0');
                     temp += /*Precision x3bits*/ "100";
                     temp += /*Radius x12bits*/ "0".PadLeft(12, '0');
                     temp += /*Spare x21bits*/ "0".PadLeft(21, '0');
 
                     //Polyline of shape = 3
                     //Sub-Areas 1-8
+<<<<<<< HEAD
                     for(int i = 1; i <= 32; i++) {
                         //Each i is a point
                         if ((i-1) % 4 == 0) 
@@ -136,18 +133,48 @@ namespace LID_ClassLibrary {
                         if(theta % 10 > 5) {
 
                         }*/
+=======
+                    int numOfSubAreas = ((int)((area.Length / 2) - 1 / 4)*4);
+                    Console.WriteLine(area.Length);
+                    Console.WriteLine(area.Length/2);
+                    Console.WriteLine(area.Length/2 - 1);
+                    Console.WriteLine((area.Length/2 - 1)/4);
+                    Console.WriteLine((int)((area.Length/2 - 1) / 4));
+                    Console.WriteLine((int)((area.Length / 2 - 1) / 4) * 4);
+                    Console.WriteLine(numOfSubAreas);
+                    for(int i = 1; i <= numOfSubAreas; i++) {
+                        //Each i is a point
+                        if ((i-1) % 4 == 0) {
+                            temp +=/*Area Shape x3bits*/Convert.ToString(3, 2).PadLeft(3, '0') + /*Scale Factor x2bits*/Convert.ToString(1, 2).PadLeft(2, '0');
+                        }
+                        if(i < (area.Length / 2 - 1)) {
+                            temp += Convert.ToString(Convert.ToInt32(area[i, 0]), 2).PadLeft(10, '0'); //Bearing
+                            temp += Convert.ToString(Convert.ToInt32(area[i, 1]), 2).PadLeft(11, '0'); //Range
+                        } else {
+                            temp += Convert.ToString(720, 2).PadLeft(10, '0'); //Default Bearing
+                            temp += Convert.ToString(0, 2).PadLeft(11, '0'); //Default Range
+                        }
+                        if(((i) / 4) >= 1 && ((i - 1) % 4) == 3) {
+                            temp += "0".PadLeft(7,'0'); //Spare 7bits
+                        }
+>>>>>>> f3fb8c46f3a7a8651615b11990ca180772837154
                     }
-
+                    Console.WriteLine("Adding Item");
                     LineMessages.Add(temp);
+                    Console.WriteLine("Item Added");
                 }
-
                 //End Creation of Area Shape
 
-                Encode = Payload + DAC + FID + Month + Day + Hour + Minute + AreaShape + ScaleFactor;
+                //Encode = Payload + DAC + FID + MessageVersion + MsgLink + Notice + Month + Day + Hour + Minute + Duration + Action + Spare;
 
-                Console.WriteLine(Encode);
-                Console.WriteLine(Encode.Length);
-                Console.ReadKey();
+                for(int i = 0; i < LineMessages.Count; i++) {
+                    LineMessages[i] = Encode + LineMessages[i];
+                }
+
+                foreach (string x in LineMessages) {
+                    Console.WriteLine(x);
+                    Console.WriteLine(x.Length);
+                }
 
             }
             catch (Exception e) {
