@@ -11,12 +11,12 @@ namespace LID_ClassLibrary {
         public string Type { get; set; }
         public string RepeatIndicator { get; set; }
         public string Mmsi { get; set; }
-        public string Payload { get; set; }
         public string Encode { get; set; }
         public string DAC { get; set; }
         public string FID { get; set; }
-        public string Month { get; set; }
         //public string Year { get; set; }
+        public string Month { get; set; }
+
         public string Day { get; set; }
         public string Hour { get; set; }
         public string Minute { get; set; }
@@ -45,7 +45,8 @@ namespace LID_ClassLibrary {
             //    6-7       2   Repeat Indicator
             //    8-37     30   MMSI
 
-            try {
+            try
+            { // Try Catch Statement that creates an array of variables. 
                 Type = Convert.ToString(8, 2).PadLeft(6, '0'); //6bits
                 RepeatIndicator = Convert.ToString(0, 2).PadLeft(2, '0'); //2bits
                 Mmsi = Convert.ToString(003679999, 2).PadLeft(30, '0'); //30bits
@@ -82,35 +83,34 @@ namespace LID_ClassLibrary {
 
                 AreaShape = Convert.ToString(0, 2).PadLeft(3, '0');
 
-                Payload = Type + RepeatIndicator + Mmsi + Spare;
+                //Everything that is the same for each AIS message
+                Encode = Type + RepeatIndicator + Mmsi + Spare + DAC + FID + MessageVersion + MsgLink + Notice + Month + Day + Hour + Minute + Duration + Action + Spare;
 
-                //Creation of AreaShape Will Go HERE
-
-                //EACH AIS message can have 8 subareas
-                //EACH subarea can have 4 points
-                Encode = Payload + DAC + FID + MessageVersion + MsgLink + Notice + Month + Day + Hour + Minute + Duration + Action + Spare;
                 LineMessages = new List<string>();
                 string temp;
-
-                Console.WriteLine(PolarCoords.Length);
+                //EACH AIS message can have 8 subareas
+                //EACH subarea can have 4 points
                 //Make a line for each coordinate set
-                foreach(double[,] area in PolarCoords) {
+                foreach (double[,] area in PolarCoords)
+                {
                     //Sub-Area 0
                     temp = /*Area Shape x3bits*/Convert.ToString(0, 2).PadLeft(3, '0') + /*Scale Factor x2bits*/Convert.ToString(1, 2).PadLeft(2, '0');
-                    int lon = ((int)(area[0, 1] * 600000) & ((2^28)-1));
-                    temp += /*Latitude x27bits*/ Convert.ToString(Convert.ToInt32(area[0,1]), 2).PadLeft(28, '0');
-                    int lat = ((int)(area[0,0]*600000) & ((2^27)-1));
-                    temp += /*Longitude x28bits*/ Convert.ToString(Convert.ToInt32(area[0, 0]), 2).PadLeft(27, '0');
+                    int lon = (int)((area[0, 1] * 600000)) & (int)(Math.Pow(2, 28) - 1);
+                    temp += /*Longitude x28bits*/ Convert.ToString(lon, 2).PadLeft(28, '0');
+                    int lat = (int)((area[0, 0] * 600000)) & (int)(Math.Pow(2, 27) - 1);
+                    temp += /*Latitude x27bits*/ Convert.ToString(lat, 2).PadLeft(27, '0');
                     temp += /*Precision x3bits*/ "100";
                     temp += /*Radius x12bits*/ "0".PadLeft(12, '0');
                     temp += /*Spare x21bits*/ "0".PadLeft(21, '0');
 
                     //Polyline of shape = 3
                     //Sub-Areas 1-8
-<<<<<<< HEAD
-                    for(int i = 1; i <= 32; i++) {
+                    //<<<<<<< HEAD
+                    //<<<<<<< HEAD
+                    for (int i = 1; i <= 32; i++)
+                    {
                         //Each i is a point
-                        if ((i-1) % 4 == 0) 
+                        if ((i - 1) % 4 == 0)
                         {
                             temp +=/*Area Shape x3bits*/"011" + /*Scale Factor x2bits*/"01";
                         }
@@ -133,61 +133,77 @@ namespace LID_ClassLibrary {
                         if(theta % 10 > 5) {
 
                         }*/
-=======
-                    int numOfSubAreas = ((int)((area.Length / 2) - 1 / 4)*4);
-                    Console.WriteLine(area.Length);
-                    Console.WriteLine(area.Length/2);
-                    Console.WriteLine(area.Length/2 - 1);
-                    Console.WriteLine((area.Length/2 - 1)/4);
-                    Console.WriteLine((int)((area.Length/2 - 1) / 4));
-                    Console.WriteLine((int)((area.Length / 2 - 1) / 4) * 4);
-                    Console.WriteLine(numOfSubAreas);
-                    for(int i = 1; i <= numOfSubAreas; i++) {
-                        //Each i is a point
-                        if ((i-1) % 4 == 0) {
-                            temp +=/*Area Shape x3bits*/Convert.ToString(3, 2).PadLeft(3, '0') + /*Scale Factor x2bits*/Convert.ToString(1, 2).PadLeft(2, '0');
+                        //=======
+                        int numOfSubAreas = ((int)((area.Length / 2) - 1 / 4) * 4);
+                        Console.WriteLine(area.Length);
+                        Console.WriteLine(area.Length / 2);
+                        Console.WriteLine(area.Length / 2 - 1);
+                        Console.WriteLine((area.Length / 2 - 1) / 4);
+                        Console.WriteLine((int)((area.Length / 2 - 1) / 4));
+                        Console.WriteLine((int)((area.Length / 2 - 1) / 4) * 4);
+                        Console.WriteLine(numOfSubAreas);
+                        //=======
+                        int numOfSubAreas = (int)Math.Ceiling((((double)area.Length / 2) - 1) / 4) * 4; //Multiples Of 4 (actual #subareas = this/4)
+                                                                                                        //>>>>>>> b8332e77a990296a0c7c13df7a49787511d2e79f
+                        for (int i = 1; i <= numOfSubAreas; i++)
+                        {
+                            //Each i is a point
+                            if ((i - 1) % 4 == 0)
+                            {
+                                temp +=/*Area Shape x3bits*/Convert.ToString(3, 2).PadLeft(3, '0') + /*Scale Factor x2bits*/Convert.ToString(1, 2).PadLeft(2, '0');
+                            }
+                            if (i < (area.Length / 2))/*Add bearing and range if it is within the index*/
+                            {
+                                temp += Convert.ToString(Convert.ToInt32(area[i, 0] * 2), 2).PadLeft(10, '0'); //Bearing
+                                temp += Convert.ToString(Convert.ToInt32(area[i, 1]), 2).PadLeft(11, '0'); //Range
+                            }
+                            else
+                            {
+                                temp += Convert.ToString(720, 2).PadLeft(10, '0'); //Default Bearing
+                                temp += Convert.ToString(0, 2).PadLeft(11, '0'); //Default Range
+                            }
+                            if (((i) / 4) >= 1 && ((i - 1) % 4) == 3)
+                            {
+                                temp += "0".PadLeft(7, '0'); //Spare 7bits
+                            }
+                            //>>>>>>> f3fb8c46f3a7a8651615b11990ca180772837154
                         }
-                        if(i < (area.Length / 2 - 1)) {
-                            temp += Convert.ToString(Convert.ToInt32(area[i, 0]), 2).PadLeft(10, '0'); //Bearing
-                            temp += Convert.ToString(Convert.ToInt32(area[i, 1]), 2).PadLeft(11, '0'); //Range
-                        } else {
-                            temp += Convert.ToString(720, 2).PadLeft(10, '0'); //Default Bearing
-                            temp += Convert.ToString(0, 2).PadLeft(11, '0'); //Default Range
-                        }
-                        if(((i) / 4) >= 1 && ((i - 1) % 4) == 3) {
-                            temp += "0".PadLeft(7,'0'); //Spare 7bits
-                        }
->>>>>>> f3fb8c46f3a7a8651615b11990ca180772837154
+                        LineMessages.Add(temp);
                     }
-                    Console.WriteLine("Adding Item");
-                    LineMessages.Add(temp);
-                    Console.WriteLine("Item Added");
+                    //End Creation of Area Shape
+
+                    //Encode = Payload + DAC + FID + MessageVersion + MsgLink + Notice + Month + Day + Hour + Minute + Duration + Action + Spare;
+
+                    for (int i = 0; i < LineMessages.Count; i++)
+                    {
+                        LineMessages[i] = Encode + LineMessages[i];
+                    }
+
                 }
-                //End Creation of Area Shape
-
-                //Encode = Payload + DAC + FID + MessageVersion + MsgLink + Notice + Month + Day + Hour + Minute + Duration + Action + Spare;
-
-                for(int i = 0; i < LineMessages.Count; i++) {
-                    LineMessages[i] = Encode + LineMessages[i];
-                }
-
-                foreach (string x in LineMessages) {
-                    Console.WriteLine(x);
-                    Console.WriteLine(x.Length);
-                }
-
             }
-            catch (Exception e) {
+            catch (Exception e)
+            {
                 Console.WriteLine("Error: {0}", e.Message);
             }
+        } //End of Constructor
 
-            // Try Catch Statement that creates an array of variables. 
+        public void Debug() {
+            foreach(string x in LineMessages) {
+                Console.WriteLine(x);
+                Console.WriteLine(x.Length);
+            }
         }
-
-
 
         public string GetEncoded() {
             return Encode;
+        }
+
+        public string GetBinary(int ind) {
+            return LineMessages[ind];
+        }
+
+        public List<string> GetAllBinaries() {
+            return LineMessages;
         }
     }
 
