@@ -58,7 +58,6 @@ namespace LID_ClassLibrary {
                         temp[i + 1, 1] = Math.Round((d / 1000),2); //Distance in Kilometers
                         output += Math.Round((360 - theta),2) + " " + Math.Round((d/1000),2) + "\n";
                     }
-                    output += temp[(temp.Length / 2) - 1, 0] + " " + temp[(temp.Length / 2) - 1, 1] + "\n";
                     PolarSets[count] = temp;
                     count++;
                 } catch(Exception x) {
