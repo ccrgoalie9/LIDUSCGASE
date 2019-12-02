@@ -1,7 +1,7 @@
 Configuration file for the LID program, please only edit between the single quotes
 
-Files Directory Location: 'C:\Users\Carbon-Tower\Documents\LID Files'
-Error File Location: 'C:\Users\Carbon-Tower\Documents\LID Files\ErrorLogs\Error.txt'
+Files Directory Location: 'C:\Users\Luke Arsenault\Documents\LID Files'
+Error File Location: 'C:\Users\Luke Arsenault\Documents\LID Files\ErrorLogs\Error.txt'
 
 Update links only if they have changed
 Bulletin URL: 'https://www.navcen.uscg.gov/?pageName=iipB12Out'
