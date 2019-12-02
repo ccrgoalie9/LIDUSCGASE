@@ -1,48 +1,46 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Luke Arsenault\\source\\repos\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\LID_WebApp.csproj": {}
+    "C:\\Users\\C.Rosselot\\Documents\\GitHub\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\LID_WebApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Luke Arsenault\\source\\repos\\LIDUSCGASE\\LID_Framework\\LID_ClassLibrary\\LID_ClassLibrary.csproj": {
+    "C:\\Users\\C.Rosselot\\Documents\\GitHub\\LIDUSCGASE\\LID_Framework\\LID_ClassLibrary\\LID_ClassLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Luke Arsenault\\source\\repos\\LIDUSCGASE\\LID_Framework\\LID_ClassLibrary\\LID_ClassLibrary.csproj",
+        "projectUniqueName": "C:\\Users\\C.Rosselot\\Documents\\GitHub\\LIDUSCGASE\\LID_Framework\\LID_ClassLibrary\\LID_ClassLibrary.csproj",
         "projectName": "LID_ClassLibrary",
-        "projectPath": "C:\\Users\\Luke Arsenault\\source\\repos\\LIDUSCGASE\\LID_Framework\\LID_ClassLibrary\\LID_ClassLibrary.csproj"
+        "projectPath": "C:\\Users\\C.Rosselot\\Documents\\GitHub\\LIDUSCGASE\\LID_Framework\\LID_ClassLibrary\\LID_ClassLibrary.csproj"
       },
       "frameworks": {
         "net472": {}
       }
     },
-    "C:\\Users\\Luke Arsenault\\source\\repos\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\LID_WebApp.csproj": {
+    "C:\\Users\\C.Rosselot\\Documents\\GitHub\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\LID_WebApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Luke Arsenault\\source\\repos\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\LID_WebApp.csproj",
+        "projectUniqueName": "C:\\Users\\C.Rosselot\\Documents\\GitHub\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\LID_WebApp.csproj",
         "projectName": "LID_WebApp",
-        "projectPath": "C:\\Users\\Luke Arsenault\\source\\repos\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\LID_WebApp.csproj",
-        "packagesPath": "C:\\Users\\Luke Arsenault\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Luke Arsenault\\source\\repos\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\obj\\",
+        "projectPath": "C:\\Users\\C.Rosselot\\Documents\\GitHub\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\LID_WebApp.csproj",
+        "packagesPath": "C:\\Users\\C.Rosselot\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\C.Rosselot\\Documents\\GitHub\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Luke Arsenault\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\C.Rosselot\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.0": {
             "projectReferences": {
-              "C:\\Users\\Luke Arsenault\\source\\repos\\LIDUSCGASE\\LID_Framework\\LID_ClassLibrary\\LID_ClassLibrary.csproj": {
-                "projectPath": "C:\\Users\\Luke Arsenault\\source\\repos\\LIDUSCGASE\\LID_Framework\\LID_ClassLibrary\\LID_ClassLibrary.csproj"
+              "C:\\Users\\C.Rosselot\\Documents\\GitHub\\LIDUSCGASE\\LID_Framework\\LID_ClassLibrary\\LID_ClassLibrary.csproj": {
+                "projectPath": "C:\\Users\\C.Rosselot\\Documents\\GitHub\\LIDUSCGASE\\LID_Framework\\LID_ClassLibrary\\LID_ClassLibrary.csproj"
               }
             }
           }
@@ -55,45 +53,11 @@
       },
       "frameworks": {
         "netcoreapp3.0": {
-          "dependencies": {
-            "Microsoft.EntityFrameworkCore.SqlServer": {
-              "target": "Package",
-              "version": "[3.0.0, )"
-            },
-            "Microsoft.EntityFrameworkCore.Tools": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[3.0.0, )"
-            },
-            "Microsoft.Extensions.Logging.Debug": {
-              "target": "Package",
-              "version": "[3.0.0, )"
-            },
-            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
-              "target": "Package",
-              "version": "[3.0.0, )"
-            }
-          },
           "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48"
+            "net461"
           ],
           "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+          "warn": true
         }
       }
     }

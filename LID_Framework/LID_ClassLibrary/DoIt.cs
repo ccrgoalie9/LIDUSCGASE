@@ -13,6 +13,7 @@ namespace LID_ClassLibrary {
         Scraper todayScraper;
         readonly Config config;
         Line todayLine;
+        ArmoredAscii todayAscii;
 
         public DoIt(Config config) {
             this.config = config;
@@ -81,6 +82,18 @@ namespace LID_ClassLibrary {
                 todayBin.Debug();
             } catch(Exception x) {
                 Console.WriteLine("Error: Failed To Create The Binary");
+                File.AppendAllText(config.ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
+                return -1;
+            }
+
+            try
+            {
+                Console.Write("Creating Armored Ascii....\t\t");
+                todayAscii = new ArmoredAscii(todayBin.LineMessages, config);
+                Console.WriteLine("Ascii Created");
+
+            } catch(Exception x){
+                Console.WriteLine("Error: Failed To Create Armored Ascii");
                 File.AppendAllText(config.ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
                 return -1;
             }
