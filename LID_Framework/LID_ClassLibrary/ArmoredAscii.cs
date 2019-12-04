@@ -63,6 +63,7 @@ namespace LID_ClassLibrary {
         }
 
         public void Debug() {
+            Console.WriteLine("\nArmored ASCII Debug");
             foreach (string output in AsciiStream) {
                 Console.WriteLine(output);
             }

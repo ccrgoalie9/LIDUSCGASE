@@ -137,6 +137,7 @@ namespace LID_ClassLibrary {
         } //End of Constructor
 
         public void Debug() {
+            Console.WriteLine("\nBinaryCreator Debug");
             foreach(string x in LineMessages) {
                 Console.WriteLine(x);
                 Console.WriteLine(x.Length);
