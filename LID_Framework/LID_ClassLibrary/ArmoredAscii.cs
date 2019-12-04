@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 namespace LID_ClassLibrary {
     class ArmoredAscii {
 
-        List<string> AsciiStream;
+        public List<string> AsciiStream {get; set;}
+
         public ArmoredAscii(List<string> input, Config config) {
             AsciiStream = new List<string>();
             ConvertToAscii(input);
@@ -16,21 +17,55 @@ namespace LID_ClassLibrary {
         public void ConvertToAscii(List<string> input) {
             List<string> BinaryStream = input;
             string temp = "";
-            byte[] convert;
-            int count = 0;
             foreach(String x in BinaryStream) {
-                convert = new byte[x.Length/6];
-                for(int i = 0; i < x.Length; i++) {
-                    temp += x[i];
-                    if(i % 6 == 0) {
-                        convert[0] = Convert.ToByte(temp);
-                        count++;
-                        temp = "";
+                try {
+                    for(int i = 0; i < x.Length; i+=6) {
+                        temp += Bin2Ascii(x.Substring(i,6));
                     }
+                    AsciiStream.Add(temp);
+                    temp = "";
+                }catch(Exception e) {
+                    Console.WriteLine(e.Message);
                 }
-                //AsciiStream.Add(Encoding.ASCII.GetString(convert[], 6));
             }
 
+        }
+
+        //Convert the string of bits to an integer then to ascii
+        //ASCII -> bits
+        //ASCII - 48 if (> 40){-8} 
+        public char Bin2Ascii(string input) {
+            char output;
+            int temp = 0;
+            temp += Convert.ToInt32(Convert.ToString(input[0])) * 32;
+            temp += Convert.ToInt32(Convert.ToString(input[1])) * 16;
+            temp += Convert.ToInt32(Convert.ToString(input[2])) * 8;
+            temp += Convert.ToInt32(Convert.ToString(input[3])) * 4;
+            temp += Convert.ToInt32(Convert.ToString(input[4])) * 2;
+            temp += Convert.ToInt32(Convert.ToString(input[5])) * 1;
+            /* Debug '*' here -> /
+            Console.Write(input[0] + "*32=" + (Convert.ToInt32(Convert.ToString(input[0])) * 32));
+            Console.Write(" " + input[1] + "*16=" + (Convert.ToInt32(Convert.ToString(input[1])) * 16));
+            Console.Write(" " + input[2] + "*8=" + (Convert.ToInt32(Convert.ToString(input[2])) * 8));
+            Console.Write(" " + input[3] + "*4=" + (Convert.ToInt32(Convert.ToString(input[3])) * 4));
+            Console.Write(" " + input[4] + "*2=" + (Convert.ToInt32(Convert.ToString(input[4])) * 2));
+            Console.Write(" " + input[5] + "*1=" + (Convert.ToInt32(Convert.ToString(input[5])) * 1));
+            Console.Write("Raw:" + temp);
+            //*/
+            //if(temp < 40) temp += 8;
+            temp += 48;
+            output = Convert.ToChar(temp);
+            /* Debug '*' here -> /
+            Console.Write(" ASCII:" + temp);
+            Console.WriteLine(" Char:" + output);
+            */
+            return output;
+        }
+
+        public void Debug() {
+            foreach (string output in AsciiStream) {
+                Console.WriteLine(output);
+            }
         }
 
     }

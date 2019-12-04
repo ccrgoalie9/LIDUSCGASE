@@ -11,7 +11,7 @@ KML file parameters
 Color is set by TTBBGGRR
 TT is the transparency from 00 being clear to FF being opaque.
 BB, GG, and RR are the level of blue, green, and red respectively
-KML Color Berg Limit    : 'ffffe481'
+KML Color Berg Limit      : 'ffffe481'
 KML Color Est Berg Limit: 'ff00ffff'
-KML Color Sea Ice Limit : 'ff0000ff'
+KML Color Sea Ice Limit  : 'ff0000ff'
 KML Line Width: '5'

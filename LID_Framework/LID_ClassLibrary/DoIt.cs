@@ -69,6 +69,7 @@ namespace LID_ClassLibrary {
                 Console.Write("Creating Bearings And Ranges...\t");
                 todayBR = new BearingRange(todayScraper.GetCoordinatesIngestors(), config);
                 Console.WriteLine("Bearing And Ranges Created");
+                //todayBR.Debug();
             } catch(Exception x) {
                 Console.WriteLine("Error: Failed To Create The File");
                 File.AppendAllText(config.ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
@@ -79,7 +80,7 @@ namespace LID_ClassLibrary {
                 Console.Write("Creating Binary...\t\t");
                 todayBin = new BinaryCreator(todayBR.GetCoordinates());
                 Console.WriteLine("Binaries Created");
-                todayBin.Debug();
+                //todayBin.Debug();
             } catch(Exception x) {
                 Console.WriteLine("Error: Failed To Create The Binary");
                 File.AppendAllText(config.ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
@@ -88,10 +89,10 @@ namespace LID_ClassLibrary {
 
             try
             {
-                Console.Write("Creating Armored Ascii....\t\t");
+                Console.Write("Creating Armored Ascii...\t");
                 todayAscii = new ArmoredAscii(todayBin.LineMessages, config);
                 Console.WriteLine("Ascii Created");
-
+                todayAscii.Debug();
             } catch(Exception x){
                 Console.WriteLine("Error: Failed To Create Armored Ascii");
                 File.AppendAllText(config.ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
