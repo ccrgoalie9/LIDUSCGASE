@@ -103,3 +103,26 @@ C:\Users\Luke Arsenault\source\repos\LIDUSCGASE\LID_Framework\LID_WinForm\obj\De
 C:\Users\Luke Arsenault\source\repos\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.csproj.CopyComplete
 C:\Users\Luke Arsenault\source\repos\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.exe
 C:\Users\Luke Arsenault\source\repos\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.pdb
+C:\Users\Maylis\source\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Debug\Resources\about.txt
+C:\Users\Maylis\source\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Debug\LID_WinForm.exe.config
+C:\Users\Maylis\source\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Debug\LID_WinForm.exe.manifest
+C:\Users\Maylis\source\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Debug\LID_WinForm.application
+C:\Users\Maylis\source\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Debug\LID_WinForm.exe
+C:\Users\Maylis\source\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Debug\LID_WinForm.pdb
+C:\Users\Maylis\source\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Debug\LID_ClassLibrary.dll
+C:\Users\Maylis\source\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Debug\SharpKml.Core.dll
+C:\Users\Maylis\source\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Debug\LID_ClassLibrary.pdb
+C:\Users\Maylis\source\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Debug\SharpKml.Core.xml
+C:\Users\Maylis\source\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.csprojAssemblyReference.cache
+C:\Users\Maylis\source\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.g.resources
+C:\Users\Maylis\source\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.About_Form.resources
+C:\Users\Maylis\source\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.Egg.resources
+C:\Users\Maylis\source\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.LID_Form.resources
+C:\Users\Maylis\source\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.Properties.Resources.resources
+C:\Users\Maylis\source\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.csproj.GenerateResource.cache
+C:\Users\Maylis\source\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.TrustInfo.xml
+C:\Users\Maylis\source\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.exe.manifest
+C:\Users\Maylis\source\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.application
+C:\Users\Maylis\source\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.csproj.CopyComplete
+C:\Users\Maylis\source\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.exe
+C:\Users\Maylis\source\LIDUSCGASE\LID_Framework\LID_WinForm\obj\Debug\LID_WinForm.pdb

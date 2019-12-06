@@ -35,3 +35,6 @@ C:\Users\Luke Arsenault\source\repos\LIDUSCGASE\LID_Framework\LID_ClassLibrary\o
 C:\Users\Luke Arsenault\source\repos\LIDUSCGASE\LID_Framework\LID_ClassLibrary\obj\Debug\LID_ClassLibrary.csproj.CopyComplete
 C:\Users\Luke Arsenault\source\repos\LIDUSCGASE\LID_Framework\LID_ClassLibrary\obj\Debug\LID_ClassLibrary.dll
 C:\Users\Luke Arsenault\source\repos\LIDUSCGASE\LID_Framework\LID_ClassLibrary\obj\Debug\LID_ClassLibrary.pdb
+C:\Users\Maylis\source\LIDUSCGASE\LID_Framework\LID_ClassLibrary\obj\Debug\LID_ClassLibrary.csprojAssemblyReference.cache
+C:\Users\Maylis\source\LIDUSCGASE\LID_Framework\LID_ClassLibrary\obj\Debug\LID_ClassLibrary.dll
+C:\Users\Maylis\source\LIDUSCGASE\LID_Framework\LID_ClassLibrary\obj\Debug\LID_ClassLibrary.pdb
