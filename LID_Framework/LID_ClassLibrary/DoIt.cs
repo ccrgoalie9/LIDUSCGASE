@@ -15,6 +15,9 @@ namespace LID_ClassLibrary {
         Line todayLine;
         ArmoredAscii todayAscii;
 
+        //DateTime For use for syncronicity
+        DateTime currentTime;
+
         public DoIt(Config config) {
             this.config = config;
         }
@@ -43,7 +46,7 @@ namespace LID_ClassLibrary {
                 Console.WriteLine("Current Bulletin Fetched");
             } catch(Exception x) {
                 Console.WriteLine("Error: Failed To Fetch The Bulletin\n" + x.Message);
-                File.AppendAllText(config.ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
+                File.AppendAllText(config.ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n"); //Write to error file
                 return -1; //Error
             }
 
@@ -52,7 +55,7 @@ namespace LID_ClassLibrary {
             } catch(Exception x) {
                 Console.WriteLine("Error: Failed To Scrape The Bulletin\n" + x.Message);
                 File.AppendAllText(config.ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
-                return -1; //Error
+                return -1;
             }
 
             try {//Create the KML file in format: ICEBERGS_'date'.kml
@@ -62,38 +65,44 @@ namespace LID_ClassLibrary {
             } catch(Exception x) {
                 Console.WriteLine("Error: Failed To Create The KML File\n" + x.Message);
                 File.AppendAllText(config.ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
-                return -1; //Error
+                return -1;
             }
 
             try {//Math for the Bearings and Ranges
                 Console.Write("Creating Bearings And Ranges...\t");
                 todayBR = new BearingRange(todayScraper.GetCoordinatesIngestors(), config);
                 Console.WriteLine("Bearing And Ranges Created");
+                if(config.Debug) {
+                    todayBR.Debug();
+                }
             } catch(Exception x) {
                 Console.WriteLine("Error: Failed To Create The File");
                 File.AppendAllText(config.ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
                 return -1;
             }
 
-            try {
+            try {//Create the Binary from the Bearing and Ranges
                 Console.Write("Creating Binary...\t\t");
                 todayBin = new BinaryCreator(todayBR.GetCoordinates());
                 Console.WriteLine("Binaries Created");
-                todayBin.Debug();
+                if(config.Debug) {
+                    todayBin.Debug();
+                }
             } catch(Exception x) {
                 Console.WriteLine("Error: Failed To Create The Binary");
                 File.AppendAllText(config.ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
                 return -1;
             }
 
-            try
-            {
-                Console.Write("Creating Armored Ascii....\t\t");
+            try {//Convert the Binary to Armored ASCII
+                Console.Write("Creating Armored ASCII...\t");
                 todayAscii = new ArmoredAscii(todayBin.LineMessages, config);
-                Console.WriteLine("Ascii Created");
-
-            } catch(Exception x){
-                Console.WriteLine("Error: Failed To Create Armored Ascii");
+                Console.WriteLine("ASCII Created");
+                if(config.Debug) {
+                    todayAscii.Debug();
+                }
+            } catch(Exception x) {
+                Console.WriteLine("Error: Failed To Create Armored ASCII");
                 File.AppendAllText(config.ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
                 return -1;
             }
@@ -152,8 +161,7 @@ namespace LID_ClassLibrary {
         //Static Methods
         private void DirectoryCheck() {
             Console.Write("Updating Directories...\t\t");
-            try { Directory.CreateDirectory(config.DirPath + @"\Bulletins"); }
-            catch(Exception x) {
+            try { Directory.CreateDirectory(config.DirPath + @"\Bulletins"); } catch(Exception x) {
                 config.CreateConfig();
                 config.ReadConfig();
                 Console.WriteLine("Error Creating Directories, Attempting To Fix By Re-Writing Configuration File");

@@ -16,6 +16,7 @@ namespace LID_ClassLibrary {
         public string KmlColor3 { get; set; }
         public int KmlWidth { get; set; }
         public string ErrorFile { get; set; }
+        public bool Debug { get; set; }
 
         //Ignore this one
         public bool FuNtImE { get; set; }
@@ -35,27 +36,39 @@ namespace LID_ClassLibrary {
         //Modifiers
         public void ReadConfig() {
             int flag = 0;
-            int flagCount = 6;
+            int flagCount = 8;
             try {
                 using(StreamReader configReader = new StreamReader(ConfigPath)) {
                     string temp;
                     while((temp = configReader.ReadLine()) != null) {
-                        if(temp.Contains("Files Directory Location:")) { DirPath = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); flag++; }
-                        if(temp.Contains("Bulletin URL:")) { BulletinUrl = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); flag++; }
-                        if(temp.Contains("Chart URL:")) { ChartUrl = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); flag++; }
-                        if(temp.Contains("KML Color Berg Limit    :")) { KmlColor1 = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); flag++; }
-                        if(temp.Contains("KML Color Est Berg Limit:")) { KmlColor2 = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); flag++; }
-                        if(temp.Contains("KML Color Sea Ice Limit :")) { KmlColor3 = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); flag++; }
-                        if(temp.Contains("Error File Location:")) { ErrorFile = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); flag++; }
+                        if(temp.Contains("Files Directory Location")) { DirPath = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); flag++; }
+                        if(temp.Contains("Bulletin URL")) { BulletinUrl = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); flag++; }
+                        if(temp.Contains("Chart URL")) { ChartUrl = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); flag++; }
+                        if(temp.Contains("KML Color Berg Limit")) { KmlColor1 = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); flag++; }
+                        if(temp.Contains("KML Color Est Berg Limit")) { KmlColor2 = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); flag++; }
+                        if(temp.Contains("KML Color Sea Ice Limit")) { KmlColor3 = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); flag++; }
+                        if(temp.Contains("Error File Location")) { ErrorFile = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); flag++; }
                         try {
-                            if(temp.Contains("KML Line Width:")) { KmlWidth = Convert.ToInt32(temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1)); flag++; }
+                            if(temp.Contains("KML Line Width")) { KmlWidth = Convert.ToInt32(temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1)); flag++; }
                         } catch(Exception x) {
                             Console.WriteLine("Invalid Value for 'KML Line Width'\n" + x.Message);
                             File.AppendAllText(ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
                             //If error, default is 5
                             KmlWidth = 5;
                         }
-                        if(temp.Contains("Ignore:")) { FuNtImE = Convert.ToBoolean(temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1)); flag++; }
+                        try {
+                            if(temp.Contains("Ignore")) { FuNtImE = Convert.ToBoolean(temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1));}
+                        } catch(Exception x) {
+                            Console.WriteLine("Invalid Value For An Expected Boolean\n" + x.Message);
+                            File.AppendAllText(ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
+                        }
+                        try {
+                            if(temp.Contains("Debug")) { Debug = Convert.ToBoolean(temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1)); flag++; Console.WriteLine("Debug is:" + Debug); }
+                        } catch(Exception x) {
+                            Console.WriteLine("Invalid Value For An Expected Boolean\n" + x.Message);
+                            File.AppendAllText(ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
+                        }
+
                     }
                     if(flag < flagCount) {
                         throw new Exception("Not All Expected Values Were Present");
@@ -87,6 +100,7 @@ namespace LID_ClassLibrary {
                 configWriter.WriteLine(@"KML Color Est Berg Limit: 'ff00ffff'");
                 configWriter.WriteLine(@"KML Color Sea Ice Limit : 'ff0000ff'");
                 configWriter.WriteLine(@"KML Line Width: '5'");
+                configWriter.WriteLine(@"Debug: 'False'");
             }
         }
 

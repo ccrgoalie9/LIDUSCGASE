@@ -244,7 +244,11 @@ namespace LID_ClassLibrary {
                 int count = 0;
                 output = "";
                 foreach(string x in coordsIngested) {
-                    output += lineTypes[count] + "\n";
+                    output += lineTypes[count];
+                    if(count == 0) {
+                        output += DateTime.UtcNow.ToString(" yyyy-MM-dd");
+                    }
+                    output += "\n";
                     output += x + "\n";
                     count++;
                 }
@@ -259,7 +263,11 @@ namespace LID_ClassLibrary {
                 int count = 0;
                 decOutput = "";
                 foreach(Ingestor x in coordinates) {
-                    decOutput += lineTypes[count] + "\n";
+                    decOutput += lineTypes[count];
+                    if(count == 0) {
+                        decOutput += DateTime.UtcNow.ToString(" yyyy-MM-dd");
+                    }
+                    decOutput += "\n";
                     decOutput += x.GetOutput() + "\n";
                     count++;
                 }

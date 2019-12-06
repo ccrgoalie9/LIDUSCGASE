@@ -199,6 +199,10 @@ namespace LID_WinForm {
             
         }
 
+        private void TestSiteButton_Click(object sender, EventArgs e) {
+            Process.Start("https://lidtesting.azurewebsites.net");
+        }
+
 
 
         //Actionable Buttons
