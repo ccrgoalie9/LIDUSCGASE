@@ -89,6 +89,34 @@ namespace LID_ClassLibrary {
                 }
                 Console.WriteLine("");
             }
+            Console.WriteLine("\nPolar Coordinate Validation");
+            ValidatePolar();
+        }
+
+        private void ValidatePolar()
+        {
+            double lat2, lat1, sigma, theta, long2, long1;
+
+            foreach (double[,] Sets in PolarSets) {
+                lat1 = Sets[0, 0];
+                long1 = Sets[0, 1];
+                Console.WriteLine(lat1 + "," + long1 + " ");
+
+                for ( int i =1; i< Sets.Length / 2; i++){
+                    sigma = Sets[i, 1];
+                    theta = Sets[i, 0];
+
+                    lat2 = Math.Asin(Math.Sin(lat1) * Math.Cos(sigma) + Math.Cos(lat1) * Math.Sin(sigma) * Math.Cos(theta));
+                    long2 = long1 + Math.Atan2(Math.Sin(theta) * Math.Sin(sigma) * Math.Cos(lat1), Math.Cos(sigma) - Math.Sin(lat1) * Math.Sin(lat2));
+                    Console.WriteLine(lat2 + "," + long2 + " "); 
+
+                    lat1 = lat2;
+                    long1 = long2;
+                }
+
+            }
+            
+
         }
 
         //Output

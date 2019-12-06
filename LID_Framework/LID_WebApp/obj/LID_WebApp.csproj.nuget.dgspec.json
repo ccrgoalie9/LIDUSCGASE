@@ -1,34 +1,34 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Thomas Hardy\\Desktop\\USCGA\\Academia\\2019 Fall\\Software Engineering\\Github\\Projects\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\LID_WebApp.csproj": {}
+    "C:\\Users\\Maylis\\source\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\LID_WebApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Thomas Hardy\\Desktop\\USCGA\\Academia\\2019 Fall\\Software Engineering\\Github\\Projects\\LIDUSCGASE\\LID_Framework\\LID_ClassLibrary\\LID_ClassLibrary.csproj": {
+    "C:\\Users\\Maylis\\source\\LIDUSCGASE\\LID_Framework\\LID_ClassLibrary\\LID_ClassLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Thomas Hardy\\Desktop\\USCGA\\Academia\\2019 Fall\\Software Engineering\\Github\\Projects\\LIDUSCGASE\\LID_Framework\\LID_ClassLibrary\\LID_ClassLibrary.csproj",
+        "projectUniqueName": "C:\\Users\\Maylis\\source\\LIDUSCGASE\\LID_Framework\\LID_ClassLibrary\\LID_ClassLibrary.csproj",
         "projectName": "LID_ClassLibrary",
-        "projectPath": "C:\\Users\\Thomas Hardy\\Desktop\\USCGA\\Academia\\2019 Fall\\Software Engineering\\Github\\Projects\\LIDUSCGASE\\LID_Framework\\LID_ClassLibrary\\LID_ClassLibrary.csproj"
+        "projectPath": "C:\\Users\\Maylis\\source\\LIDUSCGASE\\LID_Framework\\LID_ClassLibrary\\LID_ClassLibrary.csproj"
       },
       "frameworks": {
         "net472": {}
       }
     },
-    "C:\\Users\\Thomas Hardy\\Desktop\\USCGA\\Academia\\2019 Fall\\Software Engineering\\Github\\Projects\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\LID_WebApp.csproj": {
+    "C:\\Users\\Maylis\\source\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\LID_WebApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Thomas Hardy\\Desktop\\USCGA\\Academia\\2019 Fall\\Software Engineering\\Github\\Projects\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\LID_WebApp.csproj",
+        "projectUniqueName": "C:\\Users\\Maylis\\source\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\LID_WebApp.csproj",
         "projectName": "LID_WebApp",
-        "projectPath": "C:\\Users\\Thomas Hardy\\Desktop\\USCGA\\Academia\\2019 Fall\\Software Engineering\\Github\\Projects\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\LID_WebApp.csproj",
-        "packagesPath": "C:\\Users\\Thomas Hardy\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Thomas Hardy\\Desktop\\USCGA\\Academia\\2019 Fall\\Software Engineering\\Github\\Projects\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\obj\\",
+        "projectPath": "C:\\Users\\Maylis\\source\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\LID_WebApp.csproj",
+        "packagesPath": "C:\\Users\\Maylis\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Maylis\\source\\LIDUSCGASE\\LID_Framework\\LID_WebApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Thomas Hardy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Maylis\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -41,8 +41,8 @@
         "frameworks": {
           "netcoreapp3.0": {
             "projectReferences": {
-              "C:\\Users\\Thomas Hardy\\Desktop\\USCGA\\Academia\\2019 Fall\\Software Engineering\\Github\\Projects\\LIDUSCGASE\\LID_Framework\\LID_ClassLibrary\\LID_ClassLibrary.csproj": {
-                "projectPath": "C:\\Users\\Thomas Hardy\\Desktop\\USCGA\\Academia\\2019 Fall\\Software Engineering\\Github\\Projects\\LIDUSCGASE\\LID_Framework\\LID_ClassLibrary\\LID_ClassLibrary.csproj"
+              "C:\\Users\\Maylis\\source\\LIDUSCGASE\\LID_Framework\\LID_ClassLibrary\\LID_ClassLibrary.csproj": {
+                "projectPath": "C:\\Users\\Maylis\\source\\LIDUSCGASE\\LID_Framework\\LID_ClassLibrary\\LID_ClassLibrary.csproj"
               }
             }
           }
