@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document id="KML">
+    <name>2019-12-03_ICEBERGS</name>
+    <open>true</open>
+    <Style id="lineIcebergLimit">
+      <LineStyle>
+        <color>ffffe481</color>
+        <width>5</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>ffffe481</color>
+      </PolyStyle>
+    </Style>
+    <Style id="lineEstimatedIcebergLimit">
+      <LineStyle>
+        <color>ff00ffff</color>
+        <width>5</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>ff00ffff</color>
+      </PolyStyle>
+    </Style>
+    <Style id="lineSeaIceLimit">
+      <LineStyle>
+        <color>ff0000ff</color>
+        <width>5</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>ff0000ff</color>
+      </PolyStyle>
+    </Style>
+    <Placemark>
+      <name>ICEBERG LIMIT</name>
+      <visibility>true</visibility>
+      <description>Based off of data from the IIP and Canadian Ice Patrol</description>
+      <TimeSpan>
+        <begin>2019-12-03T00:00:01-05:00</begin>
+        <end>2019-12-03T23:59:59-05:00</end>
+      </TimeSpan>
+      <styleUrl>#lineIcebergLimit</styleUrl>
+      <LineString>
+        <extrude>true</extrude>
+        <tessellate>true</tessellate>
+        <altitudeMode>clampToGround</altitudeMode>
+        <coordinates>-56.366666000000002,51.75
+-55,51.75
+-54,52.5
+-54,54.75
+-57,58
+-57,59</coordinates>
+      </LineString>
+    </Placemark>
+    <Placemark>
+      <name>ESTIMATED ICEBERG LIMIT</name>
+      <visibility>true</visibility>
+      <description>Based off of data from Greenland</description>
+      <TimeSpan>
+        <begin>2019-12-03T00:00:01-05:00</begin>
+        <end>2019-12-03T23:59:59-05:00</end>
+      </TimeSpan>
+      <styleUrl>#lineEstimatedIcebergLimit</styleUrl>
+      <LineString>
+        <extrude>true</extrude>
+        <tessellate>true</tessellate>
+        <altitudeMode>clampToGround</altitudeMode>
+        <coordinates>-57,59
+-53,60
+-49,58
+-39,58
+-37,64
+-28,65</coordinates>
+      </LineString>
+    </Placemark>
+    <Placemark>
+      <name>SEA ICE LIMIT A</name>
+      <visibility>true</visibility>
+      <description>Sea ice within limit displayed</description>
+      <TimeSpan>
+        <begin>2019-12-03T00:00:01-05:00</begin>
+        <end>2019-12-03T23:59:59-05:00</end>
+      </TimeSpan>
+      <styleUrl>#lineSeaIceLimit</styleUrl>
+      <LineString>
+        <extrude>true</extrude>
+        <tessellate>true</tessellate>
+        <altitudeMode>clampToGround</altitudeMode>
+        <coordinates>-64.833332999999996,47.083333000000003
+-62.75,48.833333000000003
+-61.166665999999999,48.833333000000003
+-57.416665999999999,51.25
+-56.916665999999999,51.333333000000003
+-55.416665999999999,52.083333000000003
+-55.5,53.5
+-57.083333000000003,54.583333000000003
+-60.583333000000003,56.25
+-61.416665999999999,57.833333000000003
+-64.25,60.333333000000003
+-64.416666000000006,60.416665999999999</coordinates>
+      </LineString>
+    </Placemark>
+    <Placemark>
+      <name>SEA ICE LIMIT B</name>
+      <visibility>true</visibility>
+      <description>Sea ice within limit displayed</description>
+      <TimeSpan>
+        <begin>2019-12-03T00:00:01-05:00</begin>
+        <end>2019-12-03T23:59:59-05:00</end>
+      </TimeSpan>
+      <styleUrl>#lineSeaIceLimit</styleUrl>
+      <LineString>
+        <extrude>true</extrude>
+        <tessellate>true</tessellate>
+        <altitudeMode>clampToGround</altitudeMode>
+        <coordinates>-64.75,60.5
+-65.166666000000006,60.5
+-68.166666000000006,59
+-69.083332999999996,61.166665999999999
+-74.083332999999996,62.833333000000003
+-77,62.666665999999999
+-74.833332999999996,64.166666000000006
+-70.833332999999996,62.416665999999999
+-64.583332999999996,61
+-64.166666000000006,62
+-63.25,64.583332999999996
+-59.166665999999999,65.083332999999996
+-57.833333000000003,66.416666000000006
+-58.083333000000003,67.583332999999996</coordinates>
+      </LineString>
+    </Placemark>
+    <Placemark>
+      <name>SEA ICE LIMIT C</name>
+      <visibility>true</visibility>
+      <description>Sea ice within limit displayed</description>
+      <TimeSpan>
+        <begin>2019-12-03T00:00:01-05:00</begin>
+        <end>2019-12-03T23:59:59-05:00</end>
+      </TimeSpan>
+      <styleUrl>#lineSeaIceLimit</styleUrl>
+      <LineString>
+        <extrude>true</extrude>
+        <tessellate>true</tessellate>
+        <altitudeMode>clampToGround</altitudeMode>
+        <coordinates>-42.200000000000003,62.333333000000003
+-41.883333,62.049999999999997
+-42.116666000000002,61.833333000000003</coordinates>
+      </LineString>
+    </Placemark>
+  </Document>
+</kml>
