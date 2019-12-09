@@ -11,12 +11,10 @@ namespace LID_ClassLibrary {
         public string DirPath { get; set; }
         public string BulletinUrl { get; set; }
         public string ChartUrl { get; set; }
-        public string WebUrl { get; set; }
         public string KmlColor1 { get; set; }
         public string KmlColor2 { get; set; }
         public string KmlColor3 { get; set; }
         public int KmlWidth { get; set; }
-        public int MMSI { get; set; }
         public string ErrorFile { get; set; }
         public bool Debug { get; set; }
 
@@ -43,7 +41,6 @@ namespace LID_ClassLibrary {
                 using(StreamReader configReader = new StreamReader(ConfigPath)) {
                     string temp;
                     while((temp = configReader.ReadLine()) != null) {
-                        if(temp.StartsWith("#")) continue;
                         if(temp.Contains("Files Directory Location")) { DirPath = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); flag++; }
                         if(temp.Contains("Bulletin URL")) { BulletinUrl = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); flag++; }
                         if(temp.Contains("Chart URL")) { ChartUrl = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); flag++; }
@@ -56,26 +53,18 @@ namespace LID_ClassLibrary {
                             if(temp.Contains("KML Line Width")) { KmlWidth = Convert.ToInt32(temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1)); flag++; }
                         } catch(Exception x) {
                             Console.WriteLine("Invalid Value for 'KML Line Width'\n" + x.Message);
-                            File.AppendAllText(ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : Error reading KML Line Width, " + x.Message + "\n");
+                            File.AppendAllText(ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
                             //If error, default is 5
                             KmlWidth = 5;
                         }
                         try {
-                            if(temp.Contains("Message MMSI")) { MMSI = Convert.ToInt32(temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1)); flag++; }
-                        } catch(Exception x) {
-                            Console.WriteLine("Invalid Value for the MMSI  Width'\n" + x.Message);
-                            File.AppendAllText(ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : Error reading MMSI, " + x.Message + "\n");
-                            //If error, default is 003679999
-                            MMSI = 003679999;
-                        }
-                        try {
-                            if(temp.Contains("Ignore")) { FuNtImE = Convert.ToBoolean(temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1)); }
+                            if(temp.Contains("Ignore")) { FuNtImE = Convert.ToBoolean(temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1));}
                         } catch(Exception x) {
                             Console.WriteLine("Invalid Value For An Expected Boolean\n" + x.Message);
                             File.AppendAllText(ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
                         }
                         try {
-                            if(temp.Contains("Debug")) { Debug = Convert.ToBoolean(temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1)); flag++; }
+                            if(temp.Contains("Debug")) { Debug = Convert.ToBoolean(temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1)); flag++; Console.WriteLine("Debug is:" + Debug); }
                         } catch(Exception x) {
                             Console.WriteLine("Invalid Value For An Expected Boolean\n" + x.Message);
                             File.AppendAllText(ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
@@ -85,9 +74,6 @@ namespace LID_ClassLibrary {
                     if(flag < flagCount) {
                         throw new Exception("Not All Expected Values Were Present");
                     }
-                }
-                if(!DirPath.Contains(Environment.UserName)) {
-                    throw new Exception("Location for files does not match with current user");
                 }
             } catch(Exception x) {
                 Console.WriteLine("Error in reading configuration file, re-writing");
@@ -105,8 +91,7 @@ namespace LID_ClassLibrary {
                 configWriter.WriteLine("#Config path: " + Environment.CurrentDirectory + "\n");
                 configWriter.WriteLine(@"Files Directory Location: 'C:\Users\" + Environment.UserName + @"\Documents\LID Files'");
                 configWriter.WriteLine(@"Error File Location: 'C:\Users\" + Environment.UserName + @"\Documents\LID Files\ErrorLogs\Error.txt'");
-                configWriter.WriteLine("\n#Update links only if they have changed");
-                configWriter.WriteLine(@"Website URL: 'https://lidtesting.azurewebsites.net'");
+                configWriter.WriteLine("\nUpdate links only if they have changed");
                 configWriter.WriteLine(@"Bulletin URL: 'https://www.navcen.uscg.gov/?pageName=iipB12Out'");
                 configWriter.WriteLine(@"Chart URL: 'https://www.navcen.uscg.gov/?pageName=iipCharts&Current'");
                 configWriter.WriteLine("\n#KML file parameters");
@@ -117,7 +102,6 @@ namespace LID_ClassLibrary {
                 configWriter.WriteLine(@"KML Color Est Berg Limit: 'ff00ffff'");
                 configWriter.WriteLine(@"KML Color Sea Ice Limit : 'ffffff00'");
                 configWriter.WriteLine(@"KML Line Width: '5'");
-                configWriter.WriteLine(@"Message MMSI: '003679999'");
                 configWriter.WriteLine(@"Debug: 'False'");
             }
         }
