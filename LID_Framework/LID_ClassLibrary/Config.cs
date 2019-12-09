@@ -11,10 +11,12 @@ namespace LID_ClassLibrary {
         public string DirPath { get; set; }
         public string BulletinUrl { get; set; }
         public string ChartUrl { get; set; }
+        public string WebUrl { get; set; }
         public string KmlColor1 { get; set; }
         public string KmlColor2 { get; set; }
         public string KmlColor3 { get; set; }
         public int KmlWidth { get; set; }
+        public int MMSI { get; set; }
         public string ErrorFile { get; set; }
         public bool Debug { get; set; }
 
@@ -41,6 +43,7 @@ namespace LID_ClassLibrary {
                 using(StreamReader configReader = new StreamReader(ConfigPath)) {
                     string temp;
                     while((temp = configReader.ReadLine()) != null) {
+                        if(temp.StartsWith("#")) continue;
                         if(temp.Contains("Files Directory Location")) { DirPath = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); flag++; }
                         if(temp.Contains("Bulletin URL")) { BulletinUrl = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); flag++; }
                         if(temp.Contains("Chart URL")) { ChartUrl = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); flag++; }
@@ -52,18 +55,26 @@ namespace LID_ClassLibrary {
                             if(temp.Contains("KML Line Width")) { KmlWidth = Convert.ToInt32(temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1)); flag++; }
                         } catch(Exception x) {
                             Console.WriteLine("Invalid Value for 'KML Line Width'\n" + x.Message);
-                            File.AppendAllText(ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
+                            File.AppendAllText(ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : Error reading KML Line Width, " + x.Message + "\n");
                             //If error, default is 5
                             KmlWidth = 5;
                         }
                         try {
-                            if(temp.Contains("Ignore")) { FuNtImE = Convert.ToBoolean(temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1));}
+                            if(temp.Contains("Message MMSI")) { MMSI = Convert.ToInt32(temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1)); flag++; }
+                        } catch(Exception x) {
+                            Console.WriteLine("Invalid Value for the MMSI  Width'\n" + x.Message);
+                            File.AppendAllText(ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : Error reading MMSI, " + x.Message + "\n");
+                            //If error, default is 003679999
+                            MMSI = 003679999;
+                        }
+                        try {
+                            if(temp.Contains("Ignore")) { FuNtImE = Convert.ToBoolean(temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1)); }
                         } catch(Exception x) {
                             Console.WriteLine("Invalid Value For An Expected Boolean\n" + x.Message);
                             File.AppendAllText(ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
                         }
                         try {
-                            if(temp.Contains("Debug")) { Debug = Convert.ToBoolean(temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1)); flag++; Console.WriteLine("Debug is:" + Debug); }
+                            if(temp.Contains("Debug")) { Debug = Convert.ToBoolean(temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1)); flag++; }
                         } catch(Exception x) {
                             Console.WriteLine("Invalid Value For An Expected Boolean\n" + x.Message);
                             File.AppendAllText(ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
@@ -73,6 +84,9 @@ namespace LID_ClassLibrary {
                     if(flag < flagCount) {
                         throw new Exception("Not All Expected Values Were Present");
                     }
+                }
+                if(!DirPath.Contains(Environment.UserName)) {
+                    throw new Exception("Location for files does not match with current user");
                 }
             } catch(Exception x) {
                 Console.WriteLine("Error in reading configuration file, re-writing");
@@ -86,20 +100,22 @@ namespace LID_ClassLibrary {
         //Create the configuration file for first time or for new users
         public void CreateConfig() {
             using(StreamWriter configWriter = new StreamWriter(ConfigPath, false)) {
-                configWriter.WriteLine("Configuration file for the LID program, please only edit between the single quotes\n");
+                configWriter.WriteLine("#Configuration file for the LID program, please only edit between the single quotes\n");
                 configWriter.WriteLine(@"Files Directory Location: 'C:\Users\" + Environment.UserName + @"\Documents\LID Files'");
                 configWriter.WriteLine(@"Error File Location: 'C:\Users\" + Environment.UserName + @"\Documents\LID Files\ErrorLogs\Error.txt'");
-                configWriter.WriteLine("\nUpdate links only if they have changed");
+                configWriter.WriteLine("\n#Update links only if they have changed");
+                configWriter.WriteLine(@"Website URL: 'https://lidtesting.azurewebsites.net'");
                 configWriter.WriteLine(@"Bulletin URL: 'https://www.navcen.uscg.gov/?pageName=iipB12Out'");
                 configWriter.WriteLine(@"Chart URL: 'https://www.navcen.uscg.gov/?pageName=iipCharts&Current'");
-                configWriter.WriteLine("\nKML file parameters");
-                configWriter.WriteLine(@"Color is set by TTBBGGRR");
-                configWriter.WriteLine(@"TT is the transparency from 00 being clear to FF being opaque.");
-                configWriter.WriteLine(@"BB, GG, and RR are the level of blue, green, and red respectively");
-                configWriter.WriteLine(@"KML Color Berg Limit    : 'ffffe481'");
-                configWriter.WriteLine(@"KML Color Est Berg Limit: 'ff00ffff'");
-                configWriter.WriteLine(@"KML Color Sea Ice Limit : 'ff0000ff'");
+                configWriter.WriteLine("\n#KML file parameters");
+                configWriter.WriteLine(@"#Color is set by TTBBGGRR");
+                configWriter.WriteLine(@"#TT is the transparency from 00 being clear to FF being opaque.");
+                configWriter.WriteLine(@"#BB, GG, and RR are the level of blue, green, and red respectively");
+                configWriter.WriteLine(@"KML Color Berg Limit    : 'ffc702ff'");
+                configWriter.WriteLine(@"KML Color Est Berg Limit: 'ffc702ff'");
+                configWriter.WriteLine(@"KML Color Sea Ice Limit : 'ffc702ff'");
                 configWriter.WriteLine(@"KML Line Width: '5'");
+                configWriter.WriteLine(@"Message MMSI: '003679999'");
                 configWriter.WriteLine(@"Debug: 'False'");
             }
         }
