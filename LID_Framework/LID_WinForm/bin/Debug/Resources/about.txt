@@ -1,4 +1,4 @@
-Version 0.0.0.1
+Version 0.1.0.13
 Changelog
 + About Window
 + If Google Earth Pro is not
