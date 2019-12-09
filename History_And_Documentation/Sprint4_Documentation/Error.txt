@@ -1,0 +1,15 @@
+Error Checking Starting: 2019-11-18
+13:55:14 : Value cannot be null.
+Parameter name: address
+18:04:22 : Access to the path 'C:\Users\Carbon-Tower\Documents\LID Files\Bulletins' is denied.
+Error Checking Starting: 2019-11-19
+16:14:26 : Access to the path 'C:\Users\Carbon-Tower\Documents\LID Files\Bulletins' is denied.
+Error Checking Starting: 2019-11-22
+14:25:52 : Access to the path 'C:\Users\Carbon-Tower\Documents\LID Files\Bulletins' is denied.
+Error Checking Starting: 2019-11-23
+Error Checking Starting: 2019-12-02
+19:11:14 : Access to the path 'C:\Users\Luke Arsenault\Documents\LID Files\Bulletins' is denied.
+Error Checking Starting: 2019-12-03
+19:49:31 : Value was either too large or too small for an unsigned byte.
+20:01:00 : Value was either too large or too small for an unsigned byte.
+Error Checking Starting: 2019-12-04
