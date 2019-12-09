@@ -38,7 +38,7 @@ namespace LID_ClassLibrary {
         //Modifiers
         public void ReadConfig() {
             int flag = 0;
-            int flagCount = 8;
+            int flagCount = 11;
             try {
                 using(StreamReader configReader = new StreamReader(ConfigPath)) {
                     string temp;
@@ -47,6 +47,7 @@ namespace LID_ClassLibrary {
                         if(temp.Contains("Files Directory Location")) { DirPath = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); flag++; }
                         if(temp.Contains("Bulletin URL")) { BulletinUrl = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); flag++; }
                         if(temp.Contains("Chart URL")) { ChartUrl = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); flag++; }
+                        if(temp.Contains("Website URL")) { WebUrl = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); flag++; }
                         if(temp.Contains("KML Color Berg Limit")) { KmlColor1 = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); flag++; }
                         if(temp.Contains("KML Color Est Berg Limit")) { KmlColor2 = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); flag++; }
                         if(temp.Contains("KML Color Sea Ice Limit")) { KmlColor3 = temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1); flag++; }
@@ -100,7 +101,8 @@ namespace LID_ClassLibrary {
         //Create the configuration file for first time or for new users
         public void CreateConfig() {
             using(StreamWriter configWriter = new StreamWriter(ConfigPath, false)) {
-                configWriter.WriteLine("#Configuration file for the LID program, please only edit between the single quotes\n");
+                configWriter.WriteLine("#Configuration file for the LID program, please only edit between the single quotes");
+                configWriter.WriteLine("#Config path: " + Environment.CurrentDirectory + "\n");
                 configWriter.WriteLine(@"Files Directory Location: 'C:\Users\" + Environment.UserName + @"\Documents\LID Files'");
                 configWriter.WriteLine(@"Error File Location: 'C:\Users\" + Environment.UserName + @"\Documents\LID Files\ErrorLogs\Error.txt'");
                 configWriter.WriteLine("\n#Update links only if they have changed");
@@ -112,8 +114,8 @@ namespace LID_ClassLibrary {
                 configWriter.WriteLine(@"#TT is the transparency from 00 being clear to FF being opaque.");
                 configWriter.WriteLine(@"#BB, GG, and RR are the level of blue, green, and red respectively");
                 configWriter.WriteLine(@"KML Color Berg Limit    : 'ffc702ff'");
-                configWriter.WriteLine(@"KML Color Est Berg Limit: 'ffc702ff'");
-                configWriter.WriteLine(@"KML Color Sea Ice Limit : 'ffc702ff'");
+                configWriter.WriteLine(@"KML Color Est Berg Limit: 'ff00ffff'");
+                configWriter.WriteLine(@"KML Color Sea Ice Limit : 'ffffff00'");
                 configWriter.WriteLine(@"KML Line Width: '5'");
                 configWriter.WriteLine(@"Message MMSI: '003679999'");
                 configWriter.WriteLine(@"Debug: 'False'");
