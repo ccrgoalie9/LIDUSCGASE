@@ -1,8 +1,8 @@
 #Configuration file for the LID program, please only edit between the single quotes
-#Config path: C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Debug
+#Config path: C:\Users\Luke Arsenault\source\repos\LIDUSCGASE\LID_Framework\LID_WinForm\bin\Debug
 
-Files Directory Location: 'C:\Users\Carbon-Tower\Documents\LID Files'
-Error File Location: 'C:\Users\Carbon-Tower\Documents\LID Files\ErrorLogs\Error.txt'
+Files Directory Location: 'C:\Users\Luke Arsenault\Documents\LID Files'
+Error File Location: 'C:\Users\Luke Arsenault\Documents\LID Files\ErrorLogs\Error.txt'
 
 Update links only if they have changed
 Website URL: 'https://lidtesting.azurewebsites.net'
@@ -18,4 +18,4 @@ KML Color Est Berg Limit: 'ff00ffff'
 KML Color Sea Ice Limit : 'ffffff00'
 KML Line Width: '5'
 Message MMSI: '003679999'
-Debug: 'True'
+Debug: 'False'

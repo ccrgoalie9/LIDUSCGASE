@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,9 +10,17 @@ namespace LID_ClassLibrary {
 
         public List<string> AsciiStream {get; set;}
 
+        public List<string> AISMessages { get; set; }
+
+
+
         public ArmoredAscii(List<string> input, Config config) {
             AsciiStream = new List<string>();
+            AISMessages = new List<string>();
             ConvertToAscii(input);
+            MessageConstructor();
+            WriteFile();
+
         }
 
         public void ConvertToAscii(List<string> input) {
@@ -33,8 +42,93 @@ namespace LID_ClassLibrary {
 
         public void Checksum()
         {
+            int sentenceNum = 1;
+            int serialnum = ((Convert.ToInt32(DateTime.UtcNow.ToString("mm")) * 60) + Convert.ToInt32(DateTime.UtcNow.ToString("ss"))) % 10;
+            string temp;
+            foreach (string AA in AsciiStream)
+            {
+                serialnum = (serialnum + 1) % 10;
+                try
+                {
+                    if (AA.Length * 6 < 372)
+                    {
+                        temp = "!" + "AIVDM" + "," + sentenceNum + "," + "1" + "," + "," + "A" + ",";
+                        temp += AA + "," + "0" + "*";
+                        temp += Checksum(temp);
+                        Console.WriteLine(temp);
+                        AISMessages.Add(temp);
+                    }
+                    else
+                    {
+                        for (int i = 1; ((i - 1) * 60) < AA.Length; i++)
+                        {
+                            temp = "!" + "AIVDM" + "," + sentenceNum + "," + i + ",";
 
+                            if (AA.Substring((i - 1) * 60).Length > 60)
+                            {
+                                temp += serialnum + "," + "A" + "," + AA.Substring((i - 1)*60, 60) + "," + "0" + "*";
+                            }
+                            else
+                            {
+                                temp += serialnum + "," + "A" + "," + AA.Substring((i - 1)*60, AA.Length-((i-1)*60)) + "," + "0" + "*";
+                            }
+
+                            temp += Checksum(temp);
+                            Console.WriteLine(temp);
+                            AISMessages.Add(temp);
+
+                        }
+                    }
+                }catch(Exception x)
+                {
+                    Console.WriteLine(x.Message);
+                }
+                sentenceNum++;
+            }
         }
+
+        public static string Checksum(string Ascii2check)
+        {
+            // Compute the checksum by XORing all the character values in the string.
+            int checksum = 0;
+            for (int i = 1; i < Ascii2check.Length; i++)
+            {
+                checksum = checksum ^ Convert.ToUInt16(Ascii2check.ToCharArray()[i]);
+            }
+
+            // Convert it to hexadecimal (base-16, upper case, most significant nybble first).
+            string hexsum = checksum.ToString("X").ToUpper();
+            if (hexsum.Length < 2)
+            {
+                hexsum = ("00" + hexsum).Substring(hexsum.Length);
+            }
+
+            // Display the result
+            return hexsum;
+        }
+
+        private void WriteFile()
+        {
+            string output = "";
+            foreach (string message in AISMessages)
+            {
+                output += message + "\n";
+                try
+                {
+                    using (StreamWriter AISWriter = new StreamWriter("AISToday.txt"))
+                    {
+                        AISWriter.Write(output);
+                    }
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                   
+                }
+            }
+        }
+
+        
 
         //Convert the string of bits to an integer then to ascii
         //ASCII -> bits
@@ -73,7 +167,14 @@ namespace LID_ClassLibrary {
                 Console.WriteLine(output);
                 Console.WriteLine("# of bits: " + output.Length * 6);
             }
+            Console.WriteLine("\nAIS Message Debug");
+            foreach (string output in AISMessages)
+            {
+                Console.WriteLine(output);
+            }
         }
+
+
 
     }
 
