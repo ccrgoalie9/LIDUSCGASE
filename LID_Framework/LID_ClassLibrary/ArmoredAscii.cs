@@ -9,6 +9,8 @@ namespace LID_ClassLibrary {
 
         public List<string> AsciiStream {get; set;}
 
+        public List<string> AISMessages { get; set; }
+
         public ArmoredAscii(List<string> input, Config config) {
             AsciiStream = new List<string>();
             ConvertToAscii(input);
@@ -31,10 +33,38 @@ namespace LID_ClassLibrary {
 
         }
 
-        public void checksum()
+        public void MessageConstructor()
         {
-
+            foreach (string AA in AsciiStream)
+            {
+                if (AA.Length*6 < 372)
+                {
+                    AISMessages =   aastring("!" + "AIVDM" + "1" + "1" + "," + "," + "A" + ",");
+                }
+            }
         }
+
+        public static string Checksum(string AsciiStream)
+        {
+            // Compute the checksum by XORing all the character values in the string.
+            int checksum = 0;
+            for (var i = 0; i < AsciiStream.Length; i++)
+            {
+                checksum = checksum ^ Convert.ToUInt16(AsciiStream.ToCharArray()[i]);
+            }
+
+            // Convert it to hexadecimal (base-16, upper case, most significant nybble first).
+            string hexsum = checksum.ToString("X").ToUpper();
+            if (hexsum.Length < 2)
+            {
+                hexsum = ("00" + hexsum).Substring(hexsum.Length);
+            }
+
+            // Display the result
+            return hexsum;
+        }
+
+        
 
         //Convert the string of bits to an integer then to ascii
         //ASCII -> bits
