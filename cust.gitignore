@@ -1,0 +1,20 @@
+# VS Stuff #
+###################
+*.dll
+*.suo
+*.ide-shm
+*.ide-wal
+*.cache
+*.json
+*.exe
+*.exe.manifest
+*.pdb
+
+*.csproj*
+
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
