@@ -130,7 +130,7 @@ namespace LID_ClassLibrary {
             temp += Convert.ToInt32(Convert.ToString(input[3])) * 4;
             temp += Convert.ToInt32(Convert.ToString(input[4])) * 2;
             temp += Convert.ToInt32(Convert.ToString(input[5])) * 1;
-            /* Debug '*' here -> /
+            /*
             Console.Write(input[0] + "*32=" + (Convert.ToInt32(Convert.ToString(input[0])) * 32));
             Console.Write(" " + input[1] + "*16=" + (Convert.ToInt32(Convert.ToString(input[1])) * 16));
             Console.Write(" " + input[2] + "*8=" + (Convert.ToInt32(Convert.ToString(input[2])) * 8));
@@ -138,7 +138,7 @@ namespace LID_ClassLibrary {
             Console.Write(" " + input[4] + "*2=" + (Convert.ToInt32(Convert.ToString(input[4])) * 2));
             Console.Write(" " + input[5] + "*1=" + (Convert.ToInt32(Convert.ToString(input[5])) * 1));
             Console.Write("Raw:" + temp);
-            //*/
+            */
             temp += 48;
             if(temp > 87) temp += 8;
             output = Convert.ToChar(temp);
@@ -149,6 +149,7 @@ namespace LID_ClassLibrary {
             Console.Write(" ASCII:" + temp);
             Console.WriteLine(" Char:" + output);
             */
+
             return output;
         }
         public void Debug() {
