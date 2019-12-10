@@ -89,8 +89,8 @@ namespace LID_ClassLibrary {
                 }
                 Console.WriteLine("");
             }
-            Console.WriteLine("\nPolar Coordinate Validation");
-            ValidatePolar();
+            //Console.WriteLine("\nPolar Coordinate Validation");
+            //ValidatePolar();
         }
 
         private void ValidatePolar()
