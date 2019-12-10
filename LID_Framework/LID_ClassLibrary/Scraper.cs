@@ -330,7 +330,6 @@ namespace LID_ClassLibrary {
                 }
             } catch(Exception e) {
                 Console.WriteLine(e.Message);
-                Console.ReadKey(); //Error
             }
 
             //Output to Decimal File
@@ -340,7 +339,6 @@ namespace LID_ClassLibrary {
                 }
             } catch(Exception e) {
                 Console.WriteLine(e.Message);
-                Console.ReadKey(); //Error
             }
         }
 

@@ -31,7 +31,7 @@ namespace LID_ClassLibrary {
 
         }
 
-        public void checksum()
+        public void Checksum()
         {
 
         }
@@ -71,6 +71,7 @@ namespace LID_ClassLibrary {
             Console.WriteLine("\nArmored ASCII Debug");
             foreach (string output in AsciiStream) {
                 Console.WriteLine(output);
+                Console.WriteLine("# of bits: " + output.Length * 6);
             }
         }
 
