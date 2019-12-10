@@ -54,7 +54,7 @@ namespace LID_ClassLibrary {
                         temp += Checksum(temp);
                         AISMessages.Add(temp);
                     } else {
-                        for(int i = 1; ((i - 1) * 60) < AA.Length; i++) {
+                        for(int i = 1; ((i - 1) * 60) < AA.Length; i++) { 
                             temp = "!" + "AIVDM" + "," + sentenceNum + "," + i + ",";
 
                             if(AA.Substring((i - 1) * 60).Length > 60) {
