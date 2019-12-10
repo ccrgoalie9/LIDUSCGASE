@@ -50,20 +50,20 @@ namespace LID_ClassLibrary {
                 try {
                     if(AA.Length * 6 < 372) {
                         temp = "!" + "AIVDM" + "," + sentenceNum + "," + "1" + "," + "," + "A" + ",";
-                        temp += AA + "," + "0" + "*";
-                        temp += Checksum(temp);
+                        temp += AA + "," + "0";
+                        temp += "*" + Checksum(temp);
                         AISMessages.Add(temp);
                     } else {
                         for(int i = 1; ((i - 1) * 60) < AA.Length; i++) { 
                             temp = "!" + "AIVDM" + "," + sentenceNum + "," + i + ",";
 
                             if(AA.Substring((i - 1) * 60).Length > 60) {
-                                temp += serialnum + "," + "A" + "," + AA.Substring((i - 1) * 60, 60) + "," + "0" + "*";
+                                temp += serialnum + "," + "A" + "," + AA.Substring((i - 1) * 60, 60) + "," + "0";
                             } else {
-                                temp += serialnum + "," + "A" + "," + AA.Substring((i - 1) * 60, AA.Length - ((i - 1) * 60)) + "," + "0" + "*";
+                                temp += serialnum + "," + "A" + "," + AA.Substring((i - 1) * 60, AA.Length - ((i - 1) * 60)) + "," + "0";
                             }
 
-                            temp += Checksum(temp);
+                            temp += "*" + Checksum(temp);
                             AISMessages.Add(temp);
                         }
                     }
