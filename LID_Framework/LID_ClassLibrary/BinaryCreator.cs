@@ -107,7 +107,7 @@ namespace LID_ClassLibrary {
                     for(int i = 1; i <= numOfSubAreas; i++) {
                         //Each i is a point
                         if((i - 1) % 4 == 0) {
-                            temp +=/*Area Shape x3bits*/Convert.ToString(3, 2).PadLeft(3, '0') + /*Scale Factor x2bits*/Convert.ToString(1, 2).PadLeft(2, '0');
+                            temp +=/*Area Shape x3bits*/Convert.ToString(3, 2).PadLeft(3, '0') + /*Scale Factor x2bits*/Convert.ToString(3, 2).PadLeft(2, '0');
                         }
                         if(i < (area.Length / 2))/*Add bearing and range if it is within the index*/
                         {

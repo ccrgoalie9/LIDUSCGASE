@@ -54,7 +54,11 @@ namespace LID_ClassLibrary {
                         theta1 = ((Math.Atan2(Math.Sin(deltalambda) * Math.Cos(phi2), Math.Cos(phi1) * Math.Sin(phi2) - Math.Sin(phi1) * Math.Cos(phi2) * Math.Cos(deltalambda)) * (180 / Math.PI)) + 360) % 360;
                         theta2 = ((Math.Atan2(Math.Sin(-deltalambda) * Math.Cos(phi1), Math.Cos(phi2) * Math.Sin(phi1) - Math.Sin(phi2) * Math.Cos(phi1) * Math.Cos(-deltalambda)) * (180 / Math.PI)) + 180) % 360;
                         theta = (theta1 + theta2) / 2;
-                        temp[i + 1, 0] = Math.Round((360 - theta),2);
+                        theta = Math.Round((360 - theta), 2);
+                        if(Math.Abs(theta - 360) < 5) {
+                            theta = 0;
+                        }
+                        temp[i + 1, 0] = theta;
                         temp[i + 1, 1] = Math.Round((d / 1000),2); //Distance in Kilometers
                         output += Math.Round((360 - theta),2) + " " + Math.Round((d/1000),2) + "\n";
                     }
