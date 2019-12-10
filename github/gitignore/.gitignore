@@ -1,0 +1,18 @@
+# VS Stuff #
+###################
+*.dll
+*.suo
+*.ide
+*.cache
+*.json
+*.exe
+*.exe.manifest
+*.pdb
+
+
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
