@@ -2,13 +2,15 @@
 ###################
 *.dll
 *.suo
-*.ide
+*.ide-shm
+*.ide-wal
 *.cache
 *.json
 *.exe
 *.exe.manifest
 *.pdb
 
+*.csproj*
 
 
 # Logs and databases #
