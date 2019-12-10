@@ -42,20 +42,22 @@ namespace LID_ClassLibrary {
 
         //Construct the messages
         public void MessageConstructor() {
-            int sentenceNum = 1; //Start at 1 and increase for each line
+            int numOfSentances; //Calculate Number of Sentances
             int serialnum = ((Convert.ToInt32(DateTime.UtcNow.ToString("mm")) * 60) + Convert.ToInt32(DateTime.UtcNow.ToString("ss"))) % 10; //Different for each line
             string temp;
             foreach(string AA in AsciiStream) {
+                double tempNum = AA.Length / 60;
+                numOfSentances = Convert.ToInt32(Math.Ceiling(tempNum))+1;
                 serialnum = (serialnum + 1) % 10;
                 try {
                     if(AA.Length * 6 < 372) {
-                        temp = "!" + "AIVDM" + "," + sentenceNum + "," + "1" + "," + "," + "A" + ",";
+                        temp = "!" + "AIVDM" + "," + numOfSentances + "," + "1" + "," + "," + "A" + ",";
                         temp += AA + "," + "0";
                         temp += "*" + Checksum(temp);
                         AISMessages.Add(temp);
                     } else {
                         for(int i = 1; ((i - 1) * 60) < AA.Length; i++) { 
-                            temp = "!" + "AIVDM" + "," + sentenceNum + "," + i + ",";
+                            temp = "!" + "AIVDM" + "," + numOfSentances + "," + i + ",";
 
                             if(AA.Substring((i - 1) * 60).Length > 60) {
                                 temp += serialnum + "," + "A" + "," + AA.Substring((i - 1) * 60, 60) + "," + "0";
@@ -70,7 +72,6 @@ namespace LID_ClassLibrary {
                 } catch(Exception x) {
                     Console.WriteLine(x.Message);
                 }
-                sentenceNum++;
             }
         }
 
@@ -100,6 +101,7 @@ namespace LID_ClassLibrary {
             string output = "";
             foreach(string message in AISMessages) {
                 output += message + "," + timeStamp + "\n";
+            }
                 try {
                     using(StreamWriter AISWriter = new StreamWriter(config.DirPath + @"\AISToday.txt")) {
                         AISWriter.Write(output);
@@ -108,7 +110,6 @@ namespace LID_ClassLibrary {
                     Console.WriteLine(e.Message);
 
                 }
-            }
         }
 
 
@@ -117,6 +118,7 @@ namespace LID_ClassLibrary {
         //ASCII -> bits
         //ASCII - 48 if (> 40){-8} 
         public char Bin2Ascii(string input) {
+            string compare = "0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVW`abcdefghijklmnopqrstuvw";
             char output;
             int temp = 0;
             //Sum the conversion of each bit to its value in decimal
@@ -138,8 +140,11 @@ namespace LID_ClassLibrary {
             Console.Write("Raw:" + temp);
             //*/
             temp += 48;
-            if(temp >= 88) temp += 8;
+            if(temp > 87) temp += 8;
             output = Convert.ToChar(temp);
+            if(!compare.Contains(output)) {
+                Console.WriteLine(output);
+            }
             /* Debug '*' here -> /
             Console.Write(" ASCII:" + temp);
             Console.WriteLine(" Char:" + output);

@@ -105,6 +105,7 @@ namespace LID_ClassLibrary {
                     //Sub-Areas 1-8
                     int numOfSubAreas = (int)Math.Ceiling((((double)area.Length / 2) - 1) / 4) * 4; //Multiples Of 4 (actual #subareas = this/4)
                     for(int i = 1; i <= numOfSubAreas; i++) {
+                        
                         //Each i is a point
                         if((i - 1) % 4 == 0) {
                             temp +=/*Area Shape x3bits*/Convert.ToString(3, 2).PadLeft(3, '0') + /*Scale Factor x2bits*/Convert.ToString(3, 2).PadLeft(2, '0');
