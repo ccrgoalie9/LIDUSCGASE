@@ -10,15 +10,11 @@ namespace LID_ClassLibrary {
 
         public List<string> AISMessages { get; set; }
         readonly private Config config;
-        private DateTime epoch;
-        private DateTime current;
         private int timeStamp;
 
 
         public ArmoredAscii(List<string> input, Config config) {
             this.config = config;
-            epoch = Convert.ToDateTime("1970-1-1");
-            current = DateTime.UtcNow;
             timeStamp = CalcTimeStamp();
             AsciiStream = new List<string>();
             AISMessages = new List<string>();
@@ -80,57 +76,9 @@ namespace LID_ClassLibrary {
 
         //Calculate the Time Stamp
         private int CalcTimeStamp() {
-            //31,536,000 seconds in a year, 86400 seconds in a day
-            int epochSeconds = (Convert.ToInt32(epoch.ToString("yyyy")) * 31536000) + ((DaysOfMonth(Convert.ToInt32(epoch.ToString("MM"))) + Convert.ToInt32(epoch.ToString("dd"))-1) * 86400) + (Convert.ToInt32(epoch.ToString("HH")) * 3600) + (Convert.ToInt32(epoch.ToString("mm")) * 60) + (Convert.ToInt32(epoch.ToString("ss")));
-            int currentSeconds = (Convert.ToInt32(current.ToString("yyyy")) * 31536000) + ((DaysOfMonth(Convert.ToInt32(current.ToString("MM"))) + Convert.ToInt32(current.ToString("dd")) - 1) * 86400) + (Convert.ToInt32(current.ToString("HH")) * 3600) + (Convert.ToInt32(current.ToString("mm")) * 60) + (Convert.ToInt32(current.ToString("ss")));
-            int tStamp = currentSeconds - epochSeconds;
-            return tStamp;
+            return Convert.ToInt32(DateTimeOffset.Now.ToUnixTimeSeconds());
         }
 
-        private int DaysOfMonth(int numMonth) {
-            int numOfDays = 0;
-            for(int i = 1; i<numMonth; i++) { //Does not include current month
-                switch(i) {
-                    case 1:
-                        numOfDays += 31;
-                        break;
-                    case 2:
-                        numOfDays += 28; //29 in leap years
-                        break;
-                    case 3:
-                        numOfDays += 31;
-                        break;
-                    case 4:
-                        numOfDays += 30;
-                        break;
-                    case 5:
-                        numOfDays += 31;
-                        break;
-                    case 6:
-                        numOfDays += 30;
-                        break;
-                    case 7:
-                        numOfDays += 31;
-                        break;
-                    case 8:
-                        numOfDays += 31;
-                        break;
-                    case 9:
-                        numOfDays += 30;
-                        break;
-                    case 10:
-                        numOfDays += 31;
-                        break;
-                    case 11:
-                        numOfDays += 30;
-                        break;
-                    case 12:
-                        numOfDays += 31;
-                        break;
-                        }
-            }
-            return numOfDays;
-        }
 
         public static string Checksum(string Ascii2check) {
             // Compute the checksum by XORing all the character values in the string.
@@ -151,7 +99,7 @@ namespace LID_ClassLibrary {
         private void WriteFile() {
             string output = "";
             foreach(string message in AISMessages) {
-                output += message + "\n";
+                output += message + "," + timeStamp + "\n";
                 try {
                     using(StreamWriter AISWriter = new StreamWriter(config.DirPath + @"\AISToday.txt")) {
                         AISWriter.Write(output);
@@ -207,6 +155,7 @@ namespace LID_ClassLibrary {
             foreach(string output in AISMessages) {
                 Console.WriteLine(output);
             }
+            Console.WriteLine("Time Stamp: " + timeStamp);
         }
 
 
