@@ -83,7 +83,7 @@ namespace LID_ClassLibrary {
 
             try {//Create the Binary from the Bearing and Ranges
                 Console.Write("Creating Binary...\t\t");
-                todayBin = new BinaryCreator(todayBR.GetCoordinates());
+                todayBin = new BinaryCreator(todayBR.GetCoordinates(), config);
                 Console.WriteLine("Binaries Created");
                 if(config.Debug) {
                     todayBin.Debug();

@@ -33,7 +33,7 @@ namespace LID_ClassLibrary {
 
 
 
-        public BinaryCreator(double[][,] PolarCoords) { //Will take input at some point
+        public BinaryCreator(double[][,] PolarCoords, Config config) { //Will take input at some point
 
 
             // Try Catch statement -- encode message based upon type
@@ -48,7 +48,7 @@ namespace LID_ClassLibrary {
             try { // Try Catch Statement that creates an array of variables. 
                 Type = Convert.ToString(8, 2).PadLeft(6, '0'); //6bits
                 RepeatIndicator = Convert.ToString(0, 2).PadLeft(2, '0'); //2bits
-                Mmsi = Convert.ToString(003679999, 2).PadLeft(30, '0'); //30bits
+                Mmsi = Convert.ToString(config.MMSI, 2).PadLeft(30, '0'); //30bits
                 Spare = Convert.ToString(0, 2).PadLeft(2, '0'); //2bits
 
                 MessageVersion = Convert.ToString(2, 2).PadLeft(6, '0');

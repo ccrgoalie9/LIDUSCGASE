@@ -11,6 +11,8 @@ namespace LID_ClassLibrary {
         public string DirPath { get; set; }
         public string BulletinUrl { get; set; }
         public string ChartUrl { get; set; }
+        public string WebUrl { get; set; }
+        public int MMSI { get; set; }
         public string KmlColor1 { get; set; }
         public string KmlColor2 { get; set; }
         public string KmlColor3 { get; set; }
@@ -58,6 +60,14 @@ namespace LID_ClassLibrary {
                             KmlWidth = 5;
                         }
                         try {
+                            if(temp.Contains("Message MMSI")) { MMSI = Convert.ToInt32(temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1)); flag++; }
+                        } catch(Exception x) {
+                            Console.WriteLine("Invalid Value for 'MMSI'\n" + x.Message);
+                            File.AppendAllText(ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
+                            //If error, default is 003679999
+                            MMSI = 003679999;
+                        }
+                        try {
                             if(temp.Contains("Ignore")) { FuNtImE = Convert.ToBoolean(temp.Substring(temp.IndexOf('\'') + 1, temp.LastIndexOf('\'') - temp.IndexOf('\'') - 1));}
                         } catch(Exception x) {
                             Console.WriteLine("Invalid Value For An Expected Boolean\n" + x.Message);
@@ -92,6 +102,7 @@ namespace LID_ClassLibrary {
                 configWriter.WriteLine(@"Files Directory Location: 'C:\Users\" + Environment.UserName + @"\Documents\LID Files'");
                 configWriter.WriteLine(@"Error File Location: 'C:\Users\" + Environment.UserName + @"\Documents\LID Files\ErrorLogs\Error.txt'");
                 configWriter.WriteLine("\nUpdate links only if they have changed");
+                configWriter.WriteLine("Website URL: 'https://lidtesting.azurewebsites.net'");
                 configWriter.WriteLine(@"Bulletin URL: 'https://www.navcen.uscg.gov/?pageName=iipB12Out'");
                 configWriter.WriteLine(@"Chart URL: 'https://www.navcen.uscg.gov/?pageName=iipCharts&Current'");
                 configWriter.WriteLine("\n#KML file parameters");
@@ -102,6 +113,7 @@ namespace LID_ClassLibrary {
                 configWriter.WriteLine(@"KML Color Est Berg Limit: 'ff00ffff'");
                 configWriter.WriteLine(@"KML Color Sea Ice Limit : 'ffffff00'");
                 configWriter.WriteLine(@"KML Line Width: '5'");
+                configWriter.WriteLine(@"Message MMSI: '003679999'");
                 configWriter.WriteLine(@"Debug: 'False'");
             }
         }
