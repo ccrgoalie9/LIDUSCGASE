@@ -140,9 +140,11 @@ namespace LID_ClassLibrary {
             temp += 48;
             if(temp >= 88) temp += 8;
             output = Convert.ToChar(temp);
+            /*
 
             Console.Write(" ASCII:" + temp);
             Console.WriteLine(" Char:" + output);
+            */
 
             return output;
         }
