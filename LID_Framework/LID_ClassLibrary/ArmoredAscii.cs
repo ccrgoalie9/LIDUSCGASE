@@ -31,6 +31,11 @@ namespace LID_ClassLibrary {
 
         }
 
+        public void checksum()
+        {
+
+        }
+
         //Convert the string of bits to an integer then to ascii
         //ASCII -> bits
         //ASCII - 48 if (> 40){-8} 

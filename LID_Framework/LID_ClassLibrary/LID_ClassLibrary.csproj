@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="ArmoredAscii.cs" />
     <Compile Include="BearingRange.cs" />
+    <Compile Include="Class1.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="DoIt.cs" />
     <Compile Include="Download.cs" />
