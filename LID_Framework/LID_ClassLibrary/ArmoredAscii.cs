@@ -137,8 +137,8 @@ namespace LID_ClassLibrary {
             Console.Write(" " + input[5] + "*1=" + (Convert.ToInt32(Convert.ToString(input[5])) * 1));
             Console.Write("Raw:" + temp);
             //*/
-            //if(temp < 40) temp += 8;
             temp += 48;
+            if(temp >= 87) temp += 8;
             output = Convert.ToChar(temp);
             /* Debug '*' here -> /
             Console.Write(" ASCII:" + temp);
