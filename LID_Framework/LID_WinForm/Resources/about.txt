@@ -15,3 +15,5 @@ payloads
 use
 + Added debugging option in
 config file
++ Added AIS Message Creation
+with timestamps for TV-32
