@@ -35,3 +35,6 @@ LID_Framework/.vs/LID_Framework/v16/Server/sqlite3/storage.ide
 LID_Framework/.vs/LID_Framework/v16/Server/sqlite3/storage.ide-shm
 LID_Framework/.vs/LID_Framework/v16/Server/sqlite3/storage.ide-wal
 LID_Framework/.vs/LID_Framework/DesignTimeBuild/.dtbcache
+.vscode/tasks.json
+.vscode/launch.json
+LID_Framework/LID_WebApp/obj/Debug/netcoreapp3.0/project.razor.json
