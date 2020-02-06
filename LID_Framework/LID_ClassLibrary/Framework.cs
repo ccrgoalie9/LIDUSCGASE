@@ -3,6 +3,7 @@ using System.IO;
 using System.Net;
 using System.Collections.Generic;
 using System.Linq;
+using SharpKml;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -37,20 +38,61 @@ namespace LID_ClassLibrary {
         //Polar Variables
         double a, c, d, R, phi1, phi2, deltaphi, deltalambda, theta1, theta, theta2;
         readonly double[][,] PolarSets;
+        private double[][,] coordinates;
         //string output;
         //readonly string outFile;
-        //
+        //Binary Variables
+        public int X { get; set; }
+        public int Y { get; set; }
+        public int Z { get; set; }
+        public int W { get; set; }
+        public int S { get; set; }
+        public int Long { get; set; }
+        public string Type { get; set; }
+        public string RepeatIndicator { get; set; }
+        public string Mmsi { get; set; }
+        public string Encode { get; set; }
+        public string DAC { get; set; }
+        public string FID { get; set; }
+        //public string Year { get; set; }
+        public string Month { get; set; }
+
+        public string Day { get; set; }
+        public string Hour { get; set; }
+        public string Minute { get; set; }
+        public List<string> LineMessages { get; set; }
+        public string AreaShape { get; set; }
+        public string ScaleFactor { get; set; }
+        public string Longitude { get; set; }
+        public string MsgLink { get; set; }
+        public string Notice { get; set; }
+        public string Spare { get; set; }
+        public string MessageVersion { get; set; }
+        public string Duration { get; set; }
+        public string Action { get; set; }
+        //Armored ASCII Variables
+        public List<string> AsciiStream { get; set; }
+        public List<string> AISMessages { get; set; }
+        //readonly private Config config;
+        private int timeStamp;
 
         //Constructor
         public Framework() {
+            //Start by reading or creating CONFIG
             ConfigPath = @"config.txt";
             if(!File.Exists(ConfigPath)) {
                 //Create file from defaults
                 CreateConfig();
+
             }
             if(File.Exists(ConfigPath)) {
                 ReadConfig();
             }
+
+            //Download the bulletin
+            DownloadFromWeb();
+
+            //
         }
 
 
@@ -116,7 +158,7 @@ namespace LID_ClassLibrary {
                 }
             } catch(Exception x) {
                 Console.WriteLine(x.Message);
-                File.AppendAllText(config.ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
+                File.AppendAllText(ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
                 ingested = "Read Failed";
             }
         }
@@ -213,7 +255,7 @@ namespace LID_ClassLibrary {
             try {
                 int count = 0;
                 decOutput = "";
-                foreach(Ingestor x in coordinates) {
+                foreach(double[,] x in coordinates) {
                     decOutput += lineTypes[count];
                     if(count == 0) {
                         decOutput += DateTime.UtcNow.ToString(" yyyy-MM-dd");
@@ -494,6 +536,276 @@ namespace LID_ClassLibrary {
             }
         }
 
+        //Bearing Range Method
+        private void ConvertCoordinates(Ingestor[] input) {
+            int count = 0;
+            foreach(Ingestor ingest in input) {
+                double[,] coords = ingest.GetCoordinates();
+                double[,] temp = new double[ingest.GetCoordinates().Length / 2, 2];
+                //Set the first and last set
+                temp[0, 0] = Math.Round(coords[0, 0], 2);
+                temp[0, 1] = Math.Round(coords[0, 1], 2);
+                output += ingest.GetLineType() + "\n";
+                output += temp[0, 0] + " " + temp[0, 1] + "\n";
+
+                //Do the math
+
+                try {
+                    for(int i = 0; i < (coords.Length / 2); i++) {
+                        for(int j = 0; j <= 1; j++) {
+                            coords[i, j] = coords[i, j] * (Math.PI / 180); // Convert to Radians
+                        }
+                    }
+                    for(int i = 0; i < (coords.Length / 2 - 1); i++) {
+                        phi1 = coords[i, 0];
+                        phi2 = coords[i + 1, 0];
+                        deltaphi = phi2 - phi1;
+                        deltalambda = (coords[i, 1] - coords[i + 1, 1]);
+
+                        //DISTANCE
+                        R = 6371000; //RADIUS OF EARTH IN METERS
+                        a = Math.Sin(deltaphi / 2) * Math.Sin(deltaphi / 2) + Math.Cos(phi1) * Math.Cos(phi2) * Math.Sin(deltalambda / 2) * Math.Sin(deltalambda / 2);
+                        c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
+                        d = R * c; //DISTANCE IN METERS
+
+                        //BEARING
+                        theta1 = ((Math.Atan2(Math.Sin(deltalambda) * Math.Cos(phi2), Math.Cos(phi1) * Math.Sin(phi2) - Math.Sin(phi1) * Math.Cos(phi2) * Math.Cos(deltalambda)) * (180 / Math.PI)) + 360) % 360;
+                        theta2 = ((Math.Atan2(Math.Sin(-deltalambda) * Math.Cos(phi1), Math.Cos(phi2) * Math.Sin(phi1) - Math.Sin(phi2) * Math.Cos(phi1) * Math.Cos(-deltalambda)) * (180 / Math.PI)) + 180) % 360;
+                        theta = (theta1 + theta2) / 2;
+                        theta = Math.Round((360 - theta), 2);
+                        if(Math.Abs(theta - 360) < 5) {
+                            theta = 0;
+                        }
+                        temp[i + 1, 0] = theta;
+                        temp[i + 1, 1] = Math.Round((d / 1000), 2); //Distance in Kilometers
+                        output += Math.Round((360 - theta), 2) + " " + Math.Round((d / 1000), 2) + "\n";
+                    }
+                    PolarSets[count] = temp;
+                    count++;
+                } catch(Exception x) {
+                    Console.WriteLine(x.Message);
+
+                }
+            }
+        }
+
+        //Binary Creator Method
+        public BinaryCreator(double[][,] PolarCoords, Config config) { //Will take input at some point
+
+
+            // Try Catch statement -- encode message based upon type
+            // Common code. All messages start with the same 38 bits....
+
+            ////////////////////////////////////////////////////////////
+            // Bits Len   Description
+            //    0-5       6   Message Type
+            //    6-7       2   Repeat Indicator
+            //    8-37     30   MMSI
+
+            try { // Try Catch Statement that creates an array of variables. 
+                Type = Convert.ToString(8, 2).PadLeft(6, '0'); //6bits
+                RepeatIndicator = Convert.ToString(0, 2).PadLeft(2, '0'); //2bits
+                Mmsi = Convert.ToString(config.MMSI, 2).PadLeft(30, '0'); //30bits
+                Spare = Convert.ToString(0, 2).PadLeft(2, '0'); //2bits
+
+                MessageVersion = Convert.ToString(2, 2).PadLeft(6, '0');
+
+                DAC = Convert.ToString(367, 2).PadLeft(10, '0');
+
+                FID = Convert.ToString(22, 2).PadLeft(6, '0');
+
+                //Set the time
+                X = Convert.ToInt16(DateTime.UtcNow.ToString("MM"));
+                Month = Convert.ToString(X, 2).PadLeft(4, '0');
+
+                Y = Convert.ToInt16(DateTime.UtcNow.ToString("dd"));
+                Day = Convert.ToString(Y, 2).PadLeft(5, '0');
+
+                Z = Convert.ToInt16(DateTime.UtcNow.ToString("HH"));
+                Hour = Convert.ToString(Z, 2).PadLeft(5, '0');
+
+                W = Convert.ToInt16(DateTime.UtcNow.ToString("mm"));
+                Minute = Convert.ToString(W, 2).PadLeft(6, '0');
+
+                //maybe msglink and notice
+                MsgLink = Convert.ToString(((X * 31) + Y), 2).PadLeft(10, '0');
+                Notice = Convert.ToString(24, 2).PadLeft(7, '0');
+
+
+                //maybe duration?
+                Duration = Convert.ToString(1440, 2).PadLeft(18, '0');
+
+                Action = Convert.ToString(0, 2).PadLeft(1, '0');
+
+                AreaShape = Convert.ToString(0, 2).PadLeft(3, '0');
+
+                //Everything that is the same for each AIS message
+                Encode = Type + RepeatIndicator + Mmsi + Spare + DAC + FID + MessageVersion + MsgLink + Notice + Month + Day + Hour + Minute + Duration + Action + Spare;
+
+                LineMessages = new List<string>();
+                string temp;
+                //EACH AIS message can have 8 subareas
+                //EACH subarea can have 4 points
+                //Make a line for each coordinate set
+                foreach(double[,] area in PolarCoords) {
+                    //Sub-Area 0
+                    temp = /*Area Shape x3bits*/Convert.ToString(0, 2).PadLeft(3, '0') + /*Scale Factor x2bits*/Convert.ToString(1, 2).PadLeft(2, '0');
+                    int lon = (int)((area[0, 1] * 600000)) & (int)(Math.Pow(2, 28) - 1);
+                    temp += /*Longitude x28bits*/ Convert.ToString(lon, 2).PadLeft(28, '0');
+                    int lat = (int)((area[0, 0] * 600000)) & (int)(Math.Pow(2, 27) - 1);
+                    temp += /*Latitude x27bits*/ Convert.ToString(lat, 2).PadLeft(27, '0');
+                    temp += /*Precision x3bits*/ "100";
+                    temp += /*Radius x12bits*/ "0".PadLeft(12, '0');
+                    temp += /*Spare x21bits*/ "0".PadLeft(21, '0');
+
+                    //Polyline of shape = 3
+                    //Sub-Areas 1-8
+                    int numOfSubAreas = (int)Math.Ceiling((((double)area.Length / 2) - 1) / 4) * 4; //Multiples Of 4 (actual #subareas = this/4)
+                    for(int i = 1; i <= numOfSubAreas; i++) {
+
+                        //Each i is a point
+                        if((i - 1) % 4 == 0) {
+                            temp +=/*Area Shape x3bits*/Convert.ToString(3, 2).PadLeft(3, '0') + /*Scale Factor x2bits*/Convert.ToString(3, 2).PadLeft(2, '0');
+                        }
+                        if(i < (area.Length / 2))/*Add bearing and range if it is within the index*/
+                        {
+                            temp += Convert.ToString(Convert.ToInt32(area[i, 0] * 2), 2).PadLeft(10, '0'); //Bearing
+                            temp += Convert.ToString(Convert.ToInt32(area[i, 1]), 2).PadLeft(11, '0'); //Range
+                        } else {
+                            temp += Convert.ToString(720, 2).PadLeft(10, '0'); //Default Bearing
+                            temp += Convert.ToString(0, 2).PadLeft(11, '0'); //Default Range
+                        }
+                        if(((i) / 4) >= 1 && ((i - 1) % 4) == 3) {
+                            temp += "0".PadLeft(7, '0'); //Spare 7bits
+                        }
+                    }
+                    LineMessages.Add(temp);
+                }
+                //End Creation of Area Shape
+
+                //Encode = Payload + DAC + FID + MessageVersion + MsgLink + Notice + Month + Day + Hour + Minute + Duration + Action + Spare;
+
+                for(int i = 0; i < LineMessages.Count; i++) {
+                    LineMessages[i] = Encode + LineMessages[i];
+                }
+
+            } catch(Exception e) {
+                Console.WriteLine("Error: {0}", e.Message);
+            }
+        } //End of Constructor
+
+        //Armored ASCII Methods
+        //Convert from Binary to Ascii
+        public void ConvertToAscii(List<string> input) {
+            List<string> BinaryStream = input;
+            string temp = "";
+            foreach(String x in BinaryStream) {
+                try {
+                    for(int i = 0; i < x.Length; i += 6) { //Every 6 bits turns into one Ascii character
+                        temp += Bin2Ascii(x.Substring(i, 6));
+                    }
+                    AsciiStream.Add(temp);
+                    temp = "";
+                } catch(Exception e) {
+                    Console.WriteLine(e.Message);
+                }
+            }
+        }
+        //Construct the messages
+        public void MessageConstructor() {
+            int numOfSentances; //Calculate Number of Sentances
+            int serialnum = ((Convert.ToInt32(DateTime.UtcNow.ToString("mm")) * 60) + Convert.ToInt32(DateTime.UtcNow.ToString("ss"))) % 10; //Different for each line
+            string temp;
+            foreach(string AA in AsciiStream) {
+                double tempNum = AA.Length / 60;
+                numOfSentances = Convert.ToInt32(Math.Ceiling(tempNum)) + 1;
+                serialnum = (serialnum + 1) % 10;
+                try {
+                    if(AA.Length * 6 < 372) {
+                        temp = "!" + "AIVDM" + "," + numOfSentances + "," + "1" + "," + "," + "A" + ",";
+                        temp += AA + "," + "0";
+                        temp += "*" + Checksum(temp);
+                        AISMessages.Add(temp);
+                    } else {
+                        for(int i = 1; ((i - 1) * 60) < AA.Length; i++) {
+                            temp = "!" + "AIVDM" + "," + numOfSentances + "," + i + ",";
+
+                            if(AA.Substring((i - 1) * 60).Length > 60) {
+                                temp += serialnum + "," + "A" + "," + AA.Substring((i - 1) * 60, 60) + "," + "0";
+                            } else {
+                                temp += serialnum + "," + "A" + "," + AA.Substring((i - 1) * 60, AA.Length - ((i - 1) * 60)) + "," + "0";
+                            }
+
+                            temp += "*" + Checksum(temp);
+                            AISMessages.Add(temp);
+                        }
+                    }
+                } catch(Exception x) {
+                    Console.WriteLine(x.Message);
+                }
+            }
+        }
+        //Calculate the Time Stamp
+        private int CalcTimeStamp() {
+            return Convert.ToInt32(DateTimeOffset.Now.ToUnixTimeSeconds());
+        }
+        public static string Checksum(string Ascii2check) {
+            // Compute the checksum by XORing all the character values in the string.
+            int checksum = 0;
+            for(int i = 1; i < Ascii2check.Length; i++) {
+                checksum ^= Convert.ToUInt16(Ascii2check.ToCharArray()[i]);
+            }
+
+            // Convert it to hexadecimal (base-16, upper case, most significant nybble first).
+            string hexsum = checksum.ToString("X").ToUpper();
+            if(hexsum.Length < 2) {
+                hexsum = ("00" + hexsum).Substring(hexsum.Length);
+            }
+            // Display the result
+            return hexsum;
+        }
+        
+        //All Write Files
+        private void WriteFile() {
+            string output = "";
+            foreach(string message in AISMessages) {
+                output += message + "," + timeStamp + "\n";
+            }
+            try {
+                using(StreamWriter AISWriter = new StreamWriter(DirPath + @"\AISToday.txt")) {
+                    AISWriter.Write(output);
+                }
+            } catch(Exception e) {
+                Console.WriteLine(e.Message);
+
+            }
+        }
+
+        //Convert the string of bits to an integer then to ascii
+        //ASCII -> bits
+        //ASCII - 48 if (> 40){-8} 
+        public char Bin2Ascii(string input) {
+            string compare = "0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVW`abcdefghijklmnopqrstuvw";
+            char output;
+            int temp = 0;
+            //Sum the conversion of each bit to its value in decimal
+            //[2^5,2^4,2^3,2^2,2^1,2^0]
+            //[ 32, 16, 8 , 4 , 2 , 1 ]
+            temp += Convert.ToInt32(Convert.ToString(input[0])) * 32;
+            temp += Convert.ToInt32(Convert.ToString(input[1])) * 16;
+            temp += Convert.ToInt32(Convert.ToString(input[2])) * 8;
+            temp += Convert.ToInt32(Convert.ToString(input[3])) * 4;
+            temp += Convert.ToInt32(Convert.ToString(input[4])) * 2;
+            temp += Convert.ToInt32(Convert.ToString(input[5])) * 1;
+            temp += 48;
+            if(temp > 87) temp += 8;
+            output = Convert.ToChar(temp);
+            if(!compare.Contains(output)) {
+                Console.WriteLine(output);
+            }
+            return output;
+        }
+
         //Create the configuration file for first time or for new users
         public void CreateConfig() {
             using(StreamWriter configWriter = new StreamWriter(ConfigPath, false)) {
@@ -518,21 +830,21 @@ namespace LID_ClassLibrary {
             }
         }
 
-        public void DownloadFromWeb(Config config) {
+        public void DownloadFromWeb() {
             //Outfile Naming so that verision can be kept and a path from config file is present.
-            outfile = (config.DirPath + @"\Bulletins\" + DateTime.UtcNow.ToString("yyyy-MM-dd") + "_Bulletin_Pull.txt");
+            string outfile = (DirPath + @"\Bulletins\" + DateTime.UtcNow.ToString("yyyy-MM-dd") + "_Bulletin_Pull.txt");
             //Calls Download to grab the html from the bullentin website
-            DownloadFile(config.BulletinUrl, outfile);
+            DownloadFile(BulletinUrl, outfile);
 
             //Parser and neatness
-            string text = System.IO.File.ReadAllText(outfile);
+            string text = File.ReadAllText(outfile);
             text = text.Replace("</p>", "");
             text = text.Replace("<p>", "");
             text = text.Replace("	", "");
             text = text.Replace(".", ". ");
             text = text.Replace(",", ", ");
             text = text.Substring(text.IndexOf("NORTH AMERICAN ICE SERVICE (NAIS)"), text.IndexOf("CANCEL THIS MSG") - text.IndexOf("NORTH AMERICAN ICE SERVICE (NAIS)") + 31);
-            System.IO.File.WriteAllText(outfile, text);
+            File.WriteAllText(outfile, text);
         }
 
         //Method that downloads the Bullentin using System.net
@@ -540,6 +852,22 @@ namespace LID_ClassLibrary {
             WebClient client = new WebClient();
             client.DownloadFile(Bulletin, SavedBulletin);
             client.Dispose();
+        }
+
+        //Check if directories exists
+        private void DirectoryCheck() {
+            Console.Write("Updating Directories...\t\t");
+            try { Directory.CreateDirectory(DirPath + @"\Bulletins"); } catch(Exception x) {
+                CreateConfig();
+                ReadConfig();
+                Console.WriteLine("Error Creating Directories, Attempting To Fix By Re-Writing Configuration File");
+                File.AppendAllText(ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
+            }
+            Directory.CreateDirectory(DirPath + @"\KML");
+            Directory.CreateDirectory(DirPath + @"\LatLongs");
+            Directory.CreateDirectory(DirPath + @"\Polar");
+            Directory.CreateDirectory(DirPath + @"\ErrorLogs");
+            Console.WriteLine("Directories Updated");
         }
 
         //Accessors
