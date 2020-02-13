@@ -1,0 +1,11 @@
+C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_CLI_TEST\obj\Debug\LID_CLI_TEST.csprojAssemblyReference.cache
+C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_CLI_TEST\bin\Debug\LID_CLI_TEST.exe.config
+C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_CLI_TEST\bin\Debug\LID_CLI_TEST.exe
+C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_CLI_TEST\bin\Debug\LID_CLI_TEST.pdb
+C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_CLI_TEST\bin\Debug\LID_ClassLibrary.dll
+C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_CLI_TEST\bin\Debug\SharpKml.Core.dll
+C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_CLI_TEST\bin\Debug\LID_ClassLibrary.pdb
+C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_CLI_TEST\bin\Debug\SharpKml.Core.xml
+C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_CLI_TEST\obj\Debug\LID_CLI_TEST.csproj.CopyComplete
+C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_CLI_TEST\obj\Debug\LID_CLI_TEST.exe
+C:\Users\Carbon-Tower\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_CLI_TEST\obj\Debug\LID_CLI_TEST.pdb

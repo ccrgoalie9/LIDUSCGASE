@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3D0B3900-BA98-4863-8A95-742EE4A28DB7}</ProjectGuid>
+    <ProjectGuid>{BA130607-4B67-4BB0-92E6-39414E721B83}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>LID_CLI</RootNamespace>
-    <AssemblyName>LID_CLI</AssemblyName>
+    <RootNamespace>LID_CLI_TEST</RootNamespace>
+    <AssemblyName>LID_CLI_TEST</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CLI.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

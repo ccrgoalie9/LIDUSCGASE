@@ -3,7 +3,9 @@ using System.IO;
 using System.Net;
 using System.Collections.Generic;
 using System.Linq;
-using SharpKml;
+using SharpKml.Base;
+using SharpKml.Dom;
+using SharpKml.Engine;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -273,7 +275,7 @@ namespace LID_ClassLibrary {
 
         //Convert coordinates using the Ingestor class
         private void ConvertIngestor(int check) {
-            coordinates = new Ingestor[coordsIngested.Length];
+            coordinates = new double[coordsIngested.Length][,];
 
             //Add Letters To Reflect Subsections of the same Set
             string indexes = "";
@@ -303,13 +305,11 @@ namespace LID_ClassLibrary {
 
             if(check != 3) {
                 for(int i = 0; i < coordinates.Length; i++) {
-                    coordinates[i] = new Ingestor(coordsIngested[i], i + 1);
-                    coordinates[i].SetLineType(lineTypes[i]);
+                    coordinates[i] = coordsIngested[i][,];
                 }
             } else {
                 for(int i = 0; i < coordinates.Length; i++) {
-                    coordinates[i] = new Ingestor(coordsIngested[i], i + i, check);
-                    coordinates[i].SetLineType(lineTypes[i]);
+                    coordinates[i] = coordsIngested[i][,];
                 }
             }
         }
@@ -390,8 +390,8 @@ namespace LID_ClassLibrary {
         }
 
         //Line Class
-        public Line(Ingestor[] input, Config config) {
-            filepath = (config.DirPath + @"\KML\" + DateTime.UtcNow.ToString("yyyy-MM-dd") + "_ICEBERGS.kml");
+        public void GenerateLine() {
+            string filepath = (DirPath + @"\KML\" + DateTime.UtcNow.ToString("yyyy-MM-dd") + "_ICEBERGS.kml");
             string filename = (DateTime.UtcNow.ToString("yyyy-MM-dd") + "_ICEBERGS");
 
             //Check if file already exists
@@ -440,7 +440,7 @@ namespace LID_ClassLibrary {
                 SimpleStyle.Id = styleIL;
                 SimpleStyle.Line = new LineStyle {
                     Color = Color32.Parse(colorCode1),
-                    Width = config.KmlWidth
+                    Width = KmlWidth
                 };
                 SimpleStyle.Polygon = new PolygonStyle {
                     Color = Color32.Parse(colorCode1)
@@ -451,7 +451,7 @@ namespace LID_ClassLibrary {
                 SimpleStyle.Id = styleEIL;
                 SimpleStyle.Line = new LineStyle {
                     Color = Color32.Parse(colorCode2),
-                    Width = config.KmlWidth
+                    Width = KmlWidth
                 };
                 SimpleStyle.Polygon = new PolygonStyle {
                     Color = Color32.Parse(colorCode2)
@@ -462,7 +462,7 @@ namespace LID_ClassLibrary {
                 SimpleStyle.Id = styleSIL;
                 SimpleStyle.Line = new LineStyle {
                     Color = Color32.Parse(colorCode3),
-                    Width = config.KmlWidth
+                    Width = KmlWidth
                 };
                 SimpleStyle.Polygon = new PolygonStyle {
                     Color = Color32.Parse(colorCode3)
@@ -471,7 +471,7 @@ namespace LID_ClassLibrary {
             }
 
             //LINE STRING & PLACEMARK CONSTRUCTION ZONE
-            foreach(Ingestor ingest in input) {
+            foreach(double[,] ingest in coordinates) {
                 //One per segment
                 LineString linestring = new LineString();
                 CoordinateCollection coordinates = new CoordinateCollection();
@@ -479,7 +479,7 @@ namespace LID_ClassLibrary {
                 linestring.Extrude = true;
                 linestring.Tessellate = true;
 
-                double[,] coordArray = ingest.GetCoordinates();
+                double[,] coordArray = ingest;
 
                 double[] lat = new double[(coordArray.Length / 2)];
                 double[] lon = new double[(coordArray.Length / 2)];
