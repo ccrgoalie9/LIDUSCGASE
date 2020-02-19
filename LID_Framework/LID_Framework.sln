@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LID_WebApp", "LID_WebApp\LI
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LID_ClassLibrary", "LID_ClassLibrary\LID_ClassLibrary.csproj", "{20A0F705-96D6-47E0-818B-A6B5BDBD6860}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestCLI", "TestCLI\TestCLI.csproj", "{FFD18664-AA51-4483-A583-CBB06B1348D1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{20A0F705-96D6-47E0-818B-A6B5BDBD6860}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20A0F705-96D6-47E0-818B-A6B5BDBD6860}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20A0F705-96D6-47E0-818B-A6B5BDBD6860}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFD18664-AA51-4483-A583-CBB06B1348D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFD18664-AA51-4483-A583-CBB06B1348D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFD18664-AA51-4483-A583-CBB06B1348D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFD18664-AA51-4483-A583-CBB06B1348D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
