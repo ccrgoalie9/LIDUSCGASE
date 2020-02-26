@@ -23,8 +23,8 @@ namespace LID_ClassLibrary {
         //Ignore this one
         public bool FuNtImE { get; set; }
 
-        public Config() {
-            ConfigPath = @"config.txt";
+        public Config(string path) {
+            ConfigPath = path;
             FuNtImE = false;
             if(!File.Exists(ConfigPath)) {
                 //Create file from defaults

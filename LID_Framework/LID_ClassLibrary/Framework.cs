@@ -3,7 +3,9 @@ using System.IO;
 using System.Net;
 using System.Collections.Generic;
 using System.Linq;
-using SharpKml;
+using SharpKml.Dom;
+using SharpKml.Base;
+using SharpKml.Engine;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -261,7 +263,15 @@ namespace LID_ClassLibrary {
                         decOutput += DateTime.UtcNow.ToString(" yyyy-MM-dd");
                     }
                     decOutput += "\n";
-                    decOutput += x.GetOutput() + "\n";
+                    string output = "";
+                    for(int i = 0; i < (x.Length / 2); i++) {
+                        for(int j = 0; j <= 1; j++) {
+                            output += x[i, j].ToString();
+                            if(j == 0) output += ",";
+                        }
+                        output += " ";
+                    }
+                    decOutput += output + "\n";
                     count++;
                 }
             } catch(Exception e) {
@@ -273,7 +283,7 @@ namespace LID_ClassLibrary {
 
         //Convert coordinates using the Ingestor class
         private void ConvertIngestor(int check) {
-            coordinates = new Ingestor[coordsIngested.Length];
+            coordinates = new double[coordsIngested.Length][,];
 
             //Add Letters To Reflect Subsections of the same Set
             string indexes = "";
@@ -303,13 +313,11 @@ namespace LID_ClassLibrary {
 
             if(check != 3) {
                 for(int i = 0; i < coordinates.Length; i++) {
-                    coordinates[i] = new Ingestor(coordsIngested[i], i + 1);
-                    coordinates[i].SetLineType(lineTypes[i]);
+                    coordinates[i] = Ingestor(coordsIngested[i], i + 1);
                 }
             } else {
                 for(int i = 0; i < coordinates.Length; i++) {
-                    coordinates[i] = new Ingestor(coordsIngested[i], i + i, check);
-                    coordinates[i].SetLineType(lineTypes[i]);
+                    coordinates[i] = Ingestor(coordsIngested[i], i + i, check);
                 }
             }
         }
@@ -368,30 +376,11 @@ namespace LID_ClassLibrary {
 
         //Line methods
 
-        //Write the coordinate sets to a text file
-        private void WriteFile() {
-            //Output to Degree File
-            try {
-                using(StreamWriter decimalFile = new StreamWriter(degOutFile)) {
-                    decimalFile.Write(output);
-                }
-            } catch(Exception e) {
-                Console.WriteLine(e.Message);
-            }
-
-            //Output to Decimal File
-            try {
-                using(StreamWriter decimalFile = new StreamWriter(decOutFile)) {
-                    decimalFile.Write(decOutput);
-                }
-            } catch(Exception e) {
-                Console.WriteLine(e.Message);
-            }
-        }
+       
 
         //Line Class
-        public Line(Ingestor[] input, Config config) {
-            filepath = (config.DirPath + @"\KML\" + DateTime.UtcNow.ToString("yyyy-MM-dd") + "_ICEBERGS.kml");
+        public void Line() {
+            string filepath = (DirPath + @"\KML\" + DateTime.UtcNow.ToString("yyyy-MM-dd") + "_ICEBERGS.kml");
             string filename = (DateTime.UtcNow.ToString("yyyy-MM-dd") + "_ICEBERGS");
 
             //Check if file already exists
@@ -407,21 +396,9 @@ namespace LID_ClassLibrary {
             };
 
             //Styling
-            string colorCode1 = config.KmlColor1;
-            string colorCode2 = config.KmlColor2;
-            string colorCode3 = config.KmlColor3;
-            /*
-            LineStyle lineStyle = new LineStyle {
-                Color = Color32.Parse(colorCode),
-                Width = config.KmlWidth
-            };
-            */
-
-            /*
-            PolygonStyle PolyStyle = new PolygonStyle {
-                Color = Color32.Parse(colorCode)
-            };
-            */
+            string colorCode1 = KmlColor1;
+            string colorCode2 = KmlColor2;
+            string colorCode3 = KmlColor3;
 
             //Timespan
             SharpKml.Dom.TimeSpan lineTimespan = new SharpKml.Dom.TimeSpan {
@@ -440,7 +417,7 @@ namespace LID_ClassLibrary {
                 SimpleStyle.Id = styleIL;
                 SimpleStyle.Line = new LineStyle {
                     Color = Color32.Parse(colorCode1),
-                    Width = config.KmlWidth
+                    Width = KmlWidth
                 };
                 SimpleStyle.Polygon = new PolygonStyle {
                     Color = Color32.Parse(colorCode1)
@@ -451,7 +428,7 @@ namespace LID_ClassLibrary {
                 SimpleStyle.Id = styleEIL;
                 SimpleStyle.Line = new LineStyle {
                     Color = Color32.Parse(colorCode2),
-                    Width = config.KmlWidth
+                    Width = KmlWidth
                 };
                 SimpleStyle.Polygon = new PolygonStyle {
                     Color = Color32.Parse(colorCode2)
@@ -462,7 +439,7 @@ namespace LID_ClassLibrary {
                 SimpleStyle.Id = styleSIL;
                 SimpleStyle.Line = new LineStyle {
                     Color = Color32.Parse(colorCode3),
-                    Width = config.KmlWidth
+                    Width = KmlWidth
                 };
                 SimpleStyle.Polygon = new PolygonStyle {
                     Color = Color32.Parse(colorCode3)
@@ -471,7 +448,8 @@ namespace LID_ClassLibrary {
             }
 
             //LINE STRING & PLACEMARK CONSTRUCTION ZONE
-            foreach(Ingestor ingest in input) {
+            foreach(double[,] ingest in coordinates) {
+                int lineNum = 0;
                 //One per segment
                 LineString linestring = new LineString();
                 CoordinateCollection coordinates = new CoordinateCollection();
@@ -479,7 +457,7 @@ namespace LID_ClassLibrary {
                 linestring.Extrude = true;
                 linestring.Tessellate = true;
 
-                double[,] coordArray = ingest.GetCoordinates();
+                double[,] coordArray = ingest;
 
                 double[] lat = new double[(coordArray.Length / 2)];
                 double[] lon = new double[(coordArray.Length / 2)];
@@ -497,20 +475,20 @@ namespace LID_ClassLibrary {
 
                 linestring.Coordinates = coordinates;
                 Placemark placemark = new Placemark {
-                    Name = ingest.GetLineType(),
+                    Name = lineTypes[lineNum],
                     Visibility = true,
                     Geometry = linestring,
                     //Moved StyleUrl out in order to be able to set it conditionally
                     //Moved Description out as well
                     Time = lineTimespan                                    //Timespan
                 };
-                if(ingest.GetLineType().Contains("ESTIMATED ICEBERG LIMIT")) {
+                if(lineTypes[lineNum].Contains("ESTIMATED ICEBERG LIMIT")) {
                     placemark.StyleUrl = new Uri(("#" + styleEIL), UriKind.Relative); //Uri makes url refrence to indocument style rather than cloud sourced
                     placemark.Description = new Description() { Text = "Based off of data from Greenland" };
-                } else if(ingest.GetLineType().Contains("ICEBERG LIMIT")) {
+                } else if(lineTypes[lineNum].Contains("ICEBERG LIMIT")) {
                     placemark.StyleUrl = new Uri(("#" + styleIL), UriKind.Relative);
                     placemark.Description = new Description() { Text = "Based off of data from the IIP and Canadian Ice Patrol" };
-                } else if(ingest.GetLineType().Contains("SEA ICE LIMIT")) {
+                } else if(lineTypes[lineNum].Contains("SEA ICE LIMIT")) {
                     placemark.StyleUrl = new Uri(("#" + styleSIL), UriKind.Relative);
                     placemark.Description = new Description() { Text = "Sea ice within limit displayed" };
                 } else {
@@ -519,7 +497,7 @@ namespace LID_ClassLibrary {
                 }
 
                 document.AddFeature(placemark);
-
+                lineNum++;
             }
             //END LINE STRING CONSTRUCTION ZONE
 
@@ -590,7 +568,7 @@ namespace LID_ClassLibrary {
         }
 
         //Binary Creator Method
-        public BinaryCreator(double[][,] PolarCoords, Config config) { //Will take input at some point
+        public void BinaryCreator(double[][,] PolarCoords, Config config) { //Will take input at some point
 
 
             // Try Catch statement -- encode message based upon type
@@ -781,6 +759,27 @@ namespace LID_ClassLibrary {
             }
         }
 
+        //Write the coordinate sets to a text file
+        private void WriteFile() {
+            //Output to Degree File
+            try {
+                using(StreamWriter decimalFile = new StreamWriter(degOutFile)) {
+                    decimalFile.Write(output);
+                }
+            } catch(Exception e) {
+                Console.WriteLine(e.Message);
+            }
+
+            //Output to Decimal File
+            try {
+                using(StreamWriter decimalFile = new StreamWriter(decOutFile)) {
+                    decimalFile.Write(decOutput);
+                }
+            } catch(Exception e) {
+                Console.WriteLine(e.Message);
+            }
+        }
+
         //Convert the string of bits to an integer then to ascii
         //ASCII -> bits
         //ASCII - 48 if (> 40){-8} 
@@ -872,6 +871,6 @@ namespace LID_ClassLibrary {
 
         //Accessors
 
-        //End of CLI
+        //End of Framework
     }
 }

@@ -8,7 +8,7 @@ using LID_ClassLibrary;
 namespace LID_CLI {
     class Program {
         static void Main(string[] args) {
-            Framework 
+            Framework workload = new Framework();
             Thread.Sleep(5000);
         }
     }

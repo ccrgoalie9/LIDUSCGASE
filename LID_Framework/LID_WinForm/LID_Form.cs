@@ -22,7 +22,7 @@ namespace LID_WinForm {
         public LID_Form() {
             InitializeComponent();
             //Read the config file
-            config = new Config();
+            config = new Config("config.txt");
             partialPath = config.DirPath;
 
             //Initialize the openFile dialogs
