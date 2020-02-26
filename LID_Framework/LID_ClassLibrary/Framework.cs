@@ -85,16 +85,88 @@ namespace LID_ClassLibrary {
             if(!File.Exists(ConfigPath)) {
                 //Create file from defaults
                 CreateConfig();
-
+                ReadConfig();
             }
             if(File.Exists(ConfigPath)) {
                 ReadConfig();
             }
 
-            //Download the bulletin
-            DownloadFromWeb();
+            DirectoryCheck();
 
-            //
+            //Starts Error Checking file
+            if(!File.Exists(ErrorFile)) {
+                ErrorFile = "./LID_Files/ErrorLogs/Error.txt";
+                File.Create(ErrorFile).Dispose();
+            }
+            string text = File.ReadAllText(ErrorFile);
+            if(!text.Contains(DateTime.UtcNow.ToString("yyyy-MM-dd"))) {
+                File.AppendAllText(ErrorFile, "Error Checking Starting: " + DateTime.UtcNow.ToString("yyyy-MM-dd") + "\n");
+            }
+
+            try {//Download the Bulletin
+                Console.Write("Fetching Current Bulletin...\t");
+                DownloadFromWeb();
+                Console.WriteLine("Current Bulletin Fetched");
+            } catch(Exception x) {
+                Console.WriteLine("Error: Failed To Fetch The Bulletin\n" + x.Message);
+                File.AppendAllText(ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n"); //Write to error file
+            }
+
+            try {//Get the necessary bits from the bulletin
+                ReadFile();
+                ScrapeFile();
+                ConvertIngestor();
+                CreateOutput();
+            } catch(Exception x) {
+                Console.WriteLine("Error: Failed To Scrape The Bulletin\n" + x.Message);
+                File.AppendAllText(ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
+            }
+            /*
+            try {//Create the KML file in format: ICEBERGS_'date'.kml
+                Console.Write("Creating KML File...\t\t");
+                new Line(GetCoordinatesIngestors());
+                Console.WriteLine("KML File Created");
+            } catch(Exception x) {
+                Console.WriteLine("Error: Failed To Create The KML File\n" + x.Message);
+                File.AppendAllText(ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
+            }
+
+            try {//Math for the Bearings and Ranges
+                Console.Write("Creating Bearings And Ranges...\t");
+                new BearingRange(GetCoordinatesIngestors());
+                Console.WriteLine("Bearing And Ranges Created");
+                if(Debug) {
+                    //Debug();
+                }
+            } catch(Exception x) {
+                Console.WriteLine("Error: Failed To Create The File");
+                File.AppendAllText(ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
+            }
+
+            try {//Create the Binary from the Bearing and Ranges
+                Console.Write("Creating Binary...\t\t");
+                new BinaryCreator(GetCoordinates());
+                Console.WriteLine("Binaries Created");
+                if(Debug) {
+                    //Debug();
+                }
+            } catch(Exception x) {
+                Console.WriteLine("Error: Failed To Create The Binary");
+                File.AppendAllText(ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
+            }
+
+            try {//Convert the Binary to Armored ASCII
+                Console.Write("Creating Armored ASCII...\t");
+                new ArmoredAscii(LineMessages);
+                Console.WriteLine("ASCII Created");
+                if(Debug) {
+                    //Debug();
+                }
+            } catch(Exception x) {
+                Console.WriteLine("Error: Failed To Create Armored ASCII");
+                File.AppendAllText(ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
+            }
+            */
         }
 
 
@@ -144,7 +216,7 @@ namespace LID_ClassLibrary {
                 }
             } catch(Exception x) {
                 Console.WriteLine("Error in reading configuration file, re-writing");
-                ErrorFile = @"C:\Users\" + Environment.UserName + @"\Documents\LID Files\ErrorLogs\Error.txt";
+                ErrorFile = @"/ErrorLogs/Error.txt";
                 CreateConfig();
                 ReadConfig();
                 File.AppendAllText(ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
@@ -282,7 +354,7 @@ namespace LID_ClassLibrary {
         }
 
         //Convert coordinates using the Ingestor class
-        private void ConvertIngestor(int check) {
+        private void ConvertIngestor() {
             coordinates = new double[coordsIngested.Length][,];
 
             //Add Letters To Reflect Subsections of the same Set
@@ -311,20 +383,14 @@ namespace LID_ClassLibrary {
             }
             //End Adding Letters
 
-            if(check != 3) {
-                for(int i = 0; i < coordinates.Length; i++) {
-                    coordinates[i] = Ingestor(coordsIngested[i], i + 1);
-                }
-            } else {
-                for(int i = 0; i < coordinates.Length; i++) {
-                    coordinates[i] = Ingestor(coordsIngested[i], i + i, check);
-                }
+            for(int i = 0; i < coordinates.Length; i++) {
+                coordinates[i] = ConvertInput(coordsIngested[i]);
             }
         }
 
         //Ingestor Methods
         //Convert ingest to array
-        private void ConvertInput() {
+        private double[,] ConvertInput(string ingested) {
             try {
                 ingested = ingested.Replace(", ", ","); //Get rid of pesky spaces
                 string[] tempByComma = ingested.Split(',');
@@ -372,15 +438,16 @@ namespace LID_ClassLibrary {
                 //To easily determine if something went wrong
                 coords = new double[,] { { -1, -1 }, { -1, -1 } };
             }
+            return coords;
         }
 
         //Line methods
 
-       
+
 
         //Line Class
         public void Line() {
-            string filepath = (DirPath + @"\KML\" + DateTime.UtcNow.ToString("yyyy-MM-dd") + "_ICEBERGS.kml");
+            string filepath = (DirPath + @"/KML/" + DateTime.UtcNow.ToString("yyyy-MM-dd") + "_ICEBERGS.kml");
             string filename = (DateTime.UtcNow.ToString("yyyy-MM-dd") + "_ICEBERGS");
 
             //Check if file already exists
@@ -583,7 +650,7 @@ namespace LID_ClassLibrary {
             try { // Try Catch Statement that creates an array of variables. 
                 Type = Convert.ToString(8, 2).PadLeft(6, '0'); //6bits
                 RepeatIndicator = Convert.ToString(0, 2).PadLeft(2, '0'); //2bits
-                Mmsi = Convert.ToString(config.MMSI, 2).PadLeft(30, '0'); //30bits
+                Mmsi = Convert.ToString(MMSI, 2).PadLeft(30, '0'); //30bits
                 Spare = Convert.ToString(0, 2).PadLeft(2, '0'); //2bits
 
                 MessageVersion = Convert.ToString(2, 2).PadLeft(6, '0');
@@ -742,7 +809,7 @@ namespace LID_ClassLibrary {
             // Display the result
             return hexsum;
         }
-        
+
         //All Write Files
         private void WriteFile() {
             string output = "";
@@ -750,18 +817,14 @@ namespace LID_ClassLibrary {
                 output += message + "," + timeStamp + "\n";
             }
             try {
-                using(StreamWriter AISWriter = new StreamWriter(DirPath + @"\AISToday.txt")) {
+                using(StreamWriter AISWriter = new StreamWriter(DirPath + @"/AISToday.txt")) {
                     AISWriter.Write(output);
                 }
             } catch(Exception e) {
                 Console.WriteLine(e.Message);
 
             }
-        }
-
-        //Write the coordinate sets to a text file
-        private void WriteFile() {
-            //Output to Degree File
+            //Write Coordinate Sets to Text Files
             try {
                 using(StreamWriter decimalFile = new StreamWriter(degOutFile)) {
                     decimalFile.Write(output);
@@ -810,8 +873,8 @@ namespace LID_ClassLibrary {
             using(StreamWriter configWriter = new StreamWriter(ConfigPath, false)) {
                 configWriter.WriteLine("#Configuration file for the LID program, please only edit between the single quotes");
                 configWriter.WriteLine("#Config path: " + Environment.CurrentDirectory + "\n");
-                configWriter.WriteLine(@"Files Directory Location: 'C:\Users\" + Environment.UserName + @"\Documents\LID Files'");
-                configWriter.WriteLine(@"Error File Location: 'C:\Users\" + Environment.UserName + @"\Documents\LID Files\ErrorLogs\Error.txt'");
+                configWriter.WriteLine(@"Files Directory Location: './LID_Files'");
+                configWriter.WriteLine(@"Error File Location: 'Error.txt'");
                 configWriter.WriteLine("\nUpdate links only if they have changed");
                 configWriter.WriteLine("Website URL: 'https://lidtesting.azurewebsites.net'");
                 configWriter.WriteLine(@"Bulletin URL: 'https://www.navcen.uscg.gov/?pageName=iipB12Out'");
@@ -831,7 +894,7 @@ namespace LID_ClassLibrary {
 
         public void DownloadFromWeb() {
             //Outfile Naming so that verision can be kept and a path from config file is present.
-            string outfile = (DirPath + @"\Bulletins\" + DateTime.UtcNow.ToString("yyyy-MM-dd") + "_Bulletin_Pull.txt");
+            string outfile = (DirPath + @"/Bulletins/" + DateTime.UtcNow.ToString("yyyy-MM-dd") + "_Bulletin_Pull.txt");
             //Calls Download to grab the html from the bullentin website
             DownloadFile(BulletinUrl, outfile);
 
@@ -856,16 +919,16 @@ namespace LID_ClassLibrary {
         //Check if directories exists
         private void DirectoryCheck() {
             Console.Write("Updating Directories...\t\t");
-            try { Directory.CreateDirectory(DirPath + @"\Bulletins"); } catch(Exception x) {
+            try { Directory.CreateDirectory(DirPath + @"/Bulletins"); } catch(Exception x) {
                 CreateConfig();
                 ReadConfig();
                 Console.WriteLine("Error Creating Directories, Attempting To Fix By Re-Writing Configuration File");
                 File.AppendAllText(ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
             }
-            Directory.CreateDirectory(DirPath + @"\KML");
-            Directory.CreateDirectory(DirPath + @"\LatLongs");
-            Directory.CreateDirectory(DirPath + @"\Polar");
-            Directory.CreateDirectory(DirPath + @"\ErrorLogs");
+            Directory.CreateDirectory(DirPath + @"/KML");
+            Directory.CreateDirectory(DirPath + @"/LatLongs");
+            Directory.CreateDirectory(DirPath + @"/Polar");
+            Directory.CreateDirectory(DirPath + @"/ErrorLogs");
             Console.WriteLine("Directories Updated");
         }
 

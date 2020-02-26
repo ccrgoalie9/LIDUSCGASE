@@ -49,6 +49,7 @@
     <Compile Include="Config.cs" />
     <Compile Include="DoIt.cs" />
     <Compile Include="Download.cs" />
+    <Compile Include="Framework.cs" />
     <Compile Include="Ingestor.cs" />
     <Compile Include="Line.cs" />
     <Compile Include="BinaryCreator.cs" />
