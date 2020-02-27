@@ -25,24 +25,14 @@ namespace LID_ClassLibrary {
         public int KmlWidth { get; set; }
         public string ErrorFile { get; set; }
         public bool Debug { get; set; }
-        //Scraper variables
-        private string inFileName, degOutFile, decOutFile, output, decOutput, ingested;
+        private string outfile, ingested;
         private string[] lineTypes, ingests, coordsIngested;
-        readonly private string partialPath;
         readonly private string[] append = { "A", "B", "C", "D", "E", "F", "G" };
-        //Ingestor Variables
-        //private string ingested;
-        //private string output;
-        private string lineType;
         private double[,] coords;
-        //Line Varaibles
-        readonly string filepath;
         //Polar Variables
         double a, c, d, R, phi1, phi2, deltaphi, deltalambda, theta1, theta, theta2;
-        readonly double[][,] PolarSets;
+        readonly double[][,] polarSets;
         private double[][,] coordinates;
-        //string output;
-        //readonly string outFile;
         //Binary Variables
         public int X { get; set; }
         public int Y { get; set; }
@@ -75,8 +65,7 @@ namespace LID_ClassLibrary {
         //Armored ASCII Variables
         public List<string> AsciiStream { get; set; }
         public List<string> AISMessages { get; set; }
-        //readonly private Config config;
-        private int timeStamp;
+        private readonly int timeStamp;
 
         //Constructor
         public Framework() {
@@ -116,15 +105,14 @@ namespace LID_ClassLibrary {
                 ReadFile();
                 ScrapeFile();
                 ConvertIngestor();
-                CreateOutput();
             } catch(Exception x) {
                 Console.WriteLine("Error: Failed To Scrape The Bulletin\n" + x.Message);
                 File.AppendAllText(ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
             }
-            /*
+
             try {//Create the KML file in format: ICEBERGS_'date'.kml
                 Console.Write("Creating KML File...\t\t");
-                new Line(GetCoordinatesIngestors());
+                Line();
                 Console.WriteLine("KML File Created");
             } catch(Exception x) {
                 Console.WriteLine("Error: Failed To Create The KML File\n" + x.Message);
@@ -133,7 +121,8 @@ namespace LID_ClassLibrary {
 
             try {//Math for the Bearings and Ranges
                 Console.Write("Creating Bearings And Ranges...\t");
-                new BearingRange(GetCoordinatesIngestors());
+                polarSets = new double[coordinates.Length][,];
+                ConvertCoordinates(coordinates);
                 Console.WriteLine("Bearing And Ranges Created");
                 if(Debug) {
                     //Debug();
@@ -145,7 +134,7 @@ namespace LID_ClassLibrary {
 
             try {//Create the Binary from the Bearing and Ranges
                 Console.Write("Creating Binary...\t\t");
-                new BinaryCreator(GetCoordinates());
+                BinaryCreator(polarSets);
                 Console.WriteLine("Binaries Created");
                 if(Debug) {
                     //Debug();
@@ -157,7 +146,11 @@ namespace LID_ClassLibrary {
 
             try {//Convert the Binary to Armored ASCII
                 Console.Write("Creating Armored ASCII...\t");
-                new ArmoredAscii(LineMessages);
+                timeStamp = CalcTimeStamp();
+                AsciiStream = new List<string>();
+                AISMessages = new List<string>();
+                ConvertToAscii(LineMessages);
+                MessageConstructor();
                 Console.WriteLine("ASCII Created");
                 if(Debug) {
                     //Debug();
@@ -166,9 +159,12 @@ namespace LID_ClassLibrary {
                 Console.WriteLine("Error: Failed To Create Armored ASCII");
                 File.AppendAllText(ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
             }
-            */
+
         }
 
+        public Framework(string[] args) {
+
+        }
 
         //Modifiers
         public void ReadConfig() {
@@ -209,6 +205,9 @@ namespace LID_ClassLibrary {
                             Console.WriteLine("Invalid Value For An Expected Boolean\n" + x.Message);
                             File.AppendAllText(ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
                         }
+                        //if(!ConfigPath.Contains(Environment.UserName)) {
+                        //    throw new Exception("Username does not match current directory");
+                        //}
                     }
                     if(flag < flagCount) {
                         throw new Exception("Not All Expected Values Were Present");
@@ -227,7 +226,7 @@ namespace LID_ClassLibrary {
         private void ReadFile() {
             try {
                 ingested = "";
-                using(StreamReader coordFile = new StreamReader(inFileName)) {
+                using(StreamReader coordFile = new StreamReader(outfile)) {
                     ingested = coordFile.ReadToEnd();
                 }
             } catch(Exception x) {
@@ -302,54 +301,6 @@ namespace LID_ClassLibrary {
                 } catch(Exception) {
                     //Do nothing
                 }
-            }
-        }
-
-        private void CreateOutput() {
-            //Create Degree Output
-            try {
-                int count = 0;
-                output = "";
-                foreach(string x in coordsIngested) {
-                    output += lineTypes[count];
-                    if(count == 0) {
-                        output += DateTime.UtcNow.ToString(" yyyy-MM-dd");
-                    }
-                    output += "\n";
-                    output += x + "\n";
-                    count++;
-                }
-            } catch(Exception e) {
-                Console.WriteLine(e.Message);
-                output = e.Message;
-                Console.ReadKey(); //Error
-            }
-
-            //Create Decimal Output
-            try {
-                int count = 0;
-                decOutput = "";
-                foreach(double[,] x in coordinates) {
-                    decOutput += lineTypes[count];
-                    if(count == 0) {
-                        decOutput += DateTime.UtcNow.ToString(" yyyy-MM-dd");
-                    }
-                    decOutput += "\n";
-                    string output = "";
-                    for(int i = 0; i < (x.Length / 2); i++) {
-                        for(int j = 0; j <= 1; j++) {
-                            output += x[i, j].ToString();
-                            if(j == 0) output += ",";
-                        }
-                        output += " ";
-                    }
-                    decOutput += output + "\n";
-                    count++;
-                }
-            } catch(Exception e) {
-                Console.WriteLine(e.Message);
-                decOutput = e.Message;
-                Console.ReadKey();
             }
         }
 
@@ -515,8 +466,8 @@ namespace LID_ClassLibrary {
             }
 
             //LINE STRING & PLACEMARK CONSTRUCTION ZONE
+            int lineNum = 0;
             foreach(double[,] ingest in coordinates) {
-                int lineNum = 0;
                 //One per segment
                 LineString linestring = new LineString();
                 CoordinateCollection coordinates = new CoordinateCollection();
@@ -582,15 +533,16 @@ namespace LID_ClassLibrary {
         }
 
         //Bearing Range Method
-        private void ConvertCoordinates(Ingestor[] input) {
+        private void ConvertCoordinates(double[][,] input) {
+            string output = "";
             int count = 0;
-            foreach(Ingestor ingest in input) {
-                double[,] coords = ingest.GetCoordinates();
-                double[,] temp = new double[ingest.GetCoordinates().Length / 2, 2];
+            foreach(double[,] ingest in input) {
+                double[,] coords = ingest;
+                double[,] temp = new double[ingest.Length / 2, 2];
                 //Set the first and last set
                 temp[0, 0] = Math.Round(coords[0, 0], 2);
                 temp[0, 1] = Math.Round(coords[0, 1], 2);
-                output += ingest.GetLineType() + "\n";
+                output += lineTypes[count] + "\n";
                 output += temp[0, 0] + " " + temp[0, 1] + "\n";
 
                 //Do the math
@@ -625,7 +577,7 @@ namespace LID_ClassLibrary {
                         temp[i + 1, 1] = Math.Round((d / 1000), 2); //Distance in Kilometers
                         output += Math.Round((360 - theta), 2) + " " + Math.Round((d / 1000), 2) + "\n";
                     }
-                    PolarSets[count] = temp;
+                    polarSets[count] = temp;
                     count++;
                 } catch(Exception x) {
                     Console.WriteLine(x.Message);
@@ -635,7 +587,7 @@ namespace LID_ClassLibrary {
         }
 
         //Binary Creator Method
-        public void BinaryCreator(double[][,] PolarCoords, Config config) { //Will take input at some point
+        public void BinaryCreator(double[][,] PolarCoords) { //Will take input at some point
 
 
             // Try Catch statement -- encode message based upon type
@@ -810,39 +762,6 @@ namespace LID_ClassLibrary {
             return hexsum;
         }
 
-        //All Write Files
-        private void WriteFile() {
-            string output = "";
-            foreach(string message in AISMessages) {
-                output += message + "," + timeStamp + "\n";
-            }
-            try {
-                using(StreamWriter AISWriter = new StreamWriter(DirPath + @"/AISToday.txt")) {
-                    AISWriter.Write(output);
-                }
-            } catch(Exception e) {
-                Console.WriteLine(e.Message);
-
-            }
-            //Write Coordinate Sets to Text Files
-            try {
-                using(StreamWriter decimalFile = new StreamWriter(degOutFile)) {
-                    decimalFile.Write(output);
-                }
-            } catch(Exception e) {
-                Console.WriteLine(e.Message);
-            }
-
-            //Output to Decimal File
-            try {
-                using(StreamWriter decimalFile = new StreamWriter(decOutFile)) {
-                    decimalFile.Write(decOutput);
-                }
-            } catch(Exception e) {
-                Console.WriteLine(e.Message);
-            }
-        }
-
         //Convert the string of bits to an integer then to ascii
         //ASCII -> bits
         //ASCII - 48 if (> 40){-8} 
@@ -874,7 +793,7 @@ namespace LID_ClassLibrary {
                 configWriter.WriteLine("#Configuration file for the LID program, please only edit between the single quotes");
                 configWriter.WriteLine("#Config path: " + Environment.CurrentDirectory + "\n");
                 configWriter.WriteLine(@"Files Directory Location: './LID_Files'");
-                configWriter.WriteLine(@"Error File Location: 'Error.txt'");
+                configWriter.WriteLine(@"Error File Location: './LID_Files/ErrorLogs/Error.txt'");
                 configWriter.WriteLine("\nUpdate links only if they have changed");
                 configWriter.WriteLine("Website URL: 'https://lidtesting.azurewebsites.net'");
                 configWriter.WriteLine(@"Bulletin URL: 'https://www.navcen.uscg.gov/?pageName=iipB12Out'");
@@ -894,7 +813,7 @@ namespace LID_ClassLibrary {
 
         public void DownloadFromWeb() {
             //Outfile Naming so that verision can be kept and a path from config file is present.
-            string outfile = (DirPath + @"/Bulletins/" + DateTime.UtcNow.ToString("yyyy-MM-dd") + "_Bulletin_Pull.txt");
+            outfile = (DirPath + @"/Bulletins/" + DateTime.UtcNow.ToString("yyyy-MM-dd") + "_Bulletin_Pull.txt");
             //Calls Download to grab the html from the bullentin website
             DownloadFile(BulletinUrl, outfile);
 
@@ -926,8 +845,6 @@ namespace LID_ClassLibrary {
                 File.AppendAllText(ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
             }
             Directory.CreateDirectory(DirPath + @"/KML");
-            Directory.CreateDirectory(DirPath + @"/LatLongs");
-            Directory.CreateDirectory(DirPath + @"/Polar");
             Directory.CreateDirectory(DirPath + @"/ErrorLogs");
             Console.WriteLine("Directories Updated");
         }

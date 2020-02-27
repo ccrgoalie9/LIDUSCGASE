@@ -38,3 +38,8 @@ LID_Framework/.vs/LID_Framework/DesignTimeBuild/.dtbcache
 .vscode/tasks.json
 .vscode/launch.json
 LID_Framework/LID_WebApp/obj/Debug/netcoreapp3.0/project.razor.json
+*.dll
+*.pdb
+*.pdb
+*.pdb
+*.cache

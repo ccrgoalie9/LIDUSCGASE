@@ -2,7 +2,7 @@
 #Config path: C:\Users\Thomas Hardy\Desktop\USCGA\Academia\2019 Fall\Software Engineering\Github\Projects\LIDUSCGASE\LID_Framework\LID_CLI\bin\Debug
 
 Files Directory Location: './LID_Files'
-Error File Location: 'Error.txt'
+Error File Location: './LID_Files/ErrorLogs/Error.txt'
 
 Update links only if they have changed
 Website URL: 'https://lidtesting.azurewebsites.net'

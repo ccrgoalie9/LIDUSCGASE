@@ -8,8 +8,12 @@ using LID_ClassLibrary;
 namespace LID_CLI {
     class Program {
         static void Main(string[] args) {
-            Framework workload = new Framework();
-            Thread.Sleep(5000);
+            if(args.Length > 0)
+                new Framework(args);
+            else
+                new Framework();
+            //Thread.Sleep(5000);
+            Console.ReadKey();
         }
     }
 }

@@ -16,7 +16,7 @@ namespace LID_ClassLibrary {
         ArmoredAscii todayAscii;
 
         //DateTime For use for syncronicity
-        DateTime currentTime;
+        //DateTime currentTime;
 
         public DoIt(Config config) {
             this.config = config;
