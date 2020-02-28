@@ -13,7 +13,7 @@ namespace LID_ClassLibrary {
     public class Framework {
         //Declare Variables
         //Configuration variables
-        public string ConfigPath { get; set; }
+        public string configPath { get; set; }
         public string DirPath { get; set; }
         public string BulletinUrl { get; set; }
         public string ChartUrl { get; set; }
@@ -70,13 +70,13 @@ namespace LID_ClassLibrary {
         //Constructor
         public Framework() {
             //Start by reading or creating CONFIG
-            ConfigPath = @"config.txt";
-            if(!File.Exists(ConfigPath)) {
+            configPath = @"config.txt";
+            if(!File.Exists(configPath)) {
                 //Create file from defaults
                 CreateConfig();
                 ReadConfig();
             }
-            if(File.Exists(ConfigPath)) {
+            if(File.Exists(configPath)) {
                 ReadConfig();
             }
 
@@ -163,7 +163,70 @@ namespace LID_ClassLibrary {
         }
 
         public Framework(string[] args) {
+            //Index tracker
+            int ind;
+            //Boolean Variables to determine what to do
 
+            //Start Options
+            // <-h>,<-H>,<--Help> for Help
+            if(args.Contains<string>("-h") || args.Contains<string>("-H") || args.Contains<string>("--help") || args.Contains<string>("--Help") || args.Contains<string>("help") || args.Contains<string>("Help")) {
+                Console.WriteLine("" +
+                    "Usage  : LID_CLI <optional args>\n" +
+                    "  -c   : Declare config path, if in a directory other than that of the executable.\n" +
+                    "         The path follows the option\n" +
+                    "  -dd  : 'Don't Download' Do not execute the download step\n" +
+                    "  -kml : Create KML, default is to not\n" +
+                    "  -ais : Generate AIS message, default is to not\n" +
+                    "  -dir : Open LID_Files directory");
+                Environment.Exit(0);
+            }
+            // <-c> for Config Location
+            if(args.Contains<string>("-C")) {
+                if(args.Length > 1) {
+                    ind = Array.IndexOf(args, "-c");
+                    if(File.Exists(args[Array.IndexOf(args, "-c")])) {
+                        configPath = args[ind + 1];
+                        Console.WriteLine(configPath);
+                    }
+                } else {
+                    Console.WriteLine("A path string must be passed after the <-c> option");
+                    Environment.Exit(0);
+                }
+            } else {
+                configPath = @"config.txt";
+            }
+
+            // <-dd> Don't download the bulletin
+            if(args.Contains<string>("-dd")) {
+
+            }
+
+            // <-kml> Create kml, default is to not
+            if(args.Contains<string>("-kml")) {
+
+            }
+
+            // <-ais> Generate AIS message, default is to not
+            if(args.Contains<string>("-ais")) {
+
+            }
+
+            // <-dir> Open the LID_Files directory
+            if(args.Contains<string>("-dir")) {
+                System.Diagnostics.Process.Start("explorer.exe", DirPath);
+            }
+
+            //End Options
+
+            //Start Program Given Options
+            if(!File.Exists(configPath)) {
+                //Create file from defaults
+                CreateConfig();
+                ReadConfig();
+            }
+            if(File.Exists(configPath)) {
+                ReadConfig();
+            }
         }
 
         //Modifiers
@@ -171,7 +234,7 @@ namespace LID_ClassLibrary {
             int flag = 0;
             int flagCount = 11;
             try {
-                using(StreamReader configReader = new StreamReader(ConfigPath)) {
+                using(StreamReader configReader = new StreamReader(configPath)) {
                     string temp;
                     while((temp = configReader.ReadLine()) != null) {
                         if(temp.StartsWith("#")) { continue; }
@@ -205,7 +268,7 @@ namespace LID_ClassLibrary {
                             Console.WriteLine("Invalid Value For An Expected Boolean\n" + x.Message);
                             File.AppendAllText(ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
                         }
-                        //if(!ConfigPath.Contains(Environment.UserName)) {
+                        //if(!configPath.Contains(Environment.UserName)) {
                         //    throw new Exception("Username does not match current directory");
                         //}
                     }
@@ -741,6 +804,18 @@ namespace LID_ClassLibrary {
                     Console.WriteLine(x.Message);
                 }
             }
+            string output = "";
+            foreach(string message in AISMessages) {
+                output += message + "," + timeStamp + "\n";
+            }
+            try {
+                using(StreamWriter AISWriter = new StreamWriter(DirPath + @"/AIS/" + DateTime.UtcNow.ToString("yyyy-MM-dd") + "_BERG_MSG.txt")) {
+                    AISWriter.Write(output);
+                }
+            } catch(Exception e) {
+                Console.WriteLine(e.Message);
+
+            }
         }
         //Calculate the Time Stamp
         private int CalcTimeStamp() {
@@ -789,7 +864,7 @@ namespace LID_ClassLibrary {
 
         //Create the configuration file for first time or for new users
         public void CreateConfig() {
-            using(StreamWriter configWriter = new StreamWriter(ConfigPath, false)) {
+            using(StreamWriter configWriter = new StreamWriter(configPath, false)) {
                 configWriter.WriteLine("#Configuration file for the LID program, please only edit between the single quotes");
                 configWriter.WriteLine("#Config path: " + Environment.CurrentDirectory + "\n");
                 configWriter.WriteLine(@"Files Directory Location: './LID_Files'");
@@ -846,6 +921,7 @@ namespace LID_ClassLibrary {
             }
             Directory.CreateDirectory(DirPath + @"/KML");
             Directory.CreateDirectory(DirPath + @"/ErrorLogs");
+            Directory.CreateDirectory(DirPath + @"/AIS");
             Console.WriteLine("Directories Updated");
         }
 

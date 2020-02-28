@@ -12,8 +12,8 @@ namespace LID_CLI {
                 new Framework(args);
             else
                 new Framework();
-            //Thread.Sleep(5000);
-            Console.ReadKey();
+            Thread.Sleep(5000);
+            //Console.ReadKey();
         }
     }
 }
