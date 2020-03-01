@@ -181,7 +181,7 @@ namespace LID_ClassLibrary {
                 Environment.Exit(0);
             }
             // <-c> for Config Location
-            if(args.Contains<string>("-C")) {
+            if(args.Contains<string>("-c")) {
                 if(args.Length > 1) {
                     ind = Array.IndexOf(args, "-c");
                     if(File.Exists(args[Array.IndexOf(args, "-c")])) {
