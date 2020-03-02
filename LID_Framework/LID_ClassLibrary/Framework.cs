@@ -166,7 +166,7 @@ namespace LID_ClassLibrary {
             //Index tracker
             int ind;
             //Boolean Variables to determine what to do
-
+            bool dd = true, kml = false, ais = false, dir = false;
             //Start Options
             // <-h>,<-H>,<--Help> for Help
             if(args.Contains<string>("-h") || args.Contains<string>("-H") || args.Contains<string>("--help") || args.Contains<string>("--Help") || args.Contains<string>("help") || args.Contains<string>("Help")) {
@@ -198,22 +198,22 @@ namespace LID_ClassLibrary {
 
             // <-dd> Don't download the bulletin
             if(args.Contains<string>("-dd")) {
-
+                dd = false;
             }
 
             // <-kml> Create kml, default is to not
             if(args.Contains<string>("-kml")) {
-
+                kml = true;
             }
 
             // <-ais> Generate AIS message, default is to not
             if(args.Contains<string>("-ais")) {
-
+                ais = true;
             }
 
             // <-dir> Open the LID_Files directory
             if(args.Contains<string>("-dir")) {
-                System.Diagnostics.Process.Start("explorer.exe", DirPath);
+                dir = true;
             }
 
             //End Options
@@ -227,6 +227,97 @@ namespace LID_ClassLibrary {
             if(File.Exists(configPath)) {
                 ReadConfig();
             }
+
+            DirectoryCheck();
+
+            //Starts Error Checking file
+            if(!File.Exists(ErrorFile)) {
+                ErrorFile = "./LID_Files/ErrorLogs/Error.txt";
+                File.Create(ErrorFile).Dispose();
+            }
+            string text = File.ReadAllText(ErrorFile);
+            if(!text.Contains(DateTime.UtcNow.ToString("yyyy-MM-dd"))) {
+                File.AppendAllText(ErrorFile, "Error Checking Starting: " + DateTime.UtcNow.ToString("yyyy-MM-dd") + "\n");
+            }
+
+            if(dd) {
+                try {//Download the Bulletin
+                    Console.Write("Fetching Current Bulletin...\t");
+                    DownloadFromWeb();
+                    Console.WriteLine("Current Bulletin Fetched");
+                } catch(Exception x) {
+                    Console.WriteLine("Error: Failed To Fetch The Bulletin\n" + x.Message);
+                    File.AppendAllText(ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n"); //Write to error file
+                }
+            }
+
+            try {//Get the necessary bits from the bulletin
+                ReadFile();
+                ScrapeFile();
+                ConvertIngestor();
+            } catch(Exception x) {
+                Console.WriteLine("Error: Failed To Scrape The Bulletin\n" + x.Message);
+                File.AppendAllText(ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
+            }
+
+            try {//Math for the Bearings and Ranges
+                Console.Write("Creating Bearings And Ranges...\t");
+                polarSets = new double[coordinates.Length][,];
+                ConvertCoordinates(coordinates);
+                Console.WriteLine("Bearing And Ranges Created");
+                if(Debug) {
+                    //Debug();
+                }
+            } catch(Exception x) {
+                Console.WriteLine("Error: Failed To Create The File");
+                File.AppendAllText(ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
+            }
+
+            try {//Create the Binary from the Bearing and Ranges
+                Console.Write("Creating Binary...\t\t");
+                BinaryCreator(polarSets);
+                Console.WriteLine("Binaries Created");
+                if(Debug) {
+                    //Debug();
+                }
+            } catch(Exception x) {
+                Console.WriteLine("Error: Failed To Create The Binary");
+                File.AppendAllText(ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
+            }
+
+            if(kml) {
+                try {//Create the KML file in format: ICEBERGS_'date'.kml
+                    Console.Write("Creating KML File...\t\t");
+                    Line();
+                    Console.WriteLine("KML File Created");
+                } catch(Exception x) {
+                    Console.WriteLine("Error: Failed To Create The KML File\n" + x.Message);
+                    File.AppendAllText(ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
+                }
+            }
+
+            if(ais) {
+                try {//Convert the Binary to Armored ASCII
+                    Console.Write("Creating Armored ASCII...\t");
+                    timeStamp = CalcTimeStamp();
+                    AsciiStream = new List<string>();
+                    AISMessages = new List<string>();
+                    ConvertToAscii(LineMessages);
+                    MessageConstructor();
+                    Console.WriteLine("ASCII Created");
+                    if(Debug) {
+                        //Debug();
+                    }
+                } catch(Exception x) {
+                    Console.WriteLine("Error: Failed To Create Armored ASCII");
+                    File.AppendAllText(ErrorFile, DateTime.UtcNow.ToString("HH:mm:ss") + " : " + x.Message + "\n");
+                }
+            }
+
+            if(dir) {
+                System.Diagnostics.Process.Start(configPath.Substring(0,configPath.Length-6));
+            }
+
         }
 
         //Modifiers

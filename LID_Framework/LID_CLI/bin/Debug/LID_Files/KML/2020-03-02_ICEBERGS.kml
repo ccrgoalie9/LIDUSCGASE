@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document id="KML">
+    <name>2020-03-02_ICEBERGS</name>
+    <open>true</open>
+    <Style id="lineIcebergLimit">
+      <LineStyle>
+        <color>ffc702ff</color>
+        <width>5</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>ffc702ff</color>
+      </PolyStyle>
+    </Style>
+    <Style id="lineEstimatedIcebergLimit">
+      <LineStyle>
+        <color>ff00ffff</color>
+        <width>5</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>ff00ffff</color>
+      </PolyStyle>
+    </Style>
+    <Style id="lineSeaIceLimit">
+      <LineStyle>
+        <color>ffffff00</color>
+        <width>5</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>ffffff00</color>
+      </PolyStyle>
+    </Style>
+    <Placemark>
+      <name>ICEBERG LIMIT</name>
+      <visibility>true</visibility>
+      <description>Based off of data from the IIP and Canadian Ice Patrol</description>
+      <TimeSpan>
+        <begin>2020-03-02T00:00:01-05:00</begin>
+        <end>2020-03-02T23:59:59-05:00</end>
+      </TimeSpan>
+      <styleUrl>#lineIcebergLimit</styleUrl>
+      <LineString>
+        <extrude>true</extrude>
+        <tessellate>true</tessellate>
+        <altitudeMode>clampToGround</altitudeMode>
+        <coordinates>-52.700000000000003,47.416665999999999
+-46.75,45.25
+-45.666665999999999,46.083333000000003
+-46.25,48.916665999999999
+-49.5,54</coordinates>
+      </LineString>
+    </Placemark>
+    <Placemark>
+      <name>ESTIMATED ICEBERG LIMIT</name>
+      <visibility>true</visibility>
+      <description>Based off of data from Greenland</description>
+      <TimeSpan>
+        <begin>2020-03-02T00:00:01-05:00</begin>
+        <end>2020-03-02T23:59:59-05:00</end>
+      </TimeSpan>
+      <styleUrl>#lineEstimatedIcebergLimit</styleUrl>
+      <LineString>
+        <extrude>true</extrude>
+        <tessellate>true</tessellate>
+        <altitudeMode>clampToGround</altitudeMode>
+        <coordinates>-49.5,54
+-57,58.5
+-57,62
+-48.5,58.5
+-40,58.5
+-38.5,63.016666000000001
+-28,65.666666000000006</coordinates>
+      </LineString>
+    </Placemark>
+    <Placemark>
+      <name>WESTERN ICEBERG LIMIT</name>
+      <visibility>true</visibility>
+      <description>Based off of data from the IIP and Canadian Ice Patrol</description>
+      <TimeSpan>
+        <begin>2020-03-02T00:00:01-05:00</begin>
+        <end>2020-03-02T23:59:59-05:00</end>
+      </TimeSpan>
+      <styleUrl>#lineIcebergLimit</styleUrl>
+      <LineString>
+        <extrude>true</extrude>
+        <tessellate>true</tessellate>
+        <altitudeMode>clampToGround</altitudeMode>
+        <coordinates>-57,51.5
+-56.666665999999999,51.25</coordinates>
+      </LineString>
+    </Placemark>
+    <Placemark>
+      <name>SEA ICE LIMIT A</name>
+      <visibility>true</visibility>
+      <description>Sea ice within limit displayed</description>
+      <TimeSpan>
+        <begin>2020-03-02T00:00:01-05:00</begin>
+        <end>2020-03-02T23:59:59-05:00</end>
+      </TimeSpan>
+      <styleUrl>#lineSeaIceLimit</styleUrl>
+      <LineString>
+        <extrude>true</extrude>
+        <tessellate>true</tessellate>
+        <altitudeMode>clampToGround</altitudeMode>
+        <coordinates>-63.583333000000003,44.5
+-60.916665999999999,45.25
+-59.583333000000003,45.833333000000003
+-58.583333000000003,46
+-58.416665999999999,47.416665999999999
+-55.416665999999999,47.166665999999999</coordinates>
+      </LineString>
+    </Placemark>
+    <Placemark>
+      <name>SEA ICE LIMIT B</name>
+      <visibility>true</visibility>
+      <description>Sea ice within limit displayed</description>
+      <TimeSpan>
+        <begin>2020-03-02T00:00:01-05:00</begin>
+        <end>2020-03-02T23:59:59-05:00</end>
+      </TimeSpan>
+      <styleUrl>#lineSeaIceLimit</styleUrl>
+      <LineString>
+        <extrude>true</extrude>
+        <tessellate>true</tessellate>
+        <altitudeMode>clampToGround</altitudeMode>
+        <coordinates>-65.25,45.5
+-64.75,45.166665999999999</coordinates>
+      </LineString>
+    </Placemark>
+    <Placemark>
+      <name>SEA ICE LIMIT C</name>
+      <visibility>true</visibility>
+      <description>Sea ice within limit displayed</description>
+      <TimeSpan>
+        <begin>2020-03-02T00:00:01-05:00</begin>
+        <end>2020-03-02T23:59:59-05:00</end>
+      </TimeSpan>
+      <styleUrl>#lineSeaIceLimit</styleUrl>
+      <LineString>
+        <extrude>true</extrude>
+        <tessellate>true</tessellate>
+        <altitudeMode>clampToGround</altitudeMode>
+        <coordinates>-53,48.5
+-50.833333000000003,48.166665999999999
+-50,49
+-50,52
+-53,55
+-56.916665999999999,56.583333000000003
+-58,58
+-59.75,60.666665999999999
+-57.5,62.75</coordinates>
+      </LineString>
+    </Placemark>
+    <Placemark>
+      <name>SEA ICE LIMIT D</name>
+      <visibility>true</visibility>
+      <description>Sea ice within limit displayed</description>
+      <TimeSpan>
+        <begin>2020-03-02T00:00:01-05:00</begin>
+        <end>2020-03-02T23:59:59-05:00</end>
+      </TimeSpan>
+      <styleUrl>#lineSeaIceLimit</styleUrl>
+      <LineString>
+        <extrude>true</extrude>
+        <tessellate>true</tessellate>
+        <altitudeMode>clampToGround</altitudeMode>
+        <coordinates>-40.783332999999999,62.433332999999998
+-41.116666000000002,61.549999999999997
+-42,60.016666000000001
+-42.899999999999999,59.233333000000002
+-44.166665999999999,59.200000000000003
+-44.066665999999998,59.316665999999998
+-43.566665999999998,59.799999999999997
+-43.350000000000001,59.883333</coordinates>
+      </LineString>
+    </Placemark>
+  </Document>
+</kml>
